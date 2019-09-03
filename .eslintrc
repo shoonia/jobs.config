@@ -1,0 +1,51 @@
+{
+  "parser": "babel-eslint",
+  "extends": [
+    "eslint:recommended",
+    "plugin:react/recommended"
+  ],
+  "plugins": [
+    "react"
+  ],
+  "env": {
+    "browser": true,
+    "es6": true
+  },
+  "parserOptions": {
+    "ecmaVersion": 2018,
+  },
+  "settings": {
+    "react": {
+      "pragma": "h"
+    }
+  },
+  "rules": {
+    "react/jsx-key": "error",
+    "react/jsx-one-expression-per-line": "off",
+    "react/prop-types": "off",
+    "linebreak-style": "off",
+    "no-use-before-define": "error",
+    "no-unused-vars": [
+      "error",
+      {
+        "varsIgnorePattern": "^h$"
+      }
+    ],
+    "comma-dangle": [
+      "error",
+      "always-multiline"
+    ],
+    "semi": "error",
+    "indent": [
+      "error",
+      2,
+      {
+        "SwitchCase": 1
+      }
+    ],
+    "quotes": [
+      "error",
+      "single"
+    ],
+  }
+}

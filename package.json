@@ -1,0 +1,27 @@
+{
+  "name": "jobs.config-builder",
+  "version": "0.1.0",
+  "main": "src/index.html",
+  "scripts": {
+    "start": "parcel src/index.html --open --no-cache",
+    "build": "parcel build src/index.html  --public-url ./ --no-source-maps --no-cache",
+    "eslint": "eslint src/**/*.{js,jsx} --fix"
+  },
+  "dependencies": {
+    "debounce": "^1.2.0",
+    "nanoid": "^2.1.0",
+    "preact": "^10.0.0-rc.1",
+    "storeon": "^0.9.5"
+  },
+  "devDependencies": {
+    "autoprefixer": "^9.6.1",
+    "eslint": "^6.3.0",
+    "eslint-plugin-react": "^7.14.3",
+    "parcel-bundler": "^1.12.3",
+    "postcss-modules": "^1.4.1"
+  },
+  "repository": "https://github.com/shoonia/jobs.config-builder.git",
+  "author": "alexanderz@wix.com",
+  "license": "MIT",
+  "private": false
+}
