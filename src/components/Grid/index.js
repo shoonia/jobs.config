@@ -5,17 +5,18 @@ import st from './styles.css';
 function Grid({ header, left, right }) {
   return (
     <div className={st.wrapper}>
-      <div className={st.header}>
+      <header className={st.header}>
         {header}
-      </div>
-      <div className={st.container}>
+      </header>
+      <main className={st.container}>
         <section className={st.left}>
           {left}
         </section>
         <section className={st.right}>
           {right}
         </section>
-      </div>
+      </main>
+      <footer />
     </div>
   );
 }

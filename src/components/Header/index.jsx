@@ -2,9 +2,9 @@ import { h } from 'preact';
 
 function Header() {
   return (
-    <header>
+    <div>
       header
-    </header>
+    </div>
   );
 }
 
