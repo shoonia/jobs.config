@@ -1,0 +1,33 @@
+.wrapper {
+  --header-height: 70px;
+}
+
+.container {
+  display: grid;
+  grid-gap: 0;
+  grid-auto-rows: minmax(var(--min-column-width), auto);
+  padding: 0;
+}
+
+.header {
+  height: var(--header-height);
+  background-color: var(--cr-extra);
+}
+
+.column {
+  height: calc(100vh - var(--header-height));
+}
+
+.left {
+  composes: column;
+
+  background-color: var(--cr-success);
+  grid-column: 1;
+}
+
+.right {
+  composes: column;
+
+  background-color: var(--cr-primary);
+  grid-column: 2;
+}

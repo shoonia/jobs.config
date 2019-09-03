@@ -1,7 +1,16 @@
 import { h } from 'preact';
 
+import Grid from './Grid';
+import Header from './Header';
+
 function App() {
-  return 'hello';
+  return (
+    <Grid
+      header={<Header />}
+      left="left"
+      right="right"
+    />
+  );
 }
 
 export default App;
