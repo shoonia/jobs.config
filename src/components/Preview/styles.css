@@ -1,0 +1,20 @@
+::selection {
+  background-color: rgba(0, 0, 0, .2);
+}
+
+.out {
+  width: 100%;
+  min-height: var(--body-height);
+  max-height: var(--body-height);
+  margin: 0;
+  padding: 15px;
+  overflow: auto;
+  resize: none;
+  border: none;
+  outline: none;
+  font-size: 18px;
+  font-family: monospace;
+  font-weight: bold;
+  color: var(--cr-success);
+  background-color: white;
+}

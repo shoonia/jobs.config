@@ -6,11 +6,15 @@
 
 :root {
   --font-fm: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+
   --cr-font: #43515c;
   --cr-extra: #7F2275;
   --cr-success: #3C8664;
   --cr-primary: #3A79F6;
   --cr-danger: #DD5140;
+
+  --header-height: 70px;
+  --body-height: calc(100vh - var(--header-height));
 }
 
 html {
@@ -18,9 +22,12 @@ html {
   line-height: 1.15;
   -webkit-font-smoothing: antialiased;
   color: var(--cr-font);
+  padding: 0;
+  margin: 0;
 }
 
 body {
   padding: 0;
   margin: 0;
+  overflow-y: hidden;
 }

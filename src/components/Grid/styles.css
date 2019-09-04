@@ -1,6 +1,4 @@
-.wrapper {
-  --header-height: 70px;
-}
+/* .wrapper {} */
 
 .container {
   display: grid;
@@ -15,7 +13,11 @@
 }
 
 .column {
-  height: calc(100vh - var(--header-height));
+  height: calc(--body-height);
+  padding: 0;
+  margin: 0;
+  border: 0;
+  width: 100%;
 }
 
 .left {
@@ -23,6 +25,7 @@
 
   background-color: var(--cr-success);
   grid-column: 1;
+  min-width: 500px;
 }
 
 .right {
@@ -30,4 +33,5 @@
 
   background-color: var(--cr-primary);
   grid-column: 2;
+  min-width: 300px;
 }
