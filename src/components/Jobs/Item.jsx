@@ -1,9 +1,25 @@
 import { h } from 'preact';
 
-function Item() {
+function Item({ data, remove, clone }) {
   return (
-    <li>
-      item
+    <li
+    >
+      <div>
+        <div>
+          <button
+            value={data.id}
+            onClick={remove}
+          >
+            x
+          </button>
+          <button
+            value={data.id}
+            onClick={clone}
+          >
+            clone
+          </button>
+        </div>
+      </div>
     </li>
   );
 }
