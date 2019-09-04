@@ -1,4 +1,5 @@
 import nanoid from 'nanoid';
+import debounce from 'debounce';
 
 const MAX = 20;
 
@@ -48,4 +49,19 @@ export default function (store) {
       items: items.slice(),
     };
   });
+
+  store.on('items/update-debounce', ({ items }, { id, name, value }) => {
+    const index = items.findIndex((item) => item.id === id);
+    const item = Object.assign({}, items[index], { [name]: value });
+
+    items.splice(index, 1, item);
+
+    return {
+      items: items.slice(),
+    };
+  });
+
+  store.on('items/update', debounce((_, action) => {
+    store.dispatch('items/update-debounce', action);
+  }, 100));
 }

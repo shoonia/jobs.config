@@ -1,24 +1,56 @@
 import { h } from 'preact';
 
-function Item({ data, remove, clone }) {
+import st from './styles.css';
+
+function Item({ data, remove, clone, update }) {
   return (
-    <li
-    >
+    <li>
+      <fieldset
+        className={st.fields}
+        onInput={update}
+      >
+        <input
+          type="text"
+          value={data.filename}
+          data-id={data.id}
+          name="filename"
+          placeholder="file name"
+        />
+        <input
+          type="text"
+          value={data.funcname}
+          data-id={data.id}
+          name="funcname"
+          placeholder="function name"
+        />
+        <input
+          type="text"
+          value={data.description}
+          data-id={data.id}
+          name="description"
+          placeholder="description"
+        />
+        <input
+          type="time"
+          name="time"
+          data-id={data.id}
+          value={data.time}
+          placeholder="00:00"
+        />
+      </fieldset>
       <div>
-        <div>
-          <button
-            value={data.id}
-            onClick={remove}
-          >
-            x
-          </button>
-          <button
-            value={data.id}
-            onClick={clone}
-          >
-            clone
-          </button>
-        </div>
+        <button
+          value={data.id}
+          onClick={remove}
+        >
+          x
+        </button>
+        <button
+          value={data.id}
+          onClick={clone}
+        >
+          clone
+        </button>
       </div>
     </li>
   );

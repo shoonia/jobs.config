@@ -23,6 +23,14 @@ function Editor() {
     dispatch('items/clone', target.value);
   }, []);
 
+  const updateItem = useCallback(({ target }) => {
+    dispatch('items/update', {
+      id: target.dataset.id,
+      name: target.name,
+      value: target.value,
+    });
+  }, []);
+
   return (
     <div>
       <button
@@ -35,6 +43,7 @@ function Editor() {
         items={items}
         remove={removeItem}
         clone={cloneItem}
+        update={updateItem}
       />
     </div>
   );

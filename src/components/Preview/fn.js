@@ -1,13 +1,17 @@
+function createFunctionLocation({ filename, funcname }) {
+  return `/${filename}.${funcname}`;
+}
+
 export function createConfig(items) {
   const config = {
     jobs: items.map((item) => {
       return {
-        functionLocation: item.functionLocation,
-        description: item.description,
+        functionLocation: createFunctionLocation(item),
+        description: item.description || undefined,
         executionConfig: {
           time: item.time,
-          dayOfWeek: item.dayOfWeek,
-          dateInMonth: item.dateInMonth,
+          dayOfWeek: item.dateEnable ? item.dayOfWeek : undefined,
+          dateInMonth: item.dateEnable ? undefined : item.dateInMonth,
         },
       };
     }),
