@@ -13,7 +13,7 @@
 }
 
 .column {
-  height: calc(--body-height);
+  height: var(--body-height);
   padding: 0;
   margin: 0;
   border: 0;
