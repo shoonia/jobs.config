@@ -4,7 +4,7 @@ import st from './styles.css';
 
 function Item({ data, remove, clone, update }) {
   return (
-    <li>
+    <li className={st.item}>
       <fieldset
         className={st.fields}
         onInput={update}
@@ -38,7 +38,7 @@ function Item({ data, remove, clone, update }) {
           placeholder="00:00"
         />
       </fieldset>
-      <div>
+      <div className={st.buttons}>
         <button
           value={data.id}
           onClick={remove}

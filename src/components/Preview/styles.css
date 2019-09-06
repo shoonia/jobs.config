@@ -8,7 +8,7 @@
   max-height: var(--body-height);
   margin: 0;
   padding: 15px;
-  overflow: auto;
+  overflow: scroll;
   resize: none;
   border: none;
   outline: none;

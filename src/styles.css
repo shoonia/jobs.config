@@ -17,6 +17,27 @@
   --body-height: calc(100vh - var(--header-height));
 }
 
+::selection {
+  color: #FFF;
+  background-color: var(--font-color);
+}
+
+::-webkit-scrollbar {
+  background-color: transparent;
+  width: 8px;
+}
+
+::-webkit-scrollbar-thumb {
+  border: 1px solid transparent;
+  background-color: #898989;
+  border-radius: 25px;
+}
+
+::placeholder {
+  color: #7A92A5;
+  user-select: none;
+}
+
 html {
   font-family: var(--font-fm);
   line-height: 1.15;
