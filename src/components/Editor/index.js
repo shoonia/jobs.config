@@ -24,9 +24,11 @@ function Editor() {
   }, []);
 
   const updateItem = useCallback(({ target }) => {
+    const { id, name } = target.dataset;
+
     dispatch('items/update', {
-      id: target.dataset.id,
-      name: target.name,
+      id,
+      name,
       value: target.value,
     });
   }, []);

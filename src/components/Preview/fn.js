@@ -5,13 +5,15 @@ function createFunctionLocation({ filename, funcname }) {
 export function createConfig(items) {
   const config = {
     jobs: items.map((item) => {
+      const isWeek = item.dateEnable === '1';
+
       return {
         functionLocation: createFunctionLocation(item),
         description: item.description || undefined,
         executionConfig: {
           time: item.time,
-          dayOfWeek: item.dateEnable ? item.dayOfWeek : undefined,
-          dateInMonth: item.dateEnable ? undefined : item.dateInMonth,
+          dayOfWeek: isWeek ? item.dayOfWeek : undefined,
+          dateInMonth: isWeek ? undefined : item.dateInMonth,
         },
       };
     }),

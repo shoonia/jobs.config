@@ -1,6 +1,7 @@
 import { h } from 'preact';
 
 import st from './styles.css';
+import Period from './Period';
 
 function Item({ data, remove, clone, update }) {
   return (
@@ -13,31 +14,36 @@ function Item({ data, remove, clone, update }) {
           type="text"
           value={data.filename}
           data-id={data.id}
-          name="filename"
+          data-name="filename"
           placeholder="file name"
         />
         <input
           type="text"
           value={data.funcname}
           data-id={data.id}
-          name="funcname"
+          data-name="funcname"
           placeholder="function name"
         />
         <input
           type="text"
           value={data.description}
           data-id={data.id}
-          name="description"
+          data-name="description"
           placeholder="description"
         />
         <input
           type="time"
-          name="time"
+          data-name="time"
           data-id={data.id}
           value={data.time}
           placeholder="00:00"
         />
       </fieldset>
+      <Period
+        id={data.id}
+        flag={data.dateEnable}
+        update={update}
+      />
       <div className={st.buttons}>
         <button
           value={data.id}

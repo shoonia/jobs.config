@@ -21,7 +21,7 @@ export default function (store) {
       time: '00:00',
       dayOfWeek: '',
       dateInMonth: 1,
-      dateEnable: false,
+      dateEnable: '0',
     };
 
     return {
