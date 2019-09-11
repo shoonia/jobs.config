@@ -5,15 +5,19 @@ function createFunctionLocation({ filename, funcname }) {
 export function createConfig(items) {
   const config = {
     jobs: items.map((item) => {
-      const isWeek = item.dateEnable === '0';
+      // const d = item.dateEnable === 'Daily';
+      const w = item.dateEnable === 'Weekly';
+      const m = item.dateEnable === 'Monthly';
+
+      console.log(item.dateEnable)
 
       return {
         functionLocation: createFunctionLocation(item),
-        description: item.description || undefined,
+        description: item.description !== '' ? item.description : undefined,
         executionConfig: {
           time: item.time,
-          dayOfWeek: isWeek && item.dayOfWeek !== 'All' ? item.dayOfWeek : undefined,
-          dateInMonth: isWeek ? undefined : item.dateInMonth,
+          dayOfWeek: w && item.dayOfWeek !== '' ? item.dayOfWeek : undefined,
+          dateInMonth: m ? item.dateInMonth : undefined,
         },
       };
     }),

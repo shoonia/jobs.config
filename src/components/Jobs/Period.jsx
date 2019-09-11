@@ -11,23 +11,34 @@ function Period({ id, dateEnable, update }) {
         <input
           type="radio"
           name={name}
-          checked={dateEnable === '0'}
+          checked={dateEnable === 'Daily'}
           data-id={id}
           data-name="dateEnable"
-          value="0"
+          value="Daily"
         />
-        Week
+        Daily
       </label>
       <label>
         <input
           type="radio"
           name={name}
-          checked={dateEnable === '1'}
+          checked={dateEnable === 'Weekly'}
           data-id={id}
           data-name="dateEnable"
-          value="1"
+          value="Weekly"
         />
-        Month
+        Weekly
+      </label>
+      <label>
+        <input
+          type="radio"
+          name={name}
+          checked={dateEnable === 'Monthly'}
+          data-id={id}
+          data-name="dateEnable"
+          value="Monthly"
+        />
+        Monthly
       </label>
     </fieldset>
   );

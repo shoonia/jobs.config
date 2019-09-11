@@ -19,9 +19,9 @@ export default function (store) {
       funcname: 'fanc_name',
       description: '',
       time: '00:00',
-      dayOfWeek: 'All',
+      dayOfWeek: '',
       dateInMonth: 1,
-      dateEnable: '0',
+      dateEnable: 'Daily',
     };
 
     return {

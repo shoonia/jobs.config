@@ -1,6 +1,4 @@
-::selection {
-  background-color: rgba(0, 0, 0, .2);
-}
+/* ::selection {} */
 
 .out {
   width: 100%;
@@ -12,7 +10,7 @@
   resize: none;
   border: none;
   outline: none;
-  font-size: 18px;
+  font-size: 1.1em;
   font-family: monospace;
   font-weight: bold;
   color: var(--cr-success);
