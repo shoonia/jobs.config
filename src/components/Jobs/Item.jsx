@@ -2,6 +2,7 @@ import { h } from 'preact';
 
 import st from './styles.css';
 import Period from './Period';
+import DayOfWeek from './DayOfWeek';
 
 function Item({ data, remove, clone, update }) {
   return (
@@ -41,7 +42,12 @@ function Item({ data, remove, clone, update }) {
       </fieldset>
       <Period
         id={data.id}
-        flag={data.dateEnable}
+        dateEnable={data.dateEnable}
+        update={update}
+      />
+      <DayOfWeek
+        id={data.id}
+        day={data.dayOfWeek}
         update={update}
       />
       <div className={st.buttons}>

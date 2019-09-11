@@ -1,20 +1,20 @@
 import { h } from 'preact';
 
-function Period({ id, flag, update }) {
+function Period({ id, dateEnable, update }) {
   const name = `period-${id}`;
+
   return (
-    <div
+    <fieldset
+      onChange={update}
     >
       <label>
         <input
           type="radio"
           name={name}
-          checked={flag === '0'}
+          checked={dateEnable === '0'}
           data-id={id}
           data-name="dateEnable"
           value="0"
-          onChange={update}
-
         />
         Week
       </label>
@@ -22,16 +22,14 @@ function Period({ id, flag, update }) {
         <input
           type="radio"
           name={name}
-          checked={flag === '1'}
+          checked={dateEnable === '1'}
           data-id={id}
           data-name="dateEnable"
           value="1"
-          onChange={update}
-
         />
         Month
       </label>
-    </div>
+    </fieldset>
   );
 }
 

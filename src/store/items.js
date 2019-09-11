@@ -19,7 +19,7 @@ export default function (store) {
       funcname: 'fanc_name',
       description: '',
       time: '00:00',
-      dayOfWeek: '',
+      dayOfWeek: 'All',
       dateInMonth: 1,
       dateEnable: '0',
     };
