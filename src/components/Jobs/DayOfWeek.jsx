@@ -1,5 +1,7 @@
 import { h } from 'preact';
 
+import st from './styles.css';
+
 const days = [
   {
     label: 'All',
@@ -41,6 +43,7 @@ function DayOfWeek({ id, day, update }) {
   const week = days.map((item) => (
     <label
       key={item.label}
+      className={st.day}
     >
       <input
         type="radio"
@@ -49,8 +52,11 @@ function DayOfWeek({ id, day, update }) {
         data-name="dayOfWeek"
         data-id={id}
         value={item.value}
+        className={st.dayInput}
       />
-      {item.label}
+      <span className={st.dayLabel}>
+        {item.label}
+      </span>
     </label>
   ));
 

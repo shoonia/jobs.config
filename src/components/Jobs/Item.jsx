@@ -3,6 +3,7 @@ import { h } from 'preact';
 import st from './styles.css';
 import Period from './Period';
 import DayOfWeek from './DayOfWeek';
+import DateInMonth from './DateInMonth';
 
 function Item({ data, remove, clone, update }) {
   return (
@@ -48,6 +49,11 @@ function Item({ data, remove, clone, update }) {
       <DayOfWeek
         id={data.id}
         day={data.dayOfWeek}
+        update={update}
+      />
+      <DateInMonth
+        id={data.id}
+        date={data.dateInMonth}
         update={update}
       />
       <div className={st.buttons}>
