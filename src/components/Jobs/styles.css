@@ -20,7 +20,7 @@
 
 .fields {
   border: none;
-  padding: 0;
+  padding: 10px 15px;
   margin: 0;
 }
 
@@ -31,18 +31,17 @@
   bottom: 15px;
 }
 
-/* Day Of Week */
-
-.day {
+.label {
   display: inline-block;
   padding: 3px 5px;
   cursor: pointer;
 }
 
-.dayInput {
+.checkbox {
   display: none;
 }
 
-.dayInput:checked + .dayLabel {
-  color: red;
+.checkbox:checked + .title {
+  color: var(--cr-danger);
+  font-weight: bold;
 }

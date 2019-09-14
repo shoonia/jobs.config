@@ -1,12 +1,9 @@
 import { h } from 'preact';
 
 import st from './styles.css';
+import { WEEKLY } from '../../constants';
 
 const days = [
-  {
-    label: 'All',
-    value: '',
-  },
   {
     label: 'Mon.',
     value: 'Monday',
@@ -37,13 +34,13 @@ const days = [
   },
 ];
 
-function DayOfWeek({ id, day, update }) {
+function DayOfWeek({ id, day, period, update }) {
   const name = `day-of-week-${id}`;
 
   const week = days.map((item) => (
     <label
       key={item.label}
-      className={st.day}
+      className={st.label}
     >
       <input
         type="radio"
@@ -52,9 +49,9 @@ function DayOfWeek({ id, day, update }) {
         data-name="dayOfWeek"
         data-id={id}
         value={item.value}
-        className={st.dayInput}
+        className={st.checkbox}
       />
-      <span className={st.dayLabel}>
+      <span className={st.title}>
         {item.label}
       </span>
     </label>
@@ -63,6 +60,8 @@ function DayOfWeek({ id, day, update }) {
   return (
     <fieldset
       onChange={update}
+      className={st.fields}
+      hidden={period !== WEEKLY}
     >
       {week}
     </fieldset>

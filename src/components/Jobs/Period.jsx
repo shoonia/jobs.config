@@ -1,44 +1,61 @@
 import { h } from 'preact';
 
-function Period({ id, dateEnable, update }) {
+import st from './styles.css';
+import {
+  DAILY,
+  WEEKLY,
+  MONTHLY
+} from '../../constants';
+
+function Period({ id, period, update }) {
   const name = `period-${id}`;
 
   return (
     <fieldset
+      className={st.fields}
       onChange={update}
     >
-      <label>
+      <label className={st.label}>
         <input
           type="radio"
           name={name}
-          checked={dateEnable === 'Daily'}
+          checked={period === DAILY}
           data-id={id}
-          data-name="dateEnable"
-          value="Daily"
+          data-name="period"
+          value={DAILY}
+          className={st.checkbox}
         />
-        Daily
+        <span className={st.title}>
+          Daily
+        </span>
       </label>
-      <label>
+      <label className={st.label}>
         <input
           type="radio"
           name={name}
-          checked={dateEnable === 'Weekly'}
+          checked={period === WEEKLY}
           data-id={id}
-          data-name="dateEnable"
-          value="Weekly"
+          data-name="period"
+          value={WEEKLY}
+          className={st.checkbox}
         />
-        Weekly
+        <span className={st.title}>
+          Weekly
+        </span>
       </label>
-      <label>
+      <label className={st.label}>
         <input
           type="radio"
           name={name}
-          checked={dateEnable === 'Monthly'}
+          checked={period === MONTHLY}
           data-id={id}
-          data-name="dateEnable"
-          value="Monthly"
+          data-name="period"
+          value={MONTHLY}
+          className={st.checkbox}
         />
-        Monthly
+        <span className={st.title}>
+          Monthly
+        </span>
       </label>
     </fieldset>
   );

@@ -43,17 +43,19 @@ function Item({ data, remove, clone, update }) {
       </fieldset>
       <Period
         id={data.id}
-        dateEnable={data.dateEnable}
+        period={data.period}
         update={update}
       />
       <DayOfWeek
         id={data.id}
         day={data.dayOfWeek}
+        period={data.period}
         update={update}
       />
       <DateInMonth
         id={data.id}
         date={data.dateInMonth}
+        period={data.period}
         update={update}
       />
       <div className={st.buttons}>

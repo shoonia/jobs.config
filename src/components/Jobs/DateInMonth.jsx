@@ -1,8 +1,14 @@
 import { h } from 'preact';
 
-function DateInMonth({ id, date, update }) {
+import st from './styles.css';
+import { MONTHLY } from '../../constants';
+
+function DateInMonth({ id, date, period, update }) {
   return (
-    <fieldset>
+    <fieldset
+      className={st.fields}
+      hidden={period !== MONTHLY}
+    >
       <input
         type="number"
         min="1"

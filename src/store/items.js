@@ -1,7 +1,7 @@
 import nanoid from 'nanoid';
 import debounce from 'debounce';
 
-const MAX = 20;
+import { MAX_ITEMS, DAILY } from '../constants';
 
 export default function (store) {
   store.on('@init', () => ({
@@ -9,7 +9,7 @@ export default function (store) {
   }));
 
   store.on('items/new', ({ items }) => {
-    if ((items.length + 1) > MAX) {
+    if ((items.length + 1) > MAX_ITEMS) {
       return;
     }
 
@@ -19,9 +19,9 @@ export default function (store) {
       funcname: 'fanc_name',
       description: '',
       time: '00:00',
-      dayOfWeek: '',
+      dayOfWeek: 'Monday',
       dateInMonth: 1,
-      dateEnable: 'Daily',
+      period: DAILY,
     };
 
     return {
@@ -36,7 +36,7 @@ export default function (store) {
   });
 
   store.on('items/clone', ({ items }, id) => {
-    if ((items.length + 1) > MAX) {
+    if ((items.length + 1) > MAX_ITEMS) {
       return;
     }
 
