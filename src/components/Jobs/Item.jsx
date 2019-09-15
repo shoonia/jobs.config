@@ -4,6 +4,7 @@ import st from './styles.css';
 import Period from './Period';
 import DayOfWeek from './DayOfWeek';
 import DateInMonth from './DateInMonth';
+import ItemMenu from './ItemMenu';
 
 function Item({ data, remove, clone, update }) {
   return (
@@ -37,9 +38,9 @@ function Item({ data, remove, clone, update }) {
         />
         <input
           type="time"
-          data-name="time"
-          data-id={data.id}
           value={data.time}
+          data-id={data.id}
+          data-name="time"
           placeholder="00:00"
           required
         />
@@ -61,20 +62,11 @@ function Item({ data, remove, clone, update }) {
         period={data.period}
         update={update}
       />
-      <div className={st.buttons}>
-        <button
-          value={data.id}
-          onClick={remove}
-        >
-          x
-        </button>
-        <button
-          value={data.id}
-          onClick={clone}
-        >
-          clone
-        </button>
-      </div>
+      <ItemMenu
+        id={data.id}
+        remove={remove}
+        clone={clone}
+      />
     </li>
   );
 }
