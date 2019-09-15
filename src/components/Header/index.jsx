@@ -6,7 +6,7 @@ function Header() {
   return (
     <div className={st.header}>
       <a
-        href="/"
+        href="/jobs.config"
         className={st.link}
       >
         jobs.config

@@ -1,5 +1,6 @@
 {
-  "name": "jobs.config-builder",
+  "name": "jobs.config",
+  "description": "Scheduling recurring jobs builder for Corvid by Wix",
   "version": "0.1.0",
   "main": "src/index.html",
   "scripts": {
@@ -25,8 +26,8 @@
     "parcel-bundler": "^1.12.3",
     "postcss-modules": "^1.4.1"
   },
-  "homepage": "https://shoonia.github.io/jobs.config-builder/",
-  "repository": "https://github.com/shoonia/jobs.config-builder.git",
+  "homepage": "https://shoonia.github.io/jobs.config/",
+  "repository": "https://github.com/shoonia/jobs.config.git",
   "author": "alexanderz@wix.com",
   "license": "MIT",
   "private": false
