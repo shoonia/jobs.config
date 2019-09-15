@@ -18,6 +18,7 @@ function Item({ data, remove, clone, update }) {
           data-id={data.id}
           data-name="filename"
           placeholder="file name"
+          required
         />
         <input
           type="text"
@@ -25,6 +26,7 @@ function Item({ data, remove, clone, update }) {
           data-id={data.id}
           data-name="funcname"
           placeholder="function name"
+          required
         />
         <input
           type="text"
@@ -39,6 +41,7 @@ function Item({ data, remove, clone, update }) {
           data-id={data.id}
           value={data.time}
           placeholder="00:00"
+          required
         />
       </fieldset>
       <Period

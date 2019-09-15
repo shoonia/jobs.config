@@ -18,6 +18,7 @@ function DateInMonth({ id, date, period, update }) {
         data-id={id}
         data-name="dateInMonth"
         onInput={update}
+        required
       />
     </fieldset>
   );
