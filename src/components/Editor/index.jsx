@@ -3,6 +3,8 @@ import { useEffect, useCallback } from 'preact/hooks';
 import useStoreon from 'storeon/preact';
 
 import Jobs from '../Jobs';
+import CreateButton from './CreateButton';
+import { MAX_ITEMS } from '../../constants';
 
 function Editor() {
   const { dispatch, items } = useStoreon('items');
@@ -35,12 +37,10 @@ function Editor() {
 
   return (
     <div>
-      <button
-        type="button"
+      <CreateButton
         onClick={createItem}
-      >
-        + New
-      </button>
+        disabled={items.length >= MAX_ITEMS}
+      />
       <Jobs
         items={items}
         remove={removeItem}

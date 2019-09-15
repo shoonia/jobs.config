@@ -63,5 +63,5 @@ export default function (store) {
 
   store.on('items/update', debounce((_, action) => {
     store.dispatch('items/update-debounce', action);
-  }, 100));
+  }, 250));
 }
