@@ -31,6 +31,27 @@
   bottom: 15px;
 }
 
+.btn {
+  border: none;
+  background-color: transparent;
+  font-size: 1.1em;
+  cursor: pointer;
+  outline: none;
+  margin-left: 5px;
+}
+
+.btnRemove {
+  composes: btn;
+
+  color: var(--cr-danger);
+}
+
+.btnClone {
+  composes: btn;
+
+  color: var(--cr-primary);
+}
+
 .label {
   display: inline-block;
   padding: 3px 5px;

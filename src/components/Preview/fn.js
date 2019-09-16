@@ -23,7 +23,7 @@ export function createConfig(items) {
         functionLocation: createFunctionLocation(item),
         description: (item.description !== '') ? item.description : undefined,
         executionConfig: {
-          time: item.time,
+          time: item.time || '00:00',
           dayOfWeek: (item.period === WEEKLY) ? item.dayOfWeek : undefined,
           dateInMonth: (item.period === MONTHLY) ? parseDate(item.dateInMonth) : undefined,
         },

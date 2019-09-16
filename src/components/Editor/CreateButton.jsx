@@ -1,6 +1,7 @@
 import { h } from 'preact';
 
 import st from './styles.css';
+import Icon from '../Icon';
 
 function CreateButton({ onClick, disabled }) {
   return (
@@ -12,7 +13,7 @@ function CreateButton({ onClick, disabled }) {
         disabled={disabled}
         title="You can configure up to 20 jobs."
       >
-        + New
+        <Icon name="add" /> New
       </button>
     </div>
   );

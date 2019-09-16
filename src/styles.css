@@ -42,6 +42,8 @@ html {
   font-family: var(--font-fm);
   line-height: 1.15;
   -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
   color: var(--cr-font);
   padding: 0;
   margin: 0;
