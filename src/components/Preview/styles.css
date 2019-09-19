@@ -1,5 +1,9 @@
 /* ::selection {} */
 
+.box {
+  position: relative;
+}
+
 .out {
   width: 100%;
   min-height: var(--body-height);
@@ -15,4 +19,10 @@
   font-weight: bold;
   color: var(--cr-success);
   background-color: white;
+}
+
+.copy {
+  position: absolute;
+  top: 15px;
+  right: 15px;
 }
