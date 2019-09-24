@@ -9,11 +9,13 @@
 
 .header {
   height: var(--header-height);
-  background-color: var(--cr-extra);
+  background-color: #FFF;
+  box-shadow: 0 0 15px 0 rgba(22, 45, 61, .5);
 }
 
 .column {
   height: var(--body-height);
+  background-color: var(--cr-background);
   padding: 0;
   margin: 0;
   border: 0;
@@ -23,7 +25,6 @@
 .left {
   composes: column;
 
-  background-color: var(--cr-success);
   grid-column: 1;
   min-width: 500px;
   overflow-y: scroll;
@@ -32,7 +33,6 @@
 .right {
   composes: column;
 
-  background-color: var(--cr-primary);
   grid-column: 2;
   min-width: 300px;
 }
