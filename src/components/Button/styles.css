@@ -1,0 +1,49 @@
+.btn {
+  font-size: 16px;
+  padding: 5px 25px;
+  border-radius: 50px;
+  background-color: white;
+  outline: none;
+  cursor: pointer;
+  transition: all .2s ease-in-out;
+  user-select: none;
+  border-style: solid;
+  border-width: 1px;
+}
+
+.btn:focus {
+  box-shadow: 0 0 0 2px var(--cr-focus);
+}
+
+.btn:disabled {
+  background-color: var(--cr-font);
+  border-color: var(--cr-font);
+  color: white;
+  cursor: default;
+  pointer-events: none;
+  opacity: .6;
+}
+
+.primary {
+  composes: btn;
+
+  color: var(--cr-primary);
+  border-color: var(--cr-primary);
+}
+
+.primary:hover {
+  background-color: var(--cr-primary);
+  color: white;
+}
+
+.extra {
+  composes: btn;
+
+  color: var(--cr-extra);
+  border-color: var(--cr-extra);
+}
+
+.extra:hover {
+  background-color: var(--cr-extra);
+  color: white;
+}

@@ -4,7 +4,7 @@ import st from './styles.css';
 import {
   DAILY,
   WEEKLY,
-  MONTHLY
+  MONTHLY,
 } from '../../constants';
 
 function Period({ id, period, update }) {

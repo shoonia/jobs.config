@@ -3,33 +3,3 @@
   text-align: center;
 }
 
-.btn {
-  font-size: 16px;
-  padding: 5px 25px;
-  border-radius: 50px;
-  border: 2px solid var(--cr-primary);
-  background-color: white;
-  color: var(--cr-primary);
-  outline: none;
-  cursor: pointer;
-  transition: all .2s ease-in-out;
-  user-select: none;
-}
-
-.btn:hover {
-  background-color: var(--cr-primary);
-  color: white;
-}
-
-.btn:focus {
-  box-shadow: 0 0 0 2px var(--cr-focus);
-}
-
-.btn:disabled {
-  background-color: var(--cr-font);
-  border-color: var(--cr-font);
-  color: white;
-  cursor: default;
-  pointer-events: none;
-  opacity: .6;
-}

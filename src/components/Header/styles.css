@@ -6,7 +6,13 @@
 .link {
   color: var(--cr-font);
   text-decoration: none;
-  font-size: 1.1em;
+  font-size: 1.2em;
+  font-weight: normal;
   line-height: var(--header-height);
   user-select: none;
+  transition: color .2s ease-in-out;
+}
+
+.link:hover {
+  color: var(--cr-primary);
 }

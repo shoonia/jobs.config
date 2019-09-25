@@ -2,6 +2,7 @@ import { h } from 'preact';
 import useStoreon from 'storeon/preact';
 import { useCallback, useRef } from 'preact/hooks';
 
+import Button from '../Button';
 import { createConfig } from './fn';
 import st from './styles.css';
 
@@ -22,13 +23,14 @@ function Preview() {
         className={st.out}
         readOnly
         value={value} />
-      <button
-        type="button"
-        className={st.copy}
-        onClick={clipboard}
-      >
-        Copy to clipboard
-      </button>
+      <div className={st.copy}>
+        <Button
+          mode="extra"
+          onClick={clipboard}
+        >
+          Copy to clipboard
+        </Button>
+      </div>
     </div>
   );
 }
