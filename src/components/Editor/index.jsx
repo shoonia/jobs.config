@@ -1,5 +1,5 @@
 import { h } from 'preact';
-import { useEffect, useCallback } from 'preact/hooks';
+import { useCallback } from 'preact/hooks';
 import useStoreon from 'storeon/preact';
 
 import Jobs from '../Jobs';
@@ -10,10 +10,6 @@ import Icon from '../Icon';
 
 function Editor() {
   const { dispatch, items } = useStoreon('items');
-
-  useEffect(() => {
-    dispatch('items/new');
-  }, []);
 
   const createItem = useCallback(() => {
     dispatch('items/new');

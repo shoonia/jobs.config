@@ -3,29 +3,61 @@ import debounce from 'debounce';
 
 import { MAX_ITEMS, DAILY } from '../constants';
 
+const { sessionStorage } = window;
+
+function createItem() {
+  return [{
+    id: nanoid(10),
+    filename: 'file_name',
+    funcname: 'fanc_name',
+    description: '',
+    time: '00:00',
+    dayOfWeek: 'Monday',
+    dateInMonth: 1,
+    period: DAILY,
+  }];
+}
+
+function getItems() {
+  const data = sessionStorage.getItem('items');
+
+  if (data == null) {
+    return createItem();
+  }
+
+  try {
+    const items = JSON.parse(data);
+    return Array.isArray(items) ? items : createItem();
+  } catch (error) {
+    sessionStorage.clear();
+    return createItem();
+  }
+}
+
+function setItems(items) {
+  try {
+    sessionStorage.setItem('items', JSON.stringify(items));
+  } catch (error) {
+    sessionStorage.clear();
+  }
+}
+
 export default function (store) {
   store.on('@init', () => ({
-    items: [],
+    items: getItems(),
   }));
+
+  store.on('@changed', (state) => {
+    setItems(state.items);
+  });
 
   store.on('items/new', ({ items }) => {
     if ((items.length + 1) > MAX_ITEMS) {
       return;
     }
 
-    const item = {
-      id: nanoid(10),
-      filename: 'file_name',
-      funcname: 'fanc_name',
-      description: '',
-      time: '00:00',
-      dayOfWeek: 'Monday',
-      dateInMonth: 1,
-      period: DAILY,
-    };
-
     return {
-      items: [item].concat(items),
+      items: createItem().concat(items),
     };
   });
 
