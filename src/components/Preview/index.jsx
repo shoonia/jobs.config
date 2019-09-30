@@ -28,7 +28,7 @@ function Preview() {
           mode="extra"
           onClick={clipboard}
         >
-          Copy to clipboard
+          Copy Code
         </Button>
       </div>
     </div>

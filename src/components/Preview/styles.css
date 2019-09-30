@@ -12,15 +12,15 @@
   resize: none;
   border: none;
   outline: none;
-  font-size: 1.1em;
-  font-family: monospace;
-  font-weight: bold;
+  font-size: 1em;
+  font-family: Menlo, Monaco, 'Andale Mono', 'Ubuntu Mono', monospace;
   color: var(--cr-success);
-  background-color: white;
+  background-color: #000;
 }
 
 .out::selection {
-  background-color: rgba(0, 0, 0, .1)
+  background-color: var(--cr-focus);
+  color: white;
 }
 
 .copy {

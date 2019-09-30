@@ -39,11 +39,11 @@
 .extra {
   composes: btn;
 
-  color: var(--cr-extra);
-  border-color: var(--cr-extra);
+  color: white;
+  background-color: transparent;
+  border-color: transparent;
 }
 
 .extra:hover {
-  background-color: var(--cr-extra);
-  color: white;
+  background-color: var(--cr-font);
 }
