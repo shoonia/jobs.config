@@ -1,6 +1,9 @@
 .header {
   height: var(--header-height);
   padding: 0 25px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 }
 
 .link {

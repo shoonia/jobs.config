@@ -11,6 +11,15 @@ function Header() {
       >
         jobs.config
       </a>
+      <a
+        className="github-button"
+        href="https://github.com/shoonia/jobs.config"
+        data-size="large"
+        data-show-count="true"
+        aria-label="Star on GitHub"
+      >
+        Star
+      </a>
     </div>
   );
 }
