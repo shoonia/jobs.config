@@ -9,7 +9,7 @@ function createItem() {
   return [{
     id: nanoid(10),
     filename: 'file_name',
-    funcname: 'fanc_name',
+    funcname: 'function_name',
     description: '',
     time: '00:00',
     dayOfWeek: 'Monday',

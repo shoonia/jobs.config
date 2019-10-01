@@ -5,6 +5,7 @@ import Period from './Period';
 import DayOfWeek from './DayOfWeek';
 import DateInMonth from './DateInMonth';
 import ItemMenu from './ItemMenu';
+import FunctionLocation from './FunctionLocation';
 
 function Item({ data, remove, clone, update }) {
   return (
@@ -13,28 +14,8 @@ function Item({ data, remove, clone, update }) {
         className={st.fields}
         onInput={update}
       >
-        <input
-          type="text"
-          value={data.filename}
-          data-id={data.id}
-          data-name="filename"
-          placeholder="file name"
-          required
-        />
-        <input
-          type="text"
-          value={data.funcname}
-          data-id={data.id}
-          data-name="funcname"
-          placeholder="function name"
-          required
-        />
-        <input
-          type="text"
-          value={data.description}
-          data-id={data.id}
-          data-name="description"
-          placeholder="description"
+        <FunctionLocation
+          data={data}
         />
         <input
           type="time"

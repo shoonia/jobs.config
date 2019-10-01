@@ -1,0 +1,20 @@
+.block {
+  position: relative;
+}
+
+.title {
+  position: absolute;
+  top: -20px;
+  font-size: 80%;
+  width: 200px;
+}
+
+.funcInput {
+  font-size: 1em;
+}
+
+.description {
+  width: 100%;
+  margin: 10px 0;
+  font-size: 1em;
+}
