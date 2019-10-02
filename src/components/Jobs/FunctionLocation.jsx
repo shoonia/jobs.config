@@ -5,7 +5,7 @@ import st from './FunctionLocation.css';
 function FunctionLocation({ data }) {
   return (
     <div>
-      <div>
+      <div className={st.location}>
         <span className={st.prefix}>
           backend/
         </span>

@@ -21,6 +21,7 @@
   --cr-danger: #DD5140;
   --cr-background: #F0F4F7;
   --cr-focus: #AABDFC;
+  --cr-light: #bbb;
 
   --header-height: 70px;
   --body-height: calc(100vh - var(--header-height));

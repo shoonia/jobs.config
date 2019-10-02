@@ -1,20 +1,58 @@
+.location {
+  height: 50px;
+  line-height: 50px;
+}
+
 .block {
   position: relative;
 }
 
 .title {
   position: absolute;
-  top: -20px;
+  bottom: 10px;
   font-size: 80%;
   width: 200px;
+  color: var(--cr-light);
+}
+
+.inputs {
+  font-size: 1em;
+  border: 1px solid var(--cr-primary);
+  padding: 3px 10px;
+  border-radius: 4px;
+  outline: none;
+}
+
+.inputs:focus {
+  box-shadow: 0 0 0 2px var(--cr-focus);
 }
 
 .funcInput {
-  font-size: 1em;
+  composes: inputs;
+}
+
+.funcInput:invalid {
+  border-color: var(--cr-danger);
 }
 
 .description {
+  composes: inputs;
+
   width: 100%;
   margin: 10px 0;
-  font-size: 1em;
+}
+
+.text {
+  display: inline-block;
+}
+
+.prefix {
+  composes: text;
+
+  margin-right: 5px;
+}
+
+.dot {
+  composes: text;
+  margin: 0 5px;
 }

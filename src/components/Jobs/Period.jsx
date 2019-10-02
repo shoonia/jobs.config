@@ -15,7 +15,10 @@ function Period({ id, period, update }) {
       className={st.fields}
       onChange={update}
     >
-      <label className={st.label}>
+      <label
+        className={st.label}
+        tabIndex="0"
+      >
         <input
           type="radio"
           name={name}
@@ -29,7 +32,10 @@ function Period({ id, period, update }) {
           Daily
         </span>
       </label>
-      <label className={st.label}>
+      <label
+        className={st.label}
+        tabIndex="0"
+      >
         <input
           type="radio"
           name={name}
@@ -43,7 +49,10 @@ function Period({ id, period, update }) {
           Weekly
         </span>
       </label>
-      <label className={st.label}>
+      <label
+        className={st.label}
+        tabIndex="0"
+      >
         <input
           type="radio"
           name={name}

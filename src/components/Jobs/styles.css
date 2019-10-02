@@ -48,6 +48,10 @@
   margin-left: 5px;
 }
 
+.btn:focus {
+  box-shadow: 0 0 0 2px var(--cr-focus);
+}
+
 .btnRemove {
   composes: btn;
 
@@ -70,7 +74,10 @@
   display: none;
 }
 
+.title {
+  color: var(--cr-light);
+}
+
 .checkbox:checked + .title {
-  color: var(--cr-danger);
-  font-weight: bold;
+  color: var(--cr-success);
 }
