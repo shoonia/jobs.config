@@ -1,6 +1,6 @@
 {
   "name": "jobs.config",
-  "description": "Scheduling recurring jobs builder for Corvid by Wix",
+  "description": "Scheduling recurring jobs.config builder for Corvid by Wix",
   "version": "0.1.0",
   "main": "src/index.html",
   "scripts": {

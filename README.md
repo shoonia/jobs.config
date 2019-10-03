@@ -1,3 +1,3 @@
 # Corvid jobs.config
 
-Scheduling recurring jobs builder for Corvid by Wix
+Scheduling recurring jobs.config builder for Corvid by Wix

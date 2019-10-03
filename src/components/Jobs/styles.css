@@ -75,7 +75,7 @@
 }
 
 .title {
-  color: var(--cr-light);
+  color: var(--cr-primary);
 }
 
 .checkbox:checked + .title {
