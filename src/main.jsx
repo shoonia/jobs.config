@@ -15,7 +15,6 @@ render(
   root
 );
 
-// eslint-disable-next-line no-undef
-if (process.env.NODE_ENV === 'production') {
+if (document.location.hostname !== 'localhost') {
   sendBeacon();
 }
