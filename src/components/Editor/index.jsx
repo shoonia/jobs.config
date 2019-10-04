@@ -1,4 +1,4 @@
-import { h } from 'preact';
+import { h, Fragment } from 'preact';
 import { useCallback } from 'preact/hooks';
 import useStoreon from 'storeon/preact';
 
@@ -34,7 +34,7 @@ function Editor() {
   }, []);
 
   return (
-    <div>
+    <Fragment>
       <div className={st.section}>
         <Button
           onClick={createItem}
@@ -49,7 +49,7 @@ function Editor() {
         clone={cloneItem}
         update={updateItem}
       />
-    </div>
+    </Fragment>
   );
 }
 

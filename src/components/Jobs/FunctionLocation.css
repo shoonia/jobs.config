@@ -1,6 +1,7 @@
 .location {
   height: 50px;
   line-height: 50px;
+  white-space: nowrap;
 }
 
 .block {
@@ -29,6 +30,8 @@
 
 .funcInput {
   composes: inputs;
+
+  width: calc(50% - 7px);
 }
 
 .funcInput:invalid {
@@ -42,17 +45,8 @@
   margin: 10px 0;
 }
 
-.text {
-  display: inline-block;
-}
-
-.prefix {
-  composes: text;
-
-  margin-right: 5px;
-}
-
 .dot {
-  composes: text;
-  margin: 0 5px;
+  display: inline-block;
+  width: 14px;
+  text-align: center;
 }

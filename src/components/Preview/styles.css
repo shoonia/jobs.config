@@ -16,6 +16,7 @@
   font-family: Menlo, Monaco, 'Andale Mono', 'Ubuntu Mono', monospace;
   color: var(--cr-success);
   background-color: #000;
+  white-space: pre;
 }
 
 .out::selection {

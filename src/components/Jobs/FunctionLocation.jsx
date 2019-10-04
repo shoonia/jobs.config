@@ -1,14 +1,11 @@
-import { h } from 'preact';
+import { h, Fragment } from 'preact';
 
 import st from './FunctionLocation.css';
 
 function FunctionLocation({ data }) {
   return (
-    <div>
+    <Fragment>
       <div className={st.location}>
-        <span className={st.prefix}>
-          backend/
-        </span>
         <label className={st.block}>
           <span className={st.title}>
             File Name
@@ -41,15 +38,22 @@ function FunctionLocation({ data }) {
           />
         </label>
       </div>
-      <input
-        type="text"
-        value={data.description}
-        data-id={data.id}
-        className={st.description}
-        data-name="description"
-        placeholder="description"
-      />
-    </div>
+      <div className={st.location}>
+        <label className={st.block}>
+          <span className={st.title}>
+            Description
+          </span>
+          <input
+            type="text"
+            value={data.description}
+            data-id={data.id}
+            className={st.description}
+            data-name="description"
+            placeholder="description"
+          />
+        </label>
+      </div>
+    </Fragment>
   );
 }
 
