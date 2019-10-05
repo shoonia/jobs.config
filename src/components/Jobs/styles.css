@@ -9,14 +9,14 @@
 .item {
   max-width: 700px;
   min-width: 450px;
-  padding: 10px;
-  margin: 0 auto 20px auto;
+  padding: .5em;
+  margin: 0 auto 1.5em auto;
   border: none;
   background-color: white;
   border-radius: 8px;
   box-shadow: 0 0 25px 0 rgba(0, 0, 0, .08);
   position: relative;
-  transition: transform .2s ease-out,box-shadow .2s ease-out;
+  transition: transform .2s ease-out, box-shadow .2s ease-out;
   z-index: 1;
 }
 
@@ -27,15 +27,15 @@
 
 .fields {
   border: none;
-  padding: 10px 15px;
+  padding: .5em 1em;
   margin: 0;
 }
 
 .buttons {
   display: block;
   position: absolute;
-  right: 15px;
-  bottom: 15px;
+  right: 1em;
+  bottom: 1em;
 }
 
 .btn {
@@ -45,10 +45,19 @@
   cursor: pointer;
   outline: none;
   margin-left: 5px;
+  border-radius: 50px;
+  width: 2em;
+  height: 2em;
+  transition: all .2s ease-in-out;
 }
 
 .btn:focus {
   box-shadow: 0 0 0 2px var(--cr-focus);
+}
+
+.btn:hover {
+  background-color: rgba(0, 0, 0, .08);
+  border: 1px solid rgba(0, 0, 0, .16);
 }
 
 .btnRemove {
@@ -65,12 +74,9 @@
 
 .label {
   display: inline-block;
-  padding: 3px 5px;
+  padding: 0 3px;
   cursor: pointer;
-}
-
-.checkbox {
-  display: none;
+  user-select: none;
 }
 
 .title {

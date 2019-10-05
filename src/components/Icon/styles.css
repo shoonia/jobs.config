@@ -17,44 +17,23 @@
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   pointer-events: none;
+  text-rendering: optimizeLegibility;
 }
 
-.info {
-  composes: icon;
-}
-
-.copy {
-  composes: icon;
-}
-
-.bin {
-  composes: icon;
-}
-
-.clip {
-  composes: icon;
-}
-
+.copy,
+.bin,
 .add {
   composes: icon;
 }
 
-.info:before {
-  content: "\e902";
-}
-
 .copy:before {
-  content: "\e92c";
+  content: "\e901";
 }
 
 .bin:before {
-  content: "\e9ac";
-}
-
-.clip:before {
-  content: "\e9cd";
+  content: "\e902";
 }
 
 .add:before {
-  content: "\e900";
+  content: "\e903";
 }

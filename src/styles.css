@@ -27,11 +27,6 @@
   --body-height: calc(100vh - var(--header-height));
 }
 
-/* ::selection {
-  color: #FFF;
-  background-color: var(--font-color);
-} */
-
 ::-webkit-scrollbar {
   background-color: transparent;
   width: 8px;

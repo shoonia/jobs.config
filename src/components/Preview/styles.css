@@ -7,7 +7,7 @@
   min-height: var(--body-height);
   max-height: var(--body-height);
   margin: 0;
-  padding: 15px;
+  padding: 1em;
   overflow: scroll;
   resize: none;
   border: none;
@@ -26,6 +26,6 @@
 
 .copy {
   position: absolute;
-  top: 15px;
-  right: 15px;
+  top: 1em;
+  right: 1em;
 }

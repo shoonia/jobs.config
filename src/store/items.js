@@ -7,7 +7,7 @@ const { sessionStorage } = window;
 
 function createItem() {
   return [{
-    id: nanoid(10),
+    id: nanoid(),
     filename: 'file_name',
     funcname: 'function_name',
     description: '',
@@ -73,7 +73,7 @@ export default function (store) {
     }
 
     const index = items.findIndex((item) => item.id === id);
-    const clone = Object.assign({}, items[index], { id: nanoid(10) });
+    const clone = Object.assign({}, items[index], { id: nanoid() });
 
     items.splice(index, 0, clone);
 

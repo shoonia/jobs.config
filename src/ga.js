@@ -1,16 +1,10 @@
+import nanoid from 'nanoid/non-secure';
+
 function getCID() {
-  // eslint-disable-next-line no-useless-escape
-  let cid = document.cookie.replace(/(?:(?:^|.*;\s*)cid\s*\=\s*([^;]*).*$)|^.*$/, '$1');
+  const cookie = document.cookie.replace(/(?:(?:^|.*;\s*)cid\s*=\s*([^;]*).*$)|^.*$/, '$1');
+  const cid = cookie !== '' ? cookie : nanoid();
 
-  if (!cid) {
-    let i = 16;
-
-    while (0 < i--) {
-      cid += (36 * Math.random() | 0).toString(36);
-    }
-
-    document.cookie = `cid=${cid};domain=shoonia.github.io;max-age=${(60 * 60 * 24 * 365)}`;
-  }
+  document.cookie = `cid=${cid};domain=shoonia.github.io;max-age=${(60 * 60 * 24 * 365)}`;
 
   return cid;
 }
@@ -24,6 +18,6 @@ export function sendBeacon() {
   } catch (error) { /**/ }
 
   if (!isSend) {
-    (new Image()).src = url;
+    (new Image).src = url;
   }
 }

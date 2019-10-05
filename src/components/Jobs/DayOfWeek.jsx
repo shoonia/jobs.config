@@ -42,6 +42,7 @@ function DayOfWeek({ id, day, period, update }) {
       key={item.label}
       className={st.label}
       tabIndex="0"
+      title={item.value}
     >
       <input
         type="radio"

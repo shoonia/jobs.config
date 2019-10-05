@@ -40,7 +40,7 @@ function Editor() {
           onClick={createItem}
           disabled={items.length >= MAX_ITEMS}
         >
-          <Icon name="add" /> New
+          <Icon name="add" />&nbsp;&nbsp;New
         </Button>
       </div>
       <Jobs

@@ -1,6 +1,6 @@
 .btn {
-  font-size: 16px;
-  padding: 5px 25px;
+  font-size: 1em;
+  padding: .3em 1.3em;
   border-radius: 50px;
   background-color: white;
   outline: none;
@@ -33,13 +33,13 @@
 
 .primary:hover {
   background-color: var(--cr-primary);
-  color: white;
+  color: #FFF;
 }
 
 .extra {
   composes: btn;
 
-  color: white;
+  color: #FFF;
   background-color: transparent;
   border-color: transparent;
 }
