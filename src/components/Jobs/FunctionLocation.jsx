@@ -1,13 +1,16 @@
-import { h, Fragment } from 'preact';
+import { h } from 'preact';
 
-import st from './FunctionLocation.css';
+import st from './styles.css';
 
-function FunctionLocation({ data }) {
+function FunctionLocation({ data, update }) {
   return (
-    <Fragment>
+    <fieldset
+      className={st.fields}
+      onInput={update}
+    >
       <div className={st.location}>
         <label className={st.block}>
-          <span className={st.title}>
+          <span className={st.text}>
             File Name
           </span>
           <input
@@ -24,7 +27,7 @@ function FunctionLocation({ data }) {
           .
         </span>
         <label className={st.block}>
-          <span className={st.title}>
+          <span className={st.text}>
             Function Name
           </span>
           <input
@@ -40,7 +43,7 @@ function FunctionLocation({ data }) {
       </div>
       <div className={st.location}>
         <label className={st.block}>
-          <span className={st.title}>
+          <span className={st.text}>
             Description
           </span>
           <input
@@ -53,7 +56,7 @@ function FunctionLocation({ data }) {
           />
         </label>
       </div>
-    </Fragment>
+    </fieldset>
   );
 }
 

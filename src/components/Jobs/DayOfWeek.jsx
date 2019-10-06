@@ -41,7 +41,6 @@ function DayOfWeek({ id, day, period, update }) {
     <label
       key={item.label}
       className={st.label}
-      tabIndex="0"
       title={item.value}
     >
       <input
@@ -65,7 +64,9 @@ function DayOfWeek({ id, day, period, update }) {
       className={st.fields}
       hidden={period !== WEEKLY}
     >
-      {week}
+      <div className={st.location}>
+        {week}
+      </div>
     </fieldset>
   );
 }

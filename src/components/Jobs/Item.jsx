@@ -10,25 +10,14 @@ import FunctionLocation from './FunctionLocation';
 function Item({ data, remove, clone, update }) {
   return (
     <li className={st.item}>
-      <fieldset
-        className={st.fields}
-        onInput={update}
-      >
-        <FunctionLocation
-          data={data}
-        />
-        <input
-          type="time"
-          value={data.time}
-          data-id={data.id}
-          data-name="time"
-          placeholder="00:00"
-          required
-        />
-      </fieldset>
+      <FunctionLocation
+        data={data}
+        update={update}
+      />
       <Period
         id={data.id}
         period={data.period}
+        time={data.time}
         update={update}
       />
       <DayOfWeek

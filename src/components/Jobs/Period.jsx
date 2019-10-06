@@ -7,65 +7,74 @@ import {
   MONTHLY,
 } from '../../constants';
 
-function Period({ id, period, update }) {
+function Period({ id, time, period, update }) {
   const name = `period-${id}`;
 
   return (
     <fieldset
-      className={st.fields}
       onChange={update}
+      className={st.fields}
     >
-      <label
-        className={st.label}
-        tabIndex="0"
-      >
-        <input
-          type="radio"
-          name={name}
-          checked={period === DAILY}
-          data-id={id}
-          data-name="period"
-          value={DAILY}
-          className={st.checkbox}
-        />
-        <span className={st.title}>
-          Daily
+      <div className={st.location}>
+        <label className={st.block}>
+          <span className={st.text}>
+            The time of day the job runs.
+          </span>
+          <input
+            type="time"
+            value={time}
+            data-id={id}
+            data-name="time"
+            placeholder="00:00"
+            className={st.date}
+            required
+          />
+        </label>
+        <span>
+          <label className={st.label}>
+            <input
+              type="radio"
+              name={name}
+              checked={period === DAILY}
+              data-id={id}
+              data-name="period"
+              value={DAILY}
+              className={st.checkbox}
+            />
+            <span className={st.title}>
+              Daily
+            </span>
+          </label>
+          <label className={st.label}>
+            <input
+              type="radio"
+              name={name}
+              checked={period === WEEKLY}
+              data-id={id}
+              data-name="period"
+              value={WEEKLY}
+              className={st.checkbox}
+            />
+            <span className={st.title}>
+              Weekly
+            </span>
+          </label>
+          <label className={st.label}>
+            <input
+              type="radio"
+              name={name}
+              checked={period === MONTHLY}
+              data-id={id}
+              data-name="period"
+              value={MONTHLY}
+              className={st.checkbox}
+            />
+            <span className={st.title}>
+              Monthly
+            </span>
+          </label>
         </span>
-      </label>
-      <label
-        className={st.label}
-        tabIndex="0"
-      >
-        <input
-          type="radio"
-          name={name}
-          checked={period === WEEKLY}
-          data-id={id}
-          data-name="period"
-          value={WEEKLY}
-          className={st.checkbox}
-        />
-        <span className={st.title}>
-          Weekly
-        </span>
-      </label>
-      <label
-        className={st.label}
-        tabIndex="0"
-      >
-        <input
-          type="radio"
-          name={name}
-          checked={period === MONTHLY}
-          data-id={id}
-          data-name="period"
-          value={MONTHLY}
-          className={st.checkbox}
-        />
-        <span className={st.title}>
-          Monthly
-        </span>
-      </label>
+      </div>
     </fieldset>
   );
 }
