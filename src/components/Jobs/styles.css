@@ -25,6 +25,10 @@
   z-index: 2
 }
 
+.item:invalid {
+  box-shadow: 0 0 0 2px var(--cr-danger);
+}
+
 .fields {
   border: none;
   padding: 0 1em;
@@ -128,14 +132,14 @@
   box-shadow: 0 0 0 2px var(--cr-focus);
 }
 
+.inputs:focus:invalid {
+  box-shadow: 0 0 0 2px var(--cr-danger);
+}
+
 .funcInput {
   composes: inputs;
 
   width: calc(50% - 8px);
-}
-
-.funcInput:invalid {
-  border-color: var(--cr-danger);
 }
 
 .date {
@@ -144,6 +148,11 @@
   margin-right: .5em;
   width: 6em;
   text-align: center;
+}
+
+.funcInput:invalid,
+.date:invalid {
+  border-color: var(--cr-danger);
 }
 
 .description {
