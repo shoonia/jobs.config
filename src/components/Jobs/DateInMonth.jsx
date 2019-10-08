@@ -4,10 +4,13 @@ import st from './styles.css';
 import { MONTHLY } from '../../constants';
 
 function DateInMonth({ id, date, period }) {
+  const isHidden = period !== MONTHLY;
+
   return (
     <fieldset
       className={st.fields}
-      hidden={period !== MONTHLY}
+      hidden={isHidden}
+      disabled={isHidden}
     >
       <div className={st.location}>
         <label className={st.block}>

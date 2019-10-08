@@ -36,6 +36,7 @@ const days = [
 
 function DayOfWeek({ id, day, period }) {
   const name = `day-of-week-${id}`;
+  const isHidden = period !== WEEKLY;
 
   const week = days.map((item) => (
     <label
@@ -61,7 +62,8 @@ function DayOfWeek({ id, day, period }) {
   return (
     <fieldset
       className={st.fields}
-      hidden={period !== WEEKLY}
+      hidden={isHidden}
+      disabled={isHidden}
     >
       <div className={st.location}>
         {week}

@@ -15,7 +15,12 @@ function Item({ data, remove, clone, update }) {
         className={st.item}
         onInput={update}
       >
-        <FunctionLocation data={data} />
+        <FunctionLocation
+          id={data.id}
+          filename={data.filename}
+          funcname={data.funcname}
+          description={data.description}
+        />
         <Period
           id={data.id}
           period={data.period}
