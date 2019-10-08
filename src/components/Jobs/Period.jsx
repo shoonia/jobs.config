@@ -7,14 +7,11 @@ import {
   MONTHLY,
 } from '../../constants';
 
-function Period({ id, time, period, update }) {
+function Period({ id, time, period }) {
   const name = `period-${id}`;
 
   return (
-    <fieldset
-      onChange={update}
-      className={st.fields}
-    >
+    <fieldset className={st.fields}>
       <div className={st.location}>
         <label className={st.block}>
           <span className={st.text}>

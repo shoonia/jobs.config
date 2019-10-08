@@ -3,7 +3,7 @@ import { h } from 'preact';
 import st from './styles.css';
 import { MONTHLY } from '../../constants';
 
-function DateInMonth({ id, date, period, update }) {
+function DateInMonth({ id, date, period }) {
   return (
     <fieldset
       className={st.fields}
@@ -22,7 +22,6 @@ function DateInMonth({ id, date, period, update }) {
             value={date}
             data-id={id}
             data-name="dateInMonth"
-            onInput={update}
             className={st.date}
             required
           />

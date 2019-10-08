@@ -13,28 +13,23 @@ function Item({ data, remove, clone, update }) {
       <form
         action="#"
         className={st.item}
+        onInput={update}
       >
-        <FunctionLocation
-          data={data}
-          update={update}
-        />
+        <FunctionLocation data={data} />
         <Period
           id={data.id}
           period={data.period}
           time={data.time}
-          update={update}
         />
         <DayOfWeek
           id={data.id}
           day={data.dayOfWeek}
           period={data.period}
-          update={update}
         />
         <DateInMonth
           id={data.id}
           date={data.dateInMonth}
           period={data.period}
-          update={update}
         />
         <ItemMenu
           id={data.id}

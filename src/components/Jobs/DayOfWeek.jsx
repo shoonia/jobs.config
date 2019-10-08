@@ -34,7 +34,7 @@ const days = [
   },
 ];
 
-function DayOfWeek({ id, day, period, update }) {
+function DayOfWeek({ id, day, period }) {
   const name = `day-of-week-${id}`;
 
   const week = days.map((item) => (
@@ -60,7 +60,6 @@ function DayOfWeek({ id, day, period, update }) {
 
   return (
     <fieldset
-      onChange={update}
       className={st.fields}
       hidden={period !== WEEKLY}
     >

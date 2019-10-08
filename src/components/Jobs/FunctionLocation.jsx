@@ -2,12 +2,9 @@ import { h } from 'preact';
 
 import st from './styles.css';
 
-function FunctionLocation({ data, update }) {
+function FunctionLocation({ data }) {
   return (
-    <fieldset
-      className={st.fields}
-      onInput={update}
-    >
+    <fieldset className={st.fields}>
       <div className={st.location}>
         <label className={st.block}>
           <span className={st.text}>
