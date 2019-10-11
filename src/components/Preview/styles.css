@@ -29,3 +29,26 @@
   top: 1em;
   right: 1.5em;
 }
+
+.export {
+  position: absolute;
+  bottom: 2em;
+  right: 2em;
+}
+
+.download {
+  color: #FFF;
+  font-size: 1.5em;
+  line-height: 2em;
+  text-align: center;
+  text-decoration: none;
+  display: block;
+  width: 2em;
+  height: 2em;
+  border-radius: 50px;
+}
+
+.download:hover {
+  background-color: var(--cr-font);
+}
+

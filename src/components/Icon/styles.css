@@ -22,18 +22,23 @@
 
 .copy,
 .bin,
-.add {
+.add,
+.download {
   composes: icon;
 }
 
-.copy:before {
-  content: "\e901";
+.copy::before {
+  content: "\1f5d7";
 }
 
-.bin:before {
-  content: "\e902";
+.bin::before {
+  content: "\1f5d1";
 }
 
-.add:before {
-  content: "\e903";
+.add::before {
+  content: "\271a";
+}
+
+.download::before {
+  content: "\1f5ab";
 }

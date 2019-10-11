@@ -3,13 +3,16 @@ import useStoreon from 'storeon/preact';
 import { useCallback, useRef } from 'preact/hooks';
 
 import Button from '../Button';
+import Icon from '../Icon';
 import { createConfig } from './fn';
 import st from './styles.css';
 
 function Preview() {
   const { items } = useStoreon('items');
-  const value = createConfig(items);
   const area = useRef(null);
+
+  const config = createConfig(items);
+  const dataURL = `data:application/json,${encodeURIComponent(config)}`;
 
   const clipboard = useCallback(() => {
     area.current.select();
@@ -22,7 +25,7 @@ function Preview() {
         ref={area}
         className={st.out}
         readOnly
-        value={value} />
+        value={config} />
       <div className={st.copy}>
         <Button
           mode="extra"
@@ -30,6 +33,17 @@ function Preview() {
         >
           Copy Code
         </Button>
+      </div>
+      <div className={st.export}>
+        <a
+          href={dataURL}
+          className={st.download}
+          download="jobs.config"
+          title="Download a file"
+          aria-label="Download a file"
+        >
+          <Icon name="download" />
+        </a>
       </div>
     </div>
   );
