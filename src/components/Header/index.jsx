@@ -9,7 +9,9 @@ function Header() {
         href="/jobs.config"
         className={st.link}
       >
-        jobs.config
+        <h1 className={st.title}>
+          Corvid - jobs.config
+        </h1>
       </a>
       <a
         className="github-button"
