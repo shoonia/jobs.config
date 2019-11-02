@@ -4,59 +4,25 @@ import st from './styles.css';
 import { WEEKLY } from '../../constants';
 
 const days = [
-  {
-    label: 'Mon.',
-    value: 'Monday',
-  },
-  {
-    label: 'Tue.',
-    value: 'Tuesday',
-  },
-  {
-    label: 'Wed.',
-    value: 'Wednesday',
-  },
-  {
-    label: 'Thu.',
-    value: 'Thursday',
-  },
-  {
-    label: 'Fri.',
-    value: 'Friday',
-  },
-  {
-    label: 'Sat.',
-    value: 'Saturday',
-  },
-  {
-    label: 'Sun.',
-    value: 'Sunday',
-  },
+  'Monday',
+  'Tuesday',
+  'Wednesday',
+  'Thursday',
+  'Friday',
+  'Saturday',
+  'Sunday',
 ];
 
 function DayOfWeek({ id, day, period }) {
-  const name = `day-of-week-${id}`;
   const isHidden = period !== WEEKLY;
 
-  const week = days.map((item) => (
-    <label
-      key={item.label}
-      className={st.label}
-      title={item.value}
+  const week = days.map((day) => (
+    <option
+      key={day}
+      value={day}
     >
-      <input
-        type="radio"
-        name={name}
-        checked={day === item.value}
-        data-name="dayOfWeek"
-        data-id={id}
-        value={item.value}
-        className={st.checkbox}
-      />
-      <span className={st.title}>
-        {item.label}
-      </span>
-    </label>
+      {day}
+    </option>
   ));
 
   return (
@@ -66,7 +32,19 @@ function DayOfWeek({ id, day, period }) {
       disabled={isHidden}
     >
       <div className={st.location}>
-        {week}
+        <label className={st.block}>
+          <span className={st.text}>
+            The day of the week the job runs.
+          </span>
+          <select
+            className={st.date}
+            data-name="dayOfWeek"
+            data-id={id}
+            value={day}
+          >
+            {week}
+          </select>
+        </label>
       </div>
     </fieldset>
   );

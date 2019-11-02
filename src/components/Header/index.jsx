@@ -10,7 +10,7 @@ function Header() {
         className={st.link}
       >
         <h1 className={st.title}>
-          Corvid - jobs.config
+          jobs.config builder
         </h1>
       </a>
       <a
