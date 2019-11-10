@@ -12,7 +12,7 @@ render(
   <Provider value={store}>
     <App />
   </Provider>,
-  root
+  root,
 );
 
 if (document.location.hostname !== 'localhost') {

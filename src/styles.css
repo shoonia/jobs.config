@@ -66,6 +66,7 @@ body {
 }
 
 button,
-input {
+input,
+option {
   font-family: var(--font-fm);
 }

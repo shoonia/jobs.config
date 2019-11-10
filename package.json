@@ -1,12 +1,12 @@
 {
   "name": "jobs.config",
   "description": "Scheduling recurring jobs.config builder for Corvid by Wix",
-  "version": "0.2.0",
+  "version": "0.2.1",
   "main": "src/index.html",
   "scripts": {
     "start": "parcel src/index.html --open --no-cache",
     "build": "parcel build src/index.html  --public-url ./ --no-source-maps --no-cache --experimental-scope-hoisting",
-    "eslint": "eslint src/**/*.{js,jsx} --fix",
+    "lint": "eslint src/**/*.{js,jsx} --fix",
     "gh-pages": "gh-pages -d ./dist",
     "clean": "rmdir /s /q dist",
     "deploy": "yarn clean && yarn build && yarn gh-pages"
@@ -15,7 +15,7 @@
     "classnames": "^2.2.6",
     "debounce": "^1.2.0",
     "nanoid": "^2.1.6",
-    "preact": "^10.0.4",
+    "preact": "^10.0.5",
     "storeon": "^0.9.5"
   },
   "devDependencies": {
