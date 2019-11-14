@@ -34,7 +34,7 @@ function FunctionLocation({ id, filename, funcname, description }) {
             className={st.funcInput}
             data-name="funcname"
             placeholder="function name"
-            pattern="^[\w\$][\w\d\$]*$"
+            pattern="^[a-zA-Z_\$][\w\d\$]*$"
             required
           />
         </label>
