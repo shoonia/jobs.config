@@ -67,6 +67,7 @@ body {
 
 button,
 input,
+select,
 option {
   font-family: var(--font-fm);
 }
