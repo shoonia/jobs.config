@@ -3,8 +3,15 @@ import {
   MONTHLY,
 } from '../../constants';
 
-function createFunctionLocation({ filename, funcname }) {
-  return `/${filename}.${funcname}`;
+function createLocation(functionLocation) {
+  if (functionLocation[0] !== '/') {
+    functionLocation = `/${functionLocation}`;
+  }
+  if (!/\.js(w)?$/.test(functionLocation)) {
+    functionLocation += '.js';
+  }
+
+  return functionLocation;
 }
 
 function parseDate(date) {
@@ -20,7 +27,8 @@ export function createConfig(items) {
   const config = {
     jobs: items.map((item) => {
       return {
-        functionLocation: createFunctionLocation(item),
+        functionLocation: createLocation(item.functionLocation),
+        functionName: item.functionName,
         description: (item.description !== '') ? item.description : undefined,
         executionConfig: {
           time: item.time || '00:00',

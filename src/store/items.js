@@ -8,8 +8,8 @@ const { sessionStorage } = window;
 function createItem() {
   return [{
     id: nanoid(),
-    filename: 'file_name',
-    funcname: 'function_name',
+    functionLocation: '/function_location.js',
+    functionName: 'function_name',
     description: '',
     time: '00:00',
     dayOfWeek: 'Monday',

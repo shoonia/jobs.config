@@ -2,26 +2,31 @@ import { h } from 'preact';
 
 import st from './styles.css';
 
-function FunctionLocation({ id, filename, funcname, description }) {
+function FunctionLocation({
+  id,
+  functionLocation,
+  functionName,
+  description,
+}) {
   return (
     <fieldset className={st.fields}>
       <div className={st.location}>
         <label className={st.block}>
           <span className={st.text}>
-            File Name
+            Function Location
           </span>
           <input
             type="text"
-            value={filename}
+            value={functionLocation}
             data-id={id}
             className={st.funcInput}
-            data-name="filename"
-            placeholder="file name"
+            data-name="functionLocation"
+            placeholder="Function Location"
             required
           />
         </label>
-        <span className={st.dot}>
-          .
+        <span className={st.slash}>
+          /
         </span>
         <label className={st.block}>
           <span className={st.text}>
@@ -29,11 +34,11 @@ function FunctionLocation({ id, filename, funcname, description }) {
           </span>
           <input
             type="text"
-            value={funcname}
+            value={functionName}
             data-id={id}
             className={st.funcInput}
-            data-name="funcname"
-            placeholder="function name"
+            data-name="functionName"
+            placeholder="Function Name"
             pattern="^[a-zA-Z_\$][\w\d\$]*$"
             required
           />
@@ -50,7 +55,7 @@ function FunctionLocation({ id, filename, funcname, description }) {
             data-id={id}
             className={st.description}
             data-name="description"
-            placeholder="description"
+            placeholder="Description"
           />
         </label>
       </div>

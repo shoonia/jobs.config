@@ -17,8 +17,8 @@ function Item({ data, remove, clone, update }) {
       >
         <FunctionLocation
           id={data.id}
-          filename={data.filename}
-          funcname={data.funcname}
+          functionLocation={data.functionLocation}
+          functionName={data.functionName}
           description={data.description}
         />
         <Period
