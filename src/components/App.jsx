@@ -1,17 +1,21 @@
-import { h } from 'preact';
+import { h, Fragment } from 'preact';
 
 import Grid from './Grid';
 import Header from './Header';
 import Editor from './Editor';
 import Preview from './Preview';
+import { Tooltip } from './Tooltip';
 
 function App() {
   return (
-    <Grid
-      header={<Header />}
-      left={<Editor />}
-      right={<Preview />}
-    />
+    <Fragment>
+      <Tooltip />
+      <Grid
+        header={<Header />}
+        left={<Editor />}
+        right={<Preview />}
+      />
+    </Fragment>
   );
 }
 

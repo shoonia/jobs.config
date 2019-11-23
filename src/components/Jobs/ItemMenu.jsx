@@ -12,6 +12,8 @@ function ItemMenu({ id, remove, clone }) {
         value={id}
         onClick={remove}
         className={st.btnRemove}
+        data-rh="Remove"
+        data-rh-at="top"
       >
         <Icon name="bin" />
       </button>
@@ -21,6 +23,8 @@ function ItemMenu({ id, remove, clone }) {
         value={id}
         onClick={clone}
         className={st.btnClone}
+        data-rh="Clone"
+        data-rh-at="top"
       >
         <Icon name="copy" />
       </button>

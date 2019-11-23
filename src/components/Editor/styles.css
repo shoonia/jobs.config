@@ -3,3 +3,6 @@
   text-align: center;
 }
 
+.tooltip {
+  display: inline-block;
+}

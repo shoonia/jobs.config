@@ -36,12 +36,17 @@ function Editor() {
   return (
     <Fragment>
       <div className={st.section}>
-        <Button
-          onClick={createItem}
-          disabled={items.length >= MAX_ITEMS}
+        <span
+          data-rh="You can configure up to 20 jobs."
+          className={st.tooltip}
         >
-          <Icon name="add" />&nbsp;New Job
-        </Button>
+          <Button
+            onClick={createItem}
+            disabled={items.length >= MAX_ITEMS}
+          >
+            <Icon name="add" />&nbsp;New Job
+          </Button>
+        </span>
       </div>
       <Jobs
         items={items}

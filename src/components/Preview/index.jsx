@@ -39,8 +39,9 @@ function Preview() {
           href={dataURL}
           className={st.download}
           download="jobs.config"
-          title="Download a file"
           aria-label="Download a file"
+          data-rh="Download a file"
+          data-rh-at="left"
         >
           <Icon name="download" />
         </a>

@@ -13,15 +13,20 @@ function Header() {
           jobs.config builder
         </h1>
       </a>
-      <a
-        className="github-button"
-        href="https://github.com/shoonia/jobs.config"
-        data-size="large"
-        data-show-count="true"
-        aria-label="Star on GitHub"
+      <span
+        data-rh="Repository on GitHub"
+        data-rh-at="left"
       >
-        Star
-      </a>
+        <a
+          className="github-button"
+          href="https://github.com/shoonia/jobs.config"
+          data-size="large"
+          data-show-count="true"
+          aria-label="Star on GitHub"
+        >
+          Star
+        </a>
+      </span>
     </div>
   );
 }
