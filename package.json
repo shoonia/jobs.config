@@ -5,11 +5,10 @@
   "main": "src/index.html",
   "scripts": {
     "start": "parcel src/index.html --open --no-cache",
-    "build": "parcel build src/index.html  --public-url ./ --no-source-maps --no-cache --experimental-scope-hoisting",
+    "build": "node build.js",
     "lint": "eslint src/**/*.{js,jsx} --fix",
     "gh-pages": "gh-pages -d ./dist",
-    "clean": "rmdir /s /q dist",
-    "deploy": "yarn clean && yarn build && yarn gh-pages"
+    "deploy": "yarn build && yarn gh-pages"
   },
   "dependencies": {
     "classnames": "^2.2.6",
@@ -24,10 +23,12 @@
     "babel-eslint": "^10.0.3",
     "eslint": "^6.7.0",
     "eslint-plugin-react": "^7.16.0",
+    "fs-extra": "^8.1.0",
     "gh-pages": "^2.1.1",
     "parcel-bundler": "^1.12.4",
     "parcel-plugin-css-url-loader": "^1.0.5",
-    "postcss-modules": "^1.4.1"
+    "postcss-modules": "^1.4.1",
+    "terser": "^4.4.0"
   },
   "homepage": "https://shoonia.github.io/jobs.config/",
   "repository": "https://github.com/shoonia/jobs.config.git",
