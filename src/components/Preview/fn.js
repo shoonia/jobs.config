@@ -28,7 +28,7 @@ export function createConfig(items) {
     jobs: items.map((item) => {
       return {
         functionLocation: createLocation(item.functionLocation),
-        functionName: item.functionName,
+        functionName: item.functionName.trim(),
         description: (item.description !== '') ? item.description : undefined,
         executionConfig: {
           time: item.time || '00:00',

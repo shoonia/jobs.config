@@ -43,7 +43,7 @@ function FunctionLocation({
             className={st.funcInput}
             value={functionName}
             placeholder="Function Name"
-            pattern="^[a-zA-Z_\$][\w\d\$]*$"
+            pattern="^(\s)*?[a-zA-Z_\$][\w\d\$]*(\s)*?$"
             required
           />
         </label>
