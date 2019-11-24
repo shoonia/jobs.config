@@ -17,10 +17,12 @@ function FunctionLocation({
           </span>
           <input
             type="text"
-            value={functionLocation}
             data-id={id}
-            className={st.funcInput}
             data-name="functionLocation"
+            data-fl
+            data-fl-at="bottom"
+            className={st.funcInput}
+            value={functionLocation}
             placeholder="Function Location"
             required
           />
@@ -34,10 +36,12 @@ function FunctionLocation({
           </span>
           <input
             type="text"
-            value={functionName}
             data-id={id}
-            className={st.funcInput}
             data-name="functionName"
+            data-fl
+            data-fl-at="bottom"
+            className={st.funcInput}
+            value={functionName}
             placeholder="Function Name"
             pattern="^[a-zA-Z_\$][\w\d\$]*$"
             required

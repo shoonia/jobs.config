@@ -1,0 +1,10 @@
+.fs {
+  background-color: var(--cr-background);
+  margin-top: 10px;
+  position: absolute;
+  z-index: 9999;
+  cursor: default;
+  border-radius: 8px;
+  animation: .5s fadeIn;
+  box-shadow: 0 0 14px 0 rgba(22, 45, 61, .36);
+}
