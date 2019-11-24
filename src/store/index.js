@@ -1,4 +1,3 @@
-
 import createStore from 'storeon';
 
 import items from './items';

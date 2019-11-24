@@ -7,7 +7,13 @@ import DateInMonth from './DateInMonth';
 import ItemMenu from './ItemMenu';
 import FunctionLocation from './FunctionLocation';
 
-function Item({ data, remove, clone, update }) {
+function Item({
+  data,
+  remove,
+  clone,
+  update,
+  isMax,
+}) {
   return (
     <li>
       <form
@@ -40,6 +46,7 @@ function Item({ data, remove, clone, update }) {
           id={data.id}
           remove={remove}
           clone={clone}
+          isMax={isMax}
         />
       </form>
     </li>

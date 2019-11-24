@@ -42,33 +42,48 @@ function setItems(items) {
   }
 }
 
+function isMaxItems(items) {
+  return (items.length + 1) > MAX_ITEMS;
+}
+
 export default function (store) {
-  store.on('@init', () => ({
-    items: getItems(),
-  }));
+  store.on('@init', () => {
+    const items = getItems();
+
+    return {
+      items,
+      isMax: isMaxItems(items),
+    };
+  });
 
   store.on('@changed', (state) => {
     setItems(state.items);
   });
 
-  store.on('items/new', ({ items }) => {
-    if ((items.length + 1) > MAX_ITEMS) {
+  store.on('items/new', ({ items, isMax }) => {
+    if (isMax) {
       return;
     }
 
+    const newItems = createItem().concat(items);
+
     return {
-      items: createItem().concat(items),
+      items: newItems,
+      isMax: isMaxItems(newItems),
     };
   });
 
   store.on('items/remove', ({ items }, id) => {
+    const newItems = items.filter((item) => item.id !== id);
+
     return {
-      items: items.filter((item) => item.id !== id),
+      items: newItems,
+      isMax: isMaxItems(newItems),
     };
   });
 
-  store.on('items/clone', ({ items }, id) => {
-    if ((items.length + 1) > MAX_ITEMS) {
+  store.on('items/clone', ({ items, isMax }, id) => {
+    if (isMax) {
       return;
     }
 
@@ -79,6 +94,7 @@ export default function (store) {
 
     return {
       items: items.slice(),
+      isMax: isMaxItems(items),
     };
   });
 

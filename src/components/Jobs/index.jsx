@@ -3,7 +3,13 @@ import { h } from 'preact';
 import Item from './Item';
 import st from './styles.css';
 
-function Jobs({ items, remove, clone, update }) {
+function Jobs({
+  items,
+  remove,
+  clone,
+  update,
+  isMax,
+}) {
   const list = items.map((item) => (
     <Item
       key={item.id}
@@ -11,6 +17,7 @@ function Jobs({ items, remove, clone, update }) {
       remove={remove}
       clone={clone}
       update={update}
+      isMax={isMax}
     />
   ));
 

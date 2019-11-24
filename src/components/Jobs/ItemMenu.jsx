@@ -3,7 +3,12 @@ import { h } from 'preact';
 import st from './styles.css';
 import Icon from '../Icon';
 
-function ItemMenu({ id, remove, clone }) {
+function ItemMenu({
+  id,
+  remove,
+  clone,
+  isMax,
+}) {
   return (
     <div className={st.buttons}>
       <button
@@ -21,10 +26,11 @@ function ItemMenu({ id, remove, clone }) {
         type="button"
         aria-label="clone"
         value={id}
-        onClick={clone}
+        onClick={isMax ? null : clone}
         className={st.btnClone}
         data-rh="Clone"
         data-rh-at="top"
+        disabled={isMax}
       >
         <Icon name="copy" />
       </button>

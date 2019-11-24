@@ -14,7 +14,7 @@ function Button({
   return (
     <button
       type="button"
-      onClick={onClick}
+      onClick={disabled ? null : onClick}
       className={cn(mode)}
       disabled={disabled}
     >

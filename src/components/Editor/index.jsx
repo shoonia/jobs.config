@@ -3,13 +3,13 @@ import { useCallback } from 'preact/hooks';
 import useStoreon from 'storeon/preact';
 
 import Jobs from '../Jobs';
-import { MAX_ITEMS } from '../../constants';
 import st from './styles.css';
 import Button from '../Button';
 import Icon from '../Icon';
 
 function Editor() {
   const { dispatch, items } = useStoreon('items');
+  const { isMax } = useStoreon('isMax');
 
   const createItem = useCallback(() => {
     dispatch('items/new');
@@ -42,7 +42,7 @@ function Editor() {
         >
           <Button
             onClick={createItem}
-            disabled={items.length >= MAX_ITEMS}
+            disabled={isMax}
           >
             <Icon name="add" />&nbsp;New Job
           </Button>
@@ -53,6 +53,7 @@ function Editor() {
         remove={removeItem}
         clone={cloneItem}
         update={updateItem}
+        isMax={isMax}
       />
     </Fragment>
   );

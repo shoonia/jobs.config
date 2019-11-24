@@ -64,6 +64,12 @@
   border: 1px solid rgba(0, 0, 0, .16);
 }
 
+.btn[disabled] {
+  color: var(--cr-light);
+  pointer-events: none;
+  cursor: default;
+}
+
 .btnRemove {
   composes: btn;
 
