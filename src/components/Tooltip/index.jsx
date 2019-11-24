@@ -25,7 +25,7 @@ export function TooltipFunctionLocation() {
     switch (name) {
       case 'functionLocation': {
         return (
-          <FunctionLocation />
+          <FunctionLocation target={target} />
         );
       }
       case 'functionName': {

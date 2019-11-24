@@ -8,6 +8,8 @@
   position: relative;
   padding: 15px 15px 15px 20px;
   cursor: text;
+  background-color: var(--cr-background);
+  border-radius: 8px;
 }
 
 .field {

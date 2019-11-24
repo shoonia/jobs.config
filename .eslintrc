@@ -21,9 +21,9 @@
   },
   "rules": {
     "react/jsx-key": "error",
-    "react/jsx-one-expression-per-line": "off",
     "react/prop-types": "off",
     "linebreak-style": "off",
+    "no-trailing-spaces": "error",
     "no-use-before-define": "error",
     "no-unused-vars": [
       "error",
