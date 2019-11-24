@@ -3,15 +3,10 @@ import {
   MONTHLY,
 } from '../../constants';
 
-function createLocation(functionLocation) {
-  if (functionLocation[0] !== '/') {
-    functionLocation = `/${functionLocation}`;
-  }
-  if (!/\.js(w)?$/.test(functionLocation)) {
-    functionLocation += '.js';
-  }
-
-  return functionLocation;
+function createLocation(location) {
+  return (location[0] !== '/')
+    ? `/${location}`
+    : location;
 }
 
 function parseDate(date) {

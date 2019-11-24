@@ -5,6 +5,7 @@ import useStoreon from 'storeon/preact';
 import 'react-hint/css/index.css';
 
 import FunctionName from './FunctionName';
+import FunctionLocation from './FunctionLocation';
 import st from './styles.css';
 
 export const Hint = HintFactory({ createElement: h, Component });
@@ -21,15 +22,19 @@ export function TooltipFunctionLocation() {
   const onRenderContent = useCallback((target) => {
     const { name } = target.dataset;
 
-    if (name === 'functionLocation') {
-      return (
-        <div />
-      );
+    switch (name) {
+      case 'functionLocation': {
+        return (
+          <FunctionLocation />
+        );
+      }
+      case 'functionName': {
+        return (
+          <FunctionName target={target} />
+        );
+      }
     }
-
-    return (
-      <FunctionName target={target} />
-    );
+    return null;
   }, [items]);
 
   return (
