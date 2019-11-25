@@ -3,9 +3,9 @@ import { useCallback } from 'preact/hooks';
 import useStoreon from 'storeon/preact';
 
 import Jobs from '../Jobs';
-import st from './styles.css';
 import Button from '../Button';
-import Icon from '../Icon';
+import IconPlus from './IconPlus';
+import st from './styles.css';
 
 function Editor() {
   const { dispatch, items } = useStoreon('items');
@@ -44,7 +44,8 @@ function Editor() {
             onClick={createItem}
             disabled={isMax}
           >
-            <Icon name="add" />&nbsp;New Job
+            <IconPlus />
+            &nbsp;New Job
           </Button>
         </span>
       </div>

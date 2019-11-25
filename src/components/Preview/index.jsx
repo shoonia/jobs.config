@@ -3,7 +3,6 @@ import useStoreon from 'storeon/preact';
 import { useCallback, useRef } from 'preact/hooks';
 
 import Button from '../Button';
-import Icon from '../Icon';
 import { createConfig } from './fn';
 import st from './styles.css';
 
@@ -25,7 +24,8 @@ function Preview() {
         ref={area}
         className={st.out}
         readOnly
-        value={config} />
+        value={config}
+      />
       <div className={st.copy}>
         <Button
           mode="extra"
@@ -42,9 +42,7 @@ function Preview() {
           aria-label="Download a file"
           data-rh="Download a file"
           data-rh-at="left"
-        >
-          <Icon name="download" />
-        </a>
+        />
       </div>
     </div>
   );

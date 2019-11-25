@@ -42,18 +42,18 @@ function setItems(items) {
   }
 }
 
-function isMaxItems(items) {
-  return (items.length + 1) > MAX_ITEMS;
+function payload(items) {
+  return {
+    items,
+    isMax: (items.length + 1) > MAX_ITEMS,
+  };
 }
 
 export default function (store) {
   store.on('@init', () => {
     const items = getItems();
 
-    return {
-      items,
-      isMax: isMaxItems(items),
-    };
+    return payload(items);
   });
 
   store.on('@changed', (state) => {
@@ -67,19 +67,13 @@ export default function (store) {
 
     const newItems = createItem().concat(items);
 
-    return {
-      items: newItems,
-      isMax: isMaxItems(newItems),
-    };
+    return payload(newItems);
   });
 
   store.on('items/remove', ({ items }, id) => {
     const newItems = items.filter((item) => item.id !== id);
 
-    return {
-      items: newItems,
-      isMax: isMaxItems(newItems),
-    };
+    return payload(newItems);
   });
 
   store.on('items/clone', ({ items, isMax }, id) => {
@@ -92,10 +86,7 @@ export default function (store) {
 
     items.splice(index, 0, clone);
 
-    return {
-      items: items.slice(),
-      isMax: isMaxItems(items),
-    };
+    return payload(items.slice());
   });
 
   store.on('items/update-debounce', ({ items }, { id, name, value }) => {
@@ -104,9 +95,7 @@ export default function (store) {
 
     items.splice(index, 1, item);
 
-    return {
-      items: items.slice(),
-    };
+    return payload(items.slice());
   });
 
   store.on('items/update', debounce((_, action) => {

@@ -1,7 +1,6 @@
 import { h } from 'preact';
 
 import st from './styles.css';
-import Icon from '../Icon';
 
 function ItemMenu({
   id,
@@ -19,9 +18,7 @@ function ItemMenu({
         className={st.btnRemove}
         data-rh="Remove"
         data-rh-at="top"
-      >
-        <Icon name="bin" />
-      </button>
+      />
       <button
         type="button"
         aria-label="clone"
@@ -31,9 +28,7 @@ function ItemMenu({
         data-rh="Clone"
         data-rh-at="top"
         disabled={isMax}
-      >
-        <Icon name="copy" />
-      </button>
+      />
     </div>
   );
 }
