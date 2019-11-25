@@ -1,6 +1,0 @@
-{
-  "css-url-loader": {
-    "exts": ["woff"],
-    "limit": 10000
-  }
-}
