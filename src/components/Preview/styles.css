@@ -17,6 +17,7 @@
   color: var(--cr-success);
   background-color: #000;
   white-space: pre;
+  scrollbar-width: thin;
 }
 
 .out::selection {

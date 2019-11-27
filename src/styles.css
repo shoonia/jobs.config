@@ -12,7 +12,7 @@
 }
 
 :root {
-  --font-fm: 'HelveticaNeueW10-55Roman', Helvetica Neue, Helvetica, Arial, メイリオ, meiryo, ヒラギノ角ゴ pro w3, hiragino kaku gothic pro, sans-serif;
+  --font-fm: 'HelveticaNeueW10-55Roman', Helvetica Neue, Helvetica, Arial, sans-serif;
   --font-mono: Menlo, Monaco, 'Andale Mono', 'Ubuntu Mono', monospace;
 
   --cr-font: #162d3d;
@@ -23,6 +23,7 @@
   --cr-background: #f0f3f5;
   --cr-focus: #AABDFC;
   --cr-light: #7a92a5;
+  --cr-gray: #898989;
 
   --header-height: 70px;
   --body-height: calc(100vh - var(--header-height));
@@ -30,13 +31,13 @@
 
 ::-webkit-scrollbar {
   background-color: transparent;
-  width: 8px;
-  height: 8px;
+  width: 6px;
+  height: 6px;
 }
 
 ::-webkit-scrollbar-thumb {
   border: 1px solid transparent;
-  background-color: #898989;
+  background-color: var(--cr-gray);
   border-radius: 25px;
 }
 
@@ -54,6 +55,8 @@ html {
   color: var(--cr-font);
   padding: 0;
   margin: 0;
+  scrollbar-color: var(--cr-gray) transparent;
+  scrollbar-width: thin;
 }
 
 body {

@@ -28,6 +28,7 @@
   grid-column: 1;
   min-width: 500px;
   overflow-y: scroll;
+  scrollbar-width: thin;
 }
 
 .right {

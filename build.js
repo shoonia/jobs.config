@@ -1,10 +1,10 @@
 /* eslint-env node */
 const fs = require('fs');
 const path = require('path');
-
 const fse = require('fs-extra');
 const Bundler = require('parcel-bundler');
 const terser = require('terser');
+const filesize = require('filesize');
 
 const entry = path.join(__dirname, './src/index.html');
 const distDir = path.join(__dirname, './dist');
@@ -61,13 +61,10 @@ bundler.bundle().then(() => {
 
     fs.writeFileSync(jsFile, code, 'utf8');
 
-    console.log(
-      '\n',
-      file,
-      fs.statSync(jsFile).size / 1000,
-      'KB',
-      '\n',
-    );
+    const { size } = fs.statSync(jsFile);
+
+    console.log();
+    console.log(file, filesize(size));
   });
 
   process.exit(0);
