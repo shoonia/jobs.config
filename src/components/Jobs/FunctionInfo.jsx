@@ -2,7 +2,7 @@ import { h } from 'preact';
 
 import st from './styles.css';
 
-function FunctionLocation({
+function FunctionInfo({
   id,
   functionLocation,
   functionName,
@@ -68,4 +68,4 @@ function FunctionLocation({
   );
 }
 
-export default FunctionLocation;
+export default FunctionInfo;

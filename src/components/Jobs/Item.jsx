@@ -5,7 +5,7 @@ import Period from './Period';
 import DayOfWeek from './DayOfWeek';
 import DateInMonth from './DateInMonth';
 import ItemMenu from './ItemMenu';
-import FunctionLocation from './FunctionLocation';
+import FunctionInfo from './FunctionInfo';
 
 function Item({
   data,
@@ -21,7 +21,7 @@ function Item({
         className={st.item}
         onInput={update}
       >
-        <FunctionLocation
+        <FunctionInfo
           id={data.id}
           functionLocation={data.functionLocation}
           functionName={data.functionName}

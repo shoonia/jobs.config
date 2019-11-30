@@ -24,6 +24,10 @@
   margin: 0 0 0 2px;
 }
 
+.item {
+  margin: 1px 0;
+}
+
 .sublist {
   list-style: none;
   padding: 0;
@@ -33,13 +37,18 @@
 .node {
   height: 24px;
   padding: 4px 6px 4px 12px;
-  border-radius: 12px;
+  border-radius: 10px;
   display: flex;
   align-items: center;
+  border: 1px solid transparent;
 }
 
 .node:hover {
   background-color: #EAF7FF;
+}
+
+.invalid {
+  border-color: var(--cr-danger);
 }
 
 .root::before {

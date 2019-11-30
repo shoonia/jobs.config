@@ -26,11 +26,14 @@ const buildOptions = {
 };
 
 const minifyOptions = {
+  ecma: 8,
+  module: true,
   parse: {
     ecma: 8,
   },
   compress: {
     ecma: 8,
+    module: true,
     warnings: false,
     comparisons: false,
     inline: 2,
