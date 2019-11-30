@@ -24,7 +24,7 @@ function FunctionInfo({
             className={st.funcInput}
             value={functionLocation}
             placeholder="Function Location"
-            pattern="^(\/)?[\w\d\-\.\/]{1,}(\.js(w)?)$"
+            pattern="^(\/)?[\w\d\-\.\/]*[\w\d-]\.jsw?$"
             required
           />
         </label>
