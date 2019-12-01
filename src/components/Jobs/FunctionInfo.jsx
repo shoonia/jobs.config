@@ -44,7 +44,7 @@ function FunctionInfo({
             className={st.funcInput}
             value={functionName}
             placeholder="Function Name"
-            pattern="^(\s)*?[a-zA-Z_\$][\w\d\$]*(\s)*?$"
+            pattern="^(\s)*?[\w\$][\w\d\$]*(\s)*?$"
             required
           />
         </label>

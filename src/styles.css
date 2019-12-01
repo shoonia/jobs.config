@@ -6,6 +6,7 @@
 
 @font-face{
   font-family: 'HelveticaNeueW10-55Roman';
+  font-display: swap;
   src:
     url('https://static.parastorage.com/services/santa-resources/resources/viewer/user-site-fonts/fonts/Helvetica/v2/1a14dcac-7c9e-471c-8039-33c730f871f2.woff2')
     format('woff2');

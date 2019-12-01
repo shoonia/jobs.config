@@ -4,7 +4,9 @@ import {
 } from '../../constants';
 
 function createLocation(location) {
-  return (location[0] !== '/')
+  const SLASH_CHAR_CODE = 47;
+
+  return location.charCodeAt(0) !== SLASH_CHAR_CODE
     ? `/${location}`
     : location;
 }
