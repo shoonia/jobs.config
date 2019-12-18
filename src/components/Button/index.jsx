@@ -1,9 +1,9 @@
 import { h } from 'preact';
 import classNames from 'classnames/bind';
 
-import st from './styles.css';
+import s from './styles.css';
 
-const cn = classNames.bind(st);
+const cn = classNames.bind(s);
 
 function Button({
   mode = 'primary',

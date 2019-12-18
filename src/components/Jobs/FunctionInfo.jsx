@@ -1,6 +1,6 @@
 import { h } from 'preact';
 
-import st from './styles.css';
+import s from './styles.css';
 
 function FunctionInfo({
   id,
@@ -9,10 +9,10 @@ function FunctionInfo({
   description,
 }) {
   return (
-    <fieldset className={st.fields}>
-      <div className={st.location}>
-        <label className={st.block}>
-          <span className={st.text}>
+    <fieldset className={s.fields}>
+      <div className={s.location}>
+        <label className={s.block}>
+          <span className={s.text}>
             Function Location
           </span>
           <input
@@ -21,18 +21,18 @@ function FunctionInfo({
             data-name="functionLocation"
             data-fl
             data-fl-at="bottom"
-            className={st.funcInput}
+            className={s.funcInput}
             value={functionLocation}
             placeholder="Function Location"
             pattern="^(\/)?[\w\d\-\.\/]*[\w\d-]\.jsw?$"
             required
           />
         </label>
-        <span className={st.slash}>
+        <span className={s.slash}>
           /
         </span>
-        <label className={st.block}>
-          <span className={st.text}>
+        <label className={s.block}>
+          <span className={s.text}>
             Function Name
           </span>
           <input
@@ -41,7 +41,7 @@ function FunctionInfo({
             data-name="functionName"
             data-fl
             data-fl-at="bottom"
-            className={st.funcInput}
+            className={s.funcInput}
             value={functionName}
             placeholder="Function Name"
             pattern="^(\s)*?[\w\$][\w\d\$]*(\s)*?$"
@@ -49,16 +49,16 @@ function FunctionInfo({
           />
         </label>
       </div>
-      <div className={st.location}>
-        <label className={st.block}>
-          <span className={st.text}>
+      <div className={s.location}>
+        <label className={s.block}>
+          <span className={s.text}>
             Description
           </span>
           <input
             type="text"
             value={description}
             data-id={id}
-            className={st.description}
+            className={s.description}
             data-name="description"
             placeholder="Description"
           />

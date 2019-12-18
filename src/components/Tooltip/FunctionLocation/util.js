@@ -1,5 +1,5 @@
 import cn from 'classnames';
-import st from './FunctionLocation.css';
+import s from './FunctionLocation.css';
 
 function hasError(path, isLast) {
   const DOT_CHAR_CODE = 46;
@@ -12,11 +12,11 @@ function hasError(path, isLast) {
 }
 
 function iconClass(path, isLast) {
-  if (!isLast) return st.dir;
-  if (/\.js$/.test(path)) return st.js;
-  if (/\.jsw$/.test(path)) return st.jsw;
+  if (!isLast) return s.dir;
+  if (/\.js$/.test(path)) return s.js;
+  if (/\.jsw$/.test(path)) return s.jsw;
 
-  return st.blank;
+  return s.blank;
 }
 
 export function createPath(location) {
@@ -26,8 +26,8 @@ export function createPath(location) {
     .map((path, index, array) => {
       const isLast = (index === array.length - 1);
 
-      const className = cn(st.node, iconClass(path, isLast), {
-        [st.invalid]: hasError(path, isLast),
+      const className = cn(s.node, iconClass(path, isLast), {
+        [s.invalid]: hasError(path, isLast),
       });
 
       return {

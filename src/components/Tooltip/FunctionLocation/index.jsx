@@ -1,7 +1,7 @@
 import { h } from 'preact';
 
 import { createPath } from './util';
-import st from './FunctionLocation.css';
+import s from './FunctionLocation.css';
 
 function FunctionLocation({ target }) {
   const style = {
@@ -9,11 +9,11 @@ function FunctionLocation({ target }) {
   };
 
   const tree = createPath(target.value).reduceRight((acc, item, index) => {
-    const listClass = index === 0 ? st.list : st.sublist;
+    const listClass = index === 0 ? s.list : s.sublist;
 
     return (
       <ul className={listClass}>
-        <li className={st.item}>
+        <li className={s.item}>
           <div className={item.className}>
             {item.path}
           </div>
@@ -25,10 +25,10 @@ function FunctionLocation({ target }) {
 
   return (
     <div
-      className={st.bar}
+      className={s.bar}
       style={style}
     >
-      <div className={st.root}>
+      <div className={s.root}>
         Backend
       </div>
       {tree}

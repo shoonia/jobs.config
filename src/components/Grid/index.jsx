@@ -1,18 +1,18 @@
 import { h } from 'preact';
 
-import st from './styles.css';
+import s from './styles.css';
 
 function Grid({ header, left, right }) {
   return (
-    <div className={st.wrapper}>
-      <header className={st.header}>
+    <div className={s.wrapper}>
+      <header className={s.header}>
         {header}
       </header>
-      <main className={st.container}>
-        <section className={st.left}>
+      <main className={s.container}>
+        <section className={s.left}>
           {left}
         </section>
-        <section className={st.right}>
+        <section className={s.right}>
           {right}
         </section>
       </main>

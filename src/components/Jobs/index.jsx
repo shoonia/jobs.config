@@ -1,7 +1,7 @@
 import { h } from 'preact';
 
 import Item from './Item';
-import st from './styles.css';
+import s from './styles.css';
 
 function Jobs({
   items,
@@ -22,7 +22,7 @@ function Jobs({
   ));
 
   return (
-    <ul className={st.list}>
+    <ul className={s.list}>
       {list}
     </ul>
   );

@@ -1,6 +1,6 @@
 import { h } from 'preact';
 
-import st from './styles.css';
+import s from './styles.css';
 
 function ItemMenu({
   id,
@@ -9,13 +9,13 @@ function ItemMenu({
   isMax,
 }) {
   return (
-    <div className={st.buttons}>
+    <div className={s.buttons}>
       <button
         type="button"
         aria-label="remove"
         value={id}
         onClick={remove}
-        className={st.btnRemove}
+        className={s.btnRemove}
         data-rh="Remove"
         data-rh-at="top"
       />
@@ -24,7 +24,7 @@ function ItemMenu({
         aria-label="clone"
         value={id}
         onClick={isMax ? null : clone}
-        className={st.btnClone}
+        className={s.btnClone}
         data-rh="Clone"
         data-rh-at="top"
         disabled={isMax}

@@ -3,8 +3,8 @@ import useStoreon from 'storeon/preact';
 import { useCallback, useRef } from 'preact/hooks';
 
 import Button from '../Button';
-import { createConfig } from './fn';
-import st from './styles.css';
+import { createConfig } from './util';
+import s from './styles.css';
 
 function Preview() {
   const { items } = useStoreon('items');
@@ -19,14 +19,14 @@ function Preview() {
   }, []);
 
   return (
-    <div className={st.box}>
+    <div className={s.box}>
       <textarea
         ref={area}
-        className={st.out}
+        className={s.out}
         readOnly
         value={config}
       />
-      <div className={st.copy}>
+      <div className={s.copy}>
         <Button
           mode="extra"
           onClick={clipboard}
@@ -34,10 +34,10 @@ function Preview() {
           Copy Code
         </Button>
       </div>
-      <div className={st.export}>
+      <div className={s.export}>
         <a
           href={dataURL}
-          className={st.download}
+          className={s.download}
           download="jobs.config"
           type="application/json"
           aria-label="Download a file"

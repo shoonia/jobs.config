@@ -5,7 +5,7 @@ import useStoreon from 'storeon/preact';
 import Jobs from '../Jobs';
 import Button from '../Button';
 import IconPlus from './IconPlus';
-import st from './styles.css';
+import s from './styles.css';
 
 function Editor() {
   const { dispatch, items } = useStoreon('items');
@@ -35,10 +35,10 @@ function Editor() {
 
   return (
     <Fragment>
-      <div className={st.section}>
+      <div className={s.section}>
         <span
           data-rh="You can configure up to 20 jobs."
-          className={st.tooltip}
+          className={s.tooltip}
         >
           <Button
             onClick={createItem}

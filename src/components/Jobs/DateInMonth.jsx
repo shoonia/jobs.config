@@ -1,6 +1,6 @@
 import { h } from 'preact';
 
-import st from './styles.css';
+import s from './styles.css';
 import { MONTHLY } from '../../constants';
 
 function DateInMonth({ id, date, period }) {
@@ -8,13 +8,13 @@ function DateInMonth({ id, date, period }) {
 
   return (
     <fieldset
-      className={st.fields}
+      className={s.fields}
       hidden={isHidden}
       disabled={isHidden}
     >
-      <div className={st.location}>
-        <label className={st.block}>
-          <span className={st.text}>
+      <div className={s.location}>
+        <label className={s.block}>
+          <span className={s.text}>
             The day of the month the job runs.
           </span>
           <input
@@ -25,7 +25,7 @@ function DateInMonth({ id, date, period }) {
             value={date}
             data-id={id}
             data-name="dateInMonth"
-            className={st.date}
+            className={s.date}
             required
           />
         </label>

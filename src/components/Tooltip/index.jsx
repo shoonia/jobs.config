@@ -6,7 +6,7 @@ import 'react-hint/css/index.css';
 
 import FunctionName from './FunctionName';
 import FunctionLocation from './FunctionLocation';
-import st from './styles.css';
+import s from './styles.css';
 
 export const Hint = HintFactory({ createElement: h, Component });
 
@@ -42,7 +42,7 @@ export function TooltipFunctionLocation() {
       persist
       attribute="data-fl"
       events={{ focus: true }}
-      className={st.fs}
+      className={s.fs}
       onRenderContent={onRenderContent}
     />
   );

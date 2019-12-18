@@ -1,27 +1,27 @@
 import { h } from 'preact';
 import cn from 'classnames';
 
-import st from './FunctionName.css';
+import s from './FunctionName.css';
 
 function FunctionName({ target }) {
   const style = {
     minWidth: target.offsetWidth,
   };
 
-  const opClass = cn(st.op, {
-    [st.err]: !target.value,
+  const opClass = cn(s.op, {
+    [s.err]: !target.value,
   });
 
-  const fnClass = cn(st.fn, {
-    [st.err]: !target.validity.valid,
+  const fnClass = cn(s.fn, {
+    [s.err]: !target.validity.valid,
   });
 
   return (
     <div
-      className={st.code}
+      className={s.code}
       style={style}
     >
-      <div className={st.field}>
+      <div className={s.field}>
         <code className={opClass}>
           export function&nbsp;
         </code>
@@ -30,7 +30,7 @@ function FunctionName({ target }) {
         </code>
         {'() {'}
         <br />
-        <code className={st.cm}>
+        <code className={s.cm}>
           &nbsp;&nbsp;// TODO:
         </code>
         <br />

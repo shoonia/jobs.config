@@ -1,6 +1,6 @@
 import { h } from 'preact';
 
-import st from './styles.css';
+import s from './styles.css';
 import Period from './Period';
 import DayOfWeek from './DayOfWeek';
 import DateInMonth from './DateInMonth';
@@ -18,7 +18,7 @@ function Item({
     <li>
       <form
         action="#"
-        className={st.item}
+        className={s.item}
         onInput={update}
       >
         <FunctionInfo

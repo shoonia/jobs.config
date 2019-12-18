@@ -1,15 +1,15 @@
 import { h } from 'preact';
 
-import st from './styles.css';
+import s from './styles.css';
 
 function Header() {
   return (
-    <div className={st.header}>
+    <div className={s.header}>
       <a
         href="/jobs.config"
-        className={st.link}
+        className={s.link}
       >
-        <h1 className={st.title}>
+        <h1 className={s.title}>
           jobs.config builder
         </h1>
       </a>
