@@ -4,30 +4,12 @@
   box-sizing: border-box;
 }
 
-@font-face{
+@font-face {
   font-family: 'HelveticaNeueW10-55Roman';
   font-display: swap;
   src:
     url('https://static.parastorage.com/services/santa-resources/resources/viewer/user-site-fonts/fonts/Helvetica/v2/1a14dcac-7c9e-471c-8039-33c730f871f2.woff2')
     format('woff2');
-}
-
-:root {
-  --font-fm: 'HelveticaNeueW10-55Roman', Helvetica Neue, Helvetica, Arial, sans-serif;
-  --font-mono: Menlo, Monaco, 'Andale Mono', 'Ubuntu Mono', monospace;
-
-  --cr-font: #162d3d;
-  --cr-extra: #aa4dc8;
-  --cr-success: #65c888;
-  --cr-primary: #2b81cb;
-  --cr-danger: #EE5951;
-  --cr-background: #f0f3f5;
-  --cr-focus: #AABDFC;
-  --cr-light: #7a92a5;
-  --cr-gray: #898989;
-
-  --header-height: 70px;
-  --body-height: calc(100vh - var(--header-height));
 }
 
 ::-webkit-scrollbar {
@@ -42,8 +24,24 @@
   border-radius: 25px;
 }
 
+:root {
+  --font-fm: 'HelveticaNeueW10-55Roman', Helvetica Neue, Helvetica, Arial, sans-serif;
+  --font-mono: Menlo, Monaco, 'Andale Mono', 'Ubuntu Mono', monospace;
+  --cr-font: #162d3d;
+  --cr-extra: #aa4dc8;
+  --cr-success: #65c888;
+  --cr-primary: #2b81cb;
+  --cr-danger: #ee5951;
+  --cr-background: #f0f3f5;
+  --cr-focus: #aabdfc;
+  --cr-light: #7a92a5;
+  --cr-gray: #898989;
+  --header-height: 70px;
+  --body-height: calc(100vh - var(--header-height));
+}
+
 ::placeholder {
-  color: #7A92A5;
+  color: #7a92a5;
   user-select: none;
 }
 

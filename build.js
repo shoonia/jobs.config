@@ -28,6 +28,7 @@ const buildOptions = {
 const minifyOptions = {
   ecma: 8,
   module: true,
+  toplevel: true,
   parse: {
     ecma: 8,
   },
@@ -40,6 +41,7 @@ const minifyOptions = {
     drop_console: true,
     passes: 3,
     unsafe_methods: true,
+    toplevel: true,
   },
   output: {
     ecma: 8,
@@ -50,7 +52,7 @@ const minifyOptions = {
 
 const bundler = new Bundler(entry, buildOptions);
 
-fse.emptyDir(distDir);
+fse.emptyDirSync(distDir);
 
 bundler.bundle().then(() => {
   fs.readdirSync(distDir).forEach((file) => {

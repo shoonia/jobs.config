@@ -33,7 +33,7 @@
   font-size: 1.2em;
   font-weight: normal;
   line-height: var(--header-height);
-  transition: color .2s ease-in-out;
+  transition: color 0.2s ease-in-out;
   padding: 0 0 0 40px;
   margin: 0;
   user-select: none;

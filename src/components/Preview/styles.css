@@ -22,7 +22,7 @@
 
 .out::selection {
   background-color: var(--cr-focus);
-  color: #FFF;
+  color: #fff;
 }
 
 .copy {
@@ -38,9 +38,9 @@
 }
 
 .download {
-  color: #FFF;
+  color: #fff;
   font-size: 1.5em;
-  line-height: .8em;
+  line-height: 0.8em;
   text-align: center;
   text-decoration: none;
   display: flex;
@@ -49,8 +49,8 @@
   width: 2em;
   height: 2em;
   border-radius: 50px;
-  background-color: rgba(0, 0, 0, .8);
-  transition: all .2s ease-in-out;
+  background-color: rgba(0, 0, 0, 0.8);
+  transition: all 0.2s ease-in-out;
 }
 
 .download:hover {

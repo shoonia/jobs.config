@@ -1,11 +1,11 @@
 .btn {
   font-size: 1em;
-  padding: .3em 1.3em;
+  padding: 0.3em 1.3em;
   border-radius: 50px;
   background-color: white;
   outline: none;
   cursor: pointer;
-  transition: all .2s ease-in-out;
+  transition: all 0.2s ease-in-out;
   user-select: none;
   border-style: solid;
   border-width: 1px;
@@ -23,26 +23,24 @@
   color: white;
   cursor: default;
   pointer-events: none;
-  opacity: .6;
+  opacity: 0.6;
 }
 
 .primary {
   composes: btn;
-
   color: var(--cr-primary);
   border-color: var(--cr-primary);
 }
 
 .primary:hover {
   background-color: var(--cr-primary);
-  color: #FFF;
+  color: #fff;
 }
 
 .extra {
   composes: btn;
-
-  color: #FFF;
-  background-color: rgba(0, 0, 0, .8);
+  color: #fff;
+  background-color: rgba(0, 0, 0, 0.8);
   border-color: transparent;
 }
 

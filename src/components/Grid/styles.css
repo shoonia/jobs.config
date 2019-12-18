@@ -8,8 +8,8 @@
 
 .header {
   height: var(--header-height);
-  background-color: #FFF;
-  box-shadow: 0 0 15px 0 rgba(22, 45, 61, .5);
+  background-color: #fff;
+  box-shadow: 0 0 15px 0 rgba(22, 45, 61, 0.5);
 }
 
 .column {
@@ -23,8 +23,7 @@
 
 .left {
   composes: column;
-
-  padding: 0 0 0 .5em;
+  padding: 0 0 0 0.5em;
   grid-column: 1;
   min-width: 500px;
   overflow-y: scroll;
@@ -33,7 +32,6 @@
 
 .right {
   composes: column;
-
   grid-column: 2;
   min-width: 300px;
   max-width: 550px;

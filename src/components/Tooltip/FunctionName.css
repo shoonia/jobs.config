@@ -14,12 +14,12 @@
 
 .field {
   padding-left: 15px;
-  border-left: 1px solid #CACCCE;
+  border-left: 1px solid #caccce;
 }
 
 .cm {
   color: var(--cr-light);
-  border-left: 1px solid #CACCCE;
+  border-left: 1px solid #caccce;
 }
 
 .op {

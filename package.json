@@ -6,17 +6,19 @@
   "scripts": {
     "start": "parcel src/index.html --open --no-cache",
     "build": "node build.js",
-    "lint": "eslint src/**/*.{js,jsx} --fix",
+    "lint-js": "eslint src/**/*.{js,jsx} --fix",
+    "lint-css": "stylelint src/**/*.css --fix",
+    "lint": "yarn lint-js && yarn lint-css",
     "gh-pages": "gh-pages -d ./dist",
     "deploy": "yarn build && yarn gh-pages"
   },
   "dependencies": {
     "classnames": "^2.2.6",
     "debounce": "^1.2.0",
-    "nanoid": "^2.1.7",
-    "preact": "^10.0.5",
+    "nanoid": "^2.1.8",
+    "preact": "^10.1.1",
     "react-hint": "^3.2.0",
-    "storeon": "^0.9.5"
+    "storeon": "^0.9.7"
   },
   "devDependencies": {
     "autoprefixer": "^9.7.2",
@@ -27,7 +29,10 @@
     "gh-pages": "^2.1.1",
     "parcel-bundler": "^1.12.4",
     "postcss-modules": "^1.4.1",
-    "terser": "^4.4.0"
+    "stylelint": "^12.0.0",
+    "stylelint-config-css-modules": "^2.1.0",
+    "stylelint-config-standard": "^19.0.0",
+    "terser": "^4.4.3"
   },
   "homepage": "https://shoonia.github.io/jobs.config/",
   "repository": "https://github.com/shoonia/jobs.config.git",

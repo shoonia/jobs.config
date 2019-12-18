@@ -9,20 +9,20 @@
 .item {
   max-width: 700px;
   min-width: 450px;
-  padding: 1.1em .5em;
+  padding: 1.1em 0.5em;
   margin: 0 auto 1.5em auto;
   border: none;
   background-color: white;
   border-radius: 8px;
-  box-shadow: 0 0 25px 0 rgba(0, 0, 0, .08);
+  box-shadow: 0 0 25px 0 rgba(0, 0, 0, 0.08);
   position: relative;
-  transition: transform .2s ease-out, box-shadow .2s ease-out;
+  transition: transform 0.2s ease-out, box-shadow 0.2s ease-out;
   z-index: 1;
 }
 
 .item:hover {
-  box-shadow: 0 4px 30px 0 rgba(0, 0, 0, .16);
-  z-index: 2
+  box-shadow: 0 4px 30px 0 rgba(0, 0, 0, 0.16);
+  z-index: 2;
 }
 
 .item:invalid {
@@ -39,7 +39,7 @@
   display: block;
   position: absolute;
   right: 1em;
-  bottom: .4em;
+  bottom: 0.4em;
 }
 
 .btn {
@@ -52,7 +52,7 @@
   border-radius: 50px;
   width: 2em;
   height: 2em;
-  transition: all .2s ease-in-out;
+  transition: all 0.2s ease-in-out;
   border: 1px solid transparent;
   display: inline-flex;
   align-items: center;
@@ -64,8 +64,8 @@
 }
 
 .btn:hover {
-  background-color: rgba(0, 0, 0, .08);
-  border-color: rgba(0, 0, 0, .16);
+  background-color: rgba(0, 0, 0, 0.08);
+  border-color: rgba(0, 0, 0, 0.16);
 }
 
 .btn[disabled] {
@@ -148,7 +148,7 @@
 .inputs {
   font-size: 1em;
   border: 1px solid var(--cr-primary);
-  padding: .2em .6em;
+  padding: 0.2em 0.6em;
   border-radius: 6px;
   outline: none;
 }
@@ -163,14 +163,12 @@
 
 .funcInput {
   composes: inputs;
-
   width: calc(50% - 8px);
 }
 
 .date {
   composes: inputs;
-
-  margin-right: .5em;
+  margin-right: 0.5em;
   width: 25%;
   text-align: center;
 }
@@ -182,7 +180,6 @@
 
 .description {
   composes: inputs;
-
   width: 100%;
 }
 
