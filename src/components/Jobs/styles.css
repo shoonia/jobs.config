@@ -133,11 +133,11 @@
   user-select: none;
   line-height: 1;
   outline: none;
-  border-radius: 4px;
+  border: none;
 }
 
 .label:focus {
-  box-shadow: 0 0 0 2px var(--cr-focus);
+  border-bottom: 2px solid var(--cr-focus);
 }
 
 .text {

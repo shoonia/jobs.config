@@ -51,6 +51,11 @@
   border-radius: 50px;
   background-color: rgba(0, 0, 0, 0.8);
   transition: all 0.2s ease-in-out;
+  outline: none;
+}
+
+.download:focus {
+  box-shadow: 0 0 0 2px var(--cr-focus);
 }
 
 .download:hover {

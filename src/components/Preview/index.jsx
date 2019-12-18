@@ -25,6 +25,7 @@ function Preview() {
         className={s.out}
         readOnly
         value={config}
+        tabIndex="-1"
       />
       <div className={s.copy}>
         <Button

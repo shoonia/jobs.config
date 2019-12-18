@@ -10,6 +10,7 @@
   color: var(--cr-font);
   text-decoration: none;
   position: relative;
+  outline: none;
 }
 
 .link::before {
@@ -26,6 +27,10 @@
 
 .link:hover {
   color: var(--cr-primary);
+}
+
+.link:focus {
+  box-shadow: 0 0 0 2px var(--cr-focus);
 }
 
 .title {
