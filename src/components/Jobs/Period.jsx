@@ -9,7 +9,7 @@ import {
 
 function onClick({ keyCode }) {
   if (keyCode === 32 || keyCode === 13) {
-    event.target.querySelector('input[type="radio"]').click();
+    event.target.firstChild.click();
   }
 }
 
