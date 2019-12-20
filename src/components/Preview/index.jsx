@@ -11,7 +11,7 @@ function Preview() {
   const area = useRef(null);
 
   const config = createConfig(items);
-  const dataURL = `data:application/json,${encodeURIComponent(config)}`;
+  const dataURL = 'data:application/json,' + encodeURIComponent(config);
 
   const clipboard = useCallback(() => {
     area.current.select();

@@ -6,16 +6,16 @@ import s from './styles.css';
 const cn = classNames.bind(s);
 
 function Button({
-  mode = 'primary',
+  mode,
   onClick,
-  disabled = false,
+  disabled,
   children,
 }) {
   return (
     <button
       type="button"
       onClick={disabled ? null : onClick}
-      className={cn(mode)}
+      className={cn(mode || 'primary')}
       disabled={disabled}
     >
       {children}

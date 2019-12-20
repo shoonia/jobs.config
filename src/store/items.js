@@ -45,7 +45,7 @@ function setItems(items) {
 function payload(items) {
   return {
     items,
-    isMax: (items.length + 1) > MAX_ITEMS,
+    isMax: items.length >= MAX_ITEMS,
   };
 }
 

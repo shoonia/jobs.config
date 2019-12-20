@@ -9,6 +9,11 @@ const filesize = require('filesize');
 const entry = path.join(__dirname, './src/index.html');
 const distDir = path.join(__dirname, './dist');
 
+process.env.NODE_ENV = 'production';
+process.env.BABEL_ENV = 'production';
+
+fse.emptyDirSync(distDir);
+
 const buildOptions = {
   outDir: distDir,
   outFile: 'index.html',
@@ -23,6 +28,7 @@ const buildOptions = {
   sourceMaps: false,
   detailedReport: false,
   autoInstall: false,
+  hmr: false,
 };
 
 const minifyOptions = {
@@ -42,6 +48,9 @@ const minifyOptions = {
     passes: 3,
     unsafe_methods: true,
     toplevel: true,
+    pure_getters: true,
+    unsafe: true,
+    unsafe_math: true,
   },
   output: {
     ecma: 8,
@@ -50,11 +59,7 @@ const minifyOptions = {
   },
 };
 
-const bundler = new Bundler(entry, buildOptions);
-
-fse.emptyDirSync(distDir);
-
-bundler.bundle().then(() => {
+new Bundler(entry, buildOptions).bundle().then(() => {
   fs.readdirSync(distDir).forEach((file) => {
     if (path.extname(file) !== '.js') {
       return;

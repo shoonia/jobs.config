@@ -14,7 +14,7 @@ function onClick({ keyCode }) {
 }
 
 function Period({ id, time, period }) {
-  const name = `period-${id}`;
+  const name = 'period-' + id;
 
   return (
     <fieldset className={s.fields}>
