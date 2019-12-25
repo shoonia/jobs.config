@@ -9,10 +9,16 @@ function Grid({ header, left, right }) {
         {header}
       </header>
       <main className={s.container}>
-        <section className={s.left}>
+        <section
+          className={s.left}
+          aria-label="editor"
+        >
           {left}
         </section>
-        <section className={s.right}>
+        <section
+          className={s.right}
+          aria-label="preview"
+        >
           {right}
         </section>
       </main>

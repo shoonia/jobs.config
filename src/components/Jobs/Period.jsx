@@ -7,7 +7,7 @@ import {
   MONTHLY,
 } from '../../constants';
 
-function onClick({ keyCode }) {
+function handlerClick({ keyCode }) {
   if (keyCode === 32 || keyCode === 13) {
     event.target.firstChild.click();
   }
@@ -28,7 +28,6 @@ function Period({ id, time, period }) {
             value={time}
             data-id={id}
             data-name="time"
-            placeholder="00:00"
             className={s.date}
             required
           />
@@ -37,7 +36,7 @@ function Period({ id, time, period }) {
           <label
             className={s.label}
             tabIndex={period === DAILY ? -1 : 0}
-            onKeyPress={onClick}
+            onKeyPress={handlerClick}
           >
             <input
               type="radio"
@@ -55,7 +54,7 @@ function Period({ id, time, period }) {
           <label
             className={s.label}
             tabIndex={period === WEEKLY ? -1 : 0}
-            onKeyPress={onClick}
+            onKeyPress={handlerClick}
           >
             <input
               type="radio"
@@ -73,7 +72,7 @@ function Period({ id, time, period }) {
           <label
             className={s.label}
             tabIndex={period === MONTHLY ? -1 : 0}
-            onKeyPress={onClick}
+            onKeyPress={handlerClick}
           >
             <input
               type="radio"
