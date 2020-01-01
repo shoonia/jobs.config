@@ -8,19 +8,18 @@ import IconPlus from './IconPlus';
 import s from './styles.css';
 
 function Editor() {
-  const { dispatch, items } = useStoreon('items');
-  const { isMax } = useStoreon('isMax');
+  const { dispatch, items, isMax } = useStoreon('items', 'isMax');
 
   const createItem = useCallback(() => {
     dispatch('items/new');
   }, []);
 
-  const removeItem = useCallback(({ target }) => {
-    dispatch('items/remove', target.value);
+  const removeItem = useCallback((event) => {
+    dispatch('items/remove', event.target.value);
   }, []);
 
-  const cloneItem = useCallback(({ target }) => {
-    dispatch('items/clone', target.value);
+  const cloneItem = useCallback((event) => {
+    dispatch('items/clone', event.target.value);
   }, []);
 
   const updateItem = useCallback(({ target }) => {
