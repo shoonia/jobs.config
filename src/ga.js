@@ -13,7 +13,8 @@ function getCID() {
 }
 
 export function sendBeacon() {
-  const url = 'https://www.google-analytics.com/collect?v=1&tid=UA-128241641-3&aip=1&t=event&ea=open&dp=&dt=&cid='
+  const url = 'https://www.google-analytics.com/collect?v=1'
+    + '&tid=UA-128241641-3&aip=1&t=event&ea=open&dp=&dt=&cid='
     + getCID();
 
   let isSend = false;

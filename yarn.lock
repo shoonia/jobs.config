@@ -5979,10 +5979,10 @@ stealthy-require@^1.1.1:
   resolved "https://registry.yarnpkg.com/stealthy-require/-/stealthy-require-1.1.1.tgz#35b09875b4ff49f26a777e509b3090a3226bf24b"
   integrity sha1-NbCYdbT/SfJqd35QmzCQoyJr8ks=
 
-storeon@^0.9.7:
-  version "0.9.7"
-  resolved "https://registry.yarnpkg.com/storeon/-/storeon-0.9.7.tgz#a7a4a0523aaa92c9a18a3dabe02ae0c533fd0a8a"
-  integrity sha512-ppqkdDXX5P7CTN2jvwshA0/fmWebPYI8ls8G4BHafLKYCNh4FAyY3Dh6+40F5uVgd/fyTCUIJeJKOaXCIFJRKQ==
+storeon@^0.9.8:
+  version "0.9.8"
+  resolved "https://registry.yarnpkg.com/storeon/-/storeon-0.9.8.tgz#08f9f2a1c05e754473e2b4a2f52a6a76c70708e3"
+  integrity sha512-UMQupQ/9pFjWseVAFQ2CZ7iEUCRqe+KdVR6q5/KdbrGlarmB8MdsqBQew5CyEbtsHkpFpmlHvlYUVOtvY1Helw==
 
 stream-browserify@^2.0.1:
   version "2.0.2"
@@ -6299,10 +6299,19 @@ terser@^3.7.3:
     source-map "~0.6.1"
     source-map-support "~0.5.10"
 
-terser@^4.3.9, terser@^4.4.3:
+terser@^4.3.9:
   version "4.4.3"
   resolved "https://registry.yarnpkg.com/terser/-/terser-4.4.3.tgz#401abc52b88869cf904412503b1eb7da093ae2f0"
   integrity sha512-0ikKraVtRDKGzHrzkCv5rUNDzqlhmhowOBqC0XqUHFpW+vJ45+20/IFBcebwKfiS2Z9fJin6Eo+F1zLZsxi8RA==
+  dependencies:
+    commander "^2.20.0"
+    source-map "~0.6.1"
+    source-map-support "~0.5.12"
+
+terser@^4.5.1:
+  version "4.5.1"
+  resolved "https://registry.yarnpkg.com/terser/-/terser-4.5.1.tgz#63b52d6b6ce344aa6fedcd0ee06a695799eb50bd"
+  integrity sha512-lH9zLIbX8PRBEFCTvfHGCy0s9HEKnNso1Dx9swSopF3VUnFLB8DpQ61tHxoofovNC/sG0spajJM3EIIRSTByiQ==
   dependencies:
     commander "^2.20.0"
     source-map "~0.6.1"

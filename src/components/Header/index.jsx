@@ -1,6 +1,7 @@
 import { h } from 'preact';
 
 import s from './styles.css';
+import GitHub from '../GitHub';
 
 function Header() {
   return (
@@ -13,20 +14,7 @@ function Header() {
           jobs.config builder
         </h1>
       </a>
-      <span
-        data-rh="Repository on GitHub"
-        data-rh-at="left"
-      >
-        <a
-          className="github-button"
-          href="https://github.com/shoonia/jobs.config"
-          data-size="large"
-          data-show-count="true"
-          aria-label="Star on GitHub"
-        >
-          Star
-        </a>
-      </span>
+      <GitHub />
     </div>
   );
 }
