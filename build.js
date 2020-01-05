@@ -1,7 +1,6 @@
 /* eslint-env node */
 const fs = require('fs');
 const path = require('path');
-const fse = require('fs-extra');
 const Bundler = require('parcel-bundler');
 const terser = require('terser');
 const filesize = require('filesize');
@@ -11,8 +10,6 @@ const distDir = path.join(__dirname, './dist');
 
 process.env.NODE_ENV = 'production';
 process.env.BABEL_ENV = 'production';
-
-fse.emptyDirSync(distDir);
 
 const buildOptions = {
   outDir: distDir,
