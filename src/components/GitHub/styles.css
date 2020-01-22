@@ -2,6 +2,7 @@
 .label {
   display: inline-block;
   border-radius: 3px;
+  white-space: nowrap;
 }
 
 .link {
