@@ -3,11 +3,12 @@ import { useState, useEffect } from 'preact/hooks';
 
 import s from './styles.css';
 
-function fetchStars() {
+function fetchStars(cb) {
   return fetch('https://api.github.com/repos/shoonia/jobs.config')
     .then((response) => response.json())
     .then((data) => data.stargazers_count)
-    .catch(() => null);
+    .catch(() => null)
+    .then(cb);
 }
 
 function GitHub() {
@@ -15,7 +16,7 @@ function GitHub() {
   const btnClass = stars == null ? s.btnOnly : s.btn;
 
   useEffect(() => {
-    fetchStars().then(setStars);
+    fetchStars(setStars);
   }, []);
 
   return (
