@@ -36,3 +36,22 @@
   min-width: 300px;
   max-width: 550px;
 }
+
+@media (max-width: 760px) {
+  .container {
+    display: flex;
+    position: relative;
+  }
+
+  .header {
+    width: 200%;
+  }
+
+  .left {
+    min-width: 100%;
+  }
+
+  .right {
+    min-width: 100%;
+  }
+}

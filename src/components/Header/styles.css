@@ -11,6 +11,7 @@
   text-decoration: none;
   position: relative;
   outline: none;
+  white-space: nowrap;
 }
 
 .link::before {
