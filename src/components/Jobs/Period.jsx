@@ -5,6 +5,7 @@ import {
   DAILY,
   WEEKLY,
   MONTHLY,
+  CRON,
 } from '../../constants';
 
 function handlerClick({ keyCode }) {
@@ -85,6 +86,24 @@ function Period({ id, time, period }) {
             />
             <span className={s.title}>
               Monthly
+            </span>
+          </label>
+          <label
+            className={s.label}
+            tabIndex={period === CRON ? -1 : 0}
+            onKeyPress={handlerClick}
+          >
+            <input
+              type="radio"
+              name={name}
+              checked={period === CRON}
+              data-id={id}
+              data-name="period"
+              value={CRON}
+              className={s.checkbox}
+            />
+            <span className={s.title}>
+              Cron
             </span>
           </label>
         </span>

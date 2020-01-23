@@ -1,4 +1,5 @@
 import { h } from 'preact';
+import { Suspense, lazy } from 'preact/compat';
 
 import s from './styles.css';
 import Period from './Period';
@@ -6,7 +7,9 @@ import DayOfWeek from './DayOfWeek';
 import DateInMonth from './DateInMonth';
 import ItemMenu from './ItemMenu';
 import FunctionInfo from './FunctionInfo';
-import { WEEKLY, MONTHLY } from '../../constants';
+import { WEEKLY, MONTHLY, CRON } from '../../constants';
+
+const Cron = lazy(() => import('./Cron.jsx'));
 
 function Item({
   data,
@@ -29,6 +32,12 @@ function Item({
     />
     : null;
 
+  const cron = data.period === CRON
+    ? <Suspense fallback={null}>
+      <Cron />
+    </Suspense>
+    : null;
+
   return (
     <li>
       <form
@@ -49,6 +58,7 @@ function Item({
         />
         {dayOfWeek}
         {dateInMonth}
+        {cron}
         <ItemMenu
           id={data.id}
           remove={remove}
