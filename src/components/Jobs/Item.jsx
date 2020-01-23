@@ -6,6 +6,7 @@ import DayOfWeek from './DayOfWeek';
 import DateInMonth from './DateInMonth';
 import ItemMenu from './ItemMenu';
 import FunctionInfo from './FunctionInfo';
+import { WEEKLY, MONTHLY } from '../../constants';
 
 function Item({
   data,
@@ -14,6 +15,20 @@ function Item({
   update,
   isMax,
 }) {
+  const dayOfWeek = data.period === WEEKLY
+    ? <DayOfWeek
+      id={data.id}
+      day={data.dayOfWeek}
+    />
+    : null;
+
+  const dateInMonth = data.period === MONTHLY
+    ? <DateInMonth
+      id={data.id}
+      date={data.dateInMonth}
+    />
+    : null;
+
   return (
     <li>
       <form
@@ -32,16 +47,8 @@ function Item({
           period={data.period}
           time={data.time}
         />
-        <DayOfWeek
-          id={data.id}
-          day={data.dayOfWeek}
-          period={data.period}
-        />
-        <DateInMonth
-          id={data.id}
-          date={data.dateInMonth}
-          period={data.period}
-        />
+        {dayOfWeek}
+        {dateInMonth}
         <ItemMenu
           id={data.id}
           remove={remove}

@@ -1,17 +1,10 @@
 import { h } from 'preact';
 
 import s from './styles.css';
-import { MONTHLY } from '../../constants';
 
-function DateInMonth({ id, date, period }) {
-  const isHidden = period !== MONTHLY;
-
+function DateInMonth({ id, date }) {
   return (
-    <fieldset
-      className={s.fields}
-      hidden={isHidden}
-      disabled={isHidden}
-    >
+    <fieldset className={s.fields}>
       <div className={s.location}>
         <label className={s.block}>
           <span className={s.text}>
