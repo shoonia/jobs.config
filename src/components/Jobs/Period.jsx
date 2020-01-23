@@ -102,8 +102,8 @@ function Period({ id, time, period }) {
               value={CRON}
               className={s.checkbox}
             />
-            <span className={s.title}>
-              Cron
+            <span className={s.cron}>
+              cron
             </span>
           </label>
         </span>

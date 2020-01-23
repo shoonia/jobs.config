@@ -34,7 +34,10 @@ function Item({
 
   const cron = data.period === CRON
     ? <Suspense fallback={null}>
-      <Cron />
+      <Cron
+        id={data.id}
+        value={data.cronExpression}
+      />
     </Suspense>
     : null;
 
