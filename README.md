@@ -4,4 +4,7 @@
 
 Scheduling recurring `jobs.config` builder for Corvid by Wix
 
+- [App](https://shoonia.github.io/jobs.config/)
+
+Documentation
 - [Scheduling Recurring Jobs](https://support.wix.com/en/article/corvid-scheduling-recurring-jobs)

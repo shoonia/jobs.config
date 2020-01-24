@@ -4,13 +4,14 @@ import Grid from './Grid';
 import Header from './Header';
 import Editor from './Editor';
 import Preview from './Preview';
-import { Tooltip, TooltipFunctionLocation } from './Tooltip';
+import Loadable from './Loadable';
+
+const Tooltips = Loadable(() => import('./Tooltip'));
 
 function App() {
   return (
     <Fragment>
-      <Tooltip />
-      <TooltipFunctionLocation />
+      <Tooltips />
       <Grid
         header={<Header />}
         left={<Editor />}

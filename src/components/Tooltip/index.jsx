@@ -1,4 +1,4 @@
-import { h, Component } from 'preact';
+import { h, Component, Fragment } from 'preact';
 import { useCallback } from 'preact/hooks';
 import HintFactory from 'react-hint';
 import useStoreon from 'storeon/preact';
@@ -8,15 +8,9 @@ import FunctionName from './FunctionName';
 import FunctionLocation from './FunctionLocation';
 import s from './styles.css';
 
-export const Hint = HintFactory({ createElement: h, Component });
+const Hint = HintFactory({ createElement: h, Component });
 
-export function Tooltip() {
-  return (
-    <Hint events delay="500" />
-  );
-}
-
-export function TooltipFunctionLocation() {
+function Tooltips() {
   const { items } = useStoreon('items');
 
   const onRenderContent = useCallback((target) => {
@@ -38,12 +32,17 @@ export function TooltipFunctionLocation() {
   }, [items]);
 
   return (
-    <Hint
-      persist
-      attribute="data-fl"
-      events={{ focus: true }}
-      className={s.fs}
-      onRenderContent={onRenderContent}
-    />
+    <Fragment>
+      <Hint events delay="500" />
+      <Hint
+        persist
+        attribute="data-fl"
+        events={{ focus: true }}
+        className={s.fs}
+        onRenderContent={onRenderContent}
+      />
+    </Fragment>
   );
 }
+
+export default Tooltips;
