@@ -166,8 +166,18 @@
   outline: none;
 }
 
+.inputs:disabled {
+  border-color: var(--cr-background);
+  color: var(--cr-background);
+  pointer-events: none;
+}
+
 .inputs:focus {
   box-shadow: 0 0 0 2px var(--cr-focus);
+}
+
+.inputs:invalid {
+  border-color: var(--cr-danger);
 }
 
 .inputs:focus:invalid {
@@ -192,11 +202,6 @@
   text-align: center;
 }
 
-.funcInput:invalid,
-.date:invalid {
-  border-color: var(--cr-danger);
-}
-
 .description {
   composes: inputs;
   width: 100%;
@@ -208,4 +213,8 @@
   font-size: 16px;
   text-align: center;
   user-select: none;
+}
+
+.error {
+  color: var(--cr-danger);
 }

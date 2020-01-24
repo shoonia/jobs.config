@@ -1,0 +1,45 @@
+@keyframes load {
+  0% {
+    transform: rotate(0deg);
+  }
+
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+.loader {
+  display: block;
+  height: 20px;
+  position: relative;
+}
+
+.loader::before {
+  content: "";
+  display: block;
+  width: 20px;
+  height: 20px;
+  position: absolute;
+  top: 0;
+  left: calc(50% - 10px);
+  border-radius: 50px;
+  border-width: 3px;
+  animation: load 1s infinite linear;
+  border-color: #c1e4fe #c1e4fe transparent transparent;
+  border-style: solid;
+}
+
+.loader::after {
+  content: "";
+  display: block;
+  width: 20px;
+  height: 20px;
+  position: absolute;
+  top: 0;
+  left: calc(50% - 10px);
+  border-radius: 50px;
+  border-width: 3px;
+  animation: load 0.5s infinite linear;
+  border-color: #2b81cb #2b81cb transparent transparent;
+  border-style: solid;
+}

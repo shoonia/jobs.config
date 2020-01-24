@@ -16,6 +16,7 @@ function handlerClick({ keyCode }) {
 
 function Period({ id, time, period }) {
   const name = 'period-' + id;
+  const isCron = period === CRON;
 
   return (
     <fieldset className={s.fields}>
@@ -30,6 +31,7 @@ function Period({ id, time, period }) {
             data-id={id}
             data-name="time"
             className={s.date}
+            disabled={isCron}
             required
           />
         </label>
@@ -90,13 +92,13 @@ function Period({ id, time, period }) {
           </label>
           <label
             className={s.label}
-            tabIndex={period === CRON ? -1 : 0}
+            tabIndex={isCron ? -1 : 0}
             onKeyPress={handlerClick}
           >
             <input
               type="radio"
               name={name}
-              checked={period === CRON}
+              checked={isCron}
               data-id={id}
               data-name="period"
               value={CRON}

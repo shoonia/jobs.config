@@ -32,7 +32,7 @@ export function createConfig(items) {
           time: item.period !== CRON ? (item.time || '00:00') : undefined,
           dayOfWeek: (item.period === WEEKLY) ? item.dayOfWeek : undefined,
           dateInMonth: (item.period === MONTHLY) ? parseDate(item.dateInMonth) : undefined,
-          cronExpression: item.period === CRON ? item.cronExpression : undefined,
+          cronExpression: item.period === CRON ? item.cronExpression.trim() : undefined,
         },
       };
     }),
