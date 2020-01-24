@@ -37,7 +37,10 @@ function Tooltips() {
       <Hint
         persist
         attribute="data-fl"
-        events={{ focus: true }}
+        events={{
+          focus: true,
+          click: true,
+        }}
         className={s.fs}
         onRenderContent={onRenderContent}
       />
