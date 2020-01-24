@@ -6,7 +6,7 @@ import Editor from './Editor';
 import Preview from './Preview';
 import Loadable from './Loadable';
 
-const Tooltips = Loadable(() => import('./Tooltip'));
+const Tooltips = Loadable(() => import('./Tooltip'), false);
 
 function App() {
   return (

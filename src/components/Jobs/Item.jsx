@@ -9,7 +9,7 @@ import FunctionInfo from './FunctionInfo';
 import { WEEKLY, MONTHLY, CRON } from '../../constants';
 import Loadable from '../Loadable';
 
-const Cron = Loadable(() => import('./Cron.jsx'));
+const Cron = Loadable(() => import('./Cron.jsx'), true);
 
 function Item({
   data,
