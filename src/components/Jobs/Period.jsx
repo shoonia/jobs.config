@@ -5,6 +5,7 @@ import {
   DAILY,
   WEEKLY,
   MONTHLY,
+  CRON,
 } from '../../constants';
 
 function handlerClick({ keyCode }) {
@@ -15,6 +16,7 @@ function handlerClick({ keyCode }) {
 
 function Period({ id, time, period }) {
   const name = 'period-' + id;
+  const isCron = period === CRON;
 
   return (
     <fieldset className={s.fields}>
@@ -29,6 +31,7 @@ function Period({ id, time, period }) {
             data-id={id}
             data-name="time"
             className={s.date}
+            disabled={isCron}
             required
           />
         </label>
@@ -85,6 +88,24 @@ function Period({ id, time, period }) {
             />
             <span className={s.title}>
               Monthly
+            </span>
+          </label>
+          <label
+            className={s.label}
+            tabIndex={isCron ? -1 : 0}
+            onKeyPress={handlerClick}
+          >
+            <input
+              type="radio"
+              name={name}
+              checked={isCron}
+              data-id={id}
+              data-name="period"
+              value={CRON}
+              className={s.checkbox}
+            />
+            <span className={s.cron}>
+              cron
             </span>
           </label>
         </span>

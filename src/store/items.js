@@ -14,6 +14,7 @@ function createItem() {
     time: '00:00',
     dayOfWeek: 'Monday',
     dateInMonth: 1,
+    cronExpression: '0 * * * *',
     period: DAILY,
   }];
 }

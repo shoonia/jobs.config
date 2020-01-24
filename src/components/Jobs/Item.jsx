@@ -6,6 +6,10 @@ import DayOfWeek from './DayOfWeek';
 import DateInMonth from './DateInMonth';
 import ItemMenu from './ItemMenu';
 import FunctionInfo from './FunctionInfo';
+import { WEEKLY, MONTHLY, CRON } from '../../constants';
+import Loadable from '../Loadable';
+
+const Cron = Loadable(() => import('./Cron.jsx'));
 
 function Item({
   data,
@@ -14,6 +18,27 @@ function Item({
   update,
   isMax,
 }) {
+  const dayOfWeek = data.period === WEEKLY
+    ? <DayOfWeek
+      id={data.id}
+      day={data.dayOfWeek}
+    />
+    : null;
+
+  const dateInMonth = data.period === MONTHLY
+    ? <DateInMonth
+      id={data.id}
+      date={data.dateInMonth}
+    />
+    : null;
+
+  const cron = data.period === CRON
+    ? <Cron
+      id={data.id}
+      value={data.cronExpression}
+    />
+    : null;
+
   return (
     <li>
       <form
@@ -32,16 +57,9 @@ function Item({
           period={data.period}
           time={data.time}
         />
-        <DayOfWeek
-          id={data.id}
-          day={data.dayOfWeek}
-          period={data.period}
-        />
-        <DateInMonth
-          id={data.id}
-          date={data.dateInMonth}
-          period={data.period}
-        />
+        {dayOfWeek}
+        {dateInMonth}
+        {cron}
         <ItemMenu
           id={data.id}
           remove={remove}

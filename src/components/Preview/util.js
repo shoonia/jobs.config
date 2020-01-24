@@ -1,6 +1,7 @@
 import {
   WEEKLY,
   MONTHLY,
+  CRON,
 } from '../../constants';
 
 function createLocation(location) {
@@ -28,9 +29,10 @@ export function createConfig(items) {
         functionName: item.functionName.trim(),
         description: (item.description !== '') ? item.description : undefined,
         executionConfig: {
-          time: item.time || '00:00',
+          time: item.period !== CRON ? (item.time || '00:00') : undefined,
           dayOfWeek: (item.period === WEEKLY) ? item.dayOfWeek : undefined,
           dateInMonth: (item.period === MONTHLY) ? parseDate(item.dateInMonth) : undefined,
+          cronExpression: item.period === CRON ? item.cronExpression.trim() : undefined,
         },
       };
     }),

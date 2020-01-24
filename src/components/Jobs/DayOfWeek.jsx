@@ -1,7 +1,6 @@
 import { h } from 'preact';
 
 import s from './styles.css';
-import { WEEKLY } from '../../constants';
 
 const days = [
   'Monday',
@@ -13,9 +12,7 @@ const days = [
   'Sunday',
 ];
 
-function DayOfWeek({ id, day, period }) {
-  const isHidden = period !== WEEKLY;
-
+function DayOfWeek({ id, day }) {
   const week = days.map((day) => (
     <option
       key={day}
@@ -26,11 +23,7 @@ function DayOfWeek({ id, day, period }) {
   ));
 
   return (
-    <fieldset
-      className={s.fields}
-      hidden={isHidden}
-      disabled={isHidden}
-    >
+    <fieldset className={s.fields}>
       <div className={s.location}>
         <label className={s.block}>
           <span className={s.text}>
