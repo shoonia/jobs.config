@@ -27,4 +27,5 @@
   padding-left: 15px;
   border-left: 1px solid #caccce;
   display: block;
+  user-select: all;
 }

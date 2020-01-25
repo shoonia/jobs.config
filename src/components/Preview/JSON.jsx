@@ -4,42 +4,52 @@ import s from '../../code.css';
 
 const tokens = [
   {
+    // Whitespace
     regex: /^\s+/,
     className: '',
   },
   {
+    // Braces
     regex: /^[{}]/,
     className: s.mtk1,
   },
   {
+    // Brackets
     regex: /^[[\]]/,
     className: s.mtk1,
   },
   {
+    // Colon
     regex: /^:/,
     className: s.mtk1,
   },
   {
+    // Comma
     regex: /^,/,
     className: s.mtk1,
   },
   {
+    // Number literal
     regex: /^-?\d+(?:\.\d+)?(?:e[+-]?\d+)?/i,
     className: s.mtk5,
   },
   {
-    regex: /^"(?:\\.|[^"\\])*"(?=\s*:)/, // keys
+    // String key
+    regex: /^"(?:\\.|[^"\\])*"(?=\s*:)/,
     className: s.mtk6,
   },
   {
-    regex: /^"(?:\\.|[^"\\])*"/, // string literals
+    // String literal
+    regex: /^"(?:\\.|[^"\\])*"/,
     className: s.mtk6,
   },
   // {
+  //   // Boolean literal
   //   regex: /^true|^false/,
   //   className: s.mtk4,
   // },
   // {
+  //   // Null leteral
   //   regex: /^null/,
   //   className: s.mtk4,
   // },
