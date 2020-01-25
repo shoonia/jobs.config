@@ -3,29 +3,32 @@ import useStoreon from 'storeon/preact';
 import { useCallback, useRef } from 'preact/hooks';
 
 import Button from '../Button';
+import JSON from './JSON';
 import { createConfig } from './util';
 import s from './styles.css';
 
 function Preview() {
   const { items } = useStoreon('items');
-  const area = useRef(null);
+  const input = useRef(null);
 
   const config = createConfig(items);
   const dataURL = 'data:application/json,' + encodeURIComponent(config);
 
   const clipboard = useCallback(() => {
-    area.current.select();
+    input.current.select();
     document.execCommand('copy');
   }, []);
 
   return (
     <div className={s.box}>
-      <textarea
-        ref={area}
-        className={s.out}
-        readOnly
+      <pre className={s.out}>
+        <JSON input={config} />
+      </pre>
+      <input
+        ref={input}
+        type="text"
         value={config}
-        tabIndex="-1"
+        className={s.hidden}
       />
       <div className={s.copy}>
         <Button

@@ -1,41 +1,42 @@
 import { h } from 'preact';
 import cn from 'classnames';
 
-import s from './FunctionName.css';
+import s from './styles.css';
+import c from '../../code.css';
 
 function FunctionName({ target }) {
   const style = {
     minWidth: target.offsetWidth,
   };
 
-  const opClass = cn(s.op, {
-    [s.err]: !target.value,
+  const opClass = cn(c.mtk4, {
+    [c.err]: !target.value,
   });
 
-  const fnClass = cn(s.fn, {
-    [s.err]: !target.validity.valid,
+  const fnClass = cn(c.func, {
+    [c.err]: !target.validity.valid,
   });
 
   return (
     <div
-      className={s.code}
+      className={s.editor}
       style={style}
     >
-      <div className={s.field}>
-        <code className={opClass}>
+      <code className={s.field}>
+        <span className={opClass}>
           export function&nbsp;
-        </code>
-        <code className={fnClass}>
+        </span>
+        <span className={fnClass}>
           {target.value}
-        </code>
+        </span>
         {'() {'}
         <br />
-        <code className={s.cm}>
+        <span className={c.mtk3}>
           &nbsp;&nbsp;// TODO:
-        </code>
+        </span>
         <br />
         {'}'}
-      </div>
+      </code>
     </div>
   );
 }
