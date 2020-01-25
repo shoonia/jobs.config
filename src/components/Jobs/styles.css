@@ -193,12 +193,13 @@
   composes: inputs;
   font-family: var(--font-mono);
   text-align: center;
+  width: 30%;
 }
 
 .date {
   composes: inputs;
   margin-right: 0.5em;
-  width: 25%;
+  width: 30%;
   text-align: center;
 }
 
