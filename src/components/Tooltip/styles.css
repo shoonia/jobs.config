@@ -8,3 +8,23 @@
   animation: 0.5s fadeIn;
   box-shadow: 0 0 14px 0 rgba(22, 45, 61, 0.36);
 }
+
+.editor {
+  font-family: var(--font-mono);
+  font-weight: normal;
+  font-size: 12px;
+  line-height: 16px;
+  letter-spacing: 0;
+  white-space: pre;
+  position: relative;
+  padding: 15px 15px 15px 20px;
+  cursor: text;
+  background-color: var(--cr-background);
+  border-radius: 8px;
+}
+
+.field {
+  padding-left: 15px;
+  border-left: 1px solid #caccce;
+  display: block;
+}

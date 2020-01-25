@@ -2,7 +2,7 @@
   font-size: 1em;
   padding: 0.3em 1.3em;
   border-radius: 50px;
-  background-color: white;
+  background-color: #fff;
   outline: none;
   cursor: pointer;
   transition: all 0.2s ease-in-out;
@@ -13,37 +13,49 @@
   align-items: center;
 }
 
-.btn:focus {
-  box-shadow: 0 0 0 2px var(--cr-focus);
-}
-
 .btn:disabled {
   background-color: var(--cr-font);
   border-color: var(--cr-font);
-  color: white;
+  color: #fff;
   cursor: default;
   pointer-events: none;
   opacity: 0.6;
 }
 
+.btn:focus:not(:hover) {
+  box-shadow: 0 0 0 2px var(--cr-focus);
+}
+
 .primary {
   composes: btn;
-  color: var(--cr-primary);
-  border-color: var(--cr-primary);
+  position: relative;
+  overflow: hidden;
+  color: #fff;
+  border-color: #3899ec;
+  background-color: #3899ec;
 }
 
 .primary:hover {
-  background-color: var(--cr-primary);
-  color: #fff;
+  border-color: #5babef;
+  background-color: #5babef;
 }
 
-.extra {
-  composes: btn;
-  color: #fff;
-  background-color: rgba(0, 0, 0, 0.8);
-  border-color: transparent;
+.primary::after {
+  content: "";
+  background-color: #d3edff;
+  display: block;
+  position: absolute;
+  padding-top: 120%;
+  padding-left: 120%;
+  margin-left: -20px !important;
+  opacity: 0;
+  transition: all 0.6s;
+  border-radius: 6px;
 }
 
-.extra:hover {
-  background-color: var(--cr-font);
+.primary:active::after {
+  padding: 0;
+  margin: 0;
+  opacity: 1;
+  transition: 0s;
 }

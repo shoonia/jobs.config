@@ -167,8 +167,9 @@
 }
 
 .inputs:disabled {
-  border-color: var(--cr-background);
-  color: var(--cr-background);
+  border-color: #7a92a5;
+  color: #7a92a5;
+  background-color: #fff;
   pointer-events: none;
 }
 

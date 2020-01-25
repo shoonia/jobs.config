@@ -1,5 +1,7 @@
 .box {
   position: relative;
+  border-left: 1px solid #b6c1cd;
+  cursor: text;
 }
 
 .out {
@@ -7,22 +9,15 @@
   min-height: var(--body-height);
   max-height: var(--body-height);
   margin: 0;
-  padding: 1em;
+  padding: 4em 1em 1em 1em;
   overflow: auto;
   resize: none;
   border: none;
   outline: none;
   font-size: 1em;
-  font-family: var(--font-mono);
-  color: var(--cr-success);
-  background-color: #000;
   white-space: pre;
   scrollbar-width: thin;
-}
-
-.out::selection {
-  background-color: var(--cr-focus);
-  color: #fff;
+  user-select: all;
 }
 
 .copy {
@@ -49,17 +44,18 @@
   width: 2em;
   height: 2em;
   border-radius: 50px;
-  background-color: rgba(0, 0, 0, 0.8);
+  background-color: rgba(0, 0, 0, 0.3);
   transition: all 0.2s ease-in-out;
   outline: none;
 }
 
-.download:focus {
-  box-shadow: 0 0 0 2px var(--cr-focus);
+.download:hover {
+  border-color: #3899ec;
+  background-color: #3899ec;
 }
 
-.download:hover {
-  background-color: var(--cr-font);
+.download:focus:not(:hover) {
+  box-shadow: 0 0 0 2px var(--cr-focus);
 }
 
 .download::before {
