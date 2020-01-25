@@ -45,6 +45,10 @@
   user-select: none;
 }
 
+::selection {
+  background-color: #d3edff;
+}
+
 html {
   font-family: var(--font-fm);
   line-height: 1.15;

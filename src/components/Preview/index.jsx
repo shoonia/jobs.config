@@ -9,35 +9,34 @@ import s from './styles.css';
 
 function Preview() {
   const { items } = useStoreon('items');
-  const input = useRef(null);
+  const output = useRef(null);
 
   const config = createConfig(items);
   const dataURL = 'data:application/json,' + encodeURIComponent(config);
 
   const clipboard = useCallback(() => {
-    input.current.select();
+    const selection = window.getSelection();
+    const range = document.createRange();
+
+    range.selectNodeContents(output.current);
+    selection.removeAllRanges();
+    selection.addRange(range);
     document.execCommand('copy');
   }, []);
 
   return (
     <div className={s.box}>
-      <pre className={s.out}>
-        <JSON input={config} />
-      </pre>
-      <input
-        ref={input}
-        type="text"
-        value={config}
-        className={s.hidden}
-      />
       <div className={s.copy}>
-        <Button
-          mode="extra"
-          onClick={clipboard}
-        >
+        <Button onClick={clipboard}>
           Copy Code
         </Button>
       </div>
+      <pre
+        ref={output}
+        className={s.out}
+      >
+        <JSON input={config} />
+      </pre>
       <div className={s.export}>
         <a
           href={dataURL}

@@ -1,12 +1,8 @@
 import { h } from 'preact';
-import classNames from 'classnames/bind';
 
 import s from './styles.css';
 
-const cn = classNames.bind(s);
-
 function Button({
-  mode,
   onClick,
   disabled,
   children,
@@ -15,7 +11,7 @@ function Button({
     <button
       type="button"
       onClick={disabled ? null : onClick}
-      className={cn(mode || 'primary')}
+      className={s.primary}
       disabled={disabled}
     >
       {children}

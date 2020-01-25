@@ -1,6 +1,7 @@
 .box {
   position: relative;
   border-left: 1px solid #b6c1cd;
+  cursor: text;
 }
 
 .out {
@@ -8,7 +9,7 @@
   min-height: var(--body-height);
   max-height: var(--body-height);
   margin: 0;
-  padding: 1em;
+  padding: 4em 1em 1em 1em;
   overflow: auto;
   resize: none;
   border: none;
@@ -16,11 +17,7 @@
   font-size: 1em;
   white-space: pre;
   scrollbar-width: thin;
-}
-
-.out::selection {
-  background-color: var(--cr-focus);
-  color: #fff;
+  user-select: all;
 }
 
 .copy {
@@ -47,24 +44,21 @@
   width: 2em;
   height: 2em;
   border-radius: 50px;
-  background-color: rgba(0, 0, 0, 0.8);
+  background-color: rgba(0, 0, 0, 0.3);
   transition: all 0.2s ease-in-out;
   outline: none;
 }
 
-.download:focus {
-  box-shadow: 0 0 0 2px var(--cr-focus);
+.download:hover {
+  border-color: #3899ec;
+  background-color: #3899ec;
 }
 
-.download:hover {
-  background-color: var(--cr-font);
+.download:focus:not(:hover) {
+  box-shadow: 0 0 0 2px var(--cr-focus);
 }
 
 .download::before {
   margin-left: 3px;
   content: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='%23FFF' width='28' height='28'%3E%3Cpath d='M20 15v4c0 .276-.111.525-.293.707S19.276 20 19 20H5c-.276 0-.525-.111-.707-.293S4 19.276 4 19v-4a1 1 0 00-2 0v4a2.997 2.997 0 003 3h14a2.997 2.997 0 003-3v-4a1 1 0 00-2 0zm-7-2.414V3a1 1 0 00-2 0v9.586L7.707 9.293a.999.999 0 10-1.414 1.414l5 5A1.008 1.008 0 0012 16a.997.997 0 00.707-.293l5-5a.999.999 0 10-1.414-1.414z'/%3E%3C/svg%3E");
-}
-
-.hidden {
-  z-index: -1;
 }
