@@ -22,17 +22,18 @@ function parseDate(date) {
 }
 
 export function createConfig(items) {
+  const noop = undefined;
   const config = {
-    jobs: items.map((item) => {
+    jobs: items.map((i) => {
       return {
-        functionLocation: createLocation(item.functionLocation),
-        functionName: item.functionName.trim(),
-        description: (item.description !== '') ? item.description : undefined,
+        functionLocation: createLocation(i.functionLocation).trim(),
+        functionName: i.functionName.trim(),
+        description: (i.description !== '') ? i.description : noop,
         executionConfig: {
-          time: item.period !== CRON ? (item.time || '00:00') : undefined,
-          dayOfWeek: (item.period === WEEKLY) ? item.dayOfWeek : undefined,
-          dateInMonth: (item.period === MONTHLY) ? parseDate(item.dateInMonth) : undefined,
-          cronExpression: item.period === CRON ? item.cronExpression.trim() : undefined,
+          time: (i.period !== CRON) ? (i.time || '00:00') : noop,
+          dayOfWeek: (i.period === WEEKLY) ? i.dayOfWeek : noop,
+          dateInMonth: (i.period === MONTHLY) ? parseDate(i.dateInMonth) : noop,
+          cronExpression: (i.period === CRON) ? i.cronExpression.trim() : noop,
         },
       };
     }),
