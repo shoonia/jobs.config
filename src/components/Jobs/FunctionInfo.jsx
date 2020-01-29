@@ -24,7 +24,7 @@ function FunctionInfo({
             className={s.funcInput}
             value={functionLocation}
             placeholder="Function Location"
-            pattern="^(\/)?[\w\d\-\.\/]*[\w\d-]\.jsw?$"
+            pattern="^(\/)?[\w\-\.\/]*[\w-]\.jsw?$"
             required
           />
         </label>
@@ -44,7 +44,7 @@ function FunctionInfo({
             className={s.funcInput}
             value={functionName}
             placeholder="Function Name"
-            pattern="^(\s)*?[\w\$][\w\d\$]*(\s)*?$"
+            pattern="^(\s)*?[\$a-zA-Z_][\$\w]*(\s)*?$"
             required
           />
         </label>
