@@ -22,17 +22,19 @@ function createItem() {
 function getItems() {
   const data = sessionStorage.getItem('items');
 
-  if (data == null) {
-    return createItem();
+  if (data != null) {
+    try {
+      const items = JSON.parse(data);
+
+      if (Array.isArray(items)) {
+        return items;
+      }
+    } catch (error) {
+      sessionStorage.clear();
+    }
   }
 
-  try {
-    const items = JSON.parse(data);
-    return Array.isArray(items) ? items : createItem();
-  } catch (error) {
-    sessionStorage.clear();
-    return createItem();
-  }
+  return createItem();
 }
 
 function setItems(items) {

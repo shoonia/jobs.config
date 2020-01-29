@@ -1,4 +1,5 @@
 import { h } from 'preact';
+import { memo } from 'preact/compat';
 
 import s from '../../code.css';
 
@@ -11,22 +12,22 @@ const tokens = [
   {
     // Braces
     regex: /^[{}]/,
-    className: s.mtk1,
+    className: '',
   },
   {
     // Brackets
     regex: /^[[\]]/,
-    className: s.mtk1,
+    className: '',
   },
   {
     // Colon
     regex: /^:/,
-    className: s.mtk1,
+    className: '',
   },
   {
     // Comma
     regex: /^,/,
-    className: s.mtk1,
+    className: '',
   },
   {
     // Number literal
@@ -64,15 +65,18 @@ function JSON({ input }) {
     isFound = false;
 
     for (let i = 0; i < tokens.length; i++) {
-      const match = tokens[i].regex.exec(input);
+      const token = tokens[i];
+      const match = token.regex.exec(input);
 
       if (Array.isArray(match)) {
-        items.push(
-          <span className={tokens[i].className}>
-            {match[0]}
-          </span>,
-        );
+        const item = token.className !== ''
+          ? (
+            <span className={token.className}>
+              {match[0]}
+            </span>
+          ) : match[0];
 
+        items.push(item);
         input = input.substring(match[0].length);
         isFound = true;
         break;
@@ -80,7 +84,11 @@ function JSON({ input }) {
     }
   } while (input.length > 0 && isFound);
 
-  return items;
+  return (
+    <code>
+      {items}
+    </code>
+  );
 }
 
-export default JSON;
+export default memo(JSON);
