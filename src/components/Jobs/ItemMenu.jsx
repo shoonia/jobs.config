@@ -23,7 +23,7 @@ function ItemMenu({
         type="button"
         aria-label="clone"
         value={id}
-        onClick={isMax ? null : clone}
+        onClick={clone}
         className={s.btnClone}
         data-rh="Clone"
         data-rh-at="top"

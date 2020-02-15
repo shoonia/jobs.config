@@ -1,21 +1,23 @@
 import { h } from 'preact';
-import cn from 'classnames';
 
 import s from './styles.css';
 import c from '../../code.css';
+import { classNames } from '../../util';
 
 function FunctionName({ target }) {
   const style = {
     minWidth: target.offsetWidth,
   };
 
-  const opClass = cn(c.mtk4, {
-    [c.err]: !target.value,
-  });
+  const opClass = classNames([
+    c.mtk4,
+    !target.value && c.err,
+  ]);
 
-  const fnClass = cn(c.func, {
-    [c.err]: !target.validity.valid,
-  });
+  const fnClass = classNames([
+    c.func,
+    !target.validity.valid && c.err,
+  ]);
 
   return (
     <div

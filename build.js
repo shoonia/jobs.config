@@ -77,4 +77,3 @@ new Bundler(entry, buildOptions).bundle().then(() => {
 
   process.exit(0);
 });
-

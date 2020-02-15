@@ -10,11 +10,10 @@
     "lint-css": "stylelint src/**/*.css"
   },
   "dependencies": {
-    "classnames": "^2.2.6",
     "cronstrue": "^1.88.0",
     "debounce": "^1.2.0",
     "nanoid": "^2.1.11",
-    "preact": "^10.3.1",
+    "preact": "^10.3.2",
     "react-hint": "^3.2.0",
     "storeon": "^0.9.8"
   },

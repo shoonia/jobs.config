@@ -27,3 +27,5 @@ export function sendBeacon() {
     (new Image).src = url;
   }
 }
+
+export const classNames = (list) => list.filter(Boolean).join(' ');

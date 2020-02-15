@@ -10,7 +10,7 @@ function Button({
   return (
     <button
       type="button"
-      onClick={disabled ? null : onClick}
+      onClick={onClick}
       className={s.primary}
       disabled={disabled}
     >

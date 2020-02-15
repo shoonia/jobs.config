@@ -7,27 +7,22 @@ const tokens = [
   {
     // Whitespace
     regex: /^\s+/,
-    className: '',
   },
   {
     // Braces
     regex: /^[{}]/,
-    className: '',
   },
   {
     // Brackets
     regex: /^[[\]]/,
-    className: '',
   },
   {
     // Colon
     regex: /^:/,
-    className: '',
   },
   {
     // Comma
     regex: /^,/,
-    className: '',
   },
   {
     // Number literal
@@ -69,15 +64,16 @@ function JSON({ input }) {
       const match = token.regex.exec(input);
 
       if (Array.isArray(match)) {
-        const item = token.className !== ''
+        const row = match[0];
+        const item = (token.className !== undefined)
           ? (
             <span className={token.className}>
-              {match[0]}
+              {row}
             </span>
-          ) : match[0];
+          ) : row;
 
         items.push(item);
-        input = input.substring(match[0].length);
+        input = input.substring(row.length);
         isFound = true;
         break;
       }
