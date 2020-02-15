@@ -57,6 +57,8 @@ const minifyOptions = {
 };
 
 new Bundler(entry, buildOptions).bundle().then(() => {
+  console.log();
+
   fs.readdirSync(distDir).forEach((file) => {
     if (path.extname(file) !== '.js') {
       return;
@@ -70,7 +72,6 @@ new Bundler(entry, buildOptions).bundle().then(() => {
 
     const { size } = fs.statSync(jsFile);
 
-    console.log();
     console.log(file, filesize(size));
   });
 
