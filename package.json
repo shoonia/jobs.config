@@ -10,7 +10,7 @@
     "lint-css": "stylelint src/**/*.css"
   },
   "dependencies": {
-    "cronstrue": "^1.88.0",
+    "cronstrue": "^1.91.0",
     "debounce": "^1.2.0",
     "nanoid": "^2.1.11",
     "preact": "^10.3.2",

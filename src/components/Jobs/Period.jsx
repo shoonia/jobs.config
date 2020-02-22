@@ -8,9 +8,9 @@ import {
   CRON,
 } from '../../constants';
 
-function handlerClick({ keyCode }) {
+function handlerClick({ keyCode, target }) {
   if (keyCode === 32 || keyCode === 13) {
-    event.target.firstChild.click();
+    target.firstChild.click();
   }
 }
 
@@ -48,7 +48,7 @@ function Period({ id, time, period }) {
               data-id={id}
               data-name="period"
               value={DAILY}
-              className={s.checkbox}
+              className={s.period}
             />
             <span className={s.title}>
               Daily
@@ -66,7 +66,7 @@ function Period({ id, time, period }) {
               data-id={id}
               data-name="period"
               value={WEEKLY}
-              className={s.checkbox}
+              className={s.period}
             />
             <span className={s.title}>
               Weekly
@@ -84,7 +84,7 @@ function Period({ id, time, period }) {
               data-id={id}
               data-name="period"
               value={MONTHLY}
-              className={s.checkbox}
+              className={s.period}
             />
             <span className={s.title}>
               Monthly
@@ -102,7 +102,7 @@ function Period({ id, time, period }) {
               data-id={id}
               data-name="period"
               value={CRON}
-              className={s.checkbox}
+              className={s.period}
             />
             <span className={s.cron}>
               cron
