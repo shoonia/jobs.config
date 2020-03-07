@@ -15,7 +15,7 @@
     "nanoid": "^2.1.11",
     "preact": "^10.3.3",
     "react-hint": "^3.2.0",
-    "storeon": "^0.9.8"
+    "storeon": "^1.0.1"
   },
   "devDependencies": {
     "@babel/core": "^7.8.7",

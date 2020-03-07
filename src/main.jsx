@@ -1,5 +1,5 @@
 import { h, render } from 'preact';
-import { Provider } from 'storeon/preact/context';
+import Storeon from 'storeon/preact/context';
 
 import App from './components/App';
 import store from './store';
@@ -9,9 +9,9 @@ import './styles.css';
 const root = document.getElementById('root');
 
 render(
-  <Provider value={store}>
+  <Storeon.Provider value={store}>
     <App />
-  </Provider>,
+  </Storeon.Provider>,
   root,
 );
 
