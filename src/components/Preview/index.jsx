@@ -1,10 +1,10 @@
 import { h } from 'preact';
-import useStoreon from 'storeon/preact';
+import { useStoreon } from 'storeon/preact';
 import { useCallback, useRef } from 'preact/hooks';
 
 import Button from '../Button';
 import JSON from './JSON';
-import { createConfig } from './util';
+import { createConfig } from '../../util/items';
 import s from './styles.css';
 
 function Preview() {

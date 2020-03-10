@@ -1,6 +1,6 @@
 import { h, Fragment } from 'preact';
 import { useCallback } from 'preact/hooks';
-import useStoreon from 'storeon/preact';
+import { useStoreon } from 'storeon/preact';
 
 import Jobs from '../Jobs';
 import Button from '../Button';
@@ -14,12 +14,12 @@ function Editor() {
     dispatch('items/new');
   }, []);
 
-  const removeItem = useCallback((event) => {
-    dispatch('items/remove', event.target.value);
+  const removeItem = useCallback(({ target }) => {
+    dispatch('items/remove', target.value);
   }, []);
 
-  const cloneItem = useCallback((event) => {
-    dispatch('items/clone', event.target.value);
+  const cloneItem = useCallback(({ target }) => {
+    dispatch('items/clone', target.value);
   }, []);
 
   const updateItem = useCallback(({ target }) => {

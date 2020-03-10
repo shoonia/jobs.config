@@ -1,7 +1,7 @@
 import { h, Component, Fragment } from 'preact';
 import { useCallback } from 'preact/hooks';
 import HintFactory from 'react-hint';
-import useStoreon from 'storeon/preact';
+import { useStoreon } from 'storeon/preact';
 import 'react-hint/css/index.css';
 
 import FunctionName from './FunctionName';

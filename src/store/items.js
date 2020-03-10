@@ -1,28 +1,15 @@
-import nanoid from 'nanoid/non-secure';
 import debounce from 'debounce';
 
-import { MAX_ITEMS, DAILY } from '../constants';
+import { MAX_ITEMS } from '../constants';
+import { newItem } from '../util/items';
+import { nanoid } from '../util/component';
 
 const { sessionStorage } = window;
-
-function createItem() {
-  return [{
-    id: nanoid(),
-    functionLocation: '/function_location.js',
-    functionName: 'function_name',
-    description: '',
-    time: '00:00',
-    dayOfWeek: 'Monday',
-    dateInMonth: 1,
-    cronExpression: '0 * * * *',
-    period: DAILY,
-  }];
-}
 
 function getItems() {
   const data = sessionStorage.getItem('items');
 
-  if (data != null) {
+  if (data !== null) {
     try {
       const items = JSON.parse(data);
 
@@ -30,19 +17,11 @@ function getItems() {
         return items;
       }
     } catch (error) {
-      sessionStorage.clear();
+      sessionStorage.removeItem('items');
     }
   }
 
-  return createItem();
-}
-
-function setItems(items) {
-  try {
-    sessionStorage.setItem('items', JSON.stringify(items));
-  } catch (error) {
-    sessionStorage.clear();
-  }
+  return [newItem()];
 }
 
 function payload(items) {
@@ -52,36 +31,42 @@ function payload(items) {
   };
 }
 
-export default function (store) {
-  store.on('@init', () => {
+export const itemsModule = ({ on, dispatch }) => {
+  on('@init', () => {
     const items = getItems();
 
     return payload(items);
   });
 
-  store.on('@changed', (state) => {
-    setItems(state.items);
-  });
-
-  store.on('items/new', ({ items, isMax }) => {
-    if (isMax) {
-      return;
+  on('@changed', ({ items }, changes) => {
+    if ('items' in changes) {
+      try {
+        sessionStorage.setItem('items', JSON.stringify(items));
+      } catch (error) {
+        sessionStorage.removeItem('items');
+      }
     }
 
-    const newItems = createItem().concat(items);
-
-    return payload(newItems);
+    return false;
   });
 
-  store.on('items/remove', ({ items }, id) => {
+  on('items/new', ({ items, isMax }) => {
+    if (isMax) {
+      return false;
+    }
+
+    return payload([newItem(), ...items]);
+  });
+
+  on('items/remove', ({ items }, id) => {
     const newItems = items.filter((item) => item.id !== id);
 
     return payload(newItems);
   });
 
-  store.on('items/clone', ({ items, isMax }, id) => {
+  on('items/clone', ({ items, isMax }, id) => {
     if (isMax) {
-      return;
+      return false;
     }
 
     const index = items.findIndex((item) => item.id === id);
@@ -89,19 +74,19 @@ export default function (store) {
 
     items.splice(index, 0, clone);
 
-    return payload(items.slice());
+    return payload([...items]);
   });
 
-  store.on('items/update-debounce', ({ items }, { id, name, value }) => {
+  on('items/update-debounce', ({ items }, { id, name, value }) => {
     const index = items.findIndex((item) => item.id === id);
     const item = Object.assign({}, items[index], { [name]: value });
 
     items.splice(index, 1, item);
 
-    return payload(items.slice());
+    return payload([...items]);
   });
 
-  store.on('items/update', debounce((_, action) => {
-    store.dispatch('items/update-debounce', action);
+  on('items/update', debounce((_, action) => {
+    dispatch('items/update-debounce', action);
   }, 250));
-}
+};

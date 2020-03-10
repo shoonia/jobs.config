@@ -1,27 +1,29 @@
+import { nanoid } from './component';
 import {
   WEEKLY,
   MONTHLY,
   CRON,
-} from '../../constants';
+  DAILY,
+} from '../constants';
 
-function createLocation(location) {
+const createLocation = (location) => {
   const SLASH_CHAR_CODE = 47;
 
   return location.charCodeAt(0) !== SLASH_CHAR_CODE
     ? `/${location}`
     : location;
-}
+};
 
-function parseDate(date) {
+const parseDate = (date) => {
   const t = parseInt(date, 10);
 
   if (isNaN(t) || t < 1) return 1;
   if (t > 31) return 31;
 
   return t;
-}
+};
 
-export function createConfig(items) {
+export const createConfig = (items) => {
   const noop = undefined;
   const config = {
     jobs: items.map((i) => {
@@ -40,4 +42,18 @@ export function createConfig(items) {
   };
 
   return JSON.stringify(config, null, 2);
-}
+};
+
+export const newItem = () => {
+  return {
+    id: nanoid(),
+    functionLocation: '/function_location.js',
+    functionName: 'function_name',
+    description: '',
+    time: '00:00',
+    dayOfWeek: 'Monday',
+    dateInMonth: 1,
+    cronExpression: '0 * * * *',
+    period: DAILY,
+  };
+};

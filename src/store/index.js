@@ -1,7 +1,7 @@
-import createStore from 'storeon';
+import { createStoreon } from 'storeon';
 
-import items from './items';
+import { itemsModule } from './items';
 
-export default createStore([
-  items,
+export default createStoreon([
+  itemsModule,
 ]);

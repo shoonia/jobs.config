@@ -1,4 +1,4 @@
-import nanoid from 'nanoid/non-secure';
+import { nanoid } from './component';
 
 function getCID() {
   const cookie = document.cookie.replace(/(?:(?:^|.*;\s*)cid\s*=\s*([^;]*).*$)|^.*$/, '$1');
@@ -27,5 +27,3 @@ export function sendBeacon() {
     (new Image).src = url;
   }
 }
-
-export const classNames = (list) => list.filter(Boolean).join(' ');

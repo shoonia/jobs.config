@@ -1,17 +1,17 @@
 import { h, render } from 'preact';
-import Storeon from 'storeon/preact/context';
+import { StoreContext } from 'storeon/preact';
 
 import App from './components/App';
 import store from './store';
-import { sendBeacon } from './util';
+import { sendBeacon } from './util/ga';
 import './styles.css';
 
 const root = document.getElementById('root');
 
 render(
-  <Storeon.Provider value={store}>
+  <StoreContext.Provider value={store}>
     <App />
-  </Storeon.Provider>,
+  </StoreContext.Provider>,
   root,
 );
 

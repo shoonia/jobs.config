@@ -4,7 +4,7 @@ import cronstrue from 'cronstrue';
 
 import s from './styles.css';
 
-function toString(val) {
+const parseCron = (val) => {
   try {
     return {
       isValid: true,
@@ -16,13 +16,13 @@ function toString(val) {
       message: String(error),
     };
   }
-}
+};
 
 function Cron({ id, value }) {
   const input = useRef(null);
 
   const { isValid, message } = useMemo(() => {
-    return toString(value);
+    return parseCron(value);
   }, [value]);
 
   const className = isValid ? '' : s.error;

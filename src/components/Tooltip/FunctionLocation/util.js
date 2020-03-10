@@ -1,5 +1,5 @@
 import s from './FunctionLocation.css';
-import { classNames } from '../../../util';
+import { classNames } from '../../../util/component';
 
 function hasError(path, isLast) {
   const DOT_CHAR_CODE = 46;

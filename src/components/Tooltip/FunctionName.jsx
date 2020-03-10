@@ -2,7 +2,7 @@ import { h } from 'preact';
 
 import s from './styles.css';
 import c from '../../code.css';
-import { classNames } from '../../util';
+import { classNames } from '../../util/component';
 
 function FunctionName({ target }) {
   const style = {
