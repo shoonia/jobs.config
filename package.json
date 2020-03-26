@@ -10,16 +10,16 @@
     "lint-css": "stylelint src/**/*.css"
   },
   "dependencies": {
-    "cronstrue": "^1.91.0",
+    "cronstrue": "^1.92.0",
     "debounce": "^1.2.0",
-    "preact": "^10.3.3",
+    "preact": "^10.3.4",
     "react-hint": "^3.2.0",
     "storeon": "^2.0.1"
   },
   "devDependencies": {
-    "@babel/core": "^7.8.7",
-    "@babel/plugin-transform-react-jsx": "^7.8.3",
-    "autoprefixer": "^9.7.4",
+    "@babel/core": "^7.9.0",
+    "@babel/plugin-transform-react-jsx": "^7.9.4",
+    "autoprefixer": "^9.7.5",
     "babel-eslint": "^10.1.0",
     "eslint": "^6.8.0",
     "eslint-plugin-react": "^7.19.0",
@@ -29,7 +29,7 @@
     "stylelint": "^13.2.1",
     "stylelint-config-css-modules": "^2.2.0",
     "stylelint-config-standard": "^20.0.0",
-    "terser": "^4.6.6"
+    "terser": "^4.6.7"
   },
   "husky": {
     "hooks": {

@@ -1,6 +1,6 @@
 import { h } from 'preact';
 import { useEffect, useRef, useMemo } from 'preact/hooks';
-import cronstrue from 'cronstrue';
+import { toString } from 'cronstrue';
 
 import s from './styles.css';
 
@@ -8,7 +8,7 @@ const parseCron = (val) => {
   try {
     return {
       isValid: true,
-      message: cronstrue.toString(val),
+      message: toString(val),
     };
   } catch (error) {
     return {
