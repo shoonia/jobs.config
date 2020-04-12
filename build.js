@@ -1,12 +1,12 @@
 /* eslint-env node */
-const fs = require('fs');
-const path = require('path');
+const { readdir, readFile, writeFile, stat } = require('fs').promises;
+const { join, extname } = require('path');
 const Bundler = require('parcel-bundler');
-const terser = require('terser');
+const { minify } = require('terser');
 const filesize = require('filesize');
 
-const entry = path.join(__dirname, './src/index.html');
-const distDir = path.join(__dirname, './dist');
+const entry = join(__dirname, './src/index.html');
+const distDir = join(__dirname, './dist');
 
 process.env.NODE_ENV = 'production';
 process.env.BABEL_ENV = 'production';
@@ -56,24 +56,25 @@ const minifyOptions = {
   },
 };
 
-new Bundler(entry, buildOptions).bundle().then(() => {
+(async () => {
+  await new Bundler(entry, buildOptions).bundle();
+
   console.log();
 
-  fs.readdirSync(distDir).forEach((file) => {
-    if (path.extname(file) !== '.js') {
-      return;
+  for (const file of await readdir(distDir)) {
+    if (extname(file) === '.js') {
+      const jsFile = join(distDir, file);
+      const jsCode = await readFile(jsFile, 'utf8');
+      const { code } = minify(jsCode, minifyOptions);
+
+      await writeFile(jsFile, code, 'utf8');
+
+      const { size } = await stat(jsFile);
+
+      console.log(file, filesize(size));
     }
+  }
 
-    const jsFile = path.join(distDir, file);
-    const jsCode = fs.readFileSync(jsFile, 'utf8');
-    const { code } = terser.minify(jsCode, minifyOptions);
-
-    fs.writeFileSync(jsFile, code, 'utf8');
-
-    const { size } = fs.statSync(jsFile);
-
-    console.log(file, filesize(size));
-  });
-
+  console.log();
   process.exit(0);
-});
+})();
