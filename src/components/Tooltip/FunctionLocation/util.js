@@ -11,15 +11,15 @@ const hasError = (path, isLast) => {
     || (isLast && !/[^\.]\.jsw?$/.test(path)); // eslint-disable-line no-useless-escape
 };
 
-const iconClass = (path, isLast) => {
+function iconClass(path, isLast) {
   if (!isLast) return s.dir;
   if (/\.js$/.test(path)) return s.js;
   if (/\.jsw$/.test(path)) return s.jsw;
 
   return s.blank;
-};
+}
 
-export const createPath = (location) => {
+export function createPath(location) {
   return location
     .replace(/^\//, '')
     .split('/')
@@ -37,4 +37,4 @@ export const createPath = (location) => {
         className,
       };
     });
-};
+}
