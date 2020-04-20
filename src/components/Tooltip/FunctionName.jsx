@@ -26,7 +26,7 @@ function FunctionName({ target }) {
     >
       <code className={s.field}>
         <span className={opClass}>
-          export function&nbsp;
+          {'export function '}
         </span>
         <span className={fnClass}>
           {target.value}
@@ -34,7 +34,7 @@ function FunctionName({ target }) {
         {'() {'}
         <br />
         <span className={c.mtk3}>
-          &nbsp;&nbsp;// TODO:
+          {'  // TODO:'}
         </span>
         <br />
         {'}'}

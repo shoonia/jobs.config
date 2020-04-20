@@ -70,7 +70,8 @@ function JSON({ input }) {
             <span className={token.className}>
               {row}
             </span>
-          ) : row;
+          )
+          : row;
 
         items.push(item);
         input = input.substring(row.length);
