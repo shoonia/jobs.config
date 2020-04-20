@@ -8,11 +8,11 @@ import {
   CRON,
 } from '../../constants';
 
-function handlerClick({ keyCode, target }) {
+const handlerClick = ({ keyCode, target }) => {
   if (keyCode === 32 || keyCode === 13) {
     target.firstChild.click();
   }
-}
+};
 
 function Period({ id, time, period }) {
   const name = 'period-' + id;

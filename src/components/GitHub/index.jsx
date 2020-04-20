@@ -2,14 +2,17 @@ import { h } from 'preact';
 import { useState, useEffect } from 'preact/hooks';
 
 import s from './styles.css';
+import { isProd } from '../../util/component';
 
-function fetchStars(cb) {
-  return fetch('https://api.github.com/repos/shoonia/jobs.config')
-    .then((response) => response.json())
-    .then((data) => data.stargazers_count)
-    .catch(() => null)
-    .then(cb);
-}
+const fetchStars = (cb) => {
+  if (isProd) {
+    fetch('https://api.github.com/repos/shoonia/jobs.config')
+      .then((response) => response.json())
+      .then((data) => data.stargazers_count)
+      .catch(() => null)
+      .then(cb);
+  }
+};
 
 function GitHub() {
   const [stars, setStars] = useState(null);

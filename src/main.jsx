@@ -4,6 +4,7 @@ import { StoreContext } from 'storeon/preact';
 import App from './components/App';
 import store from './store';
 import { sendBeacon } from './util/ga';
+import { isProd } from './util/component';
 import './styles.css';
 
 const root = document.getElementById('root');
@@ -15,6 +16,6 @@ render(
   root,
 );
 
-if (document.location.hostname !== 'localhost') {
+if (isProd) {
   sendBeacon();
 }

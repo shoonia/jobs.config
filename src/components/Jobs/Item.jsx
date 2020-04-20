@@ -11,6 +11,11 @@ import Loadable from '../Loadable';
 
 const Cron = Loadable(() => import('./Cron.jsx'), true);
 
+const preventDefault = (event) => {
+  event.preventDefault();
+  event.stopPropagation();
+};
+
 function Item({
   data,
   remove,
@@ -45,6 +50,7 @@ function Item({
         action="#"
         className={s.item}
         onInput={update}
+        onSubmit={preventDefault}
       >
         <FunctionInfo
           id={data.id}
