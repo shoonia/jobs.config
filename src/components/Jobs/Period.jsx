@@ -1,6 +1,7 @@
 import { h } from 'preact';
 
 import s from './styles.css';
+import Label from './Label';
 import {
   DAILY,
   WEEKLY,
@@ -21,10 +22,7 @@ function Period({ id, time, period }) {
   return (
     <fieldset className={s.fields}>
       <div className={s.location}>
-        <label className={s.block}>
-          <span className={s.text}>
-            The time of day the job runs.
-          </span>
+        <Label top="The time of day the job runs.">
           <input
             type="time"
             value={time}
@@ -34,7 +32,7 @@ function Period({ id, time, period }) {
             disabled={isCron}
             required
           />
-        </label>
+        </Label>
         <span>
           <label
             className={s.label}

@@ -44,7 +44,7 @@ function Editor() {
             disabled={isMax}
           >
             <IconPlus />
-            &nbsp;New Job
+            {' New Job'}
           </Button>
         </span>
       </div>

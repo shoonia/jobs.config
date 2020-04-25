@@ -1,6 +1,7 @@
 import { h } from 'preact';
 
 import s from './styles.css';
+import Label from './Label';
 
 function FunctionInfo({
   id,
@@ -11,10 +12,7 @@ function FunctionInfo({
   return (
     <fieldset className={s.fields}>
       <div className={s.location}>
-        <label className={s.block}>
-          <span className={s.text}>
-            Function Location
-          </span>
+        <Label top="Function Location">
           <input
             type="text"
             data-id={id}
@@ -27,14 +25,11 @@ function FunctionInfo({
             pattern="^(\/)?[\w\-\.\/]*[\w-]\.jsw?$"
             required
           />
-        </label>
+        </Label>
         <span className={s.slash}>
           /
         </span>
-        <label className={s.block}>
-          <span className={s.text}>
-            Function Name
-          </span>
+        <Label top="Function Name">
           <input
             type="text"
             data-id={id}
@@ -47,13 +42,10 @@ function FunctionInfo({
             pattern="^(\s)*?[\$a-zA-Z_][\$\w]*(\s)*?$"
             required
           />
-        </label>
+        </Label>
       </div>
       <div className={s.location}>
-        <label className={s.block}>
-          <span className={s.text}>
-            Description
-          </span>
+        <Label top="Description">
           <input
             type="text"
             value={description}
@@ -62,7 +54,7 @@ function FunctionInfo({
             data-name="description"
             placeholder="Description"
           />
-        </label>
+        </Label>
       </div>
     </fieldset>
   );

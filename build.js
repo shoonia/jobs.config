@@ -52,7 +52,6 @@ const minifyOptions = {
   output: {
     ecma: 8,
     comments: false,
-    ascii_only: true,
   },
 };
 

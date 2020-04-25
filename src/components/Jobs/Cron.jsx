@@ -3,6 +3,7 @@ import { useEffect, useRef, useMemo } from 'preact/hooks';
 import { toString } from 'cronstrue';
 
 import s from './styles.css';
+import Label from './Label';
 
 const parseCron = (val) => {
   try {
@@ -34,10 +35,7 @@ function Cron({ id, value }) {
   return (
     <fieldset className={s.fields}>
       <div className={s.location}>
-        <label className={s.block}>
-          <span className={s.text}>
-            A valid cron expression
-          </span>
+        <Label top="A valid cron expression">
           <input
             ref={input}
             type="text"
@@ -47,7 +45,7 @@ function Cron({ id, value }) {
             data-id={id}
             required
           />
-        </label>
+        </Label>
       </div>
       <div className={className}>
         {message}

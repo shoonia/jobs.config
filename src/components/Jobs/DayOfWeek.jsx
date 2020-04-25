@@ -1,6 +1,7 @@
 import { h } from 'preact';
 
 import s from './styles.css';
+import Label from './Label';
 
 const days = [
   'Monday',
@@ -25,10 +26,7 @@ function DayOfWeek({ id, day }) {
   return (
     <fieldset className={s.fields}>
       <div className={s.location}>
-        <label className={s.block}>
-          <span className={s.text}>
-            The day of the week the job runs.
-          </span>
+        <Label top="The day of the week the job runs.">
           <select
             className={s.date}
             data-name="dayOfWeek"
@@ -37,7 +35,7 @@ function DayOfWeek({ id, day }) {
           >
             {week}
           </select>
-        </label>
+        </Label>
       </div>
     </fieldset>
   );

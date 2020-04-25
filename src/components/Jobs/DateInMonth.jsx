@@ -1,15 +1,13 @@
 import { h } from 'preact';
 
 import s from './styles.css';
+import Label from './Label';
 
-function DateInMonth({ id, date }) {
+export function DateInMonth({ id, date }) {
   return (
     <fieldset className={s.fields}>
       <div className={s.location}>
-        <label className={s.block}>
-          <span className={s.text}>
-            The day of the month the job runs.
-          </span>
+        <Label top="The day of the month the job runs.">
           <input
             type="number"
             min="1"
@@ -21,7 +19,7 @@ function DateInMonth({ id, date }) {
             className={s.date}
             required
           />
-        </label>
+        </Label>
       </div>
     </fieldset>
   );
