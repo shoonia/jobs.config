@@ -7,24 +7,23 @@
   border-bottom: 1px solid #b6c1cd;
 }
 
+.banner {
+  padding: 0;
+  margin: 0;
+  display: flex;
+  align-items: center;
+}
+
+.image {
+  margin-right: 10px;
+}
+
 .link {
   color: var(--cr-font);
   text-decoration: none;
   position: relative;
   outline: none;
   white-space: nowrap;
-}
-
-.link::before {
-  content: " ";
-  display: block;
-  background-image: url('../../assets/favicon.png');
-  background-size: 30px 30px;
-  width: 30px;
-  height: 30px;
-  position: absolute;
-  left: 0;
-  top: calc(50% - 15px);
 }
 
 .link:hover {
@@ -41,7 +40,6 @@
   font-weight: normal;
   line-height: var(--header-height);
   transition: color 0.2s ease-in-out;
-  padding: 0 0 0 40px;
   margin: 0;
   user-select: none;
 }

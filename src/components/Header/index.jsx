@@ -1,18 +1,28 @@
 import { h } from 'preact';
 
 import s from './styles.css';
+import src from '../../assets/favicon.png';
 import GitHub from '../GitHub';
 
 function Header() {
   return (
     <div className={s.header}>
       <a
-        href="/jobs.config"
+        href="/jobs.config/"
         className={s.link}
       >
-        <h1 className={s.title}>
-          jobs.config builder
-        </h1>
+        <figure className={s.banner}>
+          <img
+            src={src}
+            width="30"
+            height="30"
+            alt="Corvid by Wix"
+            className={s.image}
+          />
+          <figcaption className={s.title}>
+            Jobs Config Builder
+          </figcaption>
+        </figure>
       </a>
       <GitHub />
     </div>

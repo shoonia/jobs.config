@@ -1,6 +1,7 @@
 import { h } from 'preact';
 
 import s from './styles.css';
+import SEO from '../SEO';
 
 function Grid({ header, left, right }) {
   return (
@@ -9,18 +10,13 @@ function Grid({ header, left, right }) {
         {header}
       </header>
       <main className={s.container}>
-        <section
-          className={s.left}
-          aria-label="editor"
-        >
+        <SEO />
+        <div className={s.left}>
           {left}
-        </section>
-        <section
-          className={s.right}
-          aria-label="preview"
-        >
+        </div>
+        <div className={s.right}>
           {right}
-        </section>
+        </div>
       </main>
       <footer />
     </div>
