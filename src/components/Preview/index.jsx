@@ -9,7 +9,7 @@ import s from './styles.css';
 
 function Preview() {
   const { items } = useStoreon('items');
-  const output = useRef(null);
+  const output = useRef();
 
   const config = createConfig(items);
   const dataURL = 'data:application/json,' + encodeURIComponent(config);

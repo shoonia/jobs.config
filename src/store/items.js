@@ -1,5 +1,3 @@
-import debounce from 'debounce';
-
 import { MAX_ITEMS } from '../constants';
 import { newItem } from '../util/items';
 import { nanoid } from '../util/component';
@@ -31,7 +29,7 @@ function payload(items) {
   };
 }
 
-export const itemsModule = ({ on, dispatch }) => {
+export const itemsModule = ({ on }) => {
   on('@init', () => {
     const items = getItems();
 
@@ -77,7 +75,7 @@ export const itemsModule = ({ on, dispatch }) => {
     return payload([...items]);
   });
 
-  on('items/update-debounce', ({ items }, { id, name, value }) => {
+  on('items/update', ({ items }, { id, name, value }) => {
     const index = items.findIndex((item) => item.id === id);
     const item = Object.assign({}, items[index], { [name]: value });
 
@@ -85,8 +83,4 @@ export const itemsModule = ({ on, dispatch }) => {
 
     return payload([...items]);
   });
-
-  on('items/update', debounce((_, action) => {
-    dispatch('items/update-debounce', action);
-  }, 250));
 };
