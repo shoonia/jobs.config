@@ -1,6 +1,7 @@
+import { nanoid } from 'nanoid/non-secure';
+
 import { MAX_ITEMS } from '../constants';
 import { newItem } from '../util/items';
-import { nanoid } from '../util/component';
 
 const { sessionStorage } = window;
 

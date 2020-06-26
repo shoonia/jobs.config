@@ -11,24 +11,25 @@
   },
   "dependencies": {
     "cronstrue": "^1.94.0",
-    "preact": "^10.4.1",
+    "nanoid": "^3.1.10",
+    "preact": "^10.4.4",
     "react-hint": "^3.2.0",
-    "storeon": "^2.0.2"
+    "storeon": "^3.0.3"
   },
   "devDependencies": {
-    "@babel/core": "^7.9.6",
-    "@babel/plugin-transform-react-jsx": "^7.9.4",
-    "autoprefixer": "^9.7.6",
+    "@babel/core": "^7.10.3",
+    "@babel/plugin-transform-react-jsx": "^7.10.3",
+    "autoprefixer": "^9.8.4",
     "babel-eslint": "^10.1.0",
-    "eslint": "^7.0.0",
+    "eslint": "^7.3.1",
     "eslint-plugin-react": "^7.20.0",
     "husky": "^4.2.5",
     "parcel-bundler": "^1.12.4",
-    "postcss-modules": "^2.0.0",
-    "stylelint": "^13.3.3",
+    "postcss-modules": "^3.1.0",
+    "stylelint": "^13.6.1",
     "stylelint-config-css-modules": "^2.2.0",
     "stylelint-config-standard": "^20.0.0",
-    "terser": "^4.6.13"
+    "terser": "^4.8.0"
   },
   "husky": {
     "hooks": {

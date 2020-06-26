@@ -1,4 +1,4 @@
-import { nanoid } from './component';
+import { nanoid } from 'nanoid/non-secure';
 
 const getCID = () => {
   const cookie = document.cookie.replace(/(?:(?:^|.*;\s*)cid\s*=\s*([^;]*).*$)|^.*$/, '$1');

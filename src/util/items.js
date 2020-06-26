@@ -1,4 +1,5 @@
-import { nanoid } from './component';
+import { nanoid } from 'nanoid/non-secure';
+
 import {
   WEEKLY,
   MONTHLY,

@@ -18,7 +18,6 @@ function Grid({ header, left, right }) {
           {right}
         </div>
       </main>
-      <footer />
     </div>
   );
 }
