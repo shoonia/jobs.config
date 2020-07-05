@@ -1,6 +1,6 @@
 import { nanoid } from 'nanoid/non-secure';
 
-const getCID = () => {
+const getCID = (): string => {
   const cookie = document.cookie.replace(/(?:(?:^|.*;\s*)cid\s*=\s*([^;]*).*$)|^.*$/, '$1');
   const cid = cookie !== '' ? cookie : nanoid();
 
@@ -12,7 +12,7 @@ const getCID = () => {
   return cid;
 };
 
-export const sendBeacon = () => {
+export const sendBeacon = (): void => {
   const url = 'https://www.google-analytics.com/collect?v=1&tid=UA-128241641-3&aip=1&t=event&ea=open&dp=&dt='
     + '&cid=' + getCID();
 
