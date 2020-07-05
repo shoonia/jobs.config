@@ -7,6 +7,24 @@ import {
   DAILY,
 } from '../constants';
 
+/**
+ * @typedef {{
+  * id: string;
+  * functionLocation: string;
+  * functionName: string;
+  * description: string;
+  * time: string;
+  * dayOfWeek: string;
+  * dateInMonth: number;
+  * cronExpression: string;
+  * period: string;
+  * }} Item
+  */
+
+/**
+ * @param {string} location
+ * @returns {string}
+ */
 const createLocation = (location) => {
   const SLASH_CHAR_CODE = 47;
 
@@ -15,6 +33,10 @@ const createLocation = (location) => {
     : location;
 };
 
+/**
+ * @param {any} date
+ * @returns {number}
+ */
 const parseDate = (date) => {
   const t = parseInt(date, 10);
 
@@ -24,8 +46,14 @@ const parseDate = (date) => {
   return t;
 };
 
+/**
+ * @param {Item[]} items
+ * @returns {string}
+ */
 export const createConfig = (items) => {
+  /**@type {undefined} */
   const noop = undefined;
+
   const config = {
     jobs: items.map((i) => {
       return {
@@ -45,6 +73,9 @@ export const createConfig = (items) => {
   return JSON.stringify(config, null, 2);
 };
 
+/**
+ * @returns {Item}
+ */
 export const newItem = () => {
   return {
     id: nanoid(),

@@ -3,8 +3,20 @@ import { nanoid } from 'nanoid/non-secure';
 import { MAX_ITEMS } from '../constants';
 import { newItem } from '../util/items';
 
+/**
+ * @typedef {import('../util/items').Item} Item;
+ *
+ * @typedef {{
+ * items: Item[];
+ * isMax: boolean;
+ * }} Store;
+ */
+
 const { sessionStorage } = window;
 
+/**
+ * @returns {Item[]}
+ */
 function getItems() {
   const data = sessionStorage.getItem('items');
 
@@ -23,6 +35,10 @@ function getItems() {
   return [newItem()];
 }
 
+/**
+ * @param {Item[]} items
+ * @returns {Store}
+ */
 function payload(items) {
   return {
     items,
@@ -30,6 +46,9 @@ function payload(items) {
   };
 }
 
+/**
+ * @param {import('storeon').StoreonStore<Store>} store
+ */
 export const itemsModule = ({ on }) => {
   on('@init', () => {
     const items = getItems();
@@ -45,13 +64,11 @@ export const itemsModule = ({ on }) => {
         sessionStorage.removeItem('items');
       }
     }
-
-    return false;
   });
 
   on('items/new', ({ items, isMax }) => {
     if (isMax) {
-      return false;
+      return;
     }
 
     return payload([newItem(), ...items]);
@@ -65,7 +82,7 @@ export const itemsModule = ({ on }) => {
 
   on('items/clone', ({ items, isMax }, id) => {
     if (isMax) {
-      return false;
+      return;
     }
 
     const index = items.findIndex((item) => item.id === id);

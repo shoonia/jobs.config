@@ -1,0 +1,23 @@
+{
+  "allowJs": true,
+  "compilerOptions": {
+    "checkJs": true,
+    "module": "es2020",
+    "target": "es2020",
+    "moduleResolution": "node",
+    "jsx": "react",
+    "jsxFactory": "h",
+    "allowSyntheticDefaultImports": true,
+    "esModuleInterop": true,
+    "strictNullChecks": true,
+    "strict": true,
+    "alwaysStrict": true,
+    "lib": [
+      "es2020",
+      "dom"
+    ]
+  },
+  "include": [
+    "src/**/*.js"
+  ]
+}

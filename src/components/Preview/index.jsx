@@ -9,6 +9,7 @@ import s from './styles.css';
 
 function Preview() {
   const { items } = useStoreon('items');
+  /**@type {import('preact/hooks').PropRef<HTMLPreElement>}*/
   const output = useRef();
 
   const config = createConfig(items);
