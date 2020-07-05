@@ -1,9 +1,15 @@
-import { h } from 'preact';
+import { h, JSX } from 'preact';
 
 import s from './styles.css';
 import SEO from '../SEO';
 
-function Grid({ header, left, right }) {
+interface Props {
+  header: JSX.Element;
+  left: JSX.Element;
+  right: JSX.Element;
+}
+
+function Grid({ header, left, right }: Props) {
   return (
     <div className={s.wrapper}>
       <header className={s.header}>

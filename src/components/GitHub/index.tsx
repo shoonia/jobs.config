@@ -1,10 +1,10 @@
 import { h } from 'preact';
-import { useState, useEffect } from 'preact/hooks';
+import { useState, useEffect, StateUpdater } from 'preact/hooks';
 
 import s from './styles.css';
 import { isProd } from '../../util/component';
 
-const fetchStars = (cb) => {
+const fetchStars = (cb: StateUpdater<string>) => {
   if (isProd) {
     fetch('https://api.github.com/repos/shoonia/jobs.config')
       .then((response) => response.json())
@@ -15,7 +15,7 @@ const fetchStars = (cb) => {
 };
 
 function GitHub() {
-  const [stars, setStars] = useState(null);
+  const [stars, setStars] = useState<string>(null);
   const btnClass = stars == null ? s.btnOnly : s.btn;
 
   useEffect(() => {
