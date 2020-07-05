@@ -1,11 +1,13 @@
 {
-  "parser": "babel-eslint",
+  "parser": "@typescript-eslint/parser",
   "extends": [
     "eslint:recommended",
-    "plugin:react/recommended"
+    "plugin:react/recommended",
+    "plugin:@typescript-eslint/recommended"
   ],
   "plugins": [
-    "react"
+    "react",
+    "@typescript-eslint"
   ],
   "env": {
     "browser": true,
@@ -24,6 +26,7 @@
     }
   },
   "rules": {
+    "@typescript-eslint/explicit-module-boundary-types": "off",
     "react/jsx-key": "error",
     "react/prop-types": "off",
     "linebreak-style": "off",

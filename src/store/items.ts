@@ -1,23 +1,29 @@
+import { StoreonModule } from 'storeon';
 import { nanoid } from 'nanoid/non-secure';
 
 import { MAX_ITEMS } from '../constants';
-import { newItem } from '../util/items';
-
-/**
- * @typedef {import('../util/items').Item} Item;
- *
- * @typedef {{
- * items: Item[];
- * isMax: boolean;
- * }} Store;
- */
+import { newItem, Item } from '../util/items';
 
 const { sessionStorage } = window;
 
-/**
- * @returns {Item[]}
- */
-function getItems() {
+export interface ItemsState {
+  items: Item[];
+  isMax: boolean;
+}
+
+interface UpdateEventData {
+  id: string;
+  name: string;
+  value: string;
+}
+export interface ItemsEvents {
+  'items/new': undefined;
+  'items/remove': string;
+  'items/clone': string;
+  'items/update':  UpdateEventData;
+}
+
+function getItems(): Item[] {
   const data = sessionStorage.getItem('items');
 
   if (data !== null) {
@@ -35,21 +41,14 @@ function getItems() {
   return [newItem()];
 }
 
-/**
- * @param {Item[]} items
- * @returns {Store}
- */
-function payload(items) {
+function payload(items: Item[]): ItemsState {
   return {
     items,
     isMax: items.length >= MAX_ITEMS,
   };
 }
 
-/**
- * @param {import('storeon').StoreonStore<Store>} store
- */
-export const itemsModule = ({ on }) => {
+export const itemsModule: StoreonModule<ItemsState, ItemsEvents> = ({ on }) => {
   on('@init', () => {
     const items = getItems();
 

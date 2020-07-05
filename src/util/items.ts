@@ -7,25 +7,19 @@ import {
   DAILY,
 } from '../constants';
 
-/**
- * @typedef {{
-  * id: string;
-  * functionLocation: string;
-  * functionName: string;
-  * description: string;
-  * time: string;
-  * dayOfWeek: string;
-  * dateInMonth: number;
-  * cronExpression: string;
-  * period: string;
-  * }} Item
-  */
+export interface Item {
+  id: string;
+  functionLocation: string;
+  functionName: string;
+  description: string;
+  time: string;
+  dayOfWeek: string;
+  dateInMonth: number;
+  cronExpression: string;
+  period: string;
+}
 
-/**
- * @param {string} location
- * @returns {string}
- */
-const createLocation = (location) => {
+const createLocation = (location: string): string => {
   const SLASH_CHAR_CODE = 47;
 
   return location.charCodeAt(0) !== SLASH_CHAR_CODE
@@ -33,11 +27,7 @@ const createLocation = (location) => {
     : location;
 };
 
-/**
- * @param {any} date
- * @returns {number}
- */
-const parseDate = (date) => {
+const parseDate = (date): number => {
   const t = parseInt(date, 10);
 
   if (isNaN(t) || t < 1) return 1;
@@ -46,12 +36,7 @@ const parseDate = (date) => {
   return t;
 };
 
-/**
- * @param {Item[]} items
- * @returns {string}
- */
-export const createConfig = (items) => {
-  /**@type {undefined} */
+export const createConfig = (items: Item[]): string => {
   const noop = undefined;
 
   const config = {
@@ -73,10 +58,7 @@ export const createConfig = (items) => {
   return JSON.stringify(config, null, 2);
 };
 
-/**
- * @returns {Item}
- */
-export const newItem = () => {
+export const newItem = (): Item => {
   return {
     id: nanoid(),
     functionLocation: '/function_location.js',
