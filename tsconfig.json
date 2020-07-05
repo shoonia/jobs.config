@@ -1,6 +1,6 @@
 {
-  "allowJs": true,
   "compilerOptions": {
+    "allowJs": true,
     "checkJs": true,
     "module": "es2020",
     "target": "es2020",
@@ -9,15 +9,13 @@
     "jsxFactory": "h",
     "allowSyntheticDefaultImports": true,
     "esModuleInterop": true,
-    "strictNullChecks": true,
-    "strict": true,
-    "alwaysStrict": true,
     "lib": [
       "es2020",
       "dom"
     ]
   },
   "include": [
-    "src/**/*.js"
+    "./src/**/*.tsx",
+    "./src/**/*.ts"
   ]
 }

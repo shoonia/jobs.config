@@ -11,6 +11,7 @@ const distDir = join(__dirname, './dist');
 process.env.NODE_ENV = 'production';
 process.env.BABEL_ENV = 'production';
 
+/**@type {Bundler.ParcelOptions} */
 const buildOptions = {
   outDir: distDir,
   outFile: 'index.html',
@@ -24,19 +25,19 @@ const buildOptions = {
   logLevel: 3,
   sourceMaps: false,
   detailedReport: false,
-  autoInstall: false,
   hmr: false,
 };
 
+/**@type {import('terser').MinifyOptions} */
 const minifyOptions = {
-  ecma: 8,
+  ecma: 2020,
   module: true,
   toplevel: true,
   parse: {
-    ecma: 8,
+    ecma: 2020,
   },
   compress: {
-    ecma: 8,
+    ecma: 2020,
     module: true,
     warnings: false,
     comparisons: false,
@@ -50,7 +51,7 @@ const minifyOptions = {
     unsafe_math: true,
   },
   output: {
-    ecma: 8,
+    ecma: 2020,
     comments: false,
   },
 };

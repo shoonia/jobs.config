@@ -30,7 +30,8 @@
     "stylelint": "^13.6.1",
     "stylelint-config-css-modules": "^2.2.0",
     "stylelint-config-standard": "^20.0.0",
-    "terser": "^4.8.0"
+    "terser": "^4.8.0",
+    "typescript": "^3.9.6"
   },
   "husky": {
     "hooks": {
