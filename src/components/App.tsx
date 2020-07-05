@@ -8,7 +8,7 @@ import Loadable from './Loadable';
 
 const Tooltips = Loadable(() => import('./Tooltip'), false);
 
-function App() {
+export function App() {
   return (
     <Fragment>
       <Tooltips />
@@ -20,5 +20,3 @@ function App() {
     </Fragment>
   );
 }
-
-export default App;

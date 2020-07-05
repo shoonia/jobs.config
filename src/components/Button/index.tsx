@@ -1,19 +1,18 @@
-import { h } from 'preact';
+import { h, AnyComponent, JSX } from 'preact';
 
 import s from './styles.css';
 
-/**
- * @param {{
- * onClick?: () => void;
- * disabled?: boolean;
- * children: any;
- * }} props
- */
+interface Props {
+  onClick?: () => void;
+  disabled?: boolean;
+  children?: AnyComponent<JSX.Element, string> | Array<JSX.Element | string>;
+}
+
 function Button({
   onClick,
   disabled,
   children,
-}) {
+}: Props) {
   return (
     <button
       type="button"
