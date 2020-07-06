@@ -1,12 +1,12 @@
 import { h, Fragment } from 'preact';
 
-import Grid from './Grid';
-import Header from './Header';
+import { Grid } from './Grid';
+import { Header } from './Header';
 import { Editor } from './Editor';
-import Preview from './Preview';
-import Loadable from './Loadable';
+import { Preview } from './Preview';
+import { Loadable } from './Loadable';
 
-const Tooltips = Loadable(() => import('./Tooltip'), false);
+const Tooltips = Loadable(() => import('./Tooltip').then((i) => i.Tooltips), false);
 
 export function App() {
   return (

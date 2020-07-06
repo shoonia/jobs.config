@@ -1,7 +1,7 @@
 import { createStoreon } from 'storeon';
 
-import { itemsModule, ItemsState, ItemsEvents } from './items';
+import { itemsModule, IItemsState, IItemsEvents } from './items';
 
-export const store = createStoreon<ItemsState, ItemsEvents>([
+export const store = createStoreon<IItemsState, IItemsEvents>([
   itemsModule,
 ]);

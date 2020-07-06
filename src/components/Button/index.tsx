@@ -8,7 +8,7 @@ interface Props {
   children?: JSX.Element | string | Array<JSX.Element | string>;
 }
 
-function Button({
+export function Button({
   onClick,
   disabled,
   children,
@@ -24,5 +24,3 @@ function Button({
     </button>
   );
 }
-
-export default Button;

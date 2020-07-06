@@ -7,7 +7,7 @@ import {
   DAILY,
 } from '../constants';
 
-export interface Item {
+export interface IItem {
   id: string;
   functionLocation: string;
   functionName: string;
@@ -36,7 +36,7 @@ const parseDate = (date): number => {
   return t;
 };
 
-export const createConfig = (items: Item[]): string => {
+export const createConfig = (items: IItem[]): string => {
   const noop = undefined;
 
   const config = {
@@ -58,7 +58,7 @@ export const createConfig = (items: Item[]): string => {
   return JSON.stringify(config, null, 2);
 };
 
-export const newItem = (): Item => {
+export const newItem = (): IItem => {
   return {
     id: nanoid(),
     functionLocation: '/function_location.js',

@@ -14,7 +14,7 @@ const fetchStars = (cb: StateUpdater<string>) => {
   }
 };
 
-function GitHub() {
+export function GitHub() {
   const [stars, setStars] = useState<string>(null);
   const btnClass = stars == null ? s.btnOnly : s.btn;
 
@@ -51,5 +51,3 @@ function GitHub() {
     </div>
   );
 }
-
-export default GitHub;

@@ -3,12 +3,19 @@ import { h } from 'preact';
 import s from './styles.css';
 import { Label } from './Label';
 
-function FunctionInfo({
+interface Props {
+  id: string;
+  functionLocation: string;
+  functionName: string;
+  description: string;
+}
+
+export function FunctionInfo({
   id,
   functionLocation,
   functionName,
   description,
-}) {
+}: Props) {
   return (
     <fieldset className={s.fields}>
       <div className={s.location}>
@@ -59,5 +66,3 @@ function FunctionInfo({
     </fieldset>
   );
 }
-
-export default FunctionInfo;

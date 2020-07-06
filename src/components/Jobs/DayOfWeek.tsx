@@ -3,6 +3,11 @@ import { h } from 'preact';
 import s from './styles.css';
 import { Label } from './Label';
 
+interface Props {
+  id: string;
+  day: string;
+}
+
 const days = [
   'Monday',
   'Tuesday',
@@ -13,7 +18,7 @@ const days = [
   'Sunday',
 ];
 
-function DayOfWeek({ id, day }) {
+export function DayOfWeek({ id, day }: Props) {
   const week = days.map((day) => (
     <option
       key={day}
@@ -40,5 +45,3 @@ function DayOfWeek({ id, day }) {
     </fieldset>
   );
 }
-
-export default DayOfWeek;

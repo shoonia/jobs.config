@@ -2,12 +2,19 @@ import { h } from 'preact';
 
 import s from './styles.css';
 
-function ItemMenu({
+interface Props {
+  id: string;
+  remove: EventHandlerNonNull;
+  clone: EventHandlerNonNull;
+  isMax: boolean;
+}
+
+export function ItemMenu({
   id,
   remove,
   clone,
   isMax,
-}) {
+}: Props) {
   return (
     <div className={s.buttons}>
       <button
@@ -32,5 +39,3 @@ function ItemMenu({
     </div>
   );
 }
-
-export default ItemMenu;

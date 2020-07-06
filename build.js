@@ -1,4 +1,5 @@
 /* eslint-env node */
+/* eslint-disable @typescript-eslint/no-var-requires */
 const { readdir, readFile, writeFile, stat } = require('fs').promises;
 const { join, extname } = require('path');
 const Bundler = require('parcel-bundler');

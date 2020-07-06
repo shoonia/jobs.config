@@ -4,7 +4,11 @@ import s from './styles.css';
 import c from '../../code.css';
 import { classNames } from '../../util/component';
 
-function FunctionName({ target }) {
+interface Props {
+  target: HTMLInputElement;
+}
+
+export function FunctionName({ target }: Props) {
   const style = {
     minWidth: target.offsetWidth,
   };
@@ -42,5 +46,3 @@ function FunctionName({ target }) {
     </div>
   );
 }
-
-export default FunctionName;

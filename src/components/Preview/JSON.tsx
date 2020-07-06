@@ -1,7 +1,11 @@
-import { h } from 'preact';
+import { h, JSX } from 'preact';
 import { memo } from 'preact/compat';
 
 import s from '../../code.css';
+
+interface Props {
+  input: string;
+}
 
 const tokens = [
   {
@@ -51,10 +55,10 @@ const tokens = [
   // },
 ];
 
-function JSON({ input }) {
-  const items = [];
+function JSONElement({ input }: Props) {
+  const items: Array<JSX.Element | string> = [];
 
-  let isFound;
+  let isFound: boolean;
 
   do {
     isFound = false;
@@ -88,4 +92,4 @@ function JSON({ input }) {
   );
 }
 
-export default memo(JSON);
+export const JSON = memo(JSONElement);

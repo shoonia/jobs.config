@@ -2,28 +2,28 @@ import { StoreonModule } from 'storeon';
 import { nanoid } from 'nanoid/non-secure';
 
 import { MAX_ITEMS } from '../constants';
-import { newItem, Item } from '../util/items';
+import { newItem, IItem } from '../util/items';
 
 const { sessionStorage } = window;
 
-export interface ItemsState {
-  items: Item[];
+export interface IItemsState {
+  items: IItem[];
   isMax: boolean;
 }
 
-interface UpdateEventData {
+interface IUpdateEventData {
   id: string;
   name: string;
   value: string;
 }
-export interface ItemsEvents {
+export interface IItemsEvents {
   'items/new': never;
   'items/remove': string;
   'items/clone': string;
-  'items/update':  UpdateEventData;
+  'items/update':  IUpdateEventData;
 }
 
-function getItems(): Item[] {
+function getItems(): IItem[] {
   const data = sessionStorage.getItem('items');
 
   if (data !== null) {
@@ -41,14 +41,14 @@ function getItems(): Item[] {
   return [newItem()];
 }
 
-function payload(items: Item[]): ItemsState {
+function payload(items: IItem[]): IItemsState {
   return {
     items,
     isMax: items.length >= MAX_ITEMS,
   };
 }
 
-export const itemsModule: StoreonModule<ItemsState, ItemsEvents> = ({ on }) => {
+export const itemsModule: StoreonModule<IItemsState, IItemsEvents> = ({ on }) => {
   on('@init', () => {
     const items = getItems();
 

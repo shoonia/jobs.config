@@ -1,15 +1,24 @@
 import { h } from 'preact';
 
-import Item from './Item';
 import s from './styles.css';
+import { Item } from './Item';
+import { IItem } from '../../util/items';
 
-function Jobs({
+interface Props {
+  items: IItem[];
+  remove: EventHandlerNonNull;
+  clone: EventHandlerNonNull;
+  update: EventHandlerNonNull;
+  isMax: boolean;
+}
+
+export function Jobs({
   items,
   remove,
   clone,
   update,
   isMax,
-}) {
+}: Props) {
   const list = items.map((item) => (
     <Item
       key={item.id}
@@ -27,5 +36,3 @@ function Jobs({
     </ul>
   );
 }
-
-export default Jobs;

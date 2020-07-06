@@ -9,13 +9,22 @@ import {
   CRON,
 } from '../../constants';
 
-const handlerClick = ({ keyCode, target }) => {
+interface Props {
+  id: string;
+  time: string;
+  period: string;
+}
+
+const handlerClick = ({ keyCode, target }: KeyboardEvent) => {
   if (keyCode === 32 || keyCode === 13) {
-    target.firstChild.click();
+    // TODO:
+    const node = ((target as HTMLLabelElement).firstChild as HTMLInputElement);
+
+    node.click();
   }
 };
 
-function Period({ id, time, period }) {
+export function Period({ id, time, period }: Props) {
   const name = 'period-' + id;
   const isCron = period === CRON;
 
@@ -111,5 +120,3 @@ function Period({ id, time, period }) {
     </fieldset>
   );
 }
-
-export default Period;

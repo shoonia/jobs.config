@@ -3,8 +3,12 @@ import { Suspense, lazy } from 'preact/compat';
 
 import s from './styles.css';
 
-function Loadable(loader, showFallback) {
-  const Component = lazy(loader);
+// TODO:
+type TLoader = () => Promise<any>;
+
+export function Loadable(loader: TLoader, showFallback: boolean) {
+  // TODO:
+  const Component = lazy<any>(loader);
 
   const fallback = showFallback
     ? <div className={s.loader} />
@@ -18,5 +22,3 @@ function Loadable(loader, showFallback) {
     );
   };
 }
-
-export default Loadable;

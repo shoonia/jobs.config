@@ -1,7 +1,7 @@
 import { h, JSX } from 'preact';
 
 import s from './styles.css';
-import SEO from '../SEO';
+import { SEO } from '../SEO';
 
 interface Props {
   header: JSX.Element;
@@ -9,7 +9,7 @@ interface Props {
   right: JSX.Element;
 }
 
-function Grid({ header, left, right }: Props) {
+export function Grid({ header, left, right }: Props) {
   return (
     <div className={s.wrapper}>
       <header className={s.header}>
@@ -27,5 +27,3 @@ function Grid({ header, left, right }: Props) {
     </div>
   );
 }
-
-export default Grid;

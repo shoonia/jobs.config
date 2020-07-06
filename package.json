@@ -6,7 +6,7 @@
   "scripts": {
     "start": "parcel src/index.html --open --no-cache",
     "build": "node build.js",
-    "lint-js": "eslint src/**/*.{js,jsx,ts,tsx}",
+    "lint-js": "eslint src/**/*.{ts,tsx}",
     "lint-css": "stylelint src/**/*.css"
   },
   "dependencies": {

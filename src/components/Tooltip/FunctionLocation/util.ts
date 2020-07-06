@@ -1,12 +1,7 @@
 import s from './FunctionLocation.css';
 import { classNames } from '../../../util/component';
 
-/**
- * @param {string} path
- * @param {boolean} isLast
- * @returns {boolean}
- */
-const hasError = (path, isLast) => {
+const hasError = (path: string, isLast: boolean): boolean => {
   const DOT_CHAR_CODE = 46;
 
   return path === ''
@@ -16,11 +11,7 @@ const hasError = (path, isLast) => {
     || (isLast && !/[^\.]\.jsw?$/.test(path)); // eslint-disable-line no-useless-escape
 };
 
-/**
- * @param {string} path
- * @param {boolean} isLast
- */
-function iconClass(path, isLast) {
+function iconClass(path: string, isLast: boolean): string {
   if (!isLast) return s.dir;
   if (/\.js$/.test(path)) return s.js;
   if (/\.jsw$/.test(path)) return s.jsw;
@@ -28,10 +19,7 @@ function iconClass(path, isLast) {
   return s.blank;
 }
 
-/**
- * @param {string} location
- */
-export function createPath(location) {
+export function createPath(location: string) {
   return location
     .replace(/^\//, '')
     .split('/')

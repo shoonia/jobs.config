@@ -12,7 +12,7 @@ const style = {
   border: '0',
 };
 
-function SEO() {
+export function SEO() {
   return (
     <div style={style}>
       <h1>
@@ -24,5 +24,3 @@ function SEO() {
     </div>
   );
 }
-
-export default SEO;

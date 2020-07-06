@@ -4,16 +4,18 @@ import HintFactory from 'react-hint';
 import { useStoreon } from 'storeon/preact';
 import 'react-hint/css/index.css';
 
-import FunctionName from './FunctionName';
-import FunctionLocation from './FunctionLocation';
 import s from './styles.css';
+import { FunctionName } from './FunctionName';
+import { FunctionLocation } from './FunctionLocation';
+import { IItemsEvents, IItemsState } from '../../store/items';
 
+// TODO:
 const Hint = HintFactory({ createElement: h, Component });
 
-function Tooltips() {
-  const { items } = useStoreon('items');
+export function Tooltips() {
+  const { items } = useStoreon<IItemsState, IItemsEvents>('items');
 
-  const onRenderContent = useCallback((target) => {
+  const onRenderContent = useCallback((target: HTMLInputElement) => {
     const { name } = target.dataset;
 
     switch (name) {
@@ -47,5 +49,3 @@ function Tooltips() {
     </Fragment>
   );
 }
-
-export default Tooltips;

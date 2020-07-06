@@ -2,9 +2,9 @@ import { h } from 'preact';
 
 import s from './styles.css';
 import src from '../../assets/favicon.png';
-import GitHub from '../GitHub';
+import { GitHub } from '../GitHub';
 
-function Header() {
+export function Header() {
   return (
     <div className={s.header}>
       <a
@@ -28,5 +28,3 @@ function Header() {
     </div>
   );
 }
-
-export default Header;

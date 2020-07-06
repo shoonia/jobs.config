@@ -3,13 +3,13 @@ import { useCallback } from 'preact/hooks';
 import { useStoreon } from 'storeon/preact';
 
 import s from './styles.css';
-import { ItemsState, ItemsEvents } from '../../store/items';
-import Jobs from '../Jobs';
-import Button from '../Button';
+import { IItemsState, IItemsEvents } from '../../store/items';
+import { Jobs } from '../Jobs';
+import { Button } from '../Button';
 import { IconPlus } from './IconPlus';
 
 export function Editor() {
-  const { dispatch, items, isMax } = useStoreon<ItemsState, ItemsEvents>('items', 'isMax');
+  const { dispatch, items, isMax } = useStoreon<IItemsState, IItemsEvents>('items', 'isMax');
 
   const createItem = useCallback(() => {
     dispatch('items/new');

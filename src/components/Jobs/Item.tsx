@@ -1,28 +1,37 @@
 import { h } from 'preact';
 
 import s from './styles.css';
-import Period from './Period';
-import DayOfWeek from './DayOfWeek';
+import { Period } from './Period';
+import { DayOfWeek } from './DayOfWeek';
 import { DateInMonth } from './DateInMonth';
-import ItemMenu from './ItemMenu';
-import FunctionInfo from './FunctionInfo';
+import { ItemMenu } from './ItemMenu';
+import { FunctionInfo } from './FunctionInfo';
 import { WEEKLY, MONTHLY, CRON } from '../../constants';
-import Loadable from '../Loadable';
+import { Loadable } from '../Loadable';
+import { IItem } from '../../util/items';
+
+interface Props {
+  data: IItem;
+  remove: EventHandlerNonNull;
+  clone: EventHandlerNonNull;
+  update: EventHandlerNonNull;
+  isMax: boolean;
+}
 
 const Cron = Loadable(() => import('./Cron').then((i) => i.Cron), true);
 
-const preventDefault = (event) => {
+const preventDefault = (event: Event) => {
   event.preventDefault();
   event.stopPropagation();
 };
 
-function Item({
+export function Item({
   data,
   remove,
   clone,
   update,
   isMax,
-}) {
+}: Props) {
   const dayOfWeek = data.period === WEEKLY
     ? <DayOfWeek
       id={data.id}
@@ -33,7 +42,7 @@ function Item({
   const dateInMonth = data.period === MONTHLY
     ? <DateInMonth
       id={data.id}
-      date={data.dateInMonth}
+      date={String(data.dateInMonth)}
     />
     : null;
 
@@ -76,5 +85,3 @@ function Item({
     </li>
   );
 }
-
-export default Item;

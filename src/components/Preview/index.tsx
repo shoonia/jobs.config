@@ -2,15 +2,15 @@ import { h } from 'preact';
 import { useStoreon } from 'storeon/preact';
 import { useCallback, useRef } from 'preact/hooks';
 
-import Button from '../Button';
-import JSON from './JSON';
-import { createConfig } from '../../util/items';
 import s from './styles.css';
+import { Button } from '../Button';
+import { JSON } from './JSON';
+import { createConfig } from '../../util/items';
+import { IItemsState, IItemsEvents } from '../../store/items';
 
-function Preview() {
-  const { items } = useStoreon('items');
-  /**@type {import('preact/hooks').PropRef<HTMLPreElement>}*/
-  const output = useRef();
+export function Preview() {
+  const { items } = useStoreon<IItemsState, IItemsEvents>('items');
+  const output = useRef<HTMLPreElement>();
 
   const config = createConfig(items);
   const dataURL = 'data:application/json,' + encodeURIComponent(config);
@@ -52,5 +52,3 @@ function Preview() {
     </div>
   );
 }
-
-export default Preview;
