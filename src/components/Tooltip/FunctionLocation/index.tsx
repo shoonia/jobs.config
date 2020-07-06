@@ -1,4 +1,4 @@
-import { h } from 'preact';
+import { h, Fragment } from 'preact';
 
 import s from './FunctionLocation.css';
 import { createPath } from './util';
@@ -12,9 +12,6 @@ export function FunctionLocation({ target }: Props) {
     minWidth: target.offsetWidth,
   };
 
-  // TODO:
-  /* eslint-disable @typescript-eslint/ban-ts-comment */
-  // @ts-ignore
   const tree = createPath(target.value).reduceRight((acc, item, index) => {
     const listClass = index === 0 ? s.list : s.sublist;
 
@@ -28,7 +25,7 @@ export function FunctionLocation({ target }: Props) {
         </li>
       </ul>
     );
-  }, null);
+  }, <Fragment />);
 
   return (
     <div

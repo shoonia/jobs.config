@@ -9,7 +9,6 @@ import { FunctionName } from './FunctionName';
 import { FunctionLocation } from './FunctionLocation';
 import { IItemsEvents, IItemsState } from '../../store/items';
 
-// TODO:
 const Hint = HintFactory({ createElement: h, Component });
 
 export function Tooltips() {

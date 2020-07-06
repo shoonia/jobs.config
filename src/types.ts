@@ -1,10 +1,10 @@
 declare module '*.png' {
   const value: string;
-  export default value;
+  export = value;
 }
 
 // TODO:
 declare module 'react-hint' {
   const ReactHintFactory: any;
-  export default ReactHintFactory;
+  export = ReactHintFactory;
 }
