@@ -17,7 +17,7 @@ interface UpdateEventData {
   value: string;
 }
 export interface ItemsEvents {
-  'items/new': undefined;
+  'items/new': never;
   'items/remove': string;
   'items/clone': string;
   'items/update':  UpdateEventData;

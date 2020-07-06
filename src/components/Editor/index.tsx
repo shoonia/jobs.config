@@ -2,13 +2,14 @@ import { h, Fragment } from 'preact';
 import { useCallback } from 'preact/hooks';
 import { useStoreon } from 'storeon/preact';
 
+import s from './styles.css';
+import { ItemsState, ItemsEvents } from '../../store/items';
 import Jobs from '../Jobs';
 import Button from '../Button';
-import IconPlus from './IconPlus';
-import s from './styles.css';
+import { IconPlus } from './IconPlus';
 
-function Editor() {
-  const { dispatch, items, isMax } = useStoreon('items', 'isMax');
+export function Editor() {
+  const { dispatch, items, isMax } = useStoreon<ItemsState, ItemsEvents>('items', 'isMax');
 
   const createItem = useCallback(() => {
     dispatch('items/new');
@@ -58,5 +59,3 @@ function Editor() {
     </Fragment>
   );
 }
-
-export default Editor;

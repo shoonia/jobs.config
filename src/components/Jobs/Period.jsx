@@ -1,7 +1,7 @@
 import { h } from 'preact';
 
 import s from './styles.css';
-import Label from './Label';
+import { Label } from './Label';
 import {
   DAILY,
   WEEKLY,

@@ -1,9 +1,14 @@
 import { h } from 'preact';
 
 import s from './styles.css';
-import Label from './Label';
+import { Label } from './Label';
 
-export function DateInMonth({ id, date }) {
+interface Props {
+  id: string;
+  date: string;
+}
+
+export function DateInMonth({ id, date }: Props) {
   return (
     <fieldset className={s.fields}>
       <div className={s.location}>
@@ -24,5 +29,3 @@ export function DateInMonth({ id, date }) {
     </fieldset>
   );
 }
-
-export default DateInMonth;

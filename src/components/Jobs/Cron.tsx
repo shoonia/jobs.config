@@ -3,9 +3,19 @@ import { useEffect, useRef, useMemo } from 'preact/hooks';
 import { toString } from 'cronstrue';
 
 import s from './styles.css';
-import Label from './Label';
+import { Label } from './Label';
 
-const parseCron = (val) => {
+interface CronResult {
+  isValid: boolean;
+  message: string;
+}
+
+interface Props {
+  id: string;
+  value: string;
+}
+
+const parseCron = (val: string): CronResult => {
   try {
     return {
       isValid: true,
@@ -19,8 +29,8 @@ const parseCron = (val) => {
   }
 };
 
-function Cron({ id, value }) {
-  const input = useRef(null);
+export function Cron({ id, value }: Props) {
+  const input = useRef<HTMLInputElement>();
 
   const { isValid, message } = useMemo(() => {
     return parseCron(value);
@@ -53,5 +63,3 @@ function Cron({ id, value }) {
     </fieldset>
   );
 }
-
-export default Cron;

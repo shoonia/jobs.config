@@ -1,6 +1,6 @@
 import { h } from 'preact';
 
-function IconPlus() {
+export function IconPlus() {
   return (
     <svg
       width="24"
@@ -12,5 +12,3 @@ function IconPlus() {
     </svg>
   );
 }
-
-export default IconPlus;

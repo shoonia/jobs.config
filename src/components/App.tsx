@@ -2,7 +2,7 @@ import { h, Fragment } from 'preact';
 
 import Grid from './Grid';
 import Header from './Header';
-import Editor from './Editor';
+import { Editor } from './Editor';
 import Preview from './Preview';
 import Loadable from './Loadable';
 

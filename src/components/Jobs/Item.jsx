@@ -3,13 +3,13 @@ import { h } from 'preact';
 import s from './styles.css';
 import Period from './Period';
 import DayOfWeek from './DayOfWeek';
-import DateInMonth from './DateInMonth';
+import { DateInMonth } from './DateInMonth';
 import ItemMenu from './ItemMenu';
 import FunctionInfo from './FunctionInfo';
 import { WEEKLY, MONTHLY, CRON } from '../../constants';
 import Loadable from '../Loadable';
 
-const Cron = Loadable(() => import('./Cron.jsx'), true);
+const Cron = Loadable(() => import('./Cron').then((i) => i.Cron), true);
 
 const preventDefault = (event) => {
   event.preventDefault();

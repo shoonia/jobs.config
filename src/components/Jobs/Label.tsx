@@ -1,14 +1,13 @@
-import { h } from 'preact';
+import { h, JSX } from 'preact';
 
 import s from './styles.css';
 
-/**
- * @param {{
- * top: string;
- * children: any;
- * }} props
- */
-function Label({ top, children }) {
+interface Props {
+ top: string;
+ children: JSX.Element;
+ }
+
+export function Label({ top, children }: Props) {
   return (
     <label className={s.block}>
       <span className={s.text}>
@@ -18,5 +17,3 @@ function Label({ top, children }) {
     </label>
   );
 }
-
-export default Label;
