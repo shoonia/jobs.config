@@ -7,7 +7,8 @@
     "start": "parcel src/index.html --open --no-cache",
     "build": "node build.js",
     "lint-js": "eslint src/**/*.{ts,tsx}",
-    "lint-css": "stylelint src/**/*.css"
+    "lint-css": "stylelint src/**/*.css",
+    "ts": "tsc --noEmit"
   },
   "dependencies": {
     "cronstrue": "^1.94.0",
@@ -36,7 +37,7 @@
   },
   "husky": {
     "hooks": {
-      "pre-commit": "npm run lint-js && npm run lint-css"
+      "pre-commit": "npm run lint-js && npm run ts && npm run lint-css"
     }
   },
   "homepage": "https://shoonia.github.io/jobs.config/",
