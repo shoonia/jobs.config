@@ -7,7 +7,7 @@ import { sendBeacon } from './util/ga';
 import { isProd } from './util/component';
 import './styles.css';
 
-const root = document.getElementById('root');
+const root = document.getElementById('root') as HTMLDivElement;
 
 render(
   <StoreContext.Provider value={store}>
