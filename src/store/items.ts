@@ -20,7 +20,7 @@ export interface IItemsEvents {
   'items/new': never;
   'items/remove': string;
   'items/clone': string;
-  'items/update':  IUpdateEventData;
+  'items/update': IUpdateEventData;
 }
 
 function getItems(): IItem[] {
