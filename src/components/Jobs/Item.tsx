@@ -7,9 +7,10 @@ import { DayOfWeek } from './DayOfWeek';
 import { DateInMonth } from './DateInMonth';
 import { ItemMenu } from './ItemMenu';
 import { FunctionInfo } from './FunctionInfo';
+import { Loader } from '../Loader';
 import { WEEKLY, MONTHLY, CRON } from '../../constants';
 import { IItem } from '../../util/items';
-import { Loader } from '../Loader';
+import { preventDefault } from '../../util/component';
 
 interface Props {
   data: IItem;
@@ -26,11 +27,6 @@ const Cron = lazy(() => {
     };
   });
 });
-
-const preventDefault = (event: Event) => {
-  event.preventDefault();
-  event.stopPropagation();
-};
 
 export function Item({
   data,

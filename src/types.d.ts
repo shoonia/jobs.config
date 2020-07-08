@@ -3,8 +3,13 @@ declare module '*.png' {
   export = value;
 }
 
-// TODO:
 declare module 'react-hint' {
-  const ReactHintFactory: any;
+  interface Option<H, C> {
+    createElement: H;
+    Component: C
+  }
+
+  function ReactHintFactory<H, C>(option: Option<H, C>): C;
+
   export = ReactHintFactory;
 }

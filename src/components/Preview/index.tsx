@@ -10,19 +10,21 @@ import { IItemsState, IItemsEvents } from '../../store/items';
 
 export function Preview() {
   const { items } = useStoreon<IItemsState, IItemsEvents>('items');
-  const output = useRef<HTMLPreElement>();
+  const output = useRef<HTMLPreElement>(null);
 
   const config = createConfig(items);
   const dataURL = 'data:application/json,' + encodeURIComponent(config);
 
   const clipboard = useCallback(() => {
-    const selection = window.getSelection();
-    const range = document.createRange();
+    if (output.current !== null) {
+      const selection = window.getSelection() as Selection;
+      const range = document.createRange() as Range;
 
-    range.selectNodeContents(output.current);
-    selection.removeAllRanges();
-    selection.addRange(range);
-    document.execCommand('copy');
+      range.selectNodeContents(output.current);
+      selection.removeAllRanges();
+      selection.addRange(range);
+      document.execCommand('copy');
+    }
   }, []);
 
   return (

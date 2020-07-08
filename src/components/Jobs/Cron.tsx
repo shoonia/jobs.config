@@ -30,7 +30,7 @@ const parseCron = (val: string): CronResult => {
 };
 
 export function Cron({ id, value }: Props) {
-  const input = useRef<HTMLInputElement>();
+  const input = useRef<HTMLInputElement>(null);
 
   const { isValid, message } = useMemo(() => {
     return parseCron(value);
@@ -39,7 +39,9 @@ export function Cron({ id, value }: Props) {
   const className = isValid ? '' : s.error;
 
   useEffect(() => {
-    input.current.setCustomValidity(isValid ? '' : message);
+    if (input.current !== null) {
+      input.current.setCustomValidity(isValid ? '' : message);
+    }
   }, [value]);
 
   return (

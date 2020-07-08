@@ -1,3 +1,7 @@
 {
-  "javascript.implicitProjectConfig.checkJs": true
+  "javascript.implicitProjectConfig.checkJs": true,
+  "files.associations": {
+    ".postcssrc": "json",
+    ".stylelintrc": "json"
+  }
 }
