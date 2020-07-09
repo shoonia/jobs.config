@@ -16,7 +16,7 @@ const fetchStars = (cb: StateUpdater<number>) => {
 
 export function GitHub() {
   const [stars, setStars] = useState<number>(NaN);
-  const btnClass = isNaN(NaN) ? s.btnOnly : s.btn;
+  const btnClass = isNaN(stars) ? s.btnOnly : s.btn;
 
   useEffect(() => {
     fetchStars(setStars);
@@ -37,7 +37,7 @@ export function GitHub() {
           Star
         </span>
       </a>
-      {stars != null && (
+      {!isNaN(stars) && (
         <a
           className={s.count}
           href="https://github.com/shoonia/jobs.config/stargazers"
