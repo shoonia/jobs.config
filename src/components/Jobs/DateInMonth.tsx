@@ -4,11 +4,10 @@ import s from './styles.css';
 import { Label } from './Label';
 
 interface Props {
-  id: string;
   date: string;
 }
 
-export function DateInMonth({ id, date }: Props) {
+export function DateInMonth({ date }: Props) {
   return (
     <fieldset className={s.fields}>
       <div className={s.location}>
@@ -19,7 +18,6 @@ export function DateInMonth({ id, date }: Props) {
             max="31"
             step="1"
             value={date}
-            data-id={id}
             data-name="dateInMonth"
             className={s.date}
             required

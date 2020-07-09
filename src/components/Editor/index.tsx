@@ -16,19 +16,17 @@ export function Editor() {
   }, []);
 
   const removeItem = useCallback(({ target }) => {
-    dispatch('items/remove', target.value);
+    dispatch('items/remove', target.form.id);
   }, []);
 
   const cloneItem = useCallback(({ target }) => {
-    dispatch('items/clone', target.value);
+    dispatch('items/clone', target.form.id);
   }, []);
 
   const updateItem = useCallback(({ target }) => {
-    const { id, name } = target.dataset;
-
     dispatch('items/update', {
-      id,
-      name,
+      id: target.form.id,
+      name: target.dataset.name,
       value: target.value,
     });
   }, []);

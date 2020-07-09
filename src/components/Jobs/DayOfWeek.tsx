@@ -4,7 +4,6 @@ import s from './styles.css';
 import { Label } from './Label';
 
 interface Props {
-  id: string;
   day: string;
 }
 
@@ -18,7 +17,7 @@ const days = [
   'Sunday',
 ];
 
-export function DayOfWeek({ id, day }: Props) {
+export function DayOfWeek({ day }: Props) {
   const week = days.map((day) => (
     <option
       key={day}
@@ -35,7 +34,6 @@ export function DayOfWeek({ id, day }: Props) {
           <select
             className={s.date}
             data-name="dayOfWeek"
-            data-id={id}
             value={day}
           >
             {week}

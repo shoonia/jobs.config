@@ -10,22 +10,20 @@ import {
 } from '../../constants';
 
 interface Props {
-  id: string;
+  name: string;
   time: string;
   period: string;
 }
 
 const handlerClick = ({ keyCode, target }: KeyboardEvent) => {
   if (keyCode === 32 || keyCode === 13) {
-    // TODO:
     const node = ((target as HTMLLabelElement).firstChild as HTMLInputElement);
 
     node.click();
   }
 };
 
-export function Period({ id, time, period }: Props) {
-  const name = 'period-' + id;
+export function Period({ name, time, period }: Props) {
   const isCron = period === CRON;
 
   return (
@@ -35,7 +33,6 @@ export function Period({ id, time, period }: Props) {
           <input
             type="time"
             value={time}
-            data-id={id}
             data-name="time"
             className={s.date}
             disabled={isCron}
@@ -52,7 +49,6 @@ export function Period({ id, time, period }: Props) {
               type="radio"
               name={name}
               checked={period === DAILY}
-              data-id={id}
               data-name="period"
               value={DAILY}
               className={s.period}
@@ -70,7 +66,6 @@ export function Period({ id, time, period }: Props) {
               type="radio"
               name={name}
               checked={period === WEEKLY}
-              data-id={id}
               data-name="period"
               value={WEEKLY}
               className={s.period}
@@ -88,7 +83,6 @@ export function Period({ id, time, period }: Props) {
               type="radio"
               name={name}
               checked={period === MONTHLY}
-              data-id={id}
               data-name="period"
               value={MONTHLY}
               className={s.period}
@@ -106,7 +100,6 @@ export function Period({ id, time, period }: Props) {
               type="radio"
               name={name}
               checked={isCron}
-              data-id={id}
               data-name="period"
               value={CRON}
               className={s.period}

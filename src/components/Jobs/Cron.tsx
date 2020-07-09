@@ -11,7 +11,6 @@ interface CronResult {
 }
 
 interface Props {
-  id: string;
   value: string;
 }
 
@@ -29,7 +28,7 @@ const parseCron = (val: string): CronResult => {
   }
 };
 
-export function Cron({ id, value }: Props) {
+export function Cron({ value }: Props) {
   const input = useRef<HTMLInputElement>(null);
 
   const { isValid, message } = useMemo(() => {
@@ -54,7 +53,6 @@ export function Cron({ id, value }: Props) {
             className={s.cronInput}
             value={value}
             data-name="cronExpression"
-            data-id={id}
             required
           />
         </Label>

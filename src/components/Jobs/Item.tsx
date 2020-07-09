@@ -35,55 +35,45 @@ export function Item({
   update,
   isMax,
 }: Props) {
-  const dayOfWeek = data.period === WEEKLY
-    ? <DayOfWeek
-      id={data.id}
-      day={data.dayOfWeek}
-    />
-    : null;
+  const { id, period } = data;
 
-  const dateInMonth = data.period === MONTHLY
-    ? <DateInMonth
-      id={data.id}
-      date={String(data.dateInMonth)}
-    />
-    : null;
+  const dayOfWeek = period === WEEKLY && (
+    <DayOfWeek day={data.dayOfWeek} />
+  );
 
-  const cron = data.period === CRON
-    ? (
-      <Suspense fallback={<Loader />}>
-        <Cron
-          id={data.id}
-          value={data.cronExpression}
-        />
-      </Suspense>
-    )
-    : null;
+  const dateInMonth = period === MONTHLY && (
+    <DateInMonth date={String(data.dateInMonth)} />
+  );
+
+  const cron = period === CRON && (
+    <Suspense fallback={<Loader />}>
+      <Cron value={data.cronExpression} />
+    </Suspense>
+  );
 
   return (
     <li>
       <form
+        id={id}
         action="#"
         className={s.item}
         onInput={update}
         onSubmit={preventDefault}
       >
         <FunctionInfo
-          id={data.id}
           functionLocation={data.functionLocation}
           functionName={data.functionName}
           description={data.description}
         />
         <Period
-          id={data.id}
-          period={data.period}
+          name={id}
+          period={period}
           time={data.time}
         />
         {dayOfWeek}
         {dateInMonth}
         {cron}
         <ItemMenu
-          id={data.id}
           remove={remove}
           clone={clone}
           isMax={isMax}

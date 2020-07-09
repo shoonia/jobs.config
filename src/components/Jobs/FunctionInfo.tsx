@@ -4,14 +4,12 @@ import s from './styles.css';
 import { Label } from './Label';
 
 interface Props {
-  id: string;
   functionLocation: string;
   functionName: string;
   description: string;
 }
 
 export function FunctionInfo({
-  id,
   functionLocation,
   functionName,
   description,
@@ -22,7 +20,6 @@ export function FunctionInfo({
         <Label top="Function Location">
           <input
             type="text"
-            data-id={id}
             data-name="functionLocation"
             data-fl
             data-fl-at="bottom"
@@ -39,7 +36,6 @@ export function FunctionInfo({
         <Label top="Function Name">
           <input
             type="text"
-            data-id={id}
             data-name="functionName"
             data-fl
             data-fl-at="bottom"
@@ -56,7 +52,6 @@ export function FunctionInfo({
           <input
             type="text"
             value={description}
-            data-id={id}
             className={s.description}
             data-name="description"
             placeholder="Description"
