@@ -2,17 +2,12 @@ import { h } from 'preact';
 
 import s from './styles.css';
 import { Label } from './Label';
-import {
-  DAILY,
-  WEEKLY,
-  MONTHLY,
-  CRON,
-} from '../../constants';
+import { PERIOD } from '../../constants';
 
 interface Props {
   name: string;
   time: string;
-  period: string;
+  period: PERIOD;
 }
 
 const handlerClick = ({ keyCode, target }: KeyboardEvent) => {
@@ -24,7 +19,10 @@ const handlerClick = ({ keyCode, target }: KeyboardEvent) => {
 };
 
 export function Period({ name, time, period }: Props) {
-  const isCron = period === CRON;
+  const isCron = period === PERIOD.CRON;
+  const isDaily = period === PERIOD.DAILY;
+  const isWeekly = period === PERIOD.WEEKLY;
+  const isMonthly = period === PERIOD.MONTHLY;
 
   return (
     <fieldset className={s.fields}>
@@ -42,15 +40,15 @@ export function Period({ name, time, period }: Props) {
         <span>
           <label
             className={s.label}
-            tabIndex={period === DAILY ? -1 : 0}
+            tabIndex={isDaily ? -1 : 0}
             onKeyPress={handlerClick}
           >
             <input
               type="radio"
               name={name}
-              checked={period === DAILY}
+              checked={isDaily}
               data-name="period"
-              value={DAILY}
+              value={PERIOD.DAILY}
               className={s.period}
             />
             <span className={s.title}>
@@ -59,15 +57,15 @@ export function Period({ name, time, period }: Props) {
           </label>
           <label
             className={s.label}
-            tabIndex={period === WEEKLY ? -1 : 0}
+            tabIndex={isWeekly ? -1 : 0}
             onKeyPress={handlerClick}
           >
             <input
               type="radio"
               name={name}
-              checked={period === WEEKLY}
+              checked={isWeekly}
               data-name="period"
-              value={WEEKLY}
+              value={PERIOD.WEEKLY}
               className={s.period}
             />
             <span className={s.title}>
@@ -76,15 +74,15 @@ export function Period({ name, time, period }: Props) {
           </label>
           <label
             className={s.label}
-            tabIndex={period === MONTHLY ? -1 : 0}
+            tabIndex={isMonthly ? -1 : 0}
             onKeyPress={handlerClick}
           >
             <input
               type="radio"
               name={name}
-              checked={period === MONTHLY}
+              checked={isMonthly}
               data-name="period"
-              value={MONTHLY}
+              value={PERIOD.MONTHLY}
               className={s.period}
             />
             <span className={s.title}>
@@ -101,7 +99,7 @@ export function Period({ name, time, period }: Props) {
               name={name}
               checked={isCron}
               data-name="period"
-              value={CRON}
+              value={PERIOD.CRON}
               className={s.period}
             />
             <span className={s.cron}>

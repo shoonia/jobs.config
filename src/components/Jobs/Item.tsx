@@ -8,7 +8,7 @@ import { DateInMonth } from './DateInMonth';
 import { ItemMenu } from './ItemMenu';
 import { FunctionInfo } from './FunctionInfo';
 import { Loader } from '../Loader';
-import { WEEKLY, MONTHLY, CRON } from '../../constants';
+import { PERIOD } from '../../constants';
 import { IItem } from '../../util/items';
 import { preventDefault } from '../../util/component';
 
@@ -37,15 +37,15 @@ export function Item({
 }: Props) {
   const { id, period } = data;
 
-  const dayOfWeek = period === WEEKLY && (
+  const dayOfWeek = period === PERIOD.WEEKLY && (
     <DayOfWeek day={data.dayOfWeek} />
   );
 
-  const dateInMonth = period === MONTHLY && (
+  const dateInMonth = period === PERIOD.MONTHLY && (
     <DateInMonth date={String(data.dateInMonth)} />
   );
 
-  const cron = period === CRON && (
+  const cron = period === PERIOD.CRON && (
     <Suspense fallback={<Loader />}>
       <Cron value={data.cronExpression} />
     </Suspense>

@@ -1,11 +1,7 @@
 import { nanoid } from 'nanoid/non-secure';
 
-import {
-  WEEKLY,
-  MONTHLY,
-  CRON,
-  DAILY,
-} from '../constants';
+import { PERIOD } from '../constants';
+import { TWeekList, weekList } from './week';
 
 export interface IItem {
   id: string;
@@ -13,10 +9,10 @@ export interface IItem {
   functionName: string;
   description: string;
   time: string;
-  dayOfWeek: string;
+  dayOfWeek: TWeekList;
   dateInMonth: number;
   cronExpression: string;
-  period: string;
+  period: PERIOD;
 }
 
 const createLocation = (location: string): string => {
@@ -46,10 +42,10 @@ export const createConfig = (items: IItem[]): string => {
         functionName: i.functionName.trim(),
         description: (i.description !== '') ? i.description : noop,
         executionConfig: {
-          time: (i.period !== CRON) ? (i.time || '00:00') : noop,
-          dayOfWeek: (i.period === WEEKLY) ? i.dayOfWeek : noop,
-          dateInMonth: (i.period === MONTHLY) ? parseDate(i.dateInMonth) : noop,
-          cronExpression: (i.period === CRON) ? i.cronExpression.trim() : noop,
+          time: (i.period !== PERIOD.CRON) ? (i.time || '00:00') : noop,
+          dayOfWeek: (i.period === PERIOD.WEEKLY) ? i.dayOfWeek : noop,
+          dateInMonth: (i.period === PERIOD.MONTHLY) ? parseDate(i.dateInMonth) : noop,
+          cronExpression: (i.period === PERIOD.CRON) ? i.cronExpression.trim() : noop,
         },
       };
     }),
@@ -65,9 +61,9 @@ export const newItem = (): IItem => {
     functionName: 'function_name',
     description: '',
     time: '00:00',
-    dayOfWeek: 'Monday',
+    dayOfWeek: weekList[0],
     dateInMonth: 1,
     cronExpression: '0 * * * *',
-    period: DAILY,
+    period: PERIOD.DAILY,
   };
 };

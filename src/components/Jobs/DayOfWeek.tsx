@@ -2,31 +2,22 @@ import { h } from 'preact';
 
 import s from './styles.css';
 import { Label } from './Label';
+import { weekList, TWeekList } from '../../util/week';
 
 interface Props {
-  day: string;
+  day: TWeekList;
 }
 
-const days = [
-  'Monday',
-  'Tuesday',
-  'Wednesday',
-  'Thursday',
-  'Friday',
-  'Saturday',
-  'Sunday',
-];
+const week = weekList.map((day) => (
+  <option
+    key={day}
+    value={day}
+  >
+    {day}
+  </option>
+));
 
 export function DayOfWeek({ day }: Props) {
-  const week = days.map((day) => (
-    <option
-      key={day}
-      value={day}
-    >
-      {day}
-    </option>
-  ));
-
   return (
     <fieldset className={s.fields}>
       <div className={s.location}>
