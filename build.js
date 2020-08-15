@@ -40,7 +40,6 @@ const minifyOptions = {
   compress: {
     ecma: 2020,
     module: true,
-    warnings: false,
     comparisons: false,
     inline: 2,
     drop_console: true,
@@ -51,7 +50,7 @@ const minifyOptions = {
     unsafe: true,
     unsafe_math: true,
   },
-  output: {
+  format: {
     ecma: 2020,
     comments: false,
   },
@@ -66,7 +65,7 @@ const minifyOptions = {
     if (extname(file) === '.js') {
       const jsFile = join(distDir, file);
       const jsCode = await readFile(jsFile, 'utf8');
-      const { code } = minify(jsCode, minifyOptions);
+      const { code } = await minify(jsCode, minifyOptions);
 
       await writeFile(jsFile, code, 'utf8');
 

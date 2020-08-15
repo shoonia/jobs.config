@@ -1,6 +1,6 @@
 import { h } from 'preact';
 import { useStoreon } from 'storeon/preact';
-import { useCallback, useRef } from 'preact/hooks';
+import { useRef } from 'preact/hooks';
 
 import s from './styles.css';
 import { Button } from '../Button';
@@ -10,12 +10,12 @@ import { IItemsState, IItemsEvents } from '../../store/items';
 
 export function Preview() {
   const { items } = useStoreon<IItemsState, IItemsEvents>('items');
-  const output = useRef<HTMLPreElement>(null);
+  const output = useRef<HTMLPreElement>();
 
   const config = createConfig(items);
   const dataURL = 'data:application/json,' + encodeURIComponent(config);
 
-  const clipboard = useCallback(() => {
+  const clipboard: EventHandlerNonNull = () => {
     if (output.current !== null) {
       const selection = window.getSelection() as Selection;
       const range = document.createRange() as Range;
@@ -25,7 +25,7 @@ export function Preview() {
       selection.addRange(range);
       document.execCommand('copy');
     }
-  }, []);
+  };
 
   return (
     <div className={s.box}>

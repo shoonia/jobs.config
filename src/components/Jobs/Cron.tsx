@@ -29,7 +29,7 @@ const parseCron = (val: string): CronResult => {
 };
 
 export function Cron({ value }: Props) {
-  const input = useRef<HTMLInputElement>(null);
+  const input = useRef<HTMLInputElement>();
 
   const { isValid, message } = useMemo(() => {
     return parseCron(value);

@@ -3,7 +3,7 @@ import { h, JSX } from 'preact';
 import s from './styles.css';
 
 interface Props {
-  onClick?: () => void;
+  onClick?: EventHandlerNonNull;
   disabled?: boolean;
   children?: JSX.Element | string | Array<JSX.Element | string>;
 }

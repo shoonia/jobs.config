@@ -1,5 +1,4 @@
 import { h } from 'preact';
-import { useCallback } from 'preact/hooks';
 import { useStoreon } from 'storeon/preact';
 
 import s from './styles.css';
@@ -10,9 +9,9 @@ import { IItemsState, IItemsEvents } from '../../store/items';
 export function CreateButton() {
   const { dispatch, isMax } = useStoreon<IItemsState, IItemsEvents>('isMax');
 
-  const createItem = useCallback(() => {
+  const createItem: EventHandlerNonNull = () => {
     dispatch('items/new');
-  }, []);
+  };
 
   return (
     <div className={s.section}>
