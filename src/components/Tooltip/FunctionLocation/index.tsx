@@ -17,7 +17,7 @@ export function FunctionLocation({ target }: Props) {
 
     return (
       <ul className={listClass}>
-        <li className={s.item}>
+        <li>
           <div className={item.className}>
             {item.path}
           </div>
@@ -33,7 +33,7 @@ export function FunctionLocation({ target }: Props) {
       style={style}
     >
       <div className={s.root}>
-        Backend
+        Backend Files
       </div>
       {tree}
     </div>
