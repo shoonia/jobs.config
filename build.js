@@ -31,14 +31,14 @@ const buildOptions = {
 
 /**@type {import('terser').MinifyOptions} */
 const minifyOptions = {
-  ecma: 2020,
+  ecma: 2015,
   module: true,
   toplevel: true,
   parse: {
-    ecma: 2020,
+    ecma: 2015,
   },
   compress: {
-    ecma: 2020,
+    ecma: 2015,
     module: true,
     comparisons: false,
     inline: 2,
@@ -51,7 +51,7 @@ const minifyOptions = {
     unsafe_math: true,
   },
   format: {
-    ecma: 2020,
+    ecma: 2015,
     comments: false,
   },
 };

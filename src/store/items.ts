@@ -33,7 +33,7 @@ function getItems(): IItem[] {
       if (Array.isArray(items)) {
         return items;
       }
-    } catch (error) {
+    } catch {
       sessionStorage.removeItem('items');
     }
   }
@@ -59,7 +59,7 @@ export const itemsModule: StoreonModule<IItemsState, IItemsEvents> = ({ on }) =>
     if ('items' in changes) {
       try {
         sessionStorage.setItem('items', JSON.stringify(items));
-      } catch (error) {
+      } catch {
         sessionStorage.removeItem('items');
       }
     }

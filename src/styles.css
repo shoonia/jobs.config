@@ -69,10 +69,6 @@ body {
   overflow-y: hidden;
 }
 
-[hidden] {
-  display: none;
-}
-
 button,
 input,
 select,

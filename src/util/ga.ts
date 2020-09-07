@@ -20,7 +20,7 @@ export const sendBeacon = (): void => {
 
   try {
     isSend = navigator.sendBeacon(url);
-  } catch (error) { /**/ }
+  } catch { /**/ }
 
   if (!isSend) {
     (new Image).src = url;
