@@ -1,10 +1,10 @@
-import { h, JSX } from 'preact';
+import { ComponentChildren, h } from 'preact';
 
 import s from './styles.css';
 
 interface Props {
  top: string;
- children: JSX.Element;
+ children: ComponentChildren;
  }
 
 export function Label({ top, children }: Props) {

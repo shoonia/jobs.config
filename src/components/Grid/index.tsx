@@ -1,12 +1,12 @@
-import { h, JSX } from 'preact';
+import { ComponentChildren, h } from 'preact';
 
 import s from './styles.css';
 import { SEO } from '../SEO';
 
 interface Props {
-  header: JSX.Element;
-  left: JSX.Element;
-  right: JSX.Element;
+  header: ComponentChildren;
+  left: ComponentChildren;
+  right: ComponentChildren;
 }
 
 export function Grid({ header, left, right }: Props) {

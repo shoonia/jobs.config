@@ -1,11 +1,11 @@
-import { h, JSX } from 'preact';
+import { ComponentChildren, h } from 'preact';
 
 import s from './styles.css';
 
 interface Props {
   onClick?: EventHandlerNonNull;
   disabled?: boolean;
-  children?: JSX.Element | string | Array<JSX.Element | string>;
+  children?: ComponentChildren;
 }
 
 export function Button({
