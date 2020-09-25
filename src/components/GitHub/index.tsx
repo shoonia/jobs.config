@@ -2,10 +2,9 @@ import { h } from 'preact';
 import { useState, useEffect, StateUpdater } from 'preact/hooks';
 
 import s from './styles.css';
-import { isProd } from '../../util/component';
 
 const fetchStars = (cb: StateUpdater<number>) => {
-  if (isProd) {
+  if (process.env.NODE_ENV !== 'development') {
     fetch('https://api.github.com/repos/shoonia/jobs.config')
       .then((response) => response.json())
       .then((data) => parseInt(data.stargazers_count, 10))
