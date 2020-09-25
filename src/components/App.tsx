@@ -16,7 +16,7 @@ const Tooltips = lazy(() => {
 
 export function App() {
   return (
-    <Fragment>
+    <>
       <Suspense fallback={null}>
         <Tooltips />
       </Suspense>
@@ -25,6 +25,6 @@ export function App() {
         left={<Editor />}
         right={<Preview />}
       />
-    </Fragment>
+    </>
   );
 }

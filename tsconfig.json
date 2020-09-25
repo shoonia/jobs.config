@@ -6,8 +6,10 @@
     "moduleResolution": "Node",
     "jsx": "react",
     "jsxFactory": "h",
+    "jsxFragmentFactory": "Fragment",
     "allowSyntheticDefaultImports": true,
     "esModuleInterop": true,
+    "noEmit": true,
     "lib": [
       "ES2020",
       "DOM"

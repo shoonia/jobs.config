@@ -5,9 +5,9 @@ import { CreateButton } from './CreateButton';
 
 export function Editor() {
   return (
-    <Fragment>
+    <>
       <CreateButton />
       <Jobs />
-    </Fragment>
+    </>
   );
 }
