@@ -38,9 +38,7 @@ export function Cron({ value }: Props) {
   const className = isValid ? '' : s.error;
 
   useEffect(() => {
-    if (input.current !== null) {
-      input.current.setCustomValidity(isValid ? '' : message);
-    }
+    input.current.setCustomValidity(isValid ? '' : message);
   }, [value]);
 
   return (

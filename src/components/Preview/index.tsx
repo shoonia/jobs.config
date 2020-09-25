@@ -16,15 +16,13 @@ export function Preview() {
   const dataURL = 'data:application/json,' + encodeURIComponent(config);
 
   const clipboard: EventHandlerNonNull = () => {
-    if (output.current !== null) {
-      const selection = window.getSelection() as Selection;
-      const range = document.createRange() as Range;
+    const selection = window.getSelection() as Selection;
+    const range = document.createRange() as Range;
 
-      range.selectNodeContents(output.current);
-      selection.removeAllRanges();
-      selection.addRange(range);
-      document.execCommand('copy');
-    }
+    range.selectNodeContents(output.current);
+    selection.removeAllRanges();
+    selection.addRange(range);
+    document.execCommand('copy');
   };
 
   return (
