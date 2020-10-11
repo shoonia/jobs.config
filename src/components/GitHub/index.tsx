@@ -4,18 +4,20 @@ import { useState, useEffect, StateUpdater } from 'preact/hooks';
 import s from './styles.css';
 
 const fetchStars = (cb: StateUpdater<number>) => {
-  if (process.env.NODE_ENV !== 'development') {
+  if (process.env.NODE_ENV === 'production') {
     fetch('https://api.github.com/repos/shoonia/jobs.config')
       .then((response) => response.json())
-      .then((data) => parseInt(data.stargazers_count, 10))
-      .catch(() => NaN)
+      .then((data) => parseInt(data.stargazers_count, 10) || 0)
+      .catch(() => 0)
       .then(cb);
   }
 };
 
 export function GitHub() {
-  const [stars, setStars] = useState<number>(NaN);
-  const btnClass = isNaN(stars) ? s.btnOnly : s.btn;
+  const [stars, setStars] = useState<number>(0);
+
+  const hasStars = (stars > 0);
+  const btnClass = hasStars ? s.btn : s.btnOnly;
 
   useEffect(() => {
     fetchStars(setStars);
@@ -36,7 +38,7 @@ export function GitHub() {
           Star
         </span>
       </a>
-      {!isNaN(stars) && (
+      {hasStars && (
         <a
           className={s.count}
           href="https://github.com/shoonia/jobs.config/stargazers"

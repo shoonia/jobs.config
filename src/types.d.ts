@@ -13,3 +13,9 @@ declare module 'react-hint' {
 
   export = ReactHintFactory;
 }
+
+declare namespace NodeJS {
+  export interface ProcessEnv {
+    NODE_ENV: 'development' | 'production';
+  }
+}
