@@ -1,5 +1,4 @@
 import { h } from 'preact';
-import { Suspense, lazy } from 'preact/compat';
 
 import s from './styles.css';
 import { Period } from './Period';
@@ -7,7 +6,6 @@ import { DayOfWeek } from './DayOfWeek';
 import { DateInMonth } from './DateInMonth';
 import { ItemMenu } from './ItemMenu';
 import { FunctionInfo } from './FunctionInfo';
-import { Loader } from '../Loader';
 import { PERIOD } from '../../constants';
 import { IItem } from '../../util/items';
 import { preventDefault } from '../../util/component';
@@ -19,14 +17,6 @@ interface Props {
   update: EventHandlerNonNull;
   isMax: boolean;
 }
-
-const Cron = lazy(() => {
-  return import('./Cron').then((i) => {
-    return {
-      default: i.Cron,
-    };
-  });
-});
 
 export function Item({
   data,
@@ -43,12 +33,6 @@ export function Item({
 
   const dateInMonth = period === PERIOD.MONTHLY && (
     <DateInMonth date={String(data.dateInMonth)} />
-  );
-
-  const cron = period === PERIOD.CRON && (
-    <Suspense fallback={<Loader />}>
-      <Cron value={data.cronExpression} />
-    </Suspense>
   );
 
   return (
@@ -69,10 +53,10 @@ export function Item({
           name={id}
           period={period}
           time={data.time}
+          cronExpression={data.cronExpression}
         />
         {dayOfWeek}
         {dateInMonth}
-        {cron}
         <ItemMenu
           remove={remove}
           clone={clone}
