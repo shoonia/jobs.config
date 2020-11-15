@@ -39,7 +39,7 @@ export function Cron({ value }: Props) {
 
   useEffect(() => {
     input.current.setCustomValidity(isValid ? '' : message);
-  }, [value]);
+  }, [isValid]);
 
   return (
     <fieldset className={s.fields}>

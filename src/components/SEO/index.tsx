@@ -19,7 +19,7 @@ export function SEO() {
         Corvid jobs config builder
       </h1>
       <p>
-        Online generator for Corvid jobs.config file. Build scheduling recurring jobs for your Wix site.
+        Online generator for Corvid jobs.config file. Build scheduling recurring jobs for your Wix site. Corvid cron config generator
       </p>
     </div>
   );

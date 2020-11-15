@@ -54,16 +54,14 @@ export const createConfig = (items: IItem[]): string => {
   return JSON.stringify(config, null, 2);
 };
 
-export const newItem = (): IItem => {
-  return {
-    id: nanoid(),
-    functionLocation: '/function_location.js',
-    functionName: 'function_name',
-    description: '',
-    time: '00:00',
-    dayOfWeek: weekList[0],
-    dateInMonth: 1,
-    cronExpression: '0 * * * *',
-    period: PERIOD.DAILY,
-  };
-};
+export const newItem = (): IItem => ({
+  id: nanoid(),
+  functionLocation: '/function_location.js',
+  functionName: 'function_name',
+  description: '',
+  time: '00:00',
+  dayOfWeek: weekList[0],
+  dateInMonth: 1,
+  cronExpression: '0 * * * *',
+  period: PERIOD.DAILY,
+});
