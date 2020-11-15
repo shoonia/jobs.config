@@ -1,6 +1,6 @@
 import { h } from 'preact';
 
-const style = {
+const style: h.JSX.CSSProperties = {
   position: 'absolute',
   top: '0',
   width: '1px',

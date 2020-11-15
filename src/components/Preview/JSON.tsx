@@ -56,7 +56,7 @@ const tokens = [
 ];
 
 function JSONElement({ input }: Props) {
-  const items: Array<JSX.Element | string> = [];
+  const items: (JSX.Element | string)[] = [];
 
   let isFound: boolean;
 
