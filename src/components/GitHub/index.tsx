@@ -1,27 +1,12 @@
 import { h } from 'preact';
-import { useState, useEffect, StateUpdater } from 'preact/hooks';
 
 import s from './styles.css';
-
-const fetchStars = (cb: StateUpdater<number>) => {
-  if (process.env.NODE_ENV === 'production') {
-    fetch('https://api.github.com/repos/shoonia/jobs.config')
-      .then((response) => response.json())
-      .then((data) => parseInt(data.stargazers_count, 10) || 0)
-      .catch(() => 0)
-      .then(cb);
-  }
-};
+import { useStars } from './useStars';
 
 export function GitHub() {
-  const [stars, setStars] = useState<number>(0);
-
+  const stars = useStars();
   const hasStars = (stars > 0);
   const btnClass = hasStars ? s.btn : s.btnOnly;
-
-  useEffect(() => {
-    fetchStars(setStars);
-  }, []);
 
   return (
     <div
