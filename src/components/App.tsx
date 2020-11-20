@@ -17,11 +17,11 @@ const Tooltips = lazy(() => {
 export function App() {
   return (
     <>
+      <Header />
       <Suspense fallback={null}>
         <Tooltips />
       </Suspense>
       <Grid
-        header={<Header />}
         left={<Editor />}
         right={<Preview />}
       />

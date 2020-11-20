@@ -11,8 +11,8 @@
     "test": "tsc --noEmit"
   },
   "dependencies": {
-    "cronstrue": "^1.104.0",
-    "nanoid": "^3.1.16",
+    "cronstrue": "^1.105.0",
+    "nanoid": "^3.1.17",
     "preact": "^10.5.7",
     "react-hint": "^3.2.0",
     "storeon": "^3.1.1"
@@ -21,20 +21,20 @@
     "@babel/core": "^7.12.3",
     "@babel/plugin-transform-react-jsx": "^7.12.5",
     "@types/css-modules": "^1.0.1",
-    "@types/node": "^14.14.7",
-    "@typescript-eslint/eslint-plugin": "^4.7.0",
-    "@typescript-eslint/parser": "^4.7.0",
+    "@types/node": "^14.14.9",
+    "@typescript-eslint/eslint-plugin": "^4.8.1",
+    "@typescript-eslint/parser": "^4.8.1",
     "autoprefixer": "^9.8.6",
     "eslint": "^7.13.0",
     "eslint-plugin-react": "^7.21.5",
     "husky": "^4.3.0",
     "parcel-bundler": "^1.12.4",
     "postcss-modules": "^3.2.2",
-    "stylelint": "^13.7.2",
+    "stylelint": "^13.8.0",
     "stylelint-config-css-modules": "^2.2.0",
     "stylelint-config-standard": "^20.0.0",
-    "terser": "^5.3.8",
-    "typescript": "^4.0.5"
+    "terser": "^5.5.0",
+    "typescript": "^4.1.2"
   },
   "husky": {
     "hooks": {

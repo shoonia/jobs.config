@@ -1,15 +1,9 @@
-.container {
+.box {
   display: grid;
   grid-gap: 0;
   grid-auto-rows: minmax(var(--min-column-width), auto);
   grid-template-columns: minmax(500px, auto) minmax(300px, 550px);
   padding: 0;
-}
-
-.header {
-  height: var(--header-height);
-  background-color: #fff;
-  box-shadow: 0 0 15px 0 rgba(22, 45, 61, 0.5);
 }
 
 .column {
@@ -38,13 +32,9 @@
 }
 
 @media (max-width: 760px) {
-  .container {
+  .box {
     display: flex;
     position: relative;
-  }
-
-  .header {
-    width: 200%;
   }
 
   .left,
