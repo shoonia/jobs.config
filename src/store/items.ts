@@ -23,7 +23,7 @@ export interface IItemsEvents {
   'items/update': IUpdateEventData;
 }
 
-function getItems(): IItem[] {
+const getItems = (): IItem[] => {
   const data = sessionStorage.getItem('items');
 
   if (data !== null) {
@@ -39,14 +39,12 @@ function getItems(): IItem[] {
   }
 
   return [newItem()];
-}
+};
 
-function payload(items: IItem[]): IItemsState {
-  return {
-    items,
-    isMax: items.length >= MAX_ITEMS,
-  };
-}
+const payload = (items: IItem[]): IItemsState => ({
+  items,
+  isMax: items.length >= MAX_ITEMS,
+});
 
 export const itemsModule: StoreonModule<IItemsState, IItemsEvents> = ({ on }) => {
   on('@init', () => {
