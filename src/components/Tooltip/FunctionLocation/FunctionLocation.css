@@ -14,7 +14,7 @@
   height: 32px;
   line-height: 32px;
   display: flex;
-  background-color: #f0f3f5;
+  background-color: var(--cr-background);
   padding: 0 5px;
   border-radius: 8px 8px 0 0;
   border-bottom: 1px solid #d9e1e8;

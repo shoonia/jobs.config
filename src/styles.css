@@ -29,19 +29,19 @@
   --font-mono: menlo, monaco, 'Andale Mono', 'Ubuntu Mono', monospace;
   --cr-font: #2b5672;
   --cr-extra: #aa4dc8;
-  --cr-success: #65c888;
-  --cr-primary: #2b81cb;
+  --cr-success: #428359;
+  --cr-primary: #297abf;
   --cr-danger: #ee5951;
   --cr-background: #f0f3f5;
   --cr-focus: #aabdfc;
-  --cr-light: #7a92a5;
+  --cr-light: #657888;
   --cr-gray: #898989;
   --header-height: 70px;
   --body-height: calc(100vh - var(--header-height));
 }
 
 ::placeholder {
-  color: #7a92a5;
+  color: var(--cr-light);
   user-select: none;
 }
 
@@ -80,7 +80,7 @@ select {
   appearance: none;
   text-align: center;
   background:
-    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24' fill='%232b81cb'%3E%3Cpath d='M7.41 7.84L12 12.42l4.59-4.58L18 9.25l-6 6-6-6z'/%3E%3C/svg%3E")
+    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24' fill='%23297abf'%3E%3Cpath d='M7.41 7.84L12 12.42l4.59-4.58L18 9.25l-6 6-6-6z'/%3E%3C/svg%3E")
     no-repeat
     right
     8px

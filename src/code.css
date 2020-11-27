@@ -3,7 +3,7 @@
 }
 
 .mtk4 {
-  color: #2b81cb;
+  color: var(--cr-primary);
   font-weight: bold;
 }
 
@@ -16,11 +16,11 @@
 }
 
 .mtk6 {
-  color: #d0427d;
+  color: #c03d73;
 }
 
 .func {
-  color: #aa4dc8;
+  color: var(--cr-extra);
   font-weight: bold;
 }
 
@@ -36,7 +36,7 @@
   width: 6px;
   height: 6px;
   border-radius: 100%;
-  background-color: #ee5951;
+  background-color: var(--cr-danger);
   position: absolute;
   top: 21px;
   left: 8px;
