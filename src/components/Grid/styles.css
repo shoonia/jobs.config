@@ -1,7 +1,6 @@
 .box {
   display: grid;
   grid-gap: 0;
-  grid-auto-rows: minmax(var(--min-column-width), auto);
   grid-template-columns: minmax(500px, auto) minmax(300px, 550px);
   padding: 0;
 }
@@ -17,7 +16,7 @@
 
 .left {
   composes: column;
-  padding: 0 0 0 0.5em;
+  padding: 0 0 0 10px;
   grid-column: 1;
   min-width: 500px;
   overflow-y: scroll;
@@ -29,16 +28,4 @@
   grid-column: 2;
   min-width: 300px;
   max-width: 550px;
-}
-
-@media (max-width: 760px) {
-  .box {
-    display: flex;
-    position: relative;
-  }
-
-  .left,
-  .right {
-    min-width: 100%;
-  }
 }
