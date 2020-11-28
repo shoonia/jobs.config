@@ -4,7 +4,7 @@
   "version": "1.0.0",
   "main": "src/index.html",
   "scripts": {
-    "start": "parcel src/index.html --open --no-cache",
+    "start": "parcel src/index.html --open --no-cache --no-autoinstall",
     "build": "node build.js",
     "lint-js": "eslint 'src/**/*.{ts,tsx}'",
     "lint-css": "stylelint 'src/**/*.css'",
@@ -15,7 +15,8 @@
     "nanoid": "^3.1.18",
     "preact": "^10.5.7",
     "react-hint": "^3.2.0",
-    "storeon": "^3.1.1"
+    "storeon": "^3.1.1",
+    "strip-json-comments": "^3.1.1"
   },
   "devDependencies": {
     "@babel/core": "^7.12.9",
