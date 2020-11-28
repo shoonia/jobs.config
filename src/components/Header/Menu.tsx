@@ -7,7 +7,7 @@ import { ROUTER } from '../../constants';
 export function Menu() {
   return (
     <ul className={s.list}>
-      <MenuItem path={ROUTER.HOME}>
+      <MenuItem path={ROUTER.BUILDER}>
         Builder
       </MenuItem>
       <MenuItem path={ROUTER.VALIDATOR}>

@@ -8,6 +8,6 @@ export const enum PERIOD {
 }
 
 export const enum ROUTER {
-  HOME = 'home',
+  BUILDER = 'builder',
   VALIDATOR = 'validator',
 }

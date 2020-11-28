@@ -18,7 +18,7 @@ const getPath = (): ROUTER => {
 
   return (hash === ROUTER.VALIDATOR)
     ? ROUTER.VALIDATOR
-    : ROUTER.HOME;
+    : ROUTER.BUILDER;
 };
 
 export const routerModule: StoreonModule<IRouterState, IRouterEvents> = ({ on, get, dispatch }) => {

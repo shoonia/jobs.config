@@ -4,7 +4,7 @@ import { Editor } from './Editor';
 import { Grid } from './Grid';
 import { Preview } from './Preview';
 
-export function HomePage() {
+export function BuilderPage() {
   return (
     <Grid
       left={<Editor />}

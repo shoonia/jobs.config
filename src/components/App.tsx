@@ -1,10 +1,8 @@
 import { h, Fragment } from 'preact';
 import { Suspense, lazy } from 'preact/compat';
-import { useStoreon } from 'storeon/preact';
 
 import { Header } from './Header';
-import { TState } from '../store';
-import { ROUTER } from '../constants';
+import { useLazyRouter } from '../hooks/useLazyRouter';
 
 const Tooltips = lazy(() => {
   return import('./Tooltip').then((i) => {
@@ -14,28 +12,8 @@ const Tooltips = lazy(() => {
   });
 });
 
-const HomePage = lazy(() => {
-  return import('./HomePage').then((i) => {
-    return {
-      default: i.HomePage,
-    };
-  });
-});
-
-const ValidatorPage = lazy(() => {
-  return import('./ValidatorPage').then((i) => {
-    return {
-      default: i.ValidatorPage,
-    };
-  });
-});
-
 export function App() {
-  const { path } = useStoreon<TState>('path');
-
-  const Page = (path === ROUTER.HOME)
-    ? HomePage
-    : ValidatorPage;
+  const Page = useLazyRouter();
 
   return (
     <>
