@@ -3,7 +3,7 @@ import { Suspense, lazy } from 'preact/compat';
 import { useStoreon } from 'storeon/preact';
 
 import { Header } from './Header';
-import { TEvents, TState } from '../store';
+import { TState } from '../store';
 import { ROUTER } from '../constants';
 
 const Tooltips = lazy(() => {
@@ -31,7 +31,7 @@ const ValidatorPage = lazy(() => {
 });
 
 export function App() {
-  const { path } = useStoreon<TState, TEvents>('path');
+  const { path } = useStoreon<TState>('path');
 
   const Page = (path === ROUTER.HOME)
     ? HomePage

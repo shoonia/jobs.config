@@ -6,10 +6,10 @@ import s from './styles.css';
 import { Button } from '../Button';
 import { JSON } from './JSON';
 import { createConfig } from '../../util/items';
-import { IItemsState, IItemsEvents } from '../../store/items';
+import { TState } from '../../store';
 
 export function Preview() {
-  const { items } = useStoreon<IItemsState, IItemsEvents>('items');
+  const { items } = useStoreon<TState>('items');
   const output = useRef<HTMLPreElement>();
 
   const config = createConfig(items);

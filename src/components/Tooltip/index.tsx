@@ -7,12 +7,12 @@ import 'react-hint/css/index.css';
 import s from './styles.css';
 import { FunctionName } from './FunctionName';
 import { FunctionLocation } from './FunctionLocation';
-import { IItemsEvents, IItemsState } from '../../store/items';
+import { TState } from '../../store';
 
 const Hint = HintFactory({ createElement: h, Component });
 
 export function Tooltips() {
-  const { items } = useStoreon<IItemsState, IItemsEvents>('items');
+  const { items } = useStoreon<TState>('items');
 
   const onRenderContent = useCallback((target: HTMLInputElement) => {
     const { name } = target.dataset;

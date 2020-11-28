@@ -4,10 +4,10 @@ import { useStoreon } from 'storeon/preact';
 
 import s from './styles.css';
 import { Item } from './Item';
-import { IItemsState, IItemsEvents } from '../../store/items';
+import { TState, TEvents } from '../../store';
 
 export function Jobs() {
-  const { dispatch, items, isMax } = useStoreon<IItemsState, IItemsEvents>('items', 'isMax');
+  const { dispatch, items, isMax } = useStoreon<TState, TEvents>('items', 'isMax');
 
   const removeItem = useCallback(({ target }) => {
     dispatch('items/remove', target.form.id);

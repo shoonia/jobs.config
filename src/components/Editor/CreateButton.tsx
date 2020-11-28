@@ -4,10 +4,10 @@ import { useStoreon } from 'storeon/preact';
 import s from './styles.css';
 import { Button } from '../Button';
 import { IconPlus } from './IconPlus';
-import { IItemsState, IItemsEvents } from '../../store/items';
+import { TState, TEvents } from '../../store';
 
 export function CreateButton() {
-  const { dispatch, isMax } = useStoreon<IItemsState, IItemsEvents>('isMax');
+  const { dispatch, isMax } = useStoreon<TState, TEvents>('isMax');
 
   const createItem: EventHandlerNonNull = () => {
     dispatch('items/new');
