@@ -86,3 +86,8 @@ select {
     8px
     bottom;
 }
+
+:global(#root) {
+  height: var(--body-height);
+  background-color: var(--cr-background);
+}
