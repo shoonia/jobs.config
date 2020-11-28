@@ -29,8 +29,6 @@ export const routerModule: StoreonModule<IRouterState, IRouterEvents> = ({ on, g
     const { path } = get();
     const newPath = getPath();
 
-    console.log(newPath);
-
     if (path !== newPath) {
       dispatch('router/change', newPath);
     }
