@@ -6,3 +6,8 @@ export const enum PERIOD {
   MONTHLY = 'Monthly',
   CRON = 'Cron',
 }
+
+export const enum ROUTER {
+  HOME = 'home',
+  VALIDATOR = 'validator',
+}

@@ -1,10 +1,10 @@
 import { h, Fragment } from 'preact';
 import { Suspense, lazy } from 'preact/compat';
+import { useStoreon } from 'storeon/preact';
 
-import { Grid } from './Grid';
 import { Header } from './Header';
-import { Editor } from './Editor';
-import { Preview } from './Preview';
+import { TEvents, TState } from '../store';
+import { ROUTER } from '../constants';
 
 const Tooltips = lazy(() => {
   return import('./Tooltip').then((i) => {
@@ -14,17 +14,38 @@ const Tooltips = lazy(() => {
   });
 });
 
+const HomePage = lazy(() => {
+  return import('./HomePage').then((i) => {
+    return {
+      default: i.HomePage,
+    };
+  });
+});
+
+const ValidatorPage = lazy(() => {
+  return import('./ValidatorPage').then((i) => {
+    return {
+      default: i.ValidatorPage,
+    };
+  });
+});
+
 export function App() {
+  const { path } = useStoreon<TState, TEvents>('path');
+
+  const Page = (path === ROUTER.HOME)
+    ? HomePage
+    : ValidatorPage;
+
   return (
     <>
       <Header />
       <Suspense fallback={null}>
         <Tooltips />
       </Suspense>
-      <Grid
-        left={<Editor />}
-        right={<Preview />}
-      />
+      <Suspense fallback={null}>
+        <Page />
+      </Suspense>
     </>
   );
 }
