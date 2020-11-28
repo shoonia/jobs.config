@@ -8,6 +8,19 @@
 }
 
 .banner {
+  display: flex;
+}
+
+.title {
+  font-size: 20px;
+  list-style: none;
+  padding-left: 15px;
+  color: var(--cr-font);
+  user-select: none;
+  white-space: nowrap;
+}
+
+.nav {
   padding: 0;
   margin: 0;
   display: flex;
@@ -15,11 +28,25 @@
 }
 
 .image {
+  image-rendering: -webkit-optimize-contrast;
+}
+
+.list {
+  font-size: 16px;
+  font-weight: normal;
+  transition: color 0.2s ease-in-out;
+  display: flex;
+  padding: 0;
   margin-right: 10px;
 }
 
+.item {
+  list-style: none;
+  padding-left: 15px;
+}
+
 .link {
-  color: var(--cr-font);
+  color: var(--cr-primary);
   text-decoration: none;
   position: relative;
   outline: none;
@@ -27,19 +54,13 @@
 }
 
 .link:hover {
-  color: var(--cr-primary);
+  color: var(--cr-success);
 }
 
-.link:focus {
-  box-shadow: 0 0 0 2px var(--cr-focus);
+.active {
+  color: var(--cr-success);
 }
 
-.title {
-  text-decoration: none;
-  font-size: 1.2em;
-  font-weight: normal;
-  line-height: var(--header-height);
-  transition: color 0.2s ease-in-out;
-  margin: 0;
-  user-select: none;
+.active:hover {
+  color: var(--cr-success);
 }
