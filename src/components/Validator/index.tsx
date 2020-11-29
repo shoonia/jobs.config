@@ -25,7 +25,7 @@ export function Validator() {
           <textarea
             ref={area}
             className={s.area}
-            placeholder={'{\n  "jobs": []\n}'}
+            placeholder="{}"
           />
           <Button onClick={onClick}>
           Validate Jobs Config
