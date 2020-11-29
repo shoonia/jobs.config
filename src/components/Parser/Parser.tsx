@@ -2,6 +2,8 @@ import { h } from 'preact';
 
 import s from './styles.css';
 import { parseJSONC } from './parseJSONC';
+import { parseConfig } from './parseConfig';
+import { ErrorMessage } from './ErrorMessage';
 
 export interface Props {
   value: string;
@@ -12,15 +14,21 @@ export function Parser({ value }: Props) {
 
   if (!isValid) {
     return (
-      <div className={s.message}>
-        <pre className={s.error}>
-          {message}
-        </pre>
-      </div>
+      <ErrorMessage>
+        {message}
+      </ErrorMessage>
     );
   }
 
-  console.log(config);
+  const [validConfig, info] = parseConfig(config);
+
+  if (!validConfig) {
+    return (
+      <ErrorMessage>
+        {info}
+      </ErrorMessage>
+    );
+  }
 
   return (
     <div className={s.message}>Valid</div>

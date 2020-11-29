@@ -6,4 +6,8 @@
 .error {
   white-space: break-spaces;
   overflow: hidden;
+  border: 1px solid var(--cr-danger);
+  padding: 15px;
+  border-radius: 8px;
+  background-color: #ffebeb;
 }
