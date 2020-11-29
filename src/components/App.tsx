@@ -2,6 +2,7 @@ import { h, Fragment } from 'preact';
 import { Suspense, lazy } from 'preact/compat';
 
 import { Header } from './Header';
+import { Fallback } from './Fallback';
 import { useLazyRouter } from '../hooks/useLazyRouter';
 
 const Tooltips = lazy(() => {
@@ -18,10 +19,10 @@ export function App() {
   return (
     <>
       <Header />
-      <Suspense fallback={null}>
+      <Suspense fallback={<Fallback />}>
         <Tooltips />
       </Suspense>
-      <Suspense fallback={null}>
+      <Suspense fallback={<Fallback />}>
         <Page />
       </Suspense>
     </>
