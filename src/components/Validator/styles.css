@@ -7,12 +7,19 @@
   overflow-x: auto;
 }
 
+.box {
+  width: 750px;
+}
+
+.form {
+  width: 100%;
+}
+
 .area {
   resize: vertical;
   height: auto;
   width: 100%;
   min-height: 50vh;
-  min-width: 750px;
   overflow-y: scroll;
   outline: none;
   border: 1px solid #b6c1cd;
@@ -22,7 +29,7 @@
 }
 
 @media (max-width: 750px) {
-  .area {
-    min-width: calc(100vw - 30px);
+  .box {
+    max-width: calc(100vw - 30px);
   }
 }

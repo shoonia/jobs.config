@@ -13,6 +13,7 @@
   "dependencies": {
     "cronstrue": "^1.105.0",
     "nanoid": "^3.1.18",
+    "parse-json": "^5.1.0",
     "preact": "^10.5.7",
     "react-hint": "^3.2.0",
     "storeon": "^3.1.1",

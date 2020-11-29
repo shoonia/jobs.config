@@ -1,9 +1,1 @@
-import { h } from 'preact';
-
-import { Validator } from './Validator';
-
-export function ValidatorPage() {
-  return (
-    <Validator />
-  );
-}
+export { Validator as ValidatorPage } from './Validator';

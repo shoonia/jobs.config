@@ -26,7 +26,7 @@
 
 :root {
   --font-fm: 'helveticaneuew10-55roman', 'helvetica neue', helvetica, arial, sans-serif;
-  --font-mono: 'roboto mono', consolas, 'courier new', 'andale mono', 'ubuntu mono', menlo, monaco, monospace;
+  --font-mono: menlo, 'roboto mono', 'ubuntu mono', monaco, 'courier new', courier, monospace;
   --cr-font: #2b5672;
   --cr-extra: #aa4dc8;
   --cr-success: #428359;

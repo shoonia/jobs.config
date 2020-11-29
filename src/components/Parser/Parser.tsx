@@ -1,30 +1,28 @@
 import { h } from 'preact';
 
 import s from './styles.css';
-import { parseJSONC } from './util';
+import { parseJSONC } from './parseJSONC';
 
 export interface Props {
   value: string;
 }
 
 export function Parser({ value }: Props) {
-  const { isValid, message, info } = parseJSONC(value);
+  const { isValid, message, config } = parseJSONC(value);
 
   if (!isValid) {
     return (
       <div className={s.message}>
-        <code>
+        <pre className={s.error}>
           {message}
-        </code>
-        <pre
-          className={s.info}
-          dangerouslySetInnerHTML={{ __html: info }}
-        />
+        </pre>
       </div>
     );
   }
 
+  console.log(config);
+
   return (
-    <div>Valid</div>
+    <div className={s.message}>Valid</div>
   );
 }

@@ -3,6 +3,7 @@
   font-size: 14px;
 }
 
-.info mark {
-  padding: 1px;
+.error {
+  white-space: break-spaces;
+  overflow: hidden;
 }

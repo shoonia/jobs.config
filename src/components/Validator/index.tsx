@@ -16,20 +16,23 @@ export function Validator() {
 
   return (
     <div className={s.page}>
-      <form
-        action="#"
-        onSubmit={preventDefault}
-        className={s.form}
-      >
-        <textarea
-          ref={area}
-          className={s.area}
-        />
-        <Button onClick={onClick}>
+      <div className={s.box}>
+        <form
+          action="#"
+          onSubmit={preventDefault}
+          className={s.form}
+        >
+          <textarea
+            ref={area}
+            className={s.area}
+            placeholder={'{\n  "jobs": []\n}'}
+          />
+          <Button onClick={onClick}>
           Validate Jobs Config
-        </Button>
-      </form>
-      <Parser value={value} />
+          </Button>
+        </form>
+        <Parser value={value} />
+      </div>
     </div>
   );
 }
