@@ -36,7 +36,7 @@ const hasMissingProps = (item: Record<string, unknown>) => {
   return [false];
 };
 
-export const parseConfig = (config: unknown): IParseResult => {
+export const isValidConfig = (config: unknown): IParseResult => {
   if (!isObject(config)) {
     return error(
       'Incorrect type. Expected "object".\n\nThe jobs.config file must contains a JSON object.',

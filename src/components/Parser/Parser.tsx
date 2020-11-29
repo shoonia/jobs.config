@@ -1,7 +1,7 @@
 import { h } from 'preact';
 
 import { parseJSONC } from './parseJSONC';
-import { parseConfig } from './parseConfig';
+import { isValidConfig } from './isValidConfig';
 import { ErrorMessage } from './ErrorMessage';
 import { SuccessMessage } from './SuccessMessage';
 
@@ -20,7 +20,7 @@ export function Parser({ value }: Props) {
     );
   }
 
-  const [validConfig, info] = parseConfig(config);
+  const [validConfig, info] = isValidConfig(config);
 
   if (!validConfig) {
     return (
