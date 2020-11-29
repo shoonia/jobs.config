@@ -20,9 +20,9 @@ export function Parser({ value }: Props) {
     );
   }
 
-  const [validConfig, info] = isValidConfig(config);
+  const [hasError, info] = isValidConfig(config);
 
-  if (!validConfig) {
+  if (hasError) {
     return (
       <ErrorMessage>
         {info}

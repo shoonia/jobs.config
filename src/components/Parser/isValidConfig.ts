@@ -1,12 +1,12 @@
-type IParseResult = [
-  isValid: boolean,
+type TValidResult = [
+  hasError: boolean,
   message?: string,
 ];
 
 const required = ['functionLocation', 'functionName', 'executionConfig'];
 
-const error = (message: string): IParseResult => [
-  false,
+const error = (message: string): TValidResult => [
+  true,
   message,
 ];
 
@@ -14,7 +14,7 @@ const isObject = (val: unknown): val is Readonly<Record<string, unknown>> => {
   return typeof val === 'object' && !Array.isArray(val) && val !== null;
 };
 
-const hasUnknownProps = (item: Record<string, unknown>) => {
+const hasUnknownProps = (item: Record<string, unknown>): TValidResult => {
   for (const key of Object.keys(item)) {
     const notOne = !required.includes(key);
 
@@ -26,7 +26,7 @@ const hasUnknownProps = (item: Record<string, unknown>) => {
   return [false];
 };
 
-const hasMissingProps = (item: Record<string, unknown>) => {
+const hasMissingProps = (item: Record<string, unknown>): TValidResult => {
   for (const key of required) {
     if (!(key in item)) {
       return [true, key];
@@ -36,7 +36,7 @@ const hasMissingProps = (item: Record<string, unknown>) => {
   return [false];
 };
 
-export const isValidConfig = (config: unknown): IParseResult => {
+export const isValidConfig = (config: unknown): TValidResult => {
   if (!isObject(config)) {
     return error(
       'Incorrect type. Expected "object".\n\nThe jobs.config file must contains a JSON object.',
@@ -110,5 +110,5 @@ export const isValidConfig = (config: unknown): IParseResult => {
     }
   }
 
-  return [true];
+  return [false];
 };
