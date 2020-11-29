@@ -3,11 +3,23 @@
   font-size: 14px;
 }
 
-.error {
+.box {
   white-space: break-spaces;
   overflow: hidden;
-  border: 1px solid var(--cr-danger);
   padding: 15px;
   border-radius: 8px;
+}
+
+.error {
+  composes: box;
+  border: 1px solid #8a342f;
+  color: #8a342f;
   background-color: #ffebeb;
+}
+
+.success {
+  composes: box;
+  border: 1px solid var(--cr-success);
+  color: var(--cr-success);
+  background-color: #e0fee0;
 }

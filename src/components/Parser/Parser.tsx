@@ -1,9 +1,9 @@
 import { h } from 'preact';
 
-import s from './styles.css';
 import { parseJSONC } from './parseJSONC';
 import { parseConfig } from './parseConfig';
 import { ErrorMessage } from './ErrorMessage';
+import { SuccessMessage } from './SuccessMessage';
 
 export interface Props {
   value: string;
@@ -31,6 +31,8 @@ export function Parser({ value }: Props) {
   }
 
   return (
-    <div className={s.message}>Valid</div>
+    <SuccessMessage>
+      Valid jobs.config
+    </SuccessMessage>
   );
 }
