@@ -1,0 +1,35 @@
+.page {
+  display: grid;
+  height: var(--body-height);
+  justify-content: center;
+  align-items: baseline;
+  padding: 15px;
+  overflow-x: auto;
+}
+
+.box {
+  width: 750px;
+}
+
+.form {
+  width: 100%;
+}
+
+.area {
+  resize: vertical;
+  height: auto;
+  width: 100%;
+  min-height: 50vh;
+  overflow-y: scroll;
+  outline: none;
+  border: 1px solid #b6c1cd;
+  border-radius: 8px;
+  padding: 15px;
+  margin-bottom: 10px;
+}
+
+@media (max-width: 750px) {
+  .box {
+    max-width: calc(100vw - 30px);
+  }
+}

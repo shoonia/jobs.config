@@ -1,10 +1,8 @@
 import { h, Fragment } from 'preact';
 import { Suspense, lazy } from 'preact/compat';
 
-import { Grid } from './Grid';
 import { Header } from './Header';
-import { Editor } from './Editor';
-import { Preview } from './Preview';
+import { useLazyRouter } from '../hooks/useLazyRouter';
 
 const Tooltips = lazy(() => {
   return import('./Tooltip').then((i) => {
@@ -15,16 +13,17 @@ const Tooltips = lazy(() => {
 });
 
 export function App() {
+  const Page = useLazyRouter();
+
   return (
     <>
       <Header />
       <Suspense fallback={null}>
         <Tooltips />
       </Suspense>
-      <Grid
-        left={<Editor />}
-        right={<Preview />}
-      />
+      <Suspense fallback={null}>
+        <Page />
+      </Suspense>
     </>
   );
 }

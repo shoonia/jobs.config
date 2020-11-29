@@ -16,6 +16,7 @@ interface IUpdateEventData {
   name: string;
   value: string;
 }
+
 export interface IItemsEvents {
   'items/new': never;
   'items/remove': string;
