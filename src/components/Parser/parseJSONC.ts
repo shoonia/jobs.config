@@ -12,6 +12,13 @@ export const parseJSONC = (value: string): TJSONCResult => {
     return { isValid: false };
   }
 
+  if (value.length > 20000) {
+    return {
+      isValid: false,
+      message: 'The file size is too large for the jobs.config.',
+    };
+  }
+
   try {
     const json = stripJsonComments(value);
 
