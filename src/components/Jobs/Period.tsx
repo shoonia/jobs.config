@@ -1,19 +1,12 @@
 import { h } from 'preact';
-import { lazy, Suspense, useState } from 'preact/compat';
+import { Suspense, useState } from 'preact/compat';
 
 import s from './styles.css';
 import { PERIOD } from '../../constants';
 import { PeriodButton } from './PeriodButton';
 import { Time } from './Time';
 import { Cron } from './Cron';
-
-const CronMessage = lazy(() => {
-  return import('./CronMessage').then((i) => {
-    return {
-      default: i.CronMessage,
-    };
-  });
-});
+import { CronTrue } from '../CronTrue';
 
 interface Props {
   name: string;
@@ -28,17 +21,17 @@ export function Period({
   cronExpression,
   period,
 }: Props) {
-  const [error, setValidity] = useState<string>('');
+  const [isError, setValidity] = useState<boolean>(false);
 
   const isCron = (period === PERIOD.CRON);
 
   const inputElement = isCron
-    ? <Cron value={cronExpression} error={error} />
+    ? <Cron value={cronExpression} error={isError} />
     : <Time value={time} />;
 
   const cronMessage = isCron && (
     <Suspense fallback={null}>
-      <CronMessage
+      <CronTrue
         value={cronExpression}
         setValidity={setValidity}
       />
@@ -71,7 +64,9 @@ export function Period({
             period={period}
           />
         </div>
-        {cronMessage}
+        <span className={(isError && s.error)}>
+          {cronMessage}
+        </span>
       </div>
     </fieldset>
   );

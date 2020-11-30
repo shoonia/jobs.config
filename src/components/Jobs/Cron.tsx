@@ -6,14 +6,14 @@ import { Label } from './Label';
 
 interface Props {
   value: string;
-  error: string;
+  error: boolean;
 }
 
 export function Cron({ value, error }: Props) {
   const ref = useRef<HTMLInputElement>();
 
   useEffect(() => {
-    ref.current.setCustomValidity(error);
+    ref.current.setCustomValidity(error ? 'error': '');
   }, [error]);
 
   return (
