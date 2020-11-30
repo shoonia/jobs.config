@@ -3,7 +3,9 @@ type TValidResult = [
   message?: string,
 ];
 
-const required = ['functionLocation', 'functionName', 'executionConfig'];
+const itemRequired = ['functionLocation', 'functionName', 'executionConfig'];
+const itemAll = [...itemRequired, 'description'];
+const executionConfigAll = ['cronExpression', 'time', 'dayOfWeek','dateOfMonth'];
 
 const error = (message: string): TValidResult => [
   true,
@@ -14,11 +16,11 @@ const isObject = (val: unknown): val is Readonly<Record<string, unknown>> => {
   return typeof val === 'object' && !Array.isArray(val) && val !== null;
 };
 
-const hasUnknownProps = (item: Record<string, unknown>): TValidResult => {
+const hasUnknownProps = (item: Record<string, unknown>, list: string[]): TValidResult => {
   for (const key of Object.keys(item)) {
-    const notOne = !required.includes(key);
+    const notOne = !list.includes(key);
 
-    if (notOne && key !== 'description') {
+    if (notOne) {
       return [true, key];
     }
   }
@@ -26,8 +28,8 @@ const hasUnknownProps = (item: Record<string, unknown>): TValidResult => {
   return [false];
 };
 
-const hasMissingProps = (item: Record<string, unknown>): TValidResult => {
-  for (const key of required) {
+const hasMissingProps = (item: Record<string, unknown>, list: string[]): TValidResult => {
+  for (const key of list) {
     if (!(key in item)) {
       return [true, key];
     }
@@ -82,18 +84,28 @@ export const isValidConfig = (config: unknown): TValidResult => {
 
   if (!jobs.every(isObject)) {
     return error(
-      'Incorrect type. Expected "object"\n\nThe "jobs" array must contain only objects, each of which represents a scheduled job.',
+      'Incorrect type. Expected "object".\n\nThe "jobs" array must contain only objects, each of which represents a scheduled job.',
     );
   }
 
   let i = len;
 
   while (0 < i--) {
-    const [invalid, key] = hasUnknownProps(jobs[i]);
+    const item = jobs[i];
 
-    if (invalid) {
+    const [hasUnknown, unknownKey] = hasUnknownProps(item, itemAll);
+
+    if (hasUnknown) {
       return error(
-        `Unknown property "${key}" at "jobs[${i}].${key}"\n\nEach scheduled job object must contain only the "functionLocation", "functionName", "description" and "executionConfig"`,
+        `Unknown property "${unknownKey}" at "jobs[${i}]".\n\nAllowed one of "${itemAll.join(', ')}"`,
+      );
+    }
+
+    const [hasMissing, missingkey] = hasMissingProps(item, itemRequired);
+
+    if (hasMissing) {
+      return error(
+        `Missing property "${missingkey}" at "jobs[${i}]"\n\nEach scheduled job object must contain the required fields "${itemRequired.join(', ')}".`,
       );
     }
   }
@@ -101,11 +113,19 @@ export const isValidConfig = (config: unknown): TValidResult => {
   i = len;
 
   while (0 < i--) {
-    const [invalid, key] = hasMissingProps(jobs[i]);
+    const { executionConfig } = jobs[i];
 
-    if (invalid) {
+    if (!isObject(executionConfig)) {
       return error(
-        `Missing property "${key}" at "jobs[${i}]"\n\nEach scheduled job object must contain the "functionLocation", "functionName" and "executionConfig" required fields.`,
+        `Incorrect type of property "jobs[${i}].executionConfig". Expected "object".`,
+      );
+    }
+
+    const [hasUnknown, unknownKey] = hasUnknownProps(executionConfig, executionConfigAll);
+
+    if (hasUnknown) {
+      return error(
+        `Unknown property "${unknownKey}" in "jobs[${i}].executionConfig".\n\nAllowed one of "${executionConfigAll.join(', ')}"`,
       );
     }
   }
