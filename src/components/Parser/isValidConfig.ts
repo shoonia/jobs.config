@@ -39,6 +39,8 @@ const hasMissingProps = (item: Record<string, unknown>, list: string[]): TValidR
 };
 
 export const isValidConfig = (config: unknown): TValidResult => {
+  const separator = '", "';
+
   if (!isObject(config)) {
     return error(
       'Incorrect type. Expected "object".\n\nThe jobs.config file must contains a JSON object.',
@@ -97,7 +99,7 @@ export const isValidConfig = (config: unknown): TValidResult => {
 
     if (hasUnknown) {
       return error(
-        `Unknown property "${unknownKey}" at "jobs[${i}]".\n\nAllowed one of "${itemAll.join(', ')}"`,
+        `Unknown property "${unknownKey}" at "jobs[${i}]".\n\nAllowed one of "${itemAll.join(separator)}"`,
       );
     }
 
@@ -105,7 +107,7 @@ export const isValidConfig = (config: unknown): TValidResult => {
 
     if (hasMissing) {
       return error(
-        `Missing property "${missingkey}" at "jobs[${i}]"\n\nEach scheduled job object must contain the required fields "${itemRequired.join(', ')}".`,
+        `Missing property "${missingkey}" at "jobs[${i}]"\n\nEach scheduled job object must contain the required fields "${itemRequired.join(separator)}".`,
       );
     }
   }
@@ -125,7 +127,7 @@ export const isValidConfig = (config: unknown): TValidResult => {
 
     if (hasUnknown) {
       return error(
-        `Unknown property "${unknownKey}" in "jobs[${i}].executionConfig".\n\nAllowed one of "${executionConfigAll.join(', ')}"`,
+        `Unknown property "${unknownKey}" in "jobs[${i}].executionConfig".\n\nAllowed one of "${executionConfigAll.join(separator)}"`,
       );
     }
   }
