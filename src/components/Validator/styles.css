@@ -3,7 +3,7 @@
   height: var(--body-height);
   justify-content: center;
   align-items: baseline;
-  padding: 15px;
+  padding: 16px;
   overflow-x: auto;
 }
 
@@ -24,7 +24,7 @@
   outline: none;
   border: 1px solid #b6c1cd;
   border-radius: 8px;
-  padding: 15px;
+  padding: 16px;
   margin-bottom: 10px;
 }
 
