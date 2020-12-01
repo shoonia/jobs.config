@@ -10,7 +10,7 @@ type TValidResult = [
 
 const itemRequired = ['functionLocation', 'functionName', 'executionConfig'];
 const itemAll = [...itemRequired, 'description'];
-const executionConfigAll = ['cronExpression', 'time', 'dayOfWeek','dateOfMonth'];
+const execConfigAll = ['cronExpression', 'time', 'dayOfWeek','dateOfMonth'];
 
 const error = (message: ComponentChildren): TValidResult => [
   true,
@@ -69,7 +69,7 @@ export const isValidConfig = (config: unknown): TValidResult => {
   const keys = Object.keys(config);
 
   if (keys.length > 1) {
-    const names = keys.filter((i) => i !== 'jobs').join(', ');
+    const names = keys.filter((i) => i !== 'jobs').join(separator);
 
     return error(
       `Unknown property "${names}".\n\nThe jobs object must contains one top-level key named "jobs".`,
@@ -122,31 +122,31 @@ export const isValidConfig = (config: unknown): TValidResult => {
       );
     }
 
-    const { executionConfig } = item;
+    const execConfig = item.executionConfig;
 
-    if (!isObject(executionConfig)) {
+    if (!isObject(execConfig)) {
       return error(
         `Incorrect type of property "jobs[${i}].executionConfig". Expected "object".`,
       );
     }
 
-    const [hasUnknown1, unknownKey1] = hasUnknownProps(executionConfig, executionConfigAll);
+    const [hasUnknown1, unknownKey1] = hasUnknownProps(execConfig, execConfigAll);
     if (hasUnknown1) {
       return error(
-        `Unknown property "${unknownKey1}" in "jobs[${i}].executionConfig".\n\nAllowed one of "${executionConfigAll.join(separator)}"`,
+        `Unknown property "${unknownKey1}" in "jobs[${i}].executionConfig".\n\nAllowed one of "${execConfigAll.join(separator)}"`,
       );
     }
 
-    if ('cronExpression' in executionConfig) {
-      const { cronExpression } = executionConfig;
+    if ('cronExpression' in execConfig) {
+      const cronExp = execConfig.cronExpression;
 
-      if (isString(cronExpression)) {
-        if (isInvalidCron(cronExpression)) {
+      if (isString(cronExp)) {
+        if (isInvalidCron(cronExp)) {
           return error(
             <>
               <div>{`Invalid "cronExpression" at "jobs[${i}].executionConfig"\n\n`}</div>
               <p>
-                <CronTrue value={cronExpression} setValidity={() => {/**/}} />
+                <CronTrue value={cronExp} setValidity={() => {/**/}} />
               </p>
               <hr/>
               <p>
