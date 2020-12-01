@@ -9,9 +9,22 @@ type TValidResult = [
   message?: ComponentChildren,
 ];
 
-const itemRequired = ['functionLocation', 'functionName', 'executionConfig'];
-const itemAll = [...itemRequired, 'description'];
-const execConfigAll = ['cronExpression', 'time', 'dayOfWeek', 'dateInMonth'];
+const $jobs = 'jobs';
+const $functionLocation = 'functionLocation';
+const $functionName = 'functionName';
+const $description = 'description';
+const $executionConfig = 'executionConfig';
+const $cronExpression = 'cronExpression';
+const $time = 'time';
+const $dayOfWeek = 'dayOfWeek';
+const $dateInMonth = 'dateInMonth';
+
+const $_ffe = [$functionLocation, $functionName, $executionConfig];
+const $_ffed = [...$_ffe, $description];
+
+const $$_wm = [$dayOfWeek, $dateInMonth];
+const $$_twm = [$time, ...$$_wm];
+const $$_ctwm = [$cronExpression, ...$$_twm];
 
 const error = (message: ComponentChildren): TValidResult => [
   true,
@@ -72,7 +85,7 @@ export const isValidConfig = (config: unknown): TValidResult => {
     );
   }
 
-  if (!('jobs' in config)) {
+  if (!($jobs in config)) {
     return error(
       <>
         <p>{'Missing property "jobs".'}</p>
@@ -84,7 +97,7 @@ export const isValidConfig = (config: unknown): TValidResult => {
   const keys = Object.keys(config);
 
   if (keys.length > 1) {
-    const names = keys.filter((i) => i !== 'jobs').join(separator);
+    const names = keys.filter((i) => i !== $jobs).join(separator);
 
     return error(
       <>
@@ -103,8 +116,8 @@ export const isValidConfig = (config: unknown): TValidResult => {
     );
   }
 
-  const { jobs } = config;
-  const len = jobs.length;
+  const JOBS = config.jobs;
+  const len = JOBS.length;
 
   if (len > 20) {
     return error(
@@ -121,7 +134,7 @@ export const isValidConfig = (config: unknown): TValidResult => {
     );
   }
 
-  if (!jobs.every(isObject)) {
+  if (!JOBS.every(isObject)) {
     return error(
       <>
         <p>{'Incorrect type. Expected "object."'}</p>
@@ -133,66 +146,69 @@ export const isValidConfig = (config: unknown): TValidResult => {
   let i = len;
 
   while (0 < i--) {
-    const item = jobs[i];
+    const ITEM = JOBS[i];
 
-    const [hasUnknown, unknownKey] = hasUnknownProps(item, itemAll);
+    const [hasUnknown, unknownKey] = hasUnknownProps(ITEM, $_ffed);
     if (hasUnknown) {
       return error(
         <>
           <p>{`Unknown property "${unknownKey}" at "jobs[${i}]".`}</p>
-          <p>{`Allowed one of "${itemAll.join(separator)}"`}</p>
+          <p>{`Allowed one of "${$_ffed.join(separator)}"`}</p>
         </>,
       );
     }
 
-    const [hasMissing, missingkey] = hasMissingProps(item, itemRequired);
+    const [hasMissing, missingkey] = hasMissingProps(ITEM, $_ffe);
     if (hasMissing) {
       return error(
         <>
           <p>{`Missing property "${missingkey}" at "jobs[${i}]"`}</p>
-          <p>{`Each scheduled job object must contain the required fields "${itemRequired.join(separator)}".`}</p>
+          <p>{`Each scheduled job object must contain the required fields "${$_ffe.join(separator)}".`}</p>
         </>,
       );
     }
 
-    if ('description' in item) {
-      if (!isString(item.description)) {
+    if ($description in ITEM) {
+      if (!isString(ITEM.description)) {
         return error(
           <p>{`Incorrect type of property "description" at "jobs[${i}]". Expected "string".`}</p>,
         );
       }
     }
 
-    const execConfig = item.executionConfig;
+    // TODO: functionLocation
+    // TODO: functionName
 
-    if (!isObject(execConfig)) {
+    const EXEC_CONFIG = ITEM.executionConfig;
+
+    if (!isObject(EXEC_CONFIG)) {
       return error(
         <p>{`Incorrect type of property "executionConfig" at "jobs[${i}]". Expected "object".`}</p>,
       );
     }
 
-    const [hasUnknown1, unknownKey1] = hasUnknownProps(execConfig, execConfigAll);
+    const [hasUnknown1, unknownKey1] = hasUnknownProps(EXEC_CONFIG, $$_ctwm);
     if (hasUnknown1) {
       return error(
         <>
           <p>{`Unknown property "${unknownKey1}" in "jobs[${i}].executionConfig".`}</p>
-          <p>{`Allowed one of "${execConfigAll.join(separator)}"`}</p>
+          <p>{`Allowed one of "${$$_ctwm.join(separator)}"`}</p>
         </>,
       );
     }
 
-    if ('cronExpression' in execConfig) {
-      const cronExp = execConfig.cronExpression;
+    if ($cronExpression in EXEC_CONFIG) {
+      const CRON_EXP = EXEC_CONFIG.cronExpression;
 
-      if (isString(cronExp)) {
-        if (isInvalidCron(cronExp)) {
+      if (isString(CRON_EXP)) {
+        if (isInvalidCron(CRON_EXP)) {
           return error(
             <>
               <p>
                 {`Invalid "cronExpression" at "jobs[${i}].executionConfig"\n\n`}
               </p>
               <p>
-                <CronTrue value={cronExp} setValidity={() => {/**/}} />
+                <CronTrue value={CRON_EXP} setValidity={() => {/**/}} />
               </p>
               <p>
                 <em>
@@ -208,20 +224,20 @@ export const isValidConfig = (config: unknown): TValidResult => {
           <p>{`Incorrect type of property "cronExpression" at "jobs[${i}].executionConfig". Expected "string".`}</p>,
         );
       }
-    } else if ('time' in execConfig) {
-      const time = execConfig.time;
+    } else if ($time in EXEC_CONFIG) {
+      const TIME = EXEC_CONFIG.time;
 
-      if (!isString(time)) {
+      if (!isString(TIME)) {
         return error(
           <p>{`Incorrect type of property "time" at "jobs[${i}].executionConfig". Expected "string".`}</p>,
         );
       }
 
-      if (!isUTCTime(time)) {
+      if (!isUTCTime(TIME)) {
         return error(
           <>
             <p>{`Invalid "time" at "jobs[${i}].executionConfig".`}</p>
-            <p>{`Error: "${time}". The time is specified as UTC time in HH:MM format.`}</p>
+            <p>{`Error: "${TIME}". The time is specified as UTC time in HH:MM format.`}</p>
           </>,
         );
       }
@@ -235,8 +251,8 @@ export const isValidConfig = (config: unknown): TValidResult => {
       );
     }
 
-    if ('dayOfWeek' in execConfig) {
-      const DOW = execConfig.dayOfWeek;
+    if ($dayOfWeek in EXEC_CONFIG) {
+      const DOW = EXEC_CONFIG.dayOfWeek;
 
       if (!isString(DOW)) {
         return error(
@@ -254,8 +270,8 @@ export const isValidConfig = (config: unknown): TValidResult => {
       }
     }
 
-    if ('dateInMonth' in execConfig) {
-      const DIM = execConfig.dateInMonth;
+    if ($dateInMonth in EXEC_CONFIG) {
+      const DIM = EXEC_CONFIG.dateInMonth;
 
       if (!isNumber(DIM)) {
         return error(
@@ -273,16 +289,14 @@ export const isValidConfig = (config: unknown): TValidResult => {
       }
     }
 
-    const twm = ['time', 'dayOfWeek','dateInMonth'];
-
     if (
-      ('cronExpression' in execConfig) &&
-      (twm.some((i) => i in execConfig))
+      ($cronExpression in EXEC_CONFIG) &&
+      ($$_twm.some((i) => i in EXEC_CONFIG))
     ) {
       return error(
         <>
           <p>{`Mutual exclusion property at "jobs[${i}].executionConfig".`}</p>
-          <p>{`Error: "cronExpression" omit all of "${twm.join(separator)}" properties.`}</p>
+          <p>{`Error: "cronExpression" omit all of "${$$_twm.join(separator)}" properties.`}</p>
           <p>
             <em>
               {'When using a cron expression to specify when a job runs, the "executionConfig" object contains a single property, named "cronExpression", whose value is a valid cron expression.'}
@@ -292,9 +306,7 @@ export const isValidConfig = (config: unknown): TValidResult => {
       );
     }
 
-    const wm = ['dayOfWeek', 'dateInMonth'];
-
-    if (wm.every((i) => i in execConfig)) {
+    if ($$_wm.every((i) => i in EXEC_CONFIG)) {
       return error(
         <>
           <p>{`Mutual exclusion property at "jobs[${i}].executionConfig".`}</p>
