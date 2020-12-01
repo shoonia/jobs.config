@@ -10,9 +10,9 @@ export interface Props {
 }
 
 export function Parser({ value }: Props) {
-  const { isValid, message, config } = parseJSONC(value);
+  const [isValid, message, config] = parseJSONC(value);
 
-  if (!(isValid || typeof message === 'string')) {
+  if (!isValid && typeof message !== 'string') {
     return null;
   }
 
