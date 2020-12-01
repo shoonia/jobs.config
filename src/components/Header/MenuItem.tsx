@@ -12,16 +12,21 @@ interface Props {
 }
 
 export function MenuItem({ children, path }: Props) {
-  const { path: currentPath } = useStoreon<TState>('path');
+  const i = useStoreon<TState>('path');
+  const isActive = i.path === path;
 
   const className = classNames([
     s.link,
-    path === currentPath && s.active,
+    isActive && s.active,
   ]);
 
   return (
     <li className={s.item}>
-      <a href={`#${path}`} className={className}>
+      <a
+        href={`#${path}`}
+        className={className}
+        aria-current={isActive ? 'page' : null}
+      >
         {children}
       </a>
     </li>
