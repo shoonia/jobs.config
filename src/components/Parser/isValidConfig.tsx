@@ -21,6 +21,10 @@ const isInvalidCron = (val: string) => {
   return !isValidCron(val, { seconds: false });
 };
 
+const isUTCTime = (val: string) => {
+  return /^([01]\d|2[0-3]):([0-5]\d)$/.test(val);
+};
+
 const isObject = (val: unknown): val is Readonly<Record<string, unknown>> => {
   return typeof val === 'object' && !Array.isArray(val) && val !== null;
 };
@@ -170,7 +174,12 @@ export const isValidConfig = (config: unknown): TValidResult => {
         );
       }
 
-      // TODO: The time is specified as UTC time in HH:MM format.
+      if (!isUTCTime(t)) {
+        return error(
+          `Invalid "time" at "jobs[${i}].executionConfig".\n\nError: "${t}". The time is specified as UTC time in HH:MM format.`,
+        );
+      }
+
     } else {
       return error(
         `Missing the time of the job runs at "jobs[${i}].executionConfig".\n\nThe "executionConfig" object must contain one of the properties "time", "cronExpression".`,
