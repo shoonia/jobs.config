@@ -2,6 +2,7 @@ import { ComponentChildren, h, Fragment } from 'preact';
 import { isValidCron } from 'cron-validator';
 
 import { CronTrue } from '../CronTrue';
+import { weekList } from '../../util/week';
 
 type TValidResult = [
   hasError: boolean,
@@ -10,7 +11,7 @@ type TValidResult = [
 
 const itemRequired = ['functionLocation', 'functionName', 'executionConfig'];
 const itemAll = [...itemRequired, 'description'];
-const execConfigAll = ['cronExpression', 'time', 'dayOfWeek','dateOfMonth'];
+const execConfigAll = ['cronExpression', 'time', 'dayOfWeek', 'dateInMonth'];
 
 const error = (message: ComponentChildren): TValidResult => [
   true,
@@ -31,6 +32,10 @@ const isObject = (val: unknown): val is Readonly<Record<string, unknown>> => {
 
 const isString = (val: unknown): val is string => {
   return typeof val === 'string';
+};
+
+const isNumber = (val: unknown): val is number => {
+  return typeof val === 'number';
 };
 
 const hasUnknownProps = (item: Record<string, unknown>, list: string[]): TValidResult => {
@@ -225,7 +230,75 @@ export const isValidConfig = (config: unknown): TValidResult => {
       return error(
         <>
           <p>{`Missing the time of the job runs at "jobs[${i}].executionConfig".`}</p>
-          <p>{'The "executionConfig" object must contain one of the properties "time", "cronExpression".'}</p>
+          <p>{'The "executionConfig" object must contain one of "time", "cronExpression" properties.'}</p>
+        </>,
+      );
+    }
+
+    if ('dayOfWeek' in execConfig) {
+      const DOW = execConfig.dayOfWeek;
+
+      if (!isString(DOW)) {
+        return error(
+          <p>{`Incorrect type of property "dayOfWeek" at "jobs[${i}].executionConfig". Expected "string".`}</p>,
+        );
+      }
+
+      if (!weekList.some((i) => i === DOW)) {
+        return error(
+          <>
+            <p>{`Incorrect value of "dayOfWeek" at "jobs[${i}].executionConfig".`}</p>
+            <p>{`Error: unknown value "${DOW}". Allowed one of "${weekList.join(separator)}"`}</p>
+          </>,
+        );
+      }
+    }
+
+    if ('dateInMonth' in execConfig) {
+      const DIM = execConfig.dateInMonth;
+
+      if (!isNumber(DIM)) {
+        return error(
+          <p>{`Incorrect type of property "dateInMonth" at "jobs[${i}].executionConfig". Expected "number".`}</p>,
+        );
+      }
+
+      if (!Number.isInteger(DIM) || DIM < 1 || DIM > 31) {
+        return error(
+          <>
+            <p>{`Invalid "dateInMonth" at "jobs[${i}].executionConfig".`}</p>
+            <p>{'The value of the "dateInMonth" property must be a number between 1 and 31.'}</p>
+          </>,
+        );
+      }
+    }
+
+    const twm = ['time', 'dayOfWeek','dateInMonth'];
+
+    if (
+      ('cronExpression' in execConfig) &&
+      (twm.some((i) => i in execConfig))
+    ) {
+      return error(
+        <>
+          <p>{`Mutual exclusion property at "jobs[${i}].executionConfig".`}</p>
+          <p>{`Error: "cronExpression" omit all of "${twm.join(separator)}" properties.`}</p>
+          <p>
+            <em>
+              {'When using a cron expression to specify when a job runs, the "executionConfig" object contains a single property, named "cronExpression", whose value is a valid cron expression.'}
+            </em>
+          </p>
+        </>,
+      );
+    }
+
+    const wm = ['dayOfWeek', 'dateInMonth'];
+
+    if (wm.every((i) => i in execConfig)) {
+      return error(
+        <>
+          <p>{`Mutual exclusion property at "jobs[${i}].executionConfig".`}</p>
+          <p>{'Error: "dateInMonth" omit the "dayOfWeek" property.'}</p>
         </>,
       );
     }
