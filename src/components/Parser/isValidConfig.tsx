@@ -161,6 +161,20 @@ export const isValidConfig = (config: unknown): TValidResult => {
           `Incorrect type of property "cronExpression" at "jobs[${i}].executionConfig". Expected "string".`,
         );
       }
+    } else if ('time' in execConfig) {
+      const t = execConfig.time;
+
+      if (!isString(t)) {
+        return error(
+          `Incorrect type of property "time" at "jobs[${i}].executionConfig". Expected "string".`,
+        );
+      }
+
+      // TODO: The time is specified as UTC time in HH:MM format.
+    } else {
+      return error(
+        `Missing the time of the job runs at "jobs[${i}].executionConfig".\n\nThe "executionConfig" object must contain one of the properties "time", "cronExpression".`,
+      );
     }
   }
 
