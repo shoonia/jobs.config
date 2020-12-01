@@ -126,11 +126,19 @@ export const isValidConfig = (config: unknown): TValidResult => {
       );
     }
 
+    if ('description' in item) {
+      if (!isString(item.description)) {
+        return error(
+          `Incorrect type of property "description" at "jobs[${i}]". Expected "string".`,
+        );
+      }
+    }
+
     const execConfig = item.executionConfig;
 
     if (!isObject(execConfig)) {
       return error(
-        `Incorrect type of property "jobs[${i}].executionConfig". Expected "object".`,
+        `Incorrect type of property "executionConfig" at "jobs[${i}]". Expected "object".`,
       );
     }
 
