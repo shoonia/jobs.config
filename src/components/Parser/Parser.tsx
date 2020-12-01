@@ -12,6 +12,10 @@ export interface Props {
 export function Parser({ value }: Props) {
   const { isValid, message, config } = parseJSONC(value);
 
+  if (!(isValid || typeof message === 'string')) {
+    return null;
+  }
+
   if (!isValid) {
     return (
       <ErrorMessage>
@@ -20,12 +24,12 @@ export function Parser({ value }: Props) {
     );
   }
 
-  const [hasError, info] = isValidConfig(config);
+  const [hasError, Error] = isValidConfig(config);
 
   if (hasError) {
     return (
       <ErrorMessage>
-        {info}
+        {Error}
       </ErrorMessage>
     );
   }

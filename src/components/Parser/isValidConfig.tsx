@@ -1,19 +1,32 @@
+import { ComponentChildren, h, Fragment } from 'preact';
+import { isValidCron } from 'cron-validator';
+
+import { CronTrue } from '../CronTrue';
+
 type TValidResult = [
   hasError: boolean,
-  message?: string,
+  message?: ComponentChildren,
 ];
 
 const itemRequired = ['functionLocation', 'functionName', 'executionConfig'];
 const itemAll = [...itemRequired, 'description'];
 const executionConfigAll = ['cronExpression', 'time', 'dayOfWeek','dateOfMonth'];
 
-const error = (message: string): TValidResult => [
+const error = (message: ComponentChildren): TValidResult => [
   true,
   message,
 ];
 
+const isInvalidCron = (val: string) => {
+  return !isValidCron(val, { seconds: false });
+};
+
 const isObject = (val: unknown): val is Readonly<Record<string, unknown>> => {
   return typeof val === 'object' && !Array.isArray(val) && val !== null;
+};
+
+const isString = (val: unknown): val is string => {
+  return typeof val === 'string';
 };
 
 const hasUnknownProps = (item: Record<string, unknown>, list: string[]): TValidResult => {
@@ -96,7 +109,6 @@ export const isValidConfig = (config: unknown): TValidResult => {
     const item = jobs[i];
 
     const [hasUnknown, unknownKey] = hasUnknownProps(item, itemAll);
-
     if (hasUnknown) {
       return error(
         `Unknown property "${unknownKey}" at "jobs[${i}]".\n\nAllowed one of "${itemAll.join(separator)}"`,
@@ -104,18 +116,13 @@ export const isValidConfig = (config: unknown): TValidResult => {
     }
 
     const [hasMissing, missingkey] = hasMissingProps(item, itemRequired);
-
     if (hasMissing) {
       return error(
         `Missing property "${missingkey}" at "jobs[${i}]"\n\nEach scheduled job object must contain the required fields "${itemRequired.join(separator)}".`,
       );
     }
-  }
 
-  i = len;
-
-  while (0 < i--) {
-    const { executionConfig } = jobs[i];
+    const { executionConfig } = item;
 
     if (!isObject(executionConfig)) {
       return error(
@@ -123,12 +130,37 @@ export const isValidConfig = (config: unknown): TValidResult => {
       );
     }
 
-    const [hasUnknown, unknownKey] = hasUnknownProps(executionConfig, executionConfigAll);
-
-    if (hasUnknown) {
+    const [hasUnknown1, unknownKey1] = hasUnknownProps(executionConfig, executionConfigAll);
+    if (hasUnknown1) {
       return error(
-        `Unknown property "${unknownKey}" in "jobs[${i}].executionConfig".\n\nAllowed one of "${executionConfigAll.join(separator)}"`,
+        `Unknown property "${unknownKey1}" in "jobs[${i}].executionConfig".\n\nAllowed one of "${executionConfigAll.join(separator)}"`,
       );
+    }
+
+    if ('cronExpression' in executionConfig) {
+      const { cronExpression } = executionConfig;
+
+      if (isString(cronExpression)) {
+        if (isInvalidCron(cronExpression)) {
+          return error(
+            <>
+              <div>{`Invalid "cronExpression" at "jobs[${i}].executionConfig"\n\n`}</div>
+              <p>
+                <CronTrue value={cronExpression} setValidity={() => {/**/}} />
+              </p>
+              <hr/>
+              <p>
+                You can schedule your job to run at intervals as short as one hour apart, but not shorter.
+                If you define your job to run more frequently, the job will be ignored.
+              </p>
+            </>,
+          );
+        }
+      } else {
+        return error(
+          `Incorrect type of property "cronExpression" at "jobs[${i}].executionConfig". Expected "string".`,
+        );
+      }
     }
   }
 
