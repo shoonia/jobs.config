@@ -1,7 +1,7 @@
 {
   "name": "jobs.config",
   "description": "Scheduling recurring jobs.config builder for Corvid by Wix",
-  "version": "1.0.0",
+  "version": "2.0.0",
   "main": "src/index.html",
   "scripts": {
     "start": "parcel src/index.html --open --no-cache --no-autoinstall",
@@ -13,7 +13,7 @@
   "dependencies": {
     "cron-validator": "^1.2.0",
     "cronstrue": "^1.105.0",
-    "nanoid": "^3.1.18",
+    "nanoid": "^3.1.19",
     "parse-json": "^5.1.0",
     "preact": "^10.5.7",
     "react-hint": "^3.2.0",
