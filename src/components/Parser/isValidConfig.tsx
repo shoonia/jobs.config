@@ -60,13 +60,19 @@ export const isValidConfig = (config: unknown): TValidResult => {
 
   if (!isObject(config)) {
     return error(
-      'Incorrect type. Expected "object".\n\nThe jobs.config file must contains a JSON object.',
+      <>
+        <p>{'Incorrect type. Expected "object".'}</p>
+        <p>{'The jobs.config file must contains a JSON object.'}</p>
+      </>,
     );
   }
 
   if (!('jobs' in config)) {
     return error(
-      'Missing property "jobs".\n\nThe jobs object must contains one top-level key named "jobs".',
+      <>
+        <p>{'Missing property "jobs".'}</p>
+        <p>{'The jobs object must contains one top-level key named "jobs".'}</p>
+      </>,
     );
   }
 
@@ -76,13 +82,19 @@ export const isValidConfig = (config: unknown): TValidResult => {
     const names = keys.filter((i) => i !== 'jobs').join(separator);
 
     return error(
-      `Unknown property "${names}".\n\nThe jobs object must contains one top-level key named "jobs".`,
+      <>
+        <p>{`Unknown property "${names}".`}</p>
+        <p>{'The jobs object must contains one top-level key named "jobs".'}</p>
+      </>,
     );
   }
 
   if (!Array.isArray(config.jobs)) {
     return error(
-      'Incorrect type. Expected "array".\n\nThe top-level key "jobs" must be an array.',
+      <>
+        <p>{'Incorrect type. Expected "array".'}</p>
+        <p>{'The top-level key "jobs" must be an array.'}</p>
+      </>,
     );
   }
 
@@ -91,19 +103,25 @@ export const isValidConfig = (config: unknown): TValidResult => {
 
   if (len > 20) {
     return error(
-      `Too many scheduled jobs.\n\nYou can configure up to 20 jobs, exist ${len}`,
+      <>
+        <p>{`Too many scheduled jobs. (${len})`}</p>
+        <p>You can configure up to 20 jobs.</p>
+      </>,
     );
   }
 
   if (len < 1) {
     return error(
-      'No scheduled jobs.',
+      <p>No scheduled jobs.</p>,
     );
   }
 
   if (!jobs.every(isObject)) {
     return error(
-      'Incorrect type. Expected "object".\n\nThe "jobs" array must contain only objects, each of which represents a scheduled job.',
+      <>
+        <p>{'Incorrect type. Expected "object."'}</p>
+        <p>{'The "jobs" array must contain only objects, each of which represents a scheduled job.'}</p>
+      </>,
     );
   }
 
@@ -115,21 +133,27 @@ export const isValidConfig = (config: unknown): TValidResult => {
     const [hasUnknown, unknownKey] = hasUnknownProps(item, itemAll);
     if (hasUnknown) {
       return error(
-        `Unknown property "${unknownKey}" at "jobs[${i}]".\n\nAllowed one of "${itemAll.join(separator)}"`,
+        <>
+          <p>{`Unknown property "${unknownKey}" at "jobs[${i}]".`}</p>
+          <p>{`Allowed one of "${itemAll.join(separator)}"`}</p>
+        </>,
       );
     }
 
     const [hasMissing, missingkey] = hasMissingProps(item, itemRequired);
     if (hasMissing) {
       return error(
-        `Missing property "${missingkey}" at "jobs[${i}]"\n\nEach scheduled job object must contain the required fields "${itemRequired.join(separator)}".`,
+        <>
+          <p>{`Missing property "${missingkey}" at "jobs[${i}]"`}</p>
+          <p>{`Each scheduled job object must contain the required fields "${itemRequired.join(separator)}".`}</p>
+        </>,
       );
     }
 
     if ('description' in item) {
       if (!isString(item.description)) {
         return error(
-          `Incorrect type of property "description" at "jobs[${i}]". Expected "string".`,
+          <p>{`Incorrect type of property "description" at "jobs[${i}]". Expected "string".`}</p>,
         );
       }
     }
@@ -138,14 +162,17 @@ export const isValidConfig = (config: unknown): TValidResult => {
 
     if (!isObject(execConfig)) {
       return error(
-        `Incorrect type of property "executionConfig" at "jobs[${i}]". Expected "object".`,
+        <p>{`Incorrect type of property "executionConfig" at "jobs[${i}]". Expected "object".`}</p>,
       );
     }
 
     const [hasUnknown1, unknownKey1] = hasUnknownProps(execConfig, execConfigAll);
     if (hasUnknown1) {
       return error(
-        `Unknown property "${unknownKey1}" in "jobs[${i}].executionConfig".\n\nAllowed one of "${execConfigAll.join(separator)}"`,
+        <>
+          <p>{`Unknown property "${unknownKey1}" in "jobs[${i}].executionConfig".`}</p>
+          <p>{`Allowed one of "${execConfigAll.join(separator)}"`}</p>
+        </>,
       );
     }
 
@@ -156,41 +183,50 @@ export const isValidConfig = (config: unknown): TValidResult => {
         if (isInvalidCron(cronExp)) {
           return error(
             <>
-              <div>{`Invalid "cronExpression" at "jobs[${i}].executionConfig"\n\n`}</div>
+              <p>
+                {`Invalid "cronExpression" at "jobs[${i}].executionConfig"\n\n`}
+              </p>
               <p>
                 <CronTrue value={cronExp} setValidity={() => {/**/}} />
               </p>
-              <hr/>
               <p>
-                You can schedule your job to run at intervals as short as one hour apart, but not shorter.
-                If you define your job to run more frequently, the job will be ignored.
+                <em>
+                  You can schedule your job to run at intervals as short as one hour apart, but not shorter.
+                  If you define your job to run more frequently, the job will be ignored.
+                </em>
               </p>
             </>,
           );
         }
       } else {
         return error(
-          `Incorrect type of property "cronExpression" at "jobs[${i}].executionConfig". Expected "string".`,
+          <p>{`Incorrect type of property "cronExpression" at "jobs[${i}].executionConfig". Expected "string".`}</p>,
         );
       }
     } else if ('time' in execConfig) {
-      const t = execConfig.time;
+      const time = execConfig.time;
 
-      if (!isString(t)) {
+      if (!isString(time)) {
         return error(
-          `Incorrect type of property "time" at "jobs[${i}].executionConfig". Expected "string".`,
+          <p>{`Incorrect type of property "time" at "jobs[${i}].executionConfig". Expected "string".`}</p>,
         );
       }
 
-      if (!isUTCTime(t)) {
+      if (!isUTCTime(time)) {
         return error(
-          `Invalid "time" at "jobs[${i}].executionConfig".\n\nError: "${t}". The time is specified as UTC time in HH:MM format.`,
+          <>
+            <p>{`Invalid "time" at "jobs[${i}].executionConfig".`}</p>
+            <p>{`Error: "${time}". The time is specified as UTC time in HH:MM format.`}</p>
+          </>,
         );
       }
 
     } else {
       return error(
-        `Missing the time of the job runs at "jobs[${i}].executionConfig".\n\nThe "executionConfig" object must contain one of the properties "time", "cronExpression".`,
+        <>
+          <p>{`Missing the time of the job runs at "jobs[${i}].executionConfig".`}</p>
+          <p>{'The "executionConfig" object must contain one of the properties "time", "cronExpression".'}</p>
+        </>,
       );
     }
   }
