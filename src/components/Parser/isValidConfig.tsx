@@ -3,6 +3,7 @@ import { isValidCron } from 'cron-validator';
 
 import { CronTrue } from '../CronTrue';
 import { weekList } from '../../util/week';
+import { isValidFunctionName } from '../../util/validator';
 
 type TValidResult = [
   hasError: boolean,
@@ -177,7 +178,23 @@ export const isValidConfig = (config: unknown): TValidResult => {
     }
 
     // TODO: functionLocation
-    // TODO: functionName
+
+    const FN = ITEM.functionName;
+
+    if (!isString(FN)) {
+      return error(
+        <p>{`Incorrect type of property "functionName" at "jobs[${i}]". Expected "string".`}</p>,
+      );
+    }
+
+    if (!isValidFunctionName(FN)) {
+      return error(
+        <>
+          <p>{`Invalid "functionName" at "jobs[${i}]"`}</p>
+          <p>{`Error: "${FN}".`}</p>
+        </>,
+      );
+    }
 
     const EXEC_CONFIG = ITEM.executionConfig;
 
@@ -204,9 +221,7 @@ export const isValidConfig = (config: unknown): TValidResult => {
         if (isInvalidCron(CRON_EXP)) {
           return error(
             <>
-              <p>
-                {`Invalid "cronExpression" at "jobs[${i}].executionConfig"\n\n`}
-              </p>
+              <p>{`Invalid "cronExpression" at "jobs[${i}].executionConfig".`}</p>
               <p>
                 <CronTrue value={CRON_EXP} setValidity={() => {/**/}} />
               </p>
