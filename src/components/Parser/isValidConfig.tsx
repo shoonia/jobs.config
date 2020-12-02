@@ -178,7 +178,15 @@ export const isValidConfig = (config: unknown): TValidResult => {
       }
     }
 
-    // TODO: functionLocation
+    // TODO: functionLocation syntax
+
+    const FL = ITEM.functionLocation;
+
+    if (!isString(FL)) {
+      return error(
+        <IncorrectType index={i} name="functionLocation" expected="string" />,
+      );
+    }
 
     const FN = ITEM.functionName;
 
