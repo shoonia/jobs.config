@@ -2,6 +2,7 @@ import { ComponentChildren, h, Fragment } from 'preact';
 import { isValidCron } from 'cron-validator';
 
 import { CronTrue } from '../CronTrue';
+import { IncorrectType } from './IncorrectType';
 import { weekList } from '../../util/week';
 import { isValidFunctionName } from '../../util/validator';
 
@@ -172,7 +173,7 @@ export const isValidConfig = (config: unknown): TValidResult => {
     if ($description in ITEM) {
       if (!isString(ITEM.description)) {
         return error(
-          <p>{`Incorrect type of property "description" at "jobs[${i}]". Expected "string".`}</p>,
+          <IncorrectType index={i} name="description" expected="string" />,
         );
       }
     }
@@ -183,7 +184,7 @@ export const isValidConfig = (config: unknown): TValidResult => {
 
     if (!isString(FN)) {
       return error(
-        <p>{`Incorrect type of property "functionName" at "jobs[${i}]". Expected "string".`}</p>,
+        <IncorrectType index={i} name="functionName" expected="string" />,
       );
     }
 
@@ -200,7 +201,7 @@ export const isValidConfig = (config: unknown): TValidResult => {
 
     if (!isObject(EXEC_CONFIG)) {
       return error(
-        <p>{`Incorrect type of property "executionConfig" at "jobs[${i}]". Expected "object".`}</p>,
+        <IncorrectType index={i} name="executionConfig" expected="object" />,
       );
     }
 
@@ -236,7 +237,7 @@ export const isValidConfig = (config: unknown): TValidResult => {
         }
       } else {
         return error(
-          <p>{`Incorrect type of property "cronExpression" at "jobs[${i}].executionConfig". Expected "string".`}</p>,
+          <IncorrectType index={i} name="cronExpression" expected="string" />,
         );
       }
     } else if ($time in EXEC_CONFIG) {
@@ -244,7 +245,7 @@ export const isValidConfig = (config: unknown): TValidResult => {
 
       if (!isString(TIME)) {
         return error(
-          <p>{`Incorrect type of property "time" at "jobs[${i}].executionConfig". Expected "string".`}</p>,
+          <IncorrectType index={i} name="time" expected="string" />,
         );
       }
 
@@ -271,7 +272,7 @@ export const isValidConfig = (config: unknown): TValidResult => {
 
       if (!isString(DOW)) {
         return error(
-          <p>{`Incorrect type of property "dayOfWeek" at "jobs[${i}].executionConfig". Expected "string".`}</p>,
+          <IncorrectType index={i} name="dayOfWeek" expected="string" />,
         );
       }
 
@@ -290,7 +291,7 @@ export const isValidConfig = (config: unknown): TValidResult => {
 
       if (!isNumber(DIM)) {
         return error(
-          <p>{`Incorrect type of property "dateInMonth" at "jobs[${i}].executionConfig". Expected "number".`}</p>,
+          <IncorrectType index={i} name="dateInMonth" expected="number" />,
         );
       }
 
