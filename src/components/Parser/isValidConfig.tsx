@@ -119,18 +119,18 @@ export const isValidConfig = (config: unknown): TValidResult => {
   }
 
   const JOBS = config.jobs;
-  const len = JOBS.length;
+  let i = JOBS.length;
 
-  if (len > 20) {
+  if (i > 20) {
     return error(
       <>
-        <p>{`Too many scheduled jobs. (${len})`}</p>
+        <p>{`Too many scheduled jobs. (${i})`}</p>
         <p>You can configure up to 20 jobs.</p>
       </>,
     );
   }
 
-  if (len < 1) {
+  if (i < 1) {
     return error(
       <p>No scheduled jobs.</p>,
     );
@@ -144,8 +144,6 @@ export const isValidConfig = (config: unknown): TValidResult => {
       </>,
     );
   }
-
-  let i = len;
 
   while (0 < i--) {
     const ITEM = JOBS[i];
@@ -226,26 +224,26 @@ export const isValidConfig = (config: unknown): TValidResult => {
     if ($cronExpression in EXEC_CONFIG) {
       const CRON_EXP = EXEC_CONFIG.cronExpression;
 
-      if (isString(CRON_EXP)) {
-        if (isInvalidCron(CRON_EXP)) {
-          return error(
-            <>
-              <p>{`Invalid "cronExpression" at "jobs[${i}].executionConfig".`}</p>
-              <p>
-                <CronTrue value={CRON_EXP} setValidity={() => {/**/}} />
-              </p>
-              <p>
-                <em>
-                  You can schedule your job to run at intervals as short as one hour apart, but not shorter.
-                  If you define your job to run more frequently, the job will be ignored.
-                </em>
-              </p>
-            </>,
-          );
-        }
-      } else {
+      if (!isString(CRON_EXP)) {
         return error(
           <IncorrectType index={i} name="cronExpression" expected="string" />,
+        );
+      }
+
+      if (isInvalidCron(CRON_EXP)) {
+        return error(
+          <>
+            <p>{`Invalid "cronExpression" at "jobs[${i}].executionConfig".`}</p>
+            <p>
+              <CronTrue value={CRON_EXP} setValidity={() => {/**/}} />
+            </p>
+            <p>
+              <em>
+                  You can schedule your job to run at intervals as short as one hour apart, but not shorter.
+                  If you define your job to run more frequently, the job will be ignored.
+              </em>
+            </p>
+          </>,
         );
       }
     } else if ($time in EXEC_CONFIG) {
@@ -265,7 +263,6 @@ export const isValidConfig = (config: unknown): TValidResult => {
           </>,
         );
       }
-
     } else {
       return error(
         <>
