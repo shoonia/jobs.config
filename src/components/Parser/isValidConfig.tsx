@@ -41,6 +41,10 @@ const isUTCTime = (val: string) => {
   return /^([01]\d|2[0-3]):([0-5]\d)$/.test(val);
 };
 
+const isLocationPath = (val: string) => {
+  return /^(\/)[\w\-./]*[\w-]\.jsw?$/.test(val);
+};
+
 const isObject = (val: unknown): val is Readonly<Record<string, unknown>> => {
   return typeof val === 'object' && !Array.isArray(val) && val !== null;
 };
@@ -183,6 +187,16 @@ export const isValidConfig = (config: unknown): TValidResult => {
     if (!isString(FL)) {
       return error(
         <IncorrectType index={i} name="functionLocation" expected="string" />,
+      );
+    }
+
+    if (!isLocationPath(FL)) {
+      return error(
+        <>
+          <p>{`Invalid "functionLocation" at "jobs[${i}]".`}</p>
+          <p>The function location is a relative path within the Backend folder for <code>.js</code> or <code>.jsw</code> file.</p>
+          <p>File and Folder names can contain only alphanumeric characters, periods, hyphens and underscores, and can not begin or end with a period.</p>
+        </>,
       );
     }
 
