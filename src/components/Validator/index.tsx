@@ -10,7 +10,8 @@ export function Validator() {
   const [value, setValue] = useState<string>('');
   const area = useRef<HTMLTextAreaElement>();
 
-  const onClick = () => {
+  const onSubmit = (event) => {
+    preventDefault(event);
     setValue(area.current.value.trim());
   };
 
@@ -19,7 +20,7 @@ export function Validator() {
       <div className={s.box}>
         <form
           action="#"
-          onSubmit={preventDefault}
+          onSubmit={onSubmit}
           className={s.form}
         >
           <textarea
@@ -27,8 +28,8 @@ export function Validator() {
             className={s.area}
             placeholder="{}"
           />
-          <Button onClick={onClick}>
-          Validate Jobs Config
+          <Button type="submit">
+            Validate Jobs Config
           </Button>
         </form>
         <Parser value={value} />

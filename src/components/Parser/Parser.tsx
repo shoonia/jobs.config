@@ -2,25 +2,32 @@ import { h } from 'preact';
 
 import { parseJSONC } from './parseJSONC';
 import { isValidConfig } from './isValidConfig';
-import { ErrorMessage } from './ErrorMessage';
-import { SuccessMessage } from './SuccessMessage';
+import { Message } from './Message';
 
 export interface Props {
   value: string;
 }
 
 export function Parser({ value }: Props) {
-  const [isValid, message, config] = parseJSONC(value);
-
-  if (!isValid && typeof message !== 'string') {
+  if (value === '') {
     return null;
   }
 
-  if (!isValid) {
+  if (value.length > 15000) {
     return (
-      <ErrorMessage>
-        {message}
-      </ErrorMessage>
+      <Message error>
+        The file size is too large for the jobs.config.
+      </Message>
+    );
+  }
+
+  const [error, config] = parseJSONC(value);
+
+  if (error !== null) {
+    return (
+      <Message error>
+        {error}
+      </Message>
     );
   }
 
@@ -28,15 +35,15 @@ export function Parser({ value }: Props) {
 
   if (hasError) {
     return (
-      <ErrorMessage>
+      <Message error>
         {Error}
-      </ErrorMessage>
+      </Message>
     );
   }
 
   return (
-    <SuccessMessage>
+    <Message>
       Valid jobs.config
-    </SuccessMessage>
+    </Message>
   );
 }

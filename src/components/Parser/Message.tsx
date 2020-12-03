@@ -4,12 +4,13 @@ import s from './styles.css';
 
 interface Props {
   children: ComponentChildren;
+  error?: boolean;
 }
 
-export function ErrorMessage({ children }: Props) {
+export function Message({ children, error = false }: Props) {
   return (
     <div className={s.message}>
-      <pre className={s.error}>
+      <pre className={error ? s.error : s.success}>
         {children}
       </pre>
     </div>

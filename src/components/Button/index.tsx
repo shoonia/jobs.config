@@ -6,16 +6,18 @@ interface Props {
   onClick?: EventHandlerNonNull;
   disabled?: boolean;
   children?: ComponentChildren;
+  type?: 'button' | 'submit';
 }
 
 export function Button({
   onClick,
   disabled,
   children,
+  type = 'button',
 }: Props) {
   return (
     <button
-      type="button"
+      type={type}
       onClick={onClick}
       className={s.primary}
       disabled={disabled}
