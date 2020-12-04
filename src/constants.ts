@@ -12,3 +12,15 @@ export const enum ROUTER {
   VALIDATOR = 'validator',
   FIX = 'FIX',
 }
+
+export const enum KEYS {
+  jobs = 'jobs',
+  functionLocation = 'functionLocation',
+  functionName = 'functionName',
+  description = 'description',
+  executionConfig = 'executionConfig',
+  cronExpression = 'cronExpression',
+  time = 'time',
+  dayOfWeek = 'dayOfWeek',
+  dateInMonth = 'dateInMonth',
+}

@@ -56,3 +56,11 @@ export const isValidFunctionName = (name: string) => {
 
   return false;
 };
+
+export const isUTCTime = (val: string) => {
+  return /^([01]\d|2[0-3]):([0-5]\d)$/.test(val);
+};
+
+export const isLocationPath = (val: string) => {
+  return /^(\/)[\w\-./]*[\w-]\.jsw?$/.test(val);
+};

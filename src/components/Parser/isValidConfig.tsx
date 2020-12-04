@@ -4,58 +4,26 @@ import { isValidCron } from 'cron-validator';
 import { CronTrue } from '../CronTrue';
 import { IncorrectType } from './IncorrectType';
 import { weekList } from '../../util/week';
-import { isValidFunctionName } from '../../util/validator';
+import { isLocationPath, isUTCTime, isValidFunctionName } from '../../util/validator';
+import { isNumber, isObject, isString } from '../../util/component';
+import { KEYS } from '../../constants';
 
 type TValidResult = [
   hasError: boolean,
   message?: ComponentChildren,
 ];
 
-const $jobs = 'jobs';
-const $functionLocation = 'functionLocation';
-const $functionName = 'functionName';
-const $description = 'description';
-const $executionConfig = 'executionConfig';
-const $cronExpression = 'cronExpression';
-const $time = 'time';
-const $dayOfWeek = 'dayOfWeek';
-const $dateInMonth = 'dateInMonth';
+const $_ffe = [KEYS.functionLocation, KEYS.functionName, KEYS.executionConfig];
+const $_ffed = [...$_ffe, KEYS.description];
 
-const $_ffe = [$functionLocation, $functionName, $executionConfig];
-const $_ffed = [...$_ffe, $description];
-
-const $$_wm = [$dayOfWeek, $dateInMonth];
-const $$_twm = [$time, ...$$_wm];
-const $$_ctwm = [$cronExpression, ...$$_twm];
+const $$_wm = [KEYS.dayOfWeek, KEYS.dateInMonth];
+const $$_twm = [KEYS.time, ...$$_wm];
+const $$_ctwm = [KEYS.cronExpression, ...$$_twm];
 
 const error = (message: ComponentChildren): TValidResult => [
   true,
   message,
 ];
-
-const isInvalidCron = (val: string) => {
-  return !isValidCron(val, { seconds: false });
-};
-
-const isUTCTime = (val: string) => {
-  return /^([01]\d|2[0-3]):([0-5]\d)$/.test(val);
-};
-
-const isLocationPath = (val: string) => {
-  return /^(\/)[\w\-./]*[\w-]\.jsw?$/.test(val);
-};
-
-const isObject = (val: unknown): val is Readonly<Record<string, unknown>> => {
-  return typeof val === 'object' && !Array.isArray(val) && val !== null;
-};
-
-const isString = (val: unknown): val is string => {
-  return typeof val === 'string';
-};
-
-const isNumber = (val: unknown): val is number => {
-  return typeof val === 'number';
-};
 
 const hasUnknownProps = (item: Record<string, unknown>, list: string[]): TValidResult => {
   for (const key of Object.keys(item)) {
@@ -91,7 +59,7 @@ export const isValidConfig = (config: unknown): TValidResult => {
     );
   }
 
-  if (!($jobs in config)) {
+  if (!(KEYS.jobs in config)) {
     return error(
       <>
         <p>{'Missing property "jobs".'}</p>
@@ -103,7 +71,7 @@ export const isValidConfig = (config: unknown): TValidResult => {
   const keys = Object.keys(config);
 
   if (keys.length > 1) {
-    const names = keys.filter((i) => i !== $jobs).join(separator);
+    const names = keys.filter((i) => i !== KEYS.jobs).join(separator);
 
     return error(
       <>
@@ -172,7 +140,7 @@ export const isValidConfig = (config: unknown): TValidResult => {
       );
     }
 
-    if ($description in ITEM) {
+    if (KEYS.description in ITEM) {
       if (!isString(ITEM.description)) {
         return error(
           <IncorrectType index={i} name="description" expected="string" />,
@@ -235,7 +203,7 @@ export const isValidConfig = (config: unknown): TValidResult => {
       );
     }
 
-    if ($cronExpression in EXEC_CONFIG) {
+    if (KEYS.cronExpression in EXEC_CONFIG) {
       const CRON_EXP = EXEC_CONFIG.cronExpression;
 
       if (!isString(CRON_EXP)) {
@@ -244,7 +212,7 @@ export const isValidConfig = (config: unknown): TValidResult => {
         );
       }
 
-      if (isInvalidCron(CRON_EXP)) {
+      if (!isValidCron(CRON_EXP)) {
         return error(
           <>
             <p>{`Invalid "cronExpression" at "jobs[${i}].executionConfig".`}</p>
@@ -260,7 +228,7 @@ export const isValidConfig = (config: unknown): TValidResult => {
           </>,
         );
       }
-    } else if ($time in EXEC_CONFIG) {
+    } else if (KEYS.time in EXEC_CONFIG) {
       const TIME = EXEC_CONFIG.time;
 
       if (!isString(TIME)) {
@@ -286,7 +254,7 @@ export const isValidConfig = (config: unknown): TValidResult => {
       );
     }
 
-    if ($dayOfWeek in EXEC_CONFIG) {
+    if (KEYS.dayOfWeek in EXEC_CONFIG) {
       const DOW = EXEC_CONFIG.dayOfWeek;
 
       if (!isString(DOW)) {
@@ -305,7 +273,7 @@ export const isValidConfig = (config: unknown): TValidResult => {
       }
     }
 
-    if ($dateInMonth in EXEC_CONFIG) {
+    if (KEYS.dateInMonth in EXEC_CONFIG) {
       const DIM = EXEC_CONFIG.dateInMonth;
 
       if (!isNumber(DIM)) {
@@ -325,7 +293,7 @@ export const isValidConfig = (config: unknown): TValidResult => {
     }
 
     if (
-      ($cronExpression in EXEC_CONFIG) &&
+      (KEYS.cronExpression in EXEC_CONFIG) &&
       ($$_twm.some((i) => i in EXEC_CONFIG))
     ) {
       return error(
