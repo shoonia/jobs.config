@@ -1,6 +1,8 @@
 import { nanoid } from 'nanoid/non-secure';
 
-import { PERIOD } from '../constants';
+import { KEYS, PERIOD } from '../constants';
+import { isString } from './component';
+import { isUTCTime } from './validator';
 import { TWeekList, weekList } from './week';
 
 export interface IItem {
@@ -13,6 +15,24 @@ export interface IItem {
   dateInMonth: number;
   cronExpression: string;
   period: PERIOD;
+}
+
+export interface IExecutionConfig {
+  [KEYS.time]?: string;
+  [KEYS.dayOfWeek]?: TWeekList;
+  [KEYS.dateInMonth]?: number;
+  [KEYS.cronExpression]?: string;
+}
+
+export interface IJob {
+  [KEYS.functionLocation]: string;
+  [KEYS.functionName]: string;
+  [KEYS.description]?: string;
+  [KEYS.executionConfig]: IExecutionConfig;
+}
+
+export interface IConfig {
+  [KEYS.jobs]: IJob[];
 }
 
 const createLocation = (location: string): string => {
@@ -32,10 +52,26 @@ const parseDate = (date: number): number => {
   return t;
 };
 
+const getPeriod = (exec: IExecutionConfig): PERIOD => {
+  if (KEYS.cronExpression in exec) {
+    return PERIOD.CRON;
+  }
+
+  if (KEYS.dateInMonth in exec) {
+    return PERIOD.MONTHLY;
+  }
+
+  if (KEYS.dayOfWeek in exec) {
+    return PERIOD.WEEKLY;
+  }
+
+  return PERIOD.DAILY;
+};
+
 export const createConfig = (items: IItem[]): string => {
   const noop = undefined;
 
-  const config = {
+  const config: IConfig = {
     jobs: items.map((i) => {
       return {
         functionLocation: createLocation(i.functionLocation).trim(),
@@ -65,3 +101,21 @@ export const newItem = (): IItem => ({
   cronExpression: '0 * * * *',
   period: PERIOD.DAILY,
 });
+
+export const createItems = (config: IConfig): IItem[] => {
+  return config.jobs.map((i) => {
+    const exec = i.executionConfig;
+
+    return {
+      id: nanoid(),
+      functionLocation: i.functionLocation,
+      functionName: i.functionName,
+      description: i.description,
+      time: isUTCTime(exec.time) ? exec.time : '00:00',
+      dayOfWeek: isString(exec.dayOfWeek) ? exec.dayOfWeek : weekList[0],
+      dateInMonth: parseDate(exec.dateInMonth),
+      cronExpression: exec.cronExpression,
+      period: getPeriod(exec),
+    };
+  });
+};
