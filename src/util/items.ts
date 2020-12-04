@@ -110,11 +110,11 @@ export const createItems = (config: IConfig): IItem[] => {
       id: nanoid(),
       functionLocation: i.functionLocation,
       functionName: i.functionName,
-      description: i.description,
+      description: isString(i.description) ? i.description : '',
       time: isUTCTime(exec.time) ? exec.time : '00:00',
       dayOfWeek: isString(exec.dayOfWeek) ? exec.dayOfWeek : weekList[0],
       dateInMonth: parseDate(exec.dateInMonth),
-      cronExpression: exec.cronExpression,
+      cronExpression: isString(exec.cronExpression) ? exec.cronExpression : '',
       period: getPeriod(exec),
     };
   });

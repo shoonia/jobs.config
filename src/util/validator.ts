@@ -1,3 +1,5 @@
+import { isString } from './component';
+
 const reservedWords = <const>[
   'await',
   'break',
@@ -47,7 +49,9 @@ const reservedWords = <const>[
   'yield',
 ];
 
-export const FUNCTION_NAME = /^[$a-z_][\da-z_$]*$/i;
+const FUNCTION_NAME = /^[$a-z_][\da-z_$]*$/i;
+const LOCAL_PATH = /^(\/)[\w\-./]*[\w-]\.jsw?$/;
+const UTC = /^([01]\d|2[0-3]):([0-5]\d)$/;
 
 export const isValidFunctionName = (name: string) => {
   if (FUNCTION_NAME.test(name)) {
@@ -58,9 +62,9 @@ export const isValidFunctionName = (name: string) => {
 };
 
 export const isUTCTime = (val: string) => {
-  return /^([01]\d|2[0-3]):([0-5]\d)$/.test(val);
+  return isString(val) && UTC.test(val);
 };
 
 export const isLocationPath = (val: string) => {
-  return /^(\/)[\w\-./]*[\w-]\.jsw?$/.test(val);
+  return LOCAL_PATH.test(val);
 };

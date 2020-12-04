@@ -22,6 +22,7 @@ export interface IItemsEvents {
   'items/remove': string;
   'items/clone': string;
   'items/update': IUpdateEventData;
+  'items/replace': IItem[];
 }
 
 const getItems = (): IItem[] => {
@@ -99,4 +100,6 @@ export const itemsModule: StoreonModule<IItemsState, IItemsEvents> = ({ on }) =>
 
     return payload([...items]);
   });
+
+  on('items/replace', (_, items) => payload(items));
 };

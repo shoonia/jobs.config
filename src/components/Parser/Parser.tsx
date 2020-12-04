@@ -3,6 +3,7 @@ import { h } from 'preact';
 import { parseJSONC } from './parseJSONC';
 import { isValidConfig } from './isValidConfig';
 import { Message } from './Message';
+import { EditButton } from './EditButton';
 
 export interface Props {
   value: string;
@@ -43,7 +44,8 @@ export function Parser({ value }: Props) {
 
   return (
     <Message>
-      Valid jobs.config
+      <p>Valid jobs.config</p>
+      <EditButton config={config as any} />
     </Message>
   );
 }
