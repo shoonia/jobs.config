@@ -11,7 +11,11 @@ export interface Props {
 
 export function Parser({ value }: Props) {
   if (value === '') {
-    return null;
+    return (
+      <Message>
+        No input
+      </Message>
+    );
   }
 
   if (value.length > 15000) {

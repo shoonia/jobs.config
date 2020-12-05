@@ -1,12 +1,13 @@
 .message {
-  padding: 25px 0 50px 0;
-  font-size: 14px;
+  margin: 1em 0;
 }
 
 .box {
+  font-size: 14px;
   white-space: break-spaces;
   overflow: hidden;
-  padding: 16px;
+  padding: 1em;
+  margin: 0;
   border-radius: 8px;
 }
 
