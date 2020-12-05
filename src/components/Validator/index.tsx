@@ -1,15 +1,16 @@
 import { h } from 'preact';
-import { useState } from 'preact/hooks';
+import { useStoreon } from 'storeon/preact';
 
 import s from './styles.css';
 import { preventDefault } from '../../util/component';
 import { Parser } from '../Parser';
+import { TEvents, TState } from 'store';
 
 export function Validator() {
-  const [value, setValue] = useState<string>('');
+  const { validatorValue, dispatch } = useStoreon<TState, TEvents>('validatorValue');
 
   const onInput = ({ target }) => {
-    setValue(target.value.trim());
+    dispatch('validator/input', target.value.trim());
   };
 
   return (
@@ -26,10 +27,11 @@ export function Validator() {
           <textarea
             onInput={onInput}
             className={s.area}
+            value={validatorValue}
             placeholder="{}"
           />
         </form>
-        <Parser value={value} />
+        <Parser value={validatorValue} />
       </div>
     </section>
   );
