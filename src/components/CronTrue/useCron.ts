@@ -1,4 +1,5 @@
 import { useMemo } from 'preact/hooks';
+import { isValidCron } from 'cron-validator';
 import { toString } from 'cronstrue';
 
 type CronResult = [
@@ -9,7 +10,7 @@ type CronResult = [
 export const useCron = (value: string) => {
   return useMemo<CronResult>(() => {
     try {
-      return [false, toString(value)];
+      return [!isValidCron(value), toString(value)];
     } catch (error) {
       return [true, String(error)];
     }
