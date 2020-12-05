@@ -1,5 +1,4 @@
-import { h, JSX } from 'preact';
-import { memo } from 'preact/compat';
+import { h, ComponentChildren } from 'preact';
 
 import s from '../../code.css';
 
@@ -7,26 +6,15 @@ interface Props {
   input: string;
 }
 
-const tokens = [
+interface IToken {
+  regex: RegExp;
+  className?: string;
+}
+
+const tokens: IToken[] = [
   {
-    // Whitespace
-    regex: /^\s+/,
-  },
-  {
-    // Braces
-    regex: /^[{}]/,
-  },
-  {
-    // Brackets
-    regex: /^[[\]]/,
-  },
-  {
-    // Colon
-    regex: /^:/,
-  },
-  {
-    // Comma
-    regex: /^,/,
+    // Whitespace, Brackets, Braces, Colon, Comma
+    regex: /^[\s[\]{}:,]+/,
   },
   {
     // Number literal
@@ -34,29 +22,14 @@ const tokens = [
     className: s.mtk5,
   },
   {
-    // String key
-    regex: /^"(?:\\.|[^"\\])*"(?=\s*:)/,
-    className: s.mtk6,
-  },
-  {
     // String literal
     regex: /^"(?:\\.|[^"\\])*"/,
     className: s.mtk6,
   },
-  // {
-  //   // Boolean literal
-  //   regex: /^true|^false/,
-  //   className: s.mtk4,
-  // },
-  // {
-  //   // Null leteral
-  //   regex: /^null/,
-  //   className: s.mtk4,
-  // },
 ];
 
-function JSONElement({ input }: Props) {
-  const items: (JSX.Element | string)[] = [];
+export function JSON({ input }: Props) {
+  const items: ComponentChildren[] = [];
 
   let isFound: boolean;
 
@@ -68,8 +41,9 @@ function JSONElement({ input }: Props) {
       const match = token.regex.exec(input);
 
       if (Array.isArray(match)) {
-        const row = match[0];
-        const item = (token.className !== undefined)
+        const [row] = match;
+
+        const item = 'className' in token
           ? (
             <span className={token.className}>
               {row}
@@ -91,5 +65,3 @@ function JSONElement({ input }: Props) {
     </code>
   );
 }
-
-export const JSON = memo(JSONElement);
