@@ -10,7 +10,7 @@ export interface Props {
 }
 
 export function Parser({ value }: Props) {
-  if (value === '') {
+  if (value.trim() === '') {
     return (
       <Message>
         No input

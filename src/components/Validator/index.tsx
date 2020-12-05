@@ -10,7 +10,7 @@ export function Validator() {
   const { validatorValue, dispatch } = useStoreon<TState, TEvents>('validatorValue');
 
   const onInput = ({ target }) => {
-    dispatch('validator/input', target.value.trim());
+    dispatch('validator/input', target.value);
   };
 
   return (
