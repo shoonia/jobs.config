@@ -1,9 +1,11 @@
 import { h } from 'preact';
 
+import { KEYS } from '../../constants';
+
 interface Props {
   index: number;
-  name: string;
-  expected: string;
+  name: KEYS;
+  expected: 'string' | 'number' | 'object';
 }
 
 export function IncorrectType({ index, name, expected }: Props) {

@@ -143,7 +143,7 @@ export const isValidConfig = (config: unknown): TValidResult => {
     if (KEYS.description in ITEM) {
       if (!isString(ITEM.description)) {
         return error(
-          <IncorrectType index={i} name="description" expected="string" />,
+          <IncorrectType index={i} name={KEYS.description} expected="string" />,
         );
       }
     }
@@ -154,7 +154,7 @@ export const isValidConfig = (config: unknown): TValidResult => {
 
     if (!isString(FL)) {
       return error(
-        <IncorrectType index={i} name="functionLocation" expected="string" />,
+        <IncorrectType index={i} name={KEYS.functionLocation} expected="string" />,
       );
     }
 
@@ -172,7 +172,7 @@ export const isValidConfig = (config: unknown): TValidResult => {
 
     if (!isString(FN)) {
       return error(
-        <IncorrectType index={i} name="functionName" expected="string" />,
+        <IncorrectType index={i} name={KEYS.functionName} expected="string" />,
       );
     }
 
@@ -189,7 +189,7 @@ export const isValidConfig = (config: unknown): TValidResult => {
 
     if (!isObject(EXEC_CONFIG)) {
       return error(
-        <IncorrectType index={i} name="executionConfig" expected="object" />,
+        <IncorrectType index={i} name={KEYS.executionConfig} expected="object" />,
       );
     }
 
@@ -208,7 +208,7 @@ export const isValidConfig = (config: unknown): TValidResult => {
 
       if (!isString(CRON_EXP)) {
         return error(
-          <IncorrectType index={i} name="cronExpression" expected="string" />,
+          <IncorrectType index={i} name={KEYS.cronExpression} expected="string" />,
         );
       }
 
@@ -221,8 +221,8 @@ export const isValidConfig = (config: unknown): TValidResult => {
             </p>
             <p>
               <em>
-                  You can schedule your job to run at intervals as short as one hour apart, but not shorter.
-                  If you define your job to run more frequently, the job will be ignored.
+                You can schedule your job to run at intervals as short as one hour apart, but not shorter.
+                If you define your job to run more frequently, the job will be ignored.
               </em>
             </p>
           </>,
@@ -233,7 +233,7 @@ export const isValidConfig = (config: unknown): TValidResult => {
 
       if (!isString(TIME)) {
         return error(
-          <IncorrectType index={i} name="time" expected="string" />,
+          <IncorrectType index={i} name={KEYS.time} expected="string" />,
         );
       }
 
@@ -259,7 +259,7 @@ export const isValidConfig = (config: unknown): TValidResult => {
 
       if (!isString(DOW)) {
         return error(
-          <IncorrectType index={i} name="dayOfWeek" expected="string" />,
+          <IncorrectType index={i} name={KEYS.dayOfWeek} expected="string" />,
         );
       }
 
@@ -278,7 +278,7 @@ export const isValidConfig = (config: unknown): TValidResult => {
 
       if (!isNumber(DIM)) {
         return error(
-          <IncorrectType index={i} name="dateInMonth" expected="number" />,
+          <IncorrectType index={i} name={KEYS.dateInMonth} expected="number" />,
         );
       }
 
