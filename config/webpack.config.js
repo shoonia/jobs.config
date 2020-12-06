@@ -200,7 +200,7 @@ module.exports = (buildEnv) => {
         filename: 'css/[name].[contenthash:4].css',
         chunkFilename: 'css/[name].[chunkhash:4].css',
       }),
-      new ForkTsCheckerWebpackPlugin({
+      isDev && new ForkTsCheckerWebpackPlugin({
         typescript: {
           configFile: paths.appTsConfig,
         },
