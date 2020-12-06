@@ -204,6 +204,9 @@ module.exports = (buildEnv) => {
         typescript: {
           configFile: paths.appTsConfig,
         },
+        eslint: {
+          files: './src/**/*.{ts,tsx}',
+        },
       }),
       new webpack.DefinePlugin({
         'process.platform': JSON.stringify(process.platform),
