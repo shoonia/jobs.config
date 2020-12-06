@@ -21,7 +21,6 @@ choosePort(HOST, PORT)
     const config = configFactory(buildEnv);
     const protocol = 'http';
     const appName = require(paths.appPackageJson).name;
-    const tscCompileOnError = process.env.TSC_COMPILE_ON_ERROR === 'true';
 
     const urls = prepareUrls(
       protocol,
@@ -34,17 +33,19 @@ choosePort(HOST, PORT)
       errors: (errors) => devServer.sockWrite(devServer.sockets, 'errors', errors),
     };
 
-    const compiler = createCompiler({
+    /**@type {*} */
+    const compilerOptions = {
       appName,
       config,
       devSocket,
       urls,
       useYarn: false,
       useTypeScript: true,
-      tscCompileOnError,
       webpack,
-    });
+    };
 
+    const compiler = createCompiler(compilerOptions);
+    /**@type {*} */
     const serverConfig = createDevServerConfig(urls.lanUrlForConfig, HOST);
     const devServer = new WebpackDevServer(compiler, serverConfig);
 
