@@ -94,6 +94,9 @@ module.exports = (buildEnv) => {
         '.ts',
         '.tsx',
       ],
+      fallback: {
+        util: false,
+      },
     },
     module: {
       strictExportPresence: true,
