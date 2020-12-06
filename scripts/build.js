@@ -2,7 +2,7 @@ const buildEnv = 'production';
 
 require('../config/env')(buildEnv);
 
-const fs = require('fs-extra');
+const { emptyDir } = require('fs-extra');
 const webpack = require('webpack');
 const configFactory = require('../config/webpack.config');
 const paths = require('../config/paths');
@@ -18,8 +18,7 @@ const config = configFactory(buildEnv);
 
 measureFileSizesBeforeBuild(paths.appBuild)
   .then(async (previousFileSizes) => {
-    await fs.emptyDir(paths.appBuild);
-    await fs.copy(paths.appStatic, paths.appBuild);
+    await emptyDir(paths.appBuild);
 
     return build(previousFileSizes);
   })
