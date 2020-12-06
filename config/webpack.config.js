@@ -25,14 +25,12 @@ module.exports = (buildEnv) => {
       path: isProd ? paths.appBuild : undefined,
       pathinfo: isDev,
       filename: 'js/[name].[contenthash:4].js',
-      // TODO: remove this when upgrading to webpack 5
-      futureEmitAssets: true,
       chunkFilename: 'js/[name].[chunkhash:4].js',
       publicPath: paths.publicUrlOrPath,
       devtoolModuleFilenameTemplate: (info) => path
         .relative(paths.appSrc, info.absoluteResourcePath)
         .replace(/\\/g, '/'),
-      jsonpFunction: 'jobsConfig',
+      chunkLoadingGlobal: 'jobsConfig',
       globalObject: 'window',
     },
     optimization: {
@@ -206,19 +204,10 @@ module.exports = (buildEnv) => {
       }),
       new webpack.DefinePlugin({
         'process.env.NODE_ENV': JSON.stringify(process.env.NODE_ENV),
+        'process.platform': JSON.stringify(process.platform),
       }),
       // new webpack.IgnorePlugin(/^\.\/locale$/, /moment$/),
     ].filter(Boolean),
-    node: {
-      module: 'empty',
-      dgram: 'empty',
-      dns: 'mock',
-      fs: 'empty',
-      http2: 'empty',
-      net: 'empty',
-      tls: 'empty',
-      child_process: 'empty',
-    },
     performance: false,
   };
 };
