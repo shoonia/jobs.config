@@ -24,15 +24,15 @@ module.exports = (buildEnv) => {
     output: {
       path: isProd ? paths.appBuild : undefined,
       pathinfo: isDev,
-      filename: 'js/[name].js',
+      filename: 'js/[name].[contenthash:4].js',
       // TODO: remove this when upgrading to webpack 5
       futureEmitAssets: true,
-      chunkFilename: 'js/[name].js',
+      chunkFilename: 'js/[name].[chunkhash:4].js',
       publicPath: paths.publicUrlOrPath,
       devtoolModuleFilenameTemplate: (info) => path
         .relative(paths.appSrc, info.absoluteResourcePath)
         .replace(/\\/g, '/'),
-      jsonpFunction: 'JF',
+      jsonpFunction: 'jobsConfig',
       globalObject: 'window',
     },
     optimization: {
@@ -196,8 +196,8 @@ module.exports = (buildEnv) => {
       }),
       isDev && new webpack.HotModuleReplacementPlugin(),
       isProd && new MiniCssExtractPlugin({
-        filename: 'css/[name].css',
-        chunkFilename: 'css/[name].css',
+        filename: 'css/[name].[contenthash:4].css',
+        chunkFilename: 'css/[name].[chunkhash:4].css',
       }),
       new ForkTsCheckerWebpackPlugin({
         typescript: {
