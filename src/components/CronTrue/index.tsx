@@ -4,7 +4,7 @@ import { lazy, Suspense } from 'preact/compat';
 import { Props } from './CronTrue';
 
 const LazyCronTrue = lazy(() => {
-  return import('./CronTrue').then((i) => {
+  return import('./CronTrue' /* webpackChunkName: "CronTrue" */).then((i) => {
     return {
       default: i.CronTrue,
     };

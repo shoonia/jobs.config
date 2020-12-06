@@ -52,19 +52,19 @@ export const isValidConfig = (config: unknown): TValidResult => {
 
   if (!isObject(config)) {
     return error(
-      <>
+      <Fragment>
         <p>{'Incorrect type. Expected "object".'}</p>
         <p>{'The jobs.config file must contains a JSON object.'}</p>
-      </>,
+      </Fragment>,
     );
   }
 
   if (!(KEYS.jobs in config)) {
     return error(
-      <>
+      <Fragment>
         <p>{'Missing property "jobs".'}</p>
         <p>{'The jobs object must contains one top-level key named "jobs".'}</p>
-      </>,
+      </Fragment>,
     );
   }
 
@@ -74,19 +74,19 @@ export const isValidConfig = (config: unknown): TValidResult => {
     const names = keys.filter((i) => i !== KEYS.jobs).join(separator);
 
     return error(
-      <>
+      <Fragment>
         <p>{`Unknown property "${names}".`}</p>
         <p>{'The jobs object must contains one top-level key named "jobs".'}</p>
-      </>,
+      </Fragment>,
     );
   }
 
   if (!Array.isArray(config.jobs)) {
     return error(
-      <>
+      <Fragment>
         <p>{'Incorrect type. Expected "array".'}</p>
         <p>{'The top-level key "jobs" must be an array.'}</p>
-      </>,
+      </Fragment>,
     );
   }
 
@@ -95,10 +95,10 @@ export const isValidConfig = (config: unknown): TValidResult => {
 
   if (i > 20) {
     return error(
-      <>
+      <Fragment>
         <p>{`Too many scheduled jobs. (${i})`}</p>
         <p>You can configure up to 20 jobs.</p>
-      </>,
+      </Fragment>,
     );
   }
 
@@ -110,10 +110,10 @@ export const isValidConfig = (config: unknown): TValidResult => {
 
   if (!JOBS.every(isObject)) {
     return error(
-      <>
+      <Fragment>
         <p>{'Incorrect type. Expected "object."'}</p>
         <p>{'The "jobs" array must contain only objects, each of which represents a scheduled job.'}</p>
-      </>,
+      </Fragment>,
     );
   }
 
@@ -123,20 +123,20 @@ export const isValidConfig = (config: unknown): TValidResult => {
     const [hasUnknown, unknownKey] = hasUnknownProps(ITEM, $_ffed);
     if (hasUnknown) {
       return error(
-        <>
+        <Fragment>
           <p>{`Unknown property "${unknownKey}" at "jobs[${i}]".`}</p>
           <p>{`Allowed one of "${$_ffed.join(separator)}"`}</p>
-        </>,
+        </Fragment>,
       );
     }
 
     const [hasMissing, missingkey] = hasMissingProps(ITEM, $_ffe);
     if (hasMissing) {
       return error(
-        <>
+        <Fragment>
           <p>{`Missing property "${missingkey}" at "jobs[${i}]"`}</p>
           <p>{`Each scheduled job object must contain the required fields "${$_ffe.join(separator)}".`}</p>
-        </>,
+        </Fragment>,
       );
     }
 
@@ -160,11 +160,11 @@ export const isValidConfig = (config: unknown): TValidResult => {
 
     if (!isLocationPath(FL)) {
       return error(
-        <>
+        <Fragment>
           <p>{`Invalid "functionLocation" at "jobs[${i}]".`}</p>
           <p>The function location is a relative path within the Backend folder for <code>.js</code> or <code>.jsw</code> file.</p>
           <p>File and Folder names can contain only alphanumeric characters, periods, hyphens and underscores, and can not begin or end with a period.</p>
-        </>,
+        </Fragment>,
       );
     }
 
@@ -178,10 +178,10 @@ export const isValidConfig = (config: unknown): TValidResult => {
 
     if (!isValidFunctionName(FN)) {
       return error(
-        <>
+        <Fragment>
           <p>{`Invalid "functionName" at "jobs[${i}]"`}</p>
           <p>{`Error: "${FN}".`}</p>
-        </>,
+        </Fragment>,
       );
     }
 
@@ -196,10 +196,10 @@ export const isValidConfig = (config: unknown): TValidResult => {
     const [hasUnknown1, unknownKey1] = hasUnknownProps(EXEC_CONFIG, $$_ctwm);
     if (hasUnknown1) {
       return error(
-        <>
+        <Fragment>
           <p>{`Unknown property "${unknownKey1}" in "jobs[${i}].executionConfig".`}</p>
           <p>{`Allowed one of "${$$_ctwm.join(separator)}"`}</p>
-        </>,
+        </Fragment>,
       );
     }
 
@@ -214,7 +214,7 @@ export const isValidConfig = (config: unknown): TValidResult => {
 
       if (!isValidCron(CRON_EXP)) {
         return error(
-          <>
+          <Fragment>
             <p>{`Invalid "cronExpression" at "jobs[${i}].executionConfig".`}</p>
             <p>
               <CronTrue value={CRON_EXP} setValidity={() => {/**/}} />
@@ -225,7 +225,7 @@ export const isValidConfig = (config: unknown): TValidResult => {
                 If you define your job to run more frequently, the job will be ignored.
               </em>
             </p>
-          </>,
+          </Fragment>,
         );
       }
     } else if (KEYS.time in EXEC_CONFIG) {
@@ -239,18 +239,18 @@ export const isValidConfig = (config: unknown): TValidResult => {
 
       if (!isUTCTime(TIME)) {
         return error(
-          <>
+          <Fragment>
             <p>{`Invalid "time" at "jobs[${i}].executionConfig".`}</p>
             <p>{`Error: "${TIME}". The time is specified as UTC time in HH:MM format.`}</p>
-          </>,
+          </Fragment>,
         );
       }
     } else {
       return error(
-        <>
+        <Fragment>
           <p>{`Missing the time of the job runs at "jobs[${i}].executionConfig".`}</p>
           <p>{'The "executionConfig" object must contain one of "time", "cronExpression" properties.'}</p>
-        </>,
+        </Fragment>,
       );
     }
 
@@ -265,10 +265,10 @@ export const isValidConfig = (config: unknown): TValidResult => {
 
       if (!weekList.some((i) => i === DOW)) {
         return error(
-          <>
+          <Fragment>
             <p>{`Incorrect value of "dayOfWeek" at "jobs[${i}].executionConfig".`}</p>
             <p>{`Error: unknown value "${DOW}". Allowed one of "${weekList.join(separator)}"`}</p>
-          </>,
+          </Fragment>,
         );
       }
     }
@@ -284,10 +284,10 @@ export const isValidConfig = (config: unknown): TValidResult => {
 
       if (!Number.isInteger(DIM) || DIM < 1 || DIM > 31) {
         return error(
-          <>
+          <Fragment>
             <p>{`Invalid "dateInMonth" at "jobs[${i}].executionConfig".`}</p>
             <p>{'The value of the "dateInMonth" property must be a number between 1 and 31.'}</p>
-          </>,
+          </Fragment>,
         );
       }
     }
@@ -297,7 +297,7 @@ export const isValidConfig = (config: unknown): TValidResult => {
       ($$_twm.some((i) => i in EXEC_CONFIG))
     ) {
       return error(
-        <>
+        <Fragment>
           <p>{`Mutual exclusion property at "jobs[${i}].executionConfig".`}</p>
           <p>{`Error: "cronExpression" omit all of "${$$_twm.join(separator)}" properties.`}</p>
           <p>
@@ -305,16 +305,16 @@ export const isValidConfig = (config: unknown): TValidResult => {
               {'When using a cron expression to specify when a job runs, the "executionConfig" object contains a single property, named "cronExpression", whose value is a valid cron expression.'}
             </em>
           </p>
-        </>,
+        </Fragment>,
       );
     }
 
     if ($$_wm.every((i) => i in EXEC_CONFIG)) {
       return error(
-        <>
+        <Fragment>
           <p>{`Mutual exclusion property at "jobs[${i}].executionConfig".`}</p>
           <p>{'Error: "dateInMonth" omit the "dayOfWeek" property.'}</p>
-        </>,
+        </Fragment>,
       );
     }
   }

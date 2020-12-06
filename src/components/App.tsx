@@ -6,7 +6,7 @@ import { Fallback } from './Fallback';
 import { useLazyRouter } from '../hooks/useLazyRouter';
 
 const Tooltips = lazy(() => {
-  return import('./Tooltip').then((i) => {
+  return import('./Tooltip' /* webpackChunkName: "Tooltip" */).then((i) => {
     return {
       default: i.Tooltips,
     };
@@ -17,7 +17,7 @@ export function App() {
   const Page = useLazyRouter();
 
   return (
-    <>
+    <Fragment>
       <Header />
       <Suspense fallback={<Fallback />}>
         <Tooltips />
@@ -25,6 +25,6 @@ export function App() {
       <Suspense fallback={<Fallback />}>
         <Page />
       </Suspense>
-    </>
+    </Fragment>
   );
 }

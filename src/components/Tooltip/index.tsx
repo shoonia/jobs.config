@@ -33,7 +33,7 @@ export function Tooltips() {
   }, [items]);
 
   return (
-    <>
+    <Fragment>
       <Hint events delay="500" />
       <Hint
         persist
@@ -45,6 +45,6 @@ export function Tooltips() {
         className={s.fs}
         onRenderContent={onRenderContent}
       />
-    </>
+    </Fragment>
   );
 }

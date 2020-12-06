@@ -4,7 +4,7 @@ import { useStoreon } from 'storeon/preact';
 import s from './styles.css';
 import { preventDefault } from '../../util/component';
 import { Parser } from '../Parser';
-import { TEvents, TState } from 'store';
+import { TEvents, TState } from '../../store';
 
 export function Validator() {
   const { validatorValue, dispatch } = useStoreon<TState, TEvents>('validatorValue');

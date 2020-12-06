@@ -1,6 +1,5 @@
 {
   "compilerOptions": {
-    "baseUrl": "./src",
     "module": "ESNext",
     "target": "ES2020",
     "moduleResolution": "Node",
@@ -8,11 +7,16 @@
     "jsxFactory": "h",
     "jsxFragmentFactory": "Fragment",
     "allowSyntheticDefaultImports": true,
+    "isolatedModules": true,
     "esModuleInterop": true,
     "noEmit": true,
+    "strict": false,
     "lib": [
       "ES2020",
       "DOM"
     ]
-  }
+  },
+  "include": [
+    "src"
+  ]
 }

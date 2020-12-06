@@ -3,10 +3,9 @@ import { useStoreon } from 'storeon/preact';
 
 import { TState } from '../store';
 import { ROUTER } from '../constants';
-import { CronTrue } from '../components/CronTrue';
 
 const BuilderPage = lazy(() => {
-  return import('../components/BuilderPage').then((i) => {
+  return import('../components/BuilderPage' /* webpackChunkName: "BuilderPage" */).then((i) => {
     return {
       default: i.BuilderPage,
     };
@@ -14,7 +13,7 @@ const BuilderPage = lazy(() => {
 });
 
 const ValidatorPage = lazy(() => {
-  return import('../components/ValidatorPage').then((i) => {
+  return import('../components/ValidatorPage' /* webpackChunkName: "ValidatorPage" */).then((i) => {
     return {
       default: i.ValidatorPage,
     };
@@ -27,11 +26,6 @@ export const useLazyRouter = () => {
   switch (path) {
     case ROUTER.VALIDATOR: {
       return ValidatorPage;
-    }
-
-    // FIX: hotfix for unresolved module
-    case ROUTER.FIX: {
-      return CronTrue as null;
     }
   }
 

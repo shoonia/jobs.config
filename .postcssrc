@@ -1,9 +1,0 @@
-{
-  "modules": true,
-  "plugins": {
-    "autoprefixer": {
-      "grid": "autoplace",
-      "flexbox": "no-2009"
-    }
-  }
-}
