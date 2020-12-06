@@ -8,10 +8,8 @@ interface Props {
   expected: 'string' | 'number' | 'object';
 }
 
-export function IncorrectType({ index, name, expected }: Props) {
-  return (
-    <p>
-      {`Incorrect type of property "${name}" at "jobs[${index}]". Expected "${expected}".`}
-    </p>
-  );
-}
+export const IncorrectType = ({ index, name, expected }: Props) => (
+  <p>
+    {`Incorrect type of property "${name}" at "jobs[${index}]". Expected "${expected}".`}
+  </p>
+);

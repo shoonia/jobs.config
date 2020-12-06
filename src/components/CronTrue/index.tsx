@@ -11,10 +11,8 @@ const LazyCronTrue = lazy(() => {
   });
 });
 
-export function CronTrue(props: Props) {
-  return (
-    <Suspense fallback={null}>
-      {LazyCronTrue(props)}
-    </Suspense>
-  );
-}
+export const CronTrue = (props: Props) => (
+  <Suspense fallback={null}>
+    {LazyCronTrue(props)}
+  </Suspense>
+);

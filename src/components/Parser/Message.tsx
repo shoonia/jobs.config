@@ -7,12 +7,10 @@ interface Props {
   error?: boolean;
 }
 
-export function Message({ children, error = false }: Props) {
-  return (
-    <div className={s.message}>
-      <pre className={error ? s.error : s.success}>
-        {children}
-      </pre>
-    </div>
-  );
-}
+export const Message = ({ children, error = false }: Props) => (
+  <div className={s.message}>
+    <pre className={error ? s.error : s.success}>
+      {children}
+    </pre>
+  </div>
+);

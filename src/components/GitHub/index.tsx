@@ -3,7 +3,7 @@ import { h } from 'preact';
 import s from './styles.css';
 import { useStars } from './useStars';
 
-export function GitHub() {
+export const GitHub = () => {
   const stars = useStars();
   const hasStars = (stars > 0);
   const btnClass = hasStars ? s.btn : s.btnOnly;
@@ -36,4 +36,4 @@ export function GitHub() {
       )}
     </div>
   );
-}
+};

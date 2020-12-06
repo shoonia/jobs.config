@@ -8,7 +8,7 @@ import { JSON } from './JSON';
 import { createConfig } from '../../util/items';
 import { TState } from '../../store';
 
-export function Preview() {
+export const Preview = () => {
   const { items } = useStoreon<TState>('items');
   const output = useRef<HTMLPreElement>();
 
@@ -51,4 +51,4 @@ export function Preview() {
       </div>
     </div>
   );
-}
+};

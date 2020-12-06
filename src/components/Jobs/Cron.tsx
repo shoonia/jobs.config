@@ -9,7 +9,7 @@ interface Props {
   error: boolean;
 }
 
-export function Cron({ value, error }: Props) {
+export const Cron = ({ value, error }: Props) => {
   const ref = useRef<HTMLInputElement>();
 
   useEffect(() => {
@@ -28,4 +28,4 @@ export function Cron({ value, error }: Props) {
       />
     </Label>
   );
-}
+};

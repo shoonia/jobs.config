@@ -7,13 +7,11 @@ interface Props {
   children: ComponentChildren;
 }
 
-export function Label({ top, children }: Props) {
-  return (
-    <label className={s.block}>
-      <span className={s.text}>
-        {top}
-      </span>
-      {children}
-    </label>
-  );
-}
+export const Label = ({ top, children }: Props) => (
+  <label className={s.block}>
+    <span className={s.text}>
+      {top}
+    </span>
+    {children}
+  </label>
+);

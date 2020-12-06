@@ -11,7 +11,7 @@ import { TState } from '../../store';
 
 const Hint = HintFactory({ createElement: h, Component });
 
-export function Tooltips() {
+export const Tooltips = () => {
   const { items } = useStoreon<TState>('items');
 
   const onRenderContent = useCallback((target: HTMLInputElement) => {
@@ -47,4 +47,4 @@ export function Tooltips() {
       />
     </Fragment>
   );
-}
+};

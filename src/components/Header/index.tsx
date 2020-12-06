@@ -8,7 +8,7 @@ import { GitHub } from '../GitHub';
 
 const root = document.getElementById('header') as HTMLElement;
 
-export function Header() {
+export const Header = () => {
   return createPortal(
     <div className={s.header}>
       <nav className={s.nav}>
@@ -19,4 +19,4 @@ export function Header() {
     </div>,
     root,
   );
-}
+};

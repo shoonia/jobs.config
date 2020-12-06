@@ -13,7 +13,7 @@ const Tooltips = lazy(() => {
   });
 });
 
-export function App() {
+export const App = () => {
   const Page = useLazyRouter();
 
   return (
@@ -27,4 +27,4 @@ export function App() {
       </Suspense>
     </Fragment>
   );
-}
+};

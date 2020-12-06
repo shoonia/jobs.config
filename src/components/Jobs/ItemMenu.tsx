@@ -8,30 +8,28 @@ interface Props {
   isMax: boolean;
 }
 
-export function ItemMenu({
+export const ItemMenu = ({
   remove,
   clone,
   isMax,
-}: Props) {
-  return (
-    <div className={s.buttons}>
-      <button
-        type="button"
-        aria-label="remove"
-        onClick={remove}
-        className={s.btnRemove}
-        data-rh="Remove"
-        data-rh-at="top"
-      />
-      <button
-        type="button"
-        aria-label="clone"
-        onClick={clone}
-        className={s.btnClone}
-        data-rh="Clone"
-        data-rh-at="top"
-        disabled={isMax}
-      />
-    </div>
-  );
-}
+}: Props) => (
+  <div className={s.buttons}>
+    <button
+      type="button"
+      aria-label="remove"
+      onClick={remove}
+      className={s.btnRemove}
+      data-rh="Remove"
+      data-rh-at="top"
+    />
+    <button
+      type="button"
+      aria-label="clone"
+      onClick={clone}
+      className={s.btnClone}
+      data-rh="Clone"
+      data-rh-at="top"
+      disabled={isMax}
+    />
+  </div>
+);

@@ -11,7 +11,7 @@ interface Props {
   path: ROUTER;
 }
 
-export function MenuItem({ children, path }: Props) {
+export const MenuItem = ({ children, path }: Props) => {
   const i = useStoreon<TState>('path');
   const isActive = i.path === path;
 
@@ -31,4 +31,4 @@ export function MenuItem({ children, path }: Props) {
       </a>
     </li>
   );
-}
+};

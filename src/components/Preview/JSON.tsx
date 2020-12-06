@@ -28,7 +28,7 @@ const tokens: IToken[] = [
   },
 ];
 
-export function JSON({ input }: Props) {
+export const JSON = ({ input }: Props) => {
   const items: ComponentChildren[] = [];
 
   let isFound: boolean;
@@ -64,4 +64,4 @@ export function JSON({ input }: Props) {
       {items}
     </code>
   );
-}
+};

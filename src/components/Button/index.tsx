@@ -9,20 +9,18 @@ interface Props {
   type?: 'button' | 'submit';
 }
 
-export function Button({
+export const Button = ({
   onClick,
   disabled,
   children,
   type = 'button',
-}: Props) {
-  return (
-    <button
-      type={type}
-      onClick={onClick}
-      className={s.primary}
-      disabled={disabled}
-    >
-      {children}
-    </button>
-  );
-}
+}: Props) => (
+  <button
+    type={type}
+    onClick={onClick}
+    className={s.primary}
+    disabled={disabled}
+  >
+    {children}
+  </button>
+);

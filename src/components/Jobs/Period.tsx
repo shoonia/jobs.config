@@ -15,12 +15,12 @@ interface Props {
   cronExpression: string;
 }
 
-export function Period({
+export const Period = ({
   name,
   time,
   cronExpression,
   period,
-}: Props) {
+}: Props) => {
   const [isError, setValidity] = useState<boolean>(false);
 
   const isCron = (period === PERIOD.CRON);
@@ -70,4 +70,4 @@ export function Period({
       </div>
     </fieldset>
   );
-}
+};

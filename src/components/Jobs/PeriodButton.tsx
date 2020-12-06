@@ -17,7 +17,7 @@ const handlerClick = ({ key, target }: KeyboardEvent) => {
   }
 };
 
-export function PeriodButton({ name, value, period }: Props) {
+export const PeriodButton = ({ name, value, period }: Props) => {
   const isChecked = value === period;
 
   return (
@@ -39,4 +39,4 @@ export function PeriodButton({ name, value, period }: Props) {
       </span>
     </label>
   );
-}
+};

@@ -7,15 +7,13 @@ interface Props {
   right: ComponentChildren;
 }
 
-export function Grid({ left, right }: Props) {
-  return (
-    <div className={s.box}>
-      <div className={s.left}>
-        {left}
-      </div>
-      <div className={s.right}>
-        {right}
-      </div>
+export const Grid = ({ left, right }: Props) => (
+  <div className={s.box}>
+    <div className={s.left}>
+      {left}
     </div>
-  );
-}
+    <div className={s.right}>
+      {right}
+    </div>
+  </div>
+);

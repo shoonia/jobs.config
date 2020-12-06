@@ -6,7 +6,7 @@ import { preventDefault } from '../../util/component';
 import { Parser } from '../Parser';
 import { TEvents, TState } from '../../store';
 
-export function Validator() {
+export const Validator = () => {
   const { validatorValue, dispatch } = useStoreon<TState, TEvents>('validatorValue');
 
   const onInput = ({ target }) => {
@@ -35,4 +35,4 @@ export function Validator() {
       </div>
     </section>
   );
-}
+};

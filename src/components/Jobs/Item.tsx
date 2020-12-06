@@ -18,13 +18,13 @@ interface Props {
   isMax: boolean;
 }
 
-export function Item({
+export const Item = ({
   data,
   remove,
   clone,
   update,
   isMax,
-}: Props) {
+}: Props) => {
   const { id, period } = data;
 
   const dayOfWeek = period === PERIOD.WEEKLY && (
@@ -65,4 +65,4 @@ export function Item({
       </form>
     </li>
   );
-}
+};

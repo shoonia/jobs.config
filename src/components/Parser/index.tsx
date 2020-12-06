@@ -11,10 +11,8 @@ const LazyParser = lazy(() => {
   });
 });
 
-export function Parser(props: Props) {
-  return (
-    <Suspense fallback={null}>
-      <LazyParser {...props} />
-    </Suspense>
-  );
-}
+export const Parser = (props: Props) => (
+  <Suspense fallback={null}>
+    <LazyParser {...props} />
+  </Suspense>
+);

@@ -8,7 +8,7 @@ interface Props {
   target: HTMLInputElement;
 }
 
-export function FunctionName({ target }: Props) {
+export const FunctionName = ({ target }: Props) => {
   const style = {
     minWidth: target.offsetWidth,
   };
@@ -45,4 +45,4 @@ export function FunctionName({ target }: Props) {
       </code>
     </div>
   );
-}
+};

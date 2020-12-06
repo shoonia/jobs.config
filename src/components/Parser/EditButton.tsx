@@ -10,7 +10,7 @@ interface Props {
   config: IConfig;
 }
 
-export function EditButton({ config }: Props) {
+export const EditButton = ({ config }: Props) => {
   const { dispatch } = useStoreon<TState, TEvents>();
 
   const onClick = () => {
@@ -23,4 +23,4 @@ export function EditButton({ config }: Props) {
       Edit Config
     </Button>
   );
-}
+};

@@ -17,20 +17,18 @@ const week = weekList.map((day) => (
   </option>
 ));
 
-export function DayOfWeek({ day }: Props) {
-  return (
-    <fieldset className={s.fields}>
-      <div className={s.location}>
-        <Label top="The day of the week the job runs.">
-          <select
-            className={s.date}
-            data-name="dayOfWeek"
-            value={day}
-          >
-            {week}
-          </select>
-        </Label>
-      </div>
-    </fieldset>
-  );
-}
+export const DayOfWeek = ({ day }: Props) => (
+  <fieldset className={s.fields}>
+    <div className={s.location}>
+      <Label top="The day of the week the job runs.">
+        <select
+          className={s.date}
+          data-name="dayOfWeek"
+          value={day}
+        >
+          {week}
+        </select>
+      </Label>
+    </div>
+  </fieldset>
+);

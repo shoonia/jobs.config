@@ -6,7 +6,7 @@ import { Button } from '../Button';
 import { IconPlus } from './IconPlus';
 import { TState, TEvents } from '../../store';
 
-export function CreateButton() {
+export const CreateButton = () => {
   const { dispatch, isMax } = useStoreon<TState, TEvents>('isMax');
 
   const createItem: EventHandlerNonNull = () => {
@@ -29,4 +29,4 @@ export function CreateButton() {
       </span>
     </div>
   );
-}
+};

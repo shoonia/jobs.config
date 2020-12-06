@@ -6,7 +6,7 @@ import s from './styles.css';
 import { Item } from './Item';
 import { TState, TEvents } from '../../store';
 
-export function Jobs() {
+export const Jobs = () => {
   const { dispatch, items, isMax } = useStoreon<TState, TEvents>('items', 'isMax');
 
   const removeItem = useCallback(({ target }) => {
@@ -41,4 +41,4 @@ export function Jobs() {
       {list}
     </ul>
   );
-}
+};

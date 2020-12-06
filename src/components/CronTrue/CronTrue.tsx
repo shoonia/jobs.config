@@ -6,7 +6,7 @@ export interface Props {
   setValidity: (isError: boolean) => void;
 }
 
-export function CronTrue({ value, setValidity }: Props) {
+export const CronTrue = ({ value, setValidity }: Props) => {
   const [isError, message] = useCron(value);
 
   useEffect(() => {
@@ -14,4 +14,4 @@ export function CronTrue({ value, setValidity }: Props) {
   }, [isError]);
 
   return message;
-}
+};

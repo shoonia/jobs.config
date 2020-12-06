@@ -9,7 +9,7 @@ export interface Props {
   value: string;
 }
 
-export function Parser({ value }: Props) {
+export const Parser = ({ value }: Props) => {
   if (value.trim() === '') {
     return (
       <Message>
@@ -52,4 +52,4 @@ export function Parser({ value }: Props) {
       <EditButton config={config as any} />
     </Message>
   );
-}
+};

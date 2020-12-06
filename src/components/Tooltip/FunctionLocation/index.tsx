@@ -7,7 +7,7 @@ interface Props {
   target: HTMLInputElement;
 }
 
-export function FunctionLocation({ target }: Props) {
+export const FunctionLocation = ({ target }: Props) => {
   const style = {
     minWidth: target.offsetWidth,
   };
@@ -38,4 +38,4 @@ export function FunctionLocation({ target }: Props) {
       {tree}
     </div>
   );
-}
+};
