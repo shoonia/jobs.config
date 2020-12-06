@@ -203,8 +203,14 @@ module.exports = (buildEnv) => {
         },
       }),
       new webpack.DefinePlugin({
-        'process.env.NODE_ENV': JSON.stringify(process.env.NODE_ENV),
         'process.platform': JSON.stringify(process.platform),
+        'process.env': {
+          NODE_ENV: JSON.stringify(process.env.NODE_ENV),
+        },
+        'process.emitWarning': JSON.stringify(isDev),
+        'process.throwDeprecation': JSON.stringify(isDev),
+        'process.noDeprecation': JSON.stringify(isDev),
+        'process': undefined,
       }),
       // new webpack.IgnorePlugin(/^\.\/locale$/, /moment$/),
     ].filter(Boolean),
