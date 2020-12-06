@@ -35,6 +35,10 @@ export interface IConfig {
   [KEYS.jobs]: IJob[];
 }
 
+const dTime = '00:00';
+const dCron = '0 * * * *';
+const dDay: TWeekList = weekList[0];
+
 const createLocation = (location: string): string => {
   const SLASH_CHAR_CODE = 47;
 
@@ -78,7 +82,7 @@ export const createConfig = (items: IItem[]): string => {
         functionName: i.functionName.trim(),
         description: (i.description !== '') ? i.description : noop,
         executionConfig: {
-          time: (i.period !== PERIOD.CRON) ? (i.time || '00:00') : noop,
+          time: (i.period !== PERIOD.CRON) ? (isUTCTime(i.time) ? i.time : dTime) : noop,
           dayOfWeek: (i.period === PERIOD.WEEKLY) ? i.dayOfWeek : noop,
           dateInMonth: (i.period === PERIOD.MONTHLY) ? parseDate(i.dateInMonth) : noop,
           cronExpression: (i.period === PERIOD.CRON) ? i.cronExpression.trim() : noop,
@@ -95,10 +99,10 @@ export const newItem = (): IItem => ({
   functionLocation: '/function_location.js',
   functionName: 'function_name',
   description: '',
-  time: '00:00',
-  dayOfWeek: weekList[0],
+  time: dTime,
+  dayOfWeek: dDay,
   dateInMonth: 1,
-  cronExpression: '0 * * * *',
+  cronExpression: dCron,
   period: PERIOD.DAILY,
 });
 
@@ -111,10 +115,10 @@ export const createItems = (config: IConfig): IItem[] => {
       functionLocation: i.functionLocation,
       functionName: i.functionName,
       description: isString(i.description) ? i.description : '',
-      time: isUTCTime(exec.time) ? exec.time : '00:00',
-      dayOfWeek: isString(exec.dayOfWeek) ? exec.dayOfWeek : weekList[0],
+      time: isUTCTime(exec.time) ? exec.time : dTime,
+      dayOfWeek: isString(exec.dayOfWeek) ? exec.dayOfWeek : dDay,
       dateInMonth: parseDate(exec.dateInMonth),
-      cronExpression: isString(exec.cronExpression) ? exec.cronExpression : '',
+      cronExpression: isString(exec.cronExpression) ? exec.cronExpression : dCron,
       period: getPeriod(exec),
     };
   });
