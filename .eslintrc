@@ -27,17 +27,18 @@
   },
   "rules": {
     "@typescript-eslint/explicit-module-boundary-types": "off",
-    "react/jsx-key": "error",
-    "react/prop-types": "off",
-    "linebreak-style": "off",
-    "no-trailing-spaces": "error",
-    "no-use-before-define": "error",
-    "no-unused-vars": [
+    "@typescript-eslint/no-unused-vars": [
       "error",
       {
         "varsIgnorePattern": "^h$"
       }
     ],
+    "react/jsx-key": "error",
+    "react/prop-types": "off",
+    "linebreak-style": "off",
+    "no-trailing-spaces": "error",
+    "no-use-before-define": "error",
+    "no-unused-vars": "off",
     "comma-dangle": [
       "error",
       "always-multiline"
