@@ -1,12 +1,13 @@
 .message {
-  margin: 1em 0;
+  margin: 16px 0;
+  position: relative;
 }
 
 .box {
   font-size: 14px;
   white-space: break-spaces;
   overflow: hidden;
-  padding: 1em;
+  padding: 16px 32px 16px 16px;
   margin: 0;
   border-radius: 8px;
 }
@@ -23,4 +24,10 @@
   border: 1px solid var(--cr-success);
   color: var(--cr-success);
   background-color: #e0fee0;
+}
+
+.tool {
+  position: absolute;
+  top: 6px;
+  right: 10px;
 }

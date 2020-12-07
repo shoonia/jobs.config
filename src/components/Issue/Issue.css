@@ -1,0 +1,14 @@
+.issue {
+  color: var(--cr-primary);
+  font-size: 13px;
+  text-decoration: none;
+  cursor: alias;
+  outline: none;
+  display: inline-block;
+  padding: 3px;
+}
+
+.issue:hover,
+.issue:focus {
+  color: var(--cr-success);
+}

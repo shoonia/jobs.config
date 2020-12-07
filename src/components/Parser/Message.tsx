@@ -1,6 +1,7 @@
 import { ComponentChildren, h } from 'preact';
 
 import s from './styles.css';
+import { Issue } from '../Issue';
 
 interface Props {
   children: ComponentChildren;
@@ -12,5 +13,8 @@ export const Message = ({ children, error = false }: Props) => (
     <pre className={error ? s.error : s.success}>
       {children}
     </pre>
+    <div className={s.tool}>
+      <Issue />
+    </div>
   </div>
 );
