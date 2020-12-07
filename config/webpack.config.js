@@ -38,24 +38,24 @@ module.exports = (buildEnv) => {
       minimizer: [
         new TerserPlugin({
           terserOptions: {
-            ecma: 2015,
+            ecma: 2020,
             module: true,
             toplevel: true,
             parse: {
-              ecma: 2015,
+              ecma: 2018,
             },
             compress: {
-              ecma: 2015,
+              ecma: 2018,
               module: true,
               comparisons: false,
               inline: 2,
               drop_console: true,
-              passes: 3,
+              passes: 5,
               toplevel: true,
               pure_getters: true,
             },
             output: {
-              ecma: 2015,
+              ecma: 2018,
               comments: false,
             },
           },
@@ -159,7 +159,7 @@ module.exports = (buildEnv) => {
                     modules: isDev ? {
                       localIdentName: '[local]_[hash:base64:4]',
                     } : {
-                      getLocalIdent: createLocalIdent({}),
+                      getLocalIdent: createLocalIdent(),
                     },
                   },
                 },
@@ -170,7 +170,6 @@ module.exports = (buildEnv) => {
                     postcssOptions: {
                       plugins: [
                         require('autoprefixer'),
-                        require('postcss-flexbugs-fixes'),
                       ],
                     },
                   },
