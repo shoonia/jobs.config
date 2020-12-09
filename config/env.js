@@ -7,4 +7,5 @@ process.on('unhandledRejection', (error) => {
 module.exports = (buildEnv) => {
   process.env.BABEL_ENV = buildEnv;
   process.env.NODE_ENV = buildEnv;
+  process.env.BROWSERSLIST_ENV = buildEnv;
 };

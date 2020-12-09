@@ -25,16 +25,13 @@ measureFileSizesBeforeBuild(paths.appBuild)
   })
   .then(({ stats, previousFileSizes, warnings }) => {
     if (warnings.length > 0) {
-      console.log('Compiled with warnings.\n');
-      console.log('\n\n');
       console.log(
-        '\nSearch for the keywords to learn more about each warning.',
-      );
-      console.log(
+        'Compiled with warnings.\n\n\n',
+        'Search for the keywords to learn more about each warning.',
         'To ignore, add // eslint-disable-next-line to the line before.\n',
       );
     } else {
-      console.log('Compiled successfully.\n');
+      console.log('\nCompiled successfully.\n');
     }
 
     console.log('File sizes after gzip:\n');
