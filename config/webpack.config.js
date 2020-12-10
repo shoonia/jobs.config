@@ -7,6 +7,7 @@ const OptimizeCSSAssetsPlugin = require('optimize-css-assets-webpack-plugin');
 const CSSMQPackerPlugin = require('css-mqpacker-webpack-plugin');
 const createLocalIdent = require('mini-css-class-name/css-loader');
 const ForkTsCheckerWebpackPlugin = require('fork-ts-checker-webpack-plugin');
+const HTMLInlineCSSWebpackPlugin = require('html-inline-css-webpack-plugin').default;
 const paths = require('./paths');
 const { homepage } = require(paths.appPackageJson);
 
@@ -209,11 +210,14 @@ module.exports = (buildEnv) => {
           isProd,
         },
       }),
-      isDev && new webpack.HotModuleReplacementPlugin(),
       isProd && new MiniCssExtractPlugin({
         filename: 'css/[name].[contenthash:4].css',
         chunkFilename: 'css/[name].[chunkhash:4].css',
       }),
+      isProd && new HTMLInlineCSSWebpackPlugin({
+        leaveCSSFile: true,
+      }),
+      isDev && new webpack.HotModuleReplacementPlugin(),
       isDev && new ForkTsCheckerWebpackPlugin({
         typescript: {
           configFile: paths.appTsConfig,
@@ -224,13 +228,12 @@ module.exports = (buildEnv) => {
       }),
       new webpack.DefinePlugin({
         'process.platform': JSON.stringify(process.platform),
-        'process.env': {
-          NODE_ENV: JSON.stringify(process.env.NODE_ENV),
-        },
         'process.emitWarning': JSON.stringify(isDev),
         'process.throwDeprecation': JSON.stringify(isDev),
         'process.noDeprecation': JSON.stringify(isDev),
-        'process': undefined,
+        'process.env.NODE_ENV': JSON.stringify(process.env.NODE_ENV),
+        'process.env': '{}',
+        'process': 'undefined',
       }),
       // new webpack.IgnorePlugin(/^\.\/locale$/, /moment$/),
     ].filter(Boolean),

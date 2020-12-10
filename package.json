@@ -38,6 +38,7 @@
     "file-loader": "^6.2.0",
     "fork-ts-checker-webpack-plugin": "^6.0.5",
     "fs-extra": "^9.0.1",
+    "html-inline-css-webpack-plugin": "^1.9.1",
     "html-webpack-plugin": "^5.0.0-alpha.15",
     "husky": "^4.3.5",
     "mini-css-class-name": "^0.11.1",
