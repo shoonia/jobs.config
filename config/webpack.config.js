@@ -8,6 +8,7 @@ const CSSMQPackerPlugin = require('css-mqpacker-webpack-plugin');
 const createLocalIdent = require('mini-css-class-name/css-loader');
 const ForkTsCheckerWebpackPlugin = require('fork-ts-checker-webpack-plugin');
 const paths = require('./paths');
+const { homepage } = require(paths.appPackageJson);
 
 module.exports = (buildEnv) => {
   const isDev = buildEnv === 'development';
@@ -190,9 +191,23 @@ module.exports = (buildEnv) => {
     },
     plugins: [
       new HtmlWebpackPlugin({
-        inject: true,
+        filename: 'index.html',
+        inject: 'head',
         template: paths.appHtml,
         favicon: paths.favicon,
+        scriptLoading: 'defer',
+        minify: isProd && {
+          collapseWhitespace: true,
+          removeComments: true,
+          removeRedundantAttributes: true,
+          removeScriptTypeAttributes: true,
+          removeStyleLinkTypeAttributes: true,
+          useShortDoctype: true,
+        },
+        templateParameters: {
+          homepage,
+          isProd,
+        },
       }),
       isDev && new webpack.HotModuleReplacementPlugin(),
       isProd && new MiniCssExtractPlugin({

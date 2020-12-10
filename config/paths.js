@@ -6,7 +6,7 @@ const resolveApp = (relativePath) => path.resolve(appDirectory, relativePath);
 
 module.exports = {
   appSrc: resolveApp('src'),
-  appHtml: resolveApp('src/index.html'),
+  appHtml: resolveApp('src/index.ejs'),
   appIndexTs: resolveApp('src/main.tsx'),
   favicon: resolveApp('src/assets/favicon.png'),
   appPackageJson: resolveApp('package.json'),

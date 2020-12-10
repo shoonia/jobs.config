@@ -8,12 +8,12 @@ const { createCompiler, prepareUrls } = require('react-dev-utils/WebpackDevServe
 const paths = require('../config/paths');
 const configFactory = require('../config/webpack.config');
 const createDevServerConfig = require('../config/webpackDevServer.config');
+const { name } = require(paths.appPackageJson);
 
 const HOST = '0.0.0.0';
 const PORT = 3000;
 
 const config = configFactory(buildEnv);
-const appName = require(paths.appPackageJson).name;
 const urls = prepareUrls('http', HOST, PORT);
 
 const devSocket = {
@@ -23,7 +23,7 @@ const devSocket = {
 
 /**@type {*} */
 const compilerOptions = {
-  appName,
+  appName: name,
   config,
   devSocket,
   urls,
