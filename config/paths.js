@@ -8,7 +8,6 @@ module.exports = {
   appSrc: resolveApp('src'),
   appHtml: resolveApp('src/index.ejs'),
   appIndexTs: resolveApp('src/main.tsx'),
-  favicon: resolveApp('src/assets/favicon.png'),
   appPackageJson: resolveApp('package.json'),
   appBuild: resolveApp('dist'),
   appStatic: resolveApp('static'),

@@ -183,7 +183,7 @@ module.exports = (buildEnv) => {
               loader: require.resolve('file-loader'),
               options: {
                 name: '[name].[ext]',
-                outputPath: 'images',
+                outputPath: '',
               },
             }
           ],
@@ -195,7 +195,6 @@ module.exports = (buildEnv) => {
         filename: 'index.html',
         inject: 'head',
         template: paths.appHtml,
-        favicon: paths.favicon,
         scriptLoading: 'defer',
         minify: isProd && {
           collapseWhitespace: true,
