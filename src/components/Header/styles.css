@@ -1,10 +1,14 @@
+:global(#header) {
+  height: var(--header-height);
+  border-bottom: 1px solid #b6c1cd;
+}
+
 .header {
   height: var(--header-height);
   padding: 0 1.5em;
   display: flex;
   justify-content: space-between;
   align-items: center;
-  border-bottom: 1px solid #b6c1cd;
 }
 
 .banner {
