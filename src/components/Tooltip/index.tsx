@@ -1,49 +1,16 @@
-import { h, Component, Fragment, FunctionComponent } from 'preact';
-import { useCallback } from 'preact/hooks';
-import HintFactory from 'react-hint';
-import { useStoreon } from 'storeon/preact';
+import { FunctionComponent, h } from 'preact';
+import { lazy, Suspense } from 'preact/compat';
 
-import s from './styles.css';
-import { FunctionName } from './FunctionName';
-import { FunctionLocation } from './FunctionLocation';
-import { TState } from '../../store';
+const LazyTooltips: FunctionComponent = lazy(() => {
+  return import('./Tooltip' /* webpackChunkName: "Tooltip" */).then((i) => {
+    return {
+      default: i.Tooltips,
+    };
+  });
+});
 
-const Hint = HintFactory({ createElement: h, Component });
-
-export const Tooltips: FunctionComponent = () => {
-  const { items } = useStoreon<TState>('items');
-
-  const onRenderContent = useCallback((target: HTMLInputElement) => {
-    const { name } = target.dataset;
-
-    switch (name) {
-      case 'functionLocation': {
-        return (
-          <FunctionLocation target={target} />
-        );
-      }
-      case 'functionName': {
-        return (
-          <FunctionName target={target} />
-        );
-      }
-    }
-    return null;
-  }, [items]);
-
-  return (
-    <Fragment>
-      <Hint events delay="500" />
-      <Hint
-        persist
-        attribute="data-fl"
-        events={{
-          focus: true,
-          click: true,
-        }}
-        className={s.fs}
-        onRenderContent={onRenderContent}
-      />
-    </Fragment>
-  );
-};
+export const Tooltips: FunctionComponent = () => (
+  <Suspense fallback={null}>
+    <LazyTooltips />
+  </Suspense>
+);

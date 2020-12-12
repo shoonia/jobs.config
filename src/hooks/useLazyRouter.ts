@@ -1,19 +1,27 @@
-import { lazy } from 'preact/compat';
+import { FunctionComponent, lazy } from 'preact/compat';
 import { useStoreon } from 'storeon/preact';
 
 import { TState } from '../store';
 import { ROUTER } from '../constants';
 
-const BuilderPage = lazy(() => {
-  return import('../components/BuilderPage' /* webpackChunkName: "BuilderPage" */).then((i) => {
+const BuilderPage: FunctionComponent = lazy(() => {
+  return import(
+    /* webpackChunkName: "BuilderPage" */
+    /* webpackPrefetch: true */
+    '../components/BuilderPage'
+  ).then((i) => {
     return {
       default: i.BuilderPage,
     };
   });
 });
 
-const ValidatorPage = lazy(() => {
-  return import('../components/ValidatorPage' /* webpackChunkName: "ValidatorPage" */).then((i) => {
+const ValidatorPage: FunctionComponent = lazy(() => {
+  return import(
+    /* webpackChunkName: "ValidatorPage" */
+    /* webpackPrefetch: true */
+    '../components/ValidatorPage'
+  ).then((i) => {
     return {
       default: i.ValidatorPage,
     };

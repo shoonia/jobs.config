@@ -1,17 +1,10 @@
 import { h, Fragment, FunctionComponent } from 'preact';
-import { Suspense, lazy } from 'preact/compat';
+import { Suspense } from 'preact/compat';
 
 import { Header } from './Header';
 import { Fallback } from './Fallback';
+import { Tooltips } from './Tooltip';
 import { useLazyRouter } from '../hooks/useLazyRouter';
-
-const Tooltips = lazy(() => {
-  return import('./Tooltip' /* webpackChunkName: "Tooltip" */).then((i) => {
-    return {
-      default: i.Tooltips,
-    };
-  });
-});
 
 export const App: FunctionComponent = () => {
   const Page = useLazyRouter();
@@ -19,9 +12,7 @@ export const App: FunctionComponent = () => {
   return (
     <Fragment>
       <Header />
-      <Suspense fallback={<Fallback />}>
-        <Tooltips />
-      </Suspense>
+      <Tooltips />
       <Suspense fallback={<Fallback />}>
         <Page />
       </Suspense>
