@@ -31,7 +31,7 @@ export interface IJob {
   [KEYS.executionConfig]: IExecutionConfig;
 }
 
-export interface IConfig {
+export interface IConfig extends Record<string, unknown> {
   [KEYS.jobs]: IJob[];
 }
 
@@ -73,7 +73,7 @@ const getPeriod = (exec: IExecutionConfig): PERIOD => {
 };
 
 export const createConfig = (items: IItem[]): string => {
-  const noop = undefined;
+  let noop: undefined;
 
   const config: IConfig = {
     jobs: items.map((i) => {

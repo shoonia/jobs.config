@@ -11,8 +11,7 @@ export interface IRouterEvents {
 }
 
 const getPath = (): ROUTER => {
-  const hash = window.location.hash
-    .slice(1)
+  const hash = location.hash
     .trim()
     .toLocaleLowerCase();
 

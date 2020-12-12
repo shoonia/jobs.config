@@ -4,6 +4,7 @@ import { parseJSONC } from './parseJSONC';
 import { isValidConfig } from './isValidConfig';
 import { Message } from './Message';
 import { EditButton } from './EditButton';
+import { IConfig } from '../../util/items';
 
 export interface Props {
   value: string;
@@ -49,7 +50,7 @@ export const Parser = ({ value }: Props) => {
   return (
     <Message>
       <p>Valid jobs.config</p>
-      <EditButton config={config as any} />
+      <EditButton config={(config as IConfig)} />
     </Message>
   );
 };

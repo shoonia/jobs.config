@@ -23,7 +23,7 @@ export const MenuItem = ({ children, path }: Props) => {
   return (
     <li className={s.item}>
       <a
-        href={`#${path}`}
+        href={path}
         className={className}
         aria-current={isActive ? 'page' : null}
       >
