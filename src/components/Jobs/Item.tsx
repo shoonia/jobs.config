@@ -1,4 +1,4 @@
-import { h } from 'preact';
+import { FunctionComponent, h } from 'preact';
 
 import s from './styles.css';
 import { Period } from './Period';
@@ -18,13 +18,13 @@ interface Props {
   isMax: boolean;
 }
 
-export const Item = ({
+export const Item: FunctionComponent<Props> = ({
   data,
   remove,
   clone,
   update,
   isMax,
-}: Props) => {
+}) => {
   const { id, period } = data;
 
   const dayOfWeek = period === PERIOD.WEEKLY && (

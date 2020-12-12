@@ -1,4 +1,4 @@
-import { h } from 'preact';
+import { FunctionComponent, h } from 'preact';
 
 import s from './styles.css';
 
@@ -8,11 +8,11 @@ interface Props {
   isMax: boolean;
 }
 
-export const ItemMenu = ({
+export const ItemMenu: FunctionComponent<Props> = ({
   remove,
   clone,
   isMax,
-}: Props) => (
+}) => (
   <div className={s.buttons}>
     <button
       type="button"

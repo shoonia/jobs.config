@@ -1,4 +1,4 @@
-import { h, Fragment } from 'preact';
+import { h, Fragment, FunctionComponent } from 'preact';
 import { Suspense, lazy } from 'preact/compat';
 
 import { Header } from './Header';
@@ -13,7 +13,7 @@ const Tooltips = lazy(() => {
   });
 });
 
-export const App = () => {
+export const App: FunctionComponent = () => {
   const Page = useLazyRouter();
 
   return (

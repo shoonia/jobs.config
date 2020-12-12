@@ -1,4 +1,4 @@
-import { h } from 'preact';
+import { FunctionComponent, h } from 'preact';
 
 import { parseJSONC } from './parseJSONC';
 import { isValidConfig } from './isValidConfig';
@@ -10,7 +10,7 @@ export interface Props {
   value: string;
 }
 
-export const Parser = ({ value }: Props) => {
+export const Parser: FunctionComponent<Props> = ({ value }) => {
   if (value.trim() === '') {
     return (
       <Message>

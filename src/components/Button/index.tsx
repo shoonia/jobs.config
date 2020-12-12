@@ -1,4 +1,4 @@
-import { ComponentChildren, h } from 'preact';
+import { ComponentChildren, FunctionComponent, h } from 'preact';
 
 import s from './styles.css';
 
@@ -9,12 +9,12 @@ interface Props {
   type?: 'button' | 'submit';
 }
 
-export const Button = ({
+export const Button: FunctionComponent<Props> = ({
   onClick,
   disabled,
   children,
   type = 'button',
-}: Props) => (
+}) => (
   <button
     type={type}
     onClick={onClick}

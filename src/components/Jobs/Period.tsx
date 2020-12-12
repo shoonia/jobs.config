@@ -1,4 +1,4 @@
-import { h } from 'preact';
+import { FunctionComponent, h } from 'preact';
 import { Suspense, useState } from 'preact/compat';
 
 import s from './styles.css';
@@ -15,12 +15,12 @@ interface Props {
   cronExpression: string;
 }
 
-export const Period = ({
+export const Period: FunctionComponent<Props> = ({
   name,
   time,
   cronExpression,
   period,
-}: Props) => {
+}) => {
   const [isError, setValidity] = useState<boolean>(false);
 
   const isCron = (period === PERIOD.CRON);

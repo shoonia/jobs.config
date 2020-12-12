@@ -1,4 +1,4 @@
-import { h, Component, Fragment } from 'preact';
+import { h, Component, Fragment, FunctionComponent } from 'preact';
 import { useCallback } from 'preact/hooks';
 import HintFactory from 'react-hint';
 import { useStoreon } from 'storeon/preact';
@@ -10,7 +10,7 @@ import { TState } from '../../store';
 
 const Hint = HintFactory({ createElement: h, Component });
 
-export const Tooltips = () => {
+export const Tooltips: FunctionComponent = () => {
   const { items } = useStoreon<TState>('items');
 
   const onRenderContent = useCallback((target: HTMLInputElement) => {

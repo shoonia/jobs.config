@@ -1,4 +1,4 @@
-import { h } from 'preact';
+import { FunctionComponent, h } from 'preact';
 
 import s from './styles.css';
 import { Label } from './Label';
@@ -7,7 +7,7 @@ interface Props {
   date: string;
 }
 
-export const DateInMonth = ({ date }: Props) => (
+export const DateInMonth: FunctionComponent<Props> = ({ date }) => (
   <fieldset className={s.fields}>
     <div className={s.location}>
       <Label top="The day of the month the job runs.">

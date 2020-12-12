@@ -1,10 +1,10 @@
-import { h } from 'preact';
+import { FunctionComponent, h } from 'preact';
 
 import s from './styles.css';
 import { MenuItem } from './MenuItem';
 import { ROUTER } from '../../constants';
 
-export const Menu = () => (
+export const Menu: FunctionComponent = () => (
   <ul className={s.list}>
     <MenuItem path={ROUTER.BUILDER}>
       Builder

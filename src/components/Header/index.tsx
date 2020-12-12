@@ -1,4 +1,4 @@
-import { h } from 'preact';
+import { FunctionComponent, h } from 'preact';
 import { createPortal } from 'preact/compat';
 
 import s from './styles.css';
@@ -8,7 +8,7 @@ import { GitHub } from '../GitHub';
 
 const root = document.getElementById('header') as HTMLElement;
 
-export const Header = () => {
+export const Header: FunctionComponent = () => {
   return createPortal(
     <div className={s.header}>
       <nav className={s.nav}>

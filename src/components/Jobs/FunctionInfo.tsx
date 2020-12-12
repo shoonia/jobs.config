@@ -1,4 +1,4 @@
-import { h } from 'preact';
+import { FunctionComponent, h } from 'preact';
 
 import s from './styles.css';
 import { Label } from './Label';
@@ -9,11 +9,11 @@ interface Props {
   description: string;
 }
 
-export const FunctionInfo = ({
+export const FunctionInfo: FunctionComponent<Props> = ({
   functionLocation,
   functionName,
   description,
-}: Props) => (
+}) => (
   <fieldset className={s.fields}>
     <div className={s.location}>
       <Label top="Function Location">
@@ -30,7 +30,7 @@ export const FunctionInfo = ({
         />
       </Label>
       <span className={s.slash}>
-          /
+        /
       </span>
       <Label top="Function Name">
         <input

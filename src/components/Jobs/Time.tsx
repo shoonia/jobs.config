@@ -1,4 +1,4 @@
-import { h } from 'preact';
+import { FunctionComponent, h } from 'preact';
 
 import s from './styles.css';
 import { Label } from './Label';
@@ -7,7 +7,7 @@ interface Props {
   value: string;
 }
 
-export const Time = ({ value }: Props) => (
+export const Time: FunctionComponent<Props> = ({ value }) => (
   <Label top="The time of day the job runs.">
     <input
       type="time"

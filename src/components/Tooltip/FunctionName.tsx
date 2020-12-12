@@ -1,4 +1,4 @@
-import { h } from 'preact';
+import { FunctionComponent, h } from 'preact';
 
 import s from './styles.css';
 import c from '../../code.css';
@@ -8,7 +8,7 @@ interface Props {
   target: HTMLInputElement;
 }
 
-export const FunctionName = ({ target }: Props) => {
+export const FunctionName: FunctionComponent<Props> = ({ target }) => {
   const style = {
     minWidth: target.offsetWidth,
   };

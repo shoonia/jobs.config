@@ -1,4 +1,4 @@
-import { h } from 'preact';
+import { FunctionComponent, h } from 'preact';
 
 import s from './styles.css';
 import { Label } from './Label';
@@ -17,7 +17,7 @@ const week = weekList.map((day) => (
   </option>
 ));
 
-export const DayOfWeek = ({ day }: Props) => (
+export const DayOfWeek: FunctionComponent<Props> = ({ day }) => (
   <fieldset className={s.fields}>
     <div className={s.location}>
       <Label top="The day of the week the job runs.">

@@ -1,4 +1,4 @@
-import { h, Fragment } from 'preact';
+import { h, Fragment, FunctionComponent } from 'preact';
 
 import s from './FunctionLocation.css';
 import { createPath } from './util';
@@ -7,7 +7,7 @@ interface Props {
   target: HTMLInputElement;
 }
 
-export const FunctionLocation = ({ target }: Props) => {
+export const FunctionLocation: FunctionComponent<Props> = ({ target }) => {
   const style = {
     minWidth: target.offsetWidth,
   };

@@ -1,4 +1,4 @@
-import { ComponentChildren, h } from 'preact';
+import { ComponentChildren, FunctionComponent, h } from 'preact';
 
 import s from './styles.css';
 
@@ -7,7 +7,7 @@ interface Props {
   right: ComponentChildren;
 }
 
-export const Grid = ({ left, right }: Props) => (
+export const Grid: FunctionComponent<Props> = ({ left, right }) => (
   <div className={s.box}>
     <div className={s.left}>
       {left}

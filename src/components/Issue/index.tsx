@@ -1,8 +1,8 @@
-import { h } from 'preact';
+import { FunctionComponent, h } from 'preact';
 
 import s from './Issue.css';
 
-export const Issue = () => (
+export const Issue: FunctionComponent = () => (
   <a
     className={s.issue}
     href="https://github.com/shoonia/jobs.config/issues"

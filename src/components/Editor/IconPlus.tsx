@@ -1,6 +1,6 @@
-import { h } from 'preact';
+import { FunctionComponent, h } from 'preact';
 
-export const IconPlus = () =>  (
+export const IconPlus: FunctionComponent = () =>  (
   <svg
     width="24"
     height="24"

@@ -1,9 +1,9 @@
-import { h } from 'preact';
+import { FunctionComponent, h } from 'preact';
 
 import s from './styles.css';
 import src from '../../assets/favicon.png';
 
-export const Banner = () => (
+export const Banner: FunctionComponent = () => (
   <figure className={s.nav}>
     <a
       href="/jobs.config/"

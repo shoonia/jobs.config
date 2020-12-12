@@ -1,4 +1,4 @@
-import { h } from 'preact';
+import { FunctionComponent, h } from 'preact';
 import { useStoreon } from 'storeon/preact';
 
 import s from './styles.css';
@@ -6,7 +6,7 @@ import { Button } from '../Button';
 import { IconPlus } from './IconPlus';
 import { TState, TEvents } from '../../store';
 
-export const CreateButton = () => {
+export const CreateButton: FunctionComponent = () => {
   const { dispatch, isMax } = useStoreon<TState, TEvents>('isMax');
 
   const createItem: EventHandlerNonNull = () => {

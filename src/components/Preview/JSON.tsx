@@ -1,4 +1,4 @@
-import { h, ComponentChildren } from 'preact';
+import { h, ComponentChildren, FunctionComponent } from 'preact';
 
 import s from '../../code.css';
 
@@ -28,7 +28,7 @@ const tokens: IToken[] = [
   },
 ];
 
-export const JSON = ({ input }: Props) => {
+export const JSON: FunctionComponent<Props> = ({ input }) => {
   const items: ComponentChildren[] = [];
 
   let isFound: boolean;

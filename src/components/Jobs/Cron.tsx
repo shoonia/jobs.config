@@ -1,4 +1,4 @@
-import { h } from 'preact';
+import { FunctionComponent, h } from 'preact';
 import { useEffect, useRef } from 'preact/hooks';
 
 import s from './styles.css';
@@ -9,7 +9,7 @@ interface Props {
   error: boolean;
 }
 
-export const Cron = ({ value, error }: Props) => {
+export const Cron: FunctionComponent<Props> = ({ value, error }) => {
   const ref = useRef<HTMLInputElement>();
 
   useEffect(() => {

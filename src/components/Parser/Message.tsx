@@ -1,4 +1,4 @@
-import { ComponentChildren, h } from 'preact';
+import { ComponentChildren, FunctionComponent, h } from 'preact';
 
 import s from './styles.css';
 import { Issue } from '../Issue';
@@ -8,7 +8,7 @@ interface Props {
   error?: boolean;
 }
 
-export const Message = ({ children, error = false }: Props) => (
+export const Message: FunctionComponent<Props> = ({ children, error = false }) => (
   <div className={s.message}>
     <pre className={error ? s.error : s.success}>
       {children}

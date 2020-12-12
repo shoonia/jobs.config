@@ -1,4 +1,4 @@
-import { h } from 'preact';
+import { FunctionComponent, h } from 'preact';
 
 import { KEYS } from '../../constants';
 
@@ -8,7 +8,7 @@ interface Props {
   expected: 'string' | 'number' | 'object';
 }
 
-export const IncorrectType = ({ index, name, expected }: Props) => (
+export const IncorrectType: FunctionComponent<Props> = ({ index, name, expected }) => (
   <p>
     {`Incorrect type of property "${name}" at "jobs[${index}]". Expected "${expected}".`}
   </p>
