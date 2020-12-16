@@ -4,7 +4,7 @@ import { isValidCron } from 'cron-validator';
 import { CronTrue } from '../CronTrue';
 import { IncorrectType } from './IncorrectType';
 import { weekList } from '../../util/week';
-import { isLocationPath, isUTCTime, isValidFunctionName } from '../../util/validator';
+import { isValidFunctionLocation, isUTCTime, isValidFunctionName } from '../../util/validator';
 import { isNumber, isObject, isString } from '../../util/component';
 import { KEYS } from '../../constants';
 
@@ -148,8 +148,6 @@ export const isValidConfig = (config: unknown): TValidResult => {
       }
     }
 
-    // TODO: functionLocation syntax
-
     const FL = ITEM.functionLocation;
 
     if (!isString(FL)) {
@@ -158,7 +156,7 @@ export const isValidConfig = (config: unknown): TValidResult => {
       );
     }
 
-    if (!isLocationPath(FL)) {
+    if (!isValidFunctionLocation(FL)) {
       return error(
         <Fragment>
           <p>{`Invalid "functionLocation" at "jobs[${i}]".`}</p>
