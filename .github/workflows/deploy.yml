@@ -7,7 +7,7 @@ on:
 
 jobs:
   build-deploy:
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-20.04
     steps:
     - uses: actions/checkout@v2
 
@@ -25,9 +25,9 @@ jobs:
           ${{ runner.os }}-node-
 
     - run: npm ci
-    - run: npm test
     - run: npm run lint
     - run: npm run build
+    - run: npm test
 
     - name: Deploy
       uses: peaceiris/actions-gh-pages@v2
