@@ -14,13 +14,15 @@ const invalidFLList = [
   '/run.jsx',
   '//run.js',
   '/main//run.js',
-  '/main./run.jsx',
+  '/main/run.jsx',
   '/.main/run.js',
   '/main./run.js',
   '/main/.run.js',
   '/main/run.js.',
   '/main',
   '/main onw.js',
+  '/main+onw.js',
+  '/отакої.js',
 ];
 
 describe('isValidFunctionLocation()', () => {
