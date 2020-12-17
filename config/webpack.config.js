@@ -121,6 +121,7 @@ module.exports = (buildEnv) => {
                       loose: true,
                       browserslistEnv: buildEnv,
                       configPath: paths.appDirectory,
+                      useBuiltIns: 'entry',
                     },
                   ],
                   [

@@ -84,19 +84,17 @@ export const itemsModule: StoreonModule<IItemsState, IItemsEvents> = ({ on }) =>
       return;
     }
 
-    const index = items.findIndex((item) => item.id === id);
-    const clone = Object.assign({}, items[index], { id: nanoid() });
+    const i = items.findIndex((item) => item.id === id);
 
-    items.splice(index, 0, clone);
+    items.splice(i, 0, { ...items[i], id: nanoid() });
 
     return payload([...items]);
   });
 
   on('items/update', ({ items }, { id, name, value }) => {
-    const index = items.findIndex((item) => item.id === id);
-    const item = Object.assign({}, items[index], { [name]: value });
+    const i = items.findIndex((item) => item.id === id);
 
-    items.splice(index, 1, item);
+    items.splice(i, 1, { ...items[i], [name]: value });
 
     return payload([...items]);
   });
