@@ -5,6 +5,9 @@ const validFLList = [
   '/run.jsw',
   '/one/run.jsw',
   '/one/run.js',
+  '/one/two_three.js',
+  '/one/two-tree.js',
+  '/one/two.tree.js',
   '/one/two/run.js',
   '/one/two/run.jsw',
 ];
