@@ -29,10 +29,11 @@ export const Period: FunctionComponent<Props> = ({
     ? <Cron value={cronExpression} error={isError} />
     : <Time value={time} />;
 
-  const cronMessage = isCron && CronTrue({
-    value: cronExpression,
-    setValidity,
-  });
+  const cronMessage = isCron && (
+    <span className={(isError && s.error)}>
+      {CronTrue({ value: cronExpression, setValidity })}
+    </span>
+  );
 
   return (
     <fieldset className={s.fields}>
@@ -60,9 +61,7 @@ export const Period: FunctionComponent<Props> = ({
             period={period}
           />
         </div>
-        <span className={(isError ? s.error : undefined)}>
-          {cronMessage}
-        </span>
+        {cronMessage}
       </div>
     </fieldset>
   );
