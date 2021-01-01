@@ -1,5 +1,5 @@
 import { FunctionComponent, h } from 'preact';
-import { Suspense, useState } from 'preact/compat';
+import { useState } from 'preact/compat';
 
 import s from './styles.css';
 import { PERIOD } from '../../constants';
@@ -29,14 +29,10 @@ export const Period: FunctionComponent<Props> = ({
     ? <Cron value={cronExpression} error={isError} />
     : <Time value={time} />;
 
-  const cronMessage = isCron && (
-    <Suspense fallback={null}>
-      <CronTrue
-        value={cronExpression}
-        setValidity={setValidity}
-      />
-    </Suspense>
-  );
+  const cronMessage = isCron && CronTrue({
+    value: cronExpression,
+    setValidity,
+  });
 
   return (
     <fieldset className={s.fields}>
@@ -64,7 +60,7 @@ export const Period: FunctionComponent<Props> = ({
             period={period}
           />
         </div>
-        <span className={(isError && s.error)}>
+        <span className={(isError ? s.error : undefined)}>
           {cronMessage}
         </span>
       </div>

@@ -62,7 +62,7 @@ export const isValidFunctionName = (name: string) => {
   return false;
 };
 
-export const isUTCTime = (val: string) => {
+export const isUTCTime = (val: unknown): val is string => {
   return isString(val) && UTC.test(val);
 };
 

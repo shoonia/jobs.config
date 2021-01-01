@@ -1,12 +1,11 @@
 import { ComponentChildren, h, Fragment } from 'preact';
-import { isValidCron } from 'cron-validator';
 
-import { CronTrue } from '../CronTrue';
 import { IncorrectType } from './IncorrectType';
 import { weekList } from '../../util/week';
 import { isValidFunctionLocation, isUTCTime, isValidFunctionName } from '../../util/validator';
 import { isNumber, isObject, isString } from '../../util/component';
 import { KEYS } from '../../constants';
+import { useCron } from '../CronTrue/useCron';
 
 type TValidResult = [
   hasError: boolean,
@@ -210,13 +209,13 @@ export const isValidConfig = (config: unknown): TValidResult => {
         );
       }
 
-      if (!isValidCron(CRON_EXP)) {
+      const [isError, message] = useCron(CRON_EXP);
+
+      if (isError) {
         return error(
           <Fragment>
             <p>{`Invalid "cronExpression" at "jobs[${i}].executionConfig".`}</p>
-            <p>
-              <CronTrue value={CRON_EXP} setValidity={() => {/**/}} />
-            </p>
+            <p>{message}</p>
             <p>
               <em>
                 You can schedule your job to run at intervals as short as one hour apart, but not shorter.

@@ -1,18 +1,18 @@
-import { h } from 'preact';
-import { lazy, Suspense } from 'preact/compat';
+import { useEffect } from 'preact/hooks';
 
-import { Props } from './CronTrue';
+import { useCron } from './useCron';
 
-const LazyCronTrue = lazy(() => {
-  return import('./CronTrue' /* webpackChunkName: "CronTrue" */).then((i) => {
-    return {
-      default: i.CronTrue,
-    };
-  });
-});
+export interface Props {
+  value: string;
+  setValidity: (isError: boolean) => void;
+}
 
-export const CronTrue = (props: Props) => (
-  <Suspense fallback={null}>
-    {LazyCronTrue(props)}
-  </Suspense>
-);
+export const CronTrue = ({ value, setValidity }: Props) => {
+  const [isError, message] = useCron(value);
+
+  useEffect(() => {
+    setValidity(isError);
+  }, [isError]);
+
+  return message;
+};
