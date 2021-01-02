@@ -1,7 +1,6 @@
 {
-  "css.validate": false,
   "files.associations": {
     ".stylelintrc": "json",
-    "vars.css": "scss"
+    "*.css": "scss"
   },
 }

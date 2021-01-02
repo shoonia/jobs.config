@@ -1,7 +1,6 @@
 @import "../../../styles/vars.css";
 
 .bar {
-  font-family: var(--fn-mono);
   color: $color-font;
   font-size: 13px;
   line-height: 16px;
