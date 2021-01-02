@@ -1,3 +1,5 @@
+@import "../../styles/vars.css";
+
 .fs {
   background-color: #fff;
   margin-top: 6px;
@@ -10,7 +12,7 @@
 }
 
 .editor {
-  font-family: var(--font-mono);
+  font-family: $font-mono;
   font-weight: normal;
   font-size: 12px;
   line-height: 16px;
@@ -19,7 +21,7 @@
   position: relative;
   padding: 15px 15px 15px 20px;
   cursor: text;
-  background-color: var(--cr-background);
+  background-color: $color-background;
   border-radius: 8px;
 }
 

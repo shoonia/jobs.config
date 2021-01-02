@@ -1,7 +1,7 @@
 import { FunctionComponent, h } from 'preact';
 
 import s from './styles.css';
-import c from '../../code.css';
+import c from '../../styles/code.css';
 import { classNames } from '../../util/component';
 
 interface Props {

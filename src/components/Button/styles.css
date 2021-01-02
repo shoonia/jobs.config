@@ -1,3 +1,5 @@
+@import "../../styles/vars.css";
+
 .btn {
   font-size: 1em;
   padding: 0.3em 1.3em;
@@ -14,8 +16,8 @@
 }
 
 .btn:disabled {
-  background-color: var(--cr-font);
-  border-color: var(--cr-font);
+  background-color: $color-font;
+  border-color: $color-font;
   color: #fff;
   cursor: default;
   pointer-events: none;
@@ -23,7 +25,7 @@
 }
 
 .btn:focus:not(:hover) {
-  box-shadow: 0 0 0 2px var(--cr-focus);
+  box-shadow: 0 0 0 2px $color-font;
 }
 
 .primary {

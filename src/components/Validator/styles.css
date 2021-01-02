@@ -1,6 +1,8 @@
+@import "../../styles/vars.css";
+
 .page {
   display: grid;
-  height: var(--body-height);
+  height: $body-height;
   justify-content: center;
   align-items: baseline;
   padding: 1em;

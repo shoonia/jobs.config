@@ -1,3 +1,5 @@
+@import "./vars.css";
+
 *,
 *::after,
 *::before {
@@ -20,28 +22,12 @@
 
 ::-webkit-scrollbar-thumb {
   border: 1px solid transparent;
-  background-color: var(--cr-gray);
+  background-color: $color-gray;
   border-radius: 25px;
 }
 
-:root {
-  --font-fm: 'helveticaneuew10-55roman', 'helvetica neue', helvetica, arial, sans-serif;
-  --font-mono: menlo, 'roboto mono', 'ubuntu mono', monaco, 'courier new', courier, monospace;
-  --cr-font: #2b5672;
-  --cr-extra: #aa4dc8;
-  --cr-success: #428359;
-  --cr-primary: #297abf;
-  --cr-danger: #ee5951;
-  --cr-background: #f0f3f5;
-  --cr-focus: #aabdfc;
-  --cr-light: #657888;
-  --cr-gray: #898989;
-  --header-height: 70px;
-  --body-height: calc(100vh - var(--header-height));
-}
-
 ::placeholder {
-  color: var(--cr-light);
+  color: $color-light;
   user-select: none;
 }
 
@@ -50,16 +36,16 @@
 }
 
 html {
-  font-family: var(--font-fm);
+  font-family: $font-helvetica;
   line-height: 1.15;
   -webkit-text-size-adjust: 100%;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-rendering: optimizeLegibility;
-  color: var(--cr-font);
+  color: $color-font;
   padding: 0;
   margin: 0;
-  scrollbar-color: var(--cr-gray) transparent;
+  scrollbar-color: $color-gray transparent;
   scrollbar-width: thin;
 }
 
@@ -73,7 +59,7 @@ button,
 input,
 select,
 option {
-  font-family: var(--font-fm);
+  font-family: $font-helvetica;
 }
 
 select {
@@ -88,6 +74,6 @@ select {
 }
 
 :global(#root) {
-  height: var(--body-height);
-  background-color: var(--cr-background);
+  height: $body-height;
+  background-color: $color-background;
 }

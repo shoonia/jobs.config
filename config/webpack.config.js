@@ -166,14 +166,16 @@ module.exports = (buildEnv) => {
                     },
                   },
                 },
-                isProd && {
+                {
                   loader: require.resolve('postcss-loader'),
                   options: {
                     sourceMap: isDev,
                     postcssOptions: {
                       plugins: [
-                        require('autoprefixer'),
-                      ],
+                        require('postcss-import'),
+                        require('postcss-simple-vars'),
+                        isProd && require('autoprefixer'),
+                      ].filter(Boolean),
                     },
                   },
                 },

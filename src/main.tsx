@@ -4,7 +4,7 @@ import { StoreContext } from 'storeon/preact';
 import { App } from './components/App';
 import { store } from './store';
 import { sendBeacon } from './util/ga';
-import './styles.css';
+import './styles/main.css';
 
 const root = document.getElementById('root') as HTMLDivElement;
 

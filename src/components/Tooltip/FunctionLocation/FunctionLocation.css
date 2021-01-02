@@ -1,6 +1,8 @@
+@import "../../../styles/vars.css";
+
 .bar {
   font-family: var(--fn-mono);
-  color: var(--cr-font);
+  color: $color-font;
   font-size: 13px;
   line-height: 16px;
   background-color: #fff;
@@ -14,7 +16,7 @@
   height: 32px;
   line-height: 32px;
   display: flex;
-  background-color: var(--cr-background);
+  background-color: $color-background;
   padding: 0 5px;
   border-radius: 8px 8px 0 0;
   border-bottom: 1px solid #d9e1e8;
@@ -39,8 +41,8 @@
 }
 
 .invalid {
-  color: var(--cr-danger);
-  border: 1px solid var(--cr-danger);
+  color: $color-danger;
+  border: 1px solid $color-danger;
   border-radius: 5px;
   background-color: #ffebeb;
 }

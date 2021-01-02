@@ -1,7 +1,7 @@
 {
-  "javascript.implicitProjectConfig.checkJs": true,
+  "css.validate": false,
   "files.associations": {
-    ".postcssrc": "json",
-    ".stylelintrc": "json"
-  }
+    ".stylelintrc": "json",
+    "vars.css": "scss"
+  },
 }

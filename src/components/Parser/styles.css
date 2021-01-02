@@ -1,3 +1,5 @@
+@import "../../styles/vars.css";
+
 .message {
   margin: 16px 0;
   position: relative;
@@ -21,8 +23,8 @@
 
 .success {
   composes: box;
-  border: 1px solid var(--cr-success);
-  color: var(--cr-success);
+  border: 1px solid $color-success;
+  color: $color-success;
   background-color: #e0fee0;
 }
 

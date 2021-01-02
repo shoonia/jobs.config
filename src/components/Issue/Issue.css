@@ -1,5 +1,7 @@
+@import "../../styles/vars.css";
+
 .issue {
-  color: var(--cr-primary);
+  color: $color-primary;
   font-size: 13px;
   text-decoration: none;
   cursor: alias;
@@ -10,5 +12,5 @@
 
 .issue:hover,
 .issue:focus {
-  color: var(--cr-success);
+  color: $color-success;
 }

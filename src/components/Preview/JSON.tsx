@@ -1,6 +1,6 @@
 import { h, ComponentChildren, FunctionComponent } from 'preact';
 
-import s from '../../code.css';
+import s from '../../styles/code.css';
 
 interface Props {
   input: string;
