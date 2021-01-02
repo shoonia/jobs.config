@@ -164,7 +164,7 @@
 }
 
 .inputs:focus {
-  box-shadow: 0 0 0 2px $color-font;
+  box-shadow: 0 0 0 2px $color-focus;
 }
 
 .inputs:invalid {

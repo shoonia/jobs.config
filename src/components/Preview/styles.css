@@ -51,13 +51,14 @@
   outline: none;
 }
 
-.download:hover {
+.download:hover,
+.download:focus {
   border-color: #3899ec;
   background-color: #3899ec;
 }
 
 .download:focus:not(:hover) {
-  box-shadow: 0 0 0 2px $color-font;
+  box-shadow: 0 0 0 2px $color-focus;
 }
 
 .download::before {
