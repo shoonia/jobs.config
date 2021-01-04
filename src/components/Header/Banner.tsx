@@ -13,7 +13,7 @@ export const Banner: FunctionComponent = () => (
         src={src}
         width="30"
         height="30"
-        alt="Corvid by Wix"
+        alt="Velo by Wix"
         className={s.image}
         crossOrigin="anonymous"
       />

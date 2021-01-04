@@ -8,7 +8,9 @@ export interface IValidatorEvents {
   'validator/input': string;
 }
 
-export const validatorModule: StoreonModule<IValidatorState, IValidatorEvents> = ({ on }) => {
+type TValidatorModule = StoreonModule<IValidatorState, IValidatorEvents>;
+
+export const validatorModule: TValidatorModule = ({ on }) => {
   on('@init', () => ({ validatorValue: '' }));
   on('validator/input', (_, validatorValue) => ({ validatorValue }));
 };

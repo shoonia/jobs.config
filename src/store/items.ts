@@ -25,6 +25,8 @@ export interface IItemsEvents {
   'items/replace': IItem[];
 }
 
+type TItemsModule = StoreonModule<IItemsState, IItemsEvents>;
+
 const getItems = (): IItem[] => {
   const data = sessionStorage.getItem('items');
 
@@ -48,7 +50,7 @@ const payload = (items: IItem[]): IItemsState => ({
   isMax: items.length >= MAX_ITEMS,
 });
 
-export const itemsModule: StoreonModule<IItemsState, IItemsEvents> = ({ on }) => {
+export const itemsModule: TItemsModule = ({ on }) => {
   on('@init', () => {
     const items = getItems();
 
