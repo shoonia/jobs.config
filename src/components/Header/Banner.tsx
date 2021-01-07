@@ -1,7 +1,7 @@
 import { FunctionComponent, h } from 'preact';
 
 import s from './styles.css';
-import src from '../../assets/favicon.png';
+import { Logo } from './Logo';
 
 export const Banner: FunctionComponent = () => (
   <figure className={s.nav}>
@@ -9,14 +9,7 @@ export const Banner: FunctionComponent = () => (
       href="/jobs.config/"
       className={s.link}
     >
-      <img
-        src={src}
-        width="30"
-        height="30"
-        alt="Velo by Wix"
-        className={s.image}
-        crossOrigin="anonymous"
-      />
+      <Logo />
     </a>
     <figcaption className={s.title}>
       Jobs Config

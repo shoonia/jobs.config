@@ -33,10 +33,6 @@
   align-items: center;
 }
 
-.image {
-  image-rendering: -webkit-optimize-contrast;
-}
-
 .list {
   font-size: 16px;
   font-weight: normal;
