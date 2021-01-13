@@ -36,7 +36,6 @@
 }
 
 html {
-  font-family: $font-helvetica;
   line-height: 1.15;
   -webkit-text-size-adjust: 100%;
   -webkit-font-smoothing: antialiased;
@@ -55,6 +54,7 @@ body {
   overflow-y: hidden;
 }
 
+html,
 button,
 input,
 select,

@@ -55,14 +55,8 @@
   white-space: nowrap;
 }
 
-.link:hover {
-  color: $color-success;
-}
-
+.link:hover,
 .active {
   color: $color-success;
-}
-
-.active:hover {
-  color: $color-success;
+  border-bottom: 1px solid $color-success;
 }
