@@ -5,7 +5,6 @@
   padding: 0;
   margin: 0 auto;
   max-width: 600px;
-  min-width: 300px;
 }
 
 .item {
@@ -140,7 +139,6 @@
   position: absolute;
   top: -1.8em;
   font-size: 80%;
-  width: 200px;
   color: $color-light;
   user-select: none;
   line-height: 1;
@@ -207,4 +205,23 @@
 
 .error {
   color: $color-danger;
+}
+
+@media (max-width: $mobile-width) {
+  .item {
+    min-width: auto;
+  }
+
+  .location {
+    margin: 5px 0;
+  }
+
+  .date {
+    width: calc(50% - 8px);
+  }
+
+  .label {
+    padding: 16px 0;
+    display: block;
+  }
 }

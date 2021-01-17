@@ -46,6 +46,7 @@ html {
   margin: 0;
   scrollbar-color: $color-gray transparent;
   scrollbar-width: thin;
+  background-color: $color-background;
 }
 
 body {
@@ -75,5 +76,14 @@ select {
 
 :global(#root) {
   height: $body-height;
-  background-color: $color-background;
+}
+
+@media (max-width: $mobile-width) {
+  body {
+    overflow-y: auto;
+  }
+
+  :global(#root) {
+    height: auto;
+  }
 }

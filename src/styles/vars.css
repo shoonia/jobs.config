@@ -11,3 +11,4 @@ $color-light: #657888;
 $color-gray: #898989;
 $header-height: 70px;
 $body-height: calc(100vh - $header-height);
+$mobile-width: 750px;

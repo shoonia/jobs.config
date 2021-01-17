@@ -31,3 +31,19 @@
   min-width: 300px;
   max-width: 550px;
 }
+
+@media (max-width: $mobile-width) {
+  .box {
+    display: block;
+  }
+
+  .column {
+    height: auto;
+  }
+
+  .left,
+  .right {
+    min-width: auto;
+    max-width: 100%;
+  }
+}
