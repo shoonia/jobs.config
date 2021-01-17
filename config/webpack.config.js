@@ -181,14 +181,6 @@ module.exports = (buildEnv) => {
                 },
               ].filter(Boolean),
             },
-            {
-              test: /\.png$/,
-              loader: require.resolve('file-loader'),
-              options: {
-                name: '[name].[ext]',
-                outputPath: '',
-              },
-            }
           ],
         },
       ],
