@@ -1,6 +1,26 @@
 <%
-var title = 'Jobs Config | Velo by Wix';
-var description = 'Online generator and validator for Velo jobs.config file. Build scheduling recurring jobs for your Wix site. Velo cron config generator.';
+  var title = 'Jobs Config | Velo by Wix';
+  var description = 'Online generator and validator for Velo jobs.config file. Build scheduling recurring jobs for your Wix site. Velo cron config generator.';
+
+  var jsonLd = JSON.stringify({
+    '@context': 'https://schema.org',
+    '@type': 'BreadcrumbList',
+    itemListElement: [
+      {
+        '@type': 'ListItem',
+        position: 1,
+        name: 'Builder',
+        description: 'Jobs Config Builder',
+        item: `${homepage}#builder`,
+      }, {
+        '@type': 'ListItem',
+        position: 2,
+        name: 'Validator',
+        description: 'Jobs Config Validator',
+        item: `${homepage}#validator`,
+      },
+    ],
+  });
 %>
 
 <!DOCTYPE html>
@@ -33,6 +53,7 @@ var description = 'Online generator and validator for Velo jobs.config file. Bui
   <meta property="og:image" content="<%= homepage %>favicon.png">
   <meta property="og:image:width" content="450">
   <meta property="og:image:height" content="450">
+  <script type="application/ld+json"><%= jsonLd %></script>
 </head>
 
 <body>
