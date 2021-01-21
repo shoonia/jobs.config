@@ -12,10 +12,10 @@ export const App: FunctionComponent = () => {
   return (
     <Fragment>
       <Header />
-      <Tooltips />
       <Suspense fallback={<Fallback />}>
         <Page />
       </Suspense>
+      <Tooltips />
     </Fragment>
   );
 };
