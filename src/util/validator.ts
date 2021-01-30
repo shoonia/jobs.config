@@ -54,7 +54,7 @@ const UTC = /^([01]\d|2[0-3]):([0-5]\d)$/;
 const PATH = /[^\w\d.-]/;
 const FILE_NAME = /[^.]\.jsw?$/;
 
-export const isValidFunctionName = (name: string) => {
+export const isValidFunctionName = (name: string): boolean => {
   if (FUNCTION_NAME.test(name)) {
     return !reservedWords.some((i) => i === name);
   }
@@ -67,23 +67,25 @@ export const isUTCTime = (val: unknown): val is string => {
 };
 
 export const isInvalidPath = (path: string, isLast: boolean): boolean => {
-  const DOT_CHAR_CODE = 46; // .
+  const DOT = '.';
 
   return path === ''
     || PATH.test(path)
-    || path.charCodeAt(0) === DOT_CHAR_CODE
-    || path.charCodeAt(path.length - 1) === DOT_CHAR_CODE
+    || path[0] === DOT
+    || path[path.length - 1] === DOT
     || isLast && !FILE_NAME.test(path);
 };
 
-export const isValidFunctionLocation = (val: string) => {
-  const SLASH_CHAR_CODE = 47; // /
+const isValidPath = (path: string, index: number, list: string[]): boolean => {
+  const isLast = (index === list.length - 1);
+
+  return index === 0 || !isInvalidPath(path, isLast);
+};
+
+export const isValidFunctionLocation = (val: string): boolean => {
+  const SLASH = '/';
 
   return isString(val)
-    && val.charCodeAt(0) === SLASH_CHAR_CODE
-    && val.split('/').every((path, index, list) => {
-      const isLast = (index === list.length - 1);
-
-      return index === 0 || !isInvalidPath(path, isLast);
-    });
+    && val[0] === SLASH
+    && val.split(SLASH).every(isValidPath);
 };

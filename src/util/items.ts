@@ -6,33 +6,33 @@ import { isUTCTime } from './validator';
 import { TWeekList, weekList } from './week';
 
 export interface IItem {
-  id: string;
-  functionLocation: string;
-  functionName: string;
-  description: string;
-  time: string;
-  dayOfWeek: TWeekList;
-  dateInMonth: number;
-  cronExpression: string;
-  period: PERIOD;
+  readonly id: string;
+  readonly functionLocation: string;
+  readonly functionName: string;
+  readonly description: string;
+  readonly time: string;
+  readonly dayOfWeek: TWeekList;
+  readonly dateInMonth: number;
+  readonly cronExpression: string;
+  readonly period: PERIOD;
 }
 
 export interface IExecutionConfig {
-  [KEYS.time]?: string;
-  [KEYS.dayOfWeek]?: TWeekList;
-  [KEYS.dateInMonth]?: number;
-  [KEYS.cronExpression]?: string;
+  readonly [KEYS.time]?: string;
+  readonly [KEYS.dayOfWeek]?: TWeekList;
+  readonly [KEYS.dateInMonth]?: number;
+  readonly [KEYS.cronExpression]?: string;
 }
 
 export interface IJob {
-  [KEYS.functionLocation]: string;
-  [KEYS.functionName]: string;
-  [KEYS.description]?: string;
-  [KEYS.executionConfig]: IExecutionConfig;
+  readonly [KEYS.functionLocation]: string;
+  readonly [KEYS.functionName]: string;
+  readonly [KEYS.description]?: string;
+  readonly [KEYS.executionConfig]: IExecutionConfig;
 }
 
 export interface IConfig extends Record<string, unknown> {
-  [KEYS.jobs]: IJob[];
+  readonly [KEYS.jobs]: IJob[];
 }
 
 const dTime = '00:00';
@@ -40,11 +40,7 @@ const dCron = '0 * * * *';
 const dDay: TWeekList = weekList[0];
 
 const createLocation = (location: string): string => {
-  const SLASH_CHAR_CODE = 47;
-
-  return location.charCodeAt(0) !== SLASH_CHAR_CODE
-    ? `/${location}`
-    : location;
+  return location[0] !== '/' ? `/${location}` : location;
 };
 
 const parseDate = (date: unknown): number => {

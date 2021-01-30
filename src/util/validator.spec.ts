@@ -10,6 +10,7 @@ const validFLList = [
   '/one/two.tree.js',
   '/one/two/run.js',
   '/one/two/run.jsw',
+  '/ONE.jsw',
 ];
 
 const invalidFLList = [
