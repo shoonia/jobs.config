@@ -2,7 +2,6 @@ const buildEnv = 'production';
 
 require('../config/env')(buildEnv);
 
-const { emptyDir, copy } = require('fs-extra');
 const webpack = require('webpack');
 const configFactory = require('../config/webpack.config');
 const paths = require('../config/paths');
@@ -13,17 +12,50 @@ const printBuildError = require('react-dev-utils/printBuildError');
 const WARN_AFTER_BUNDLE_GZIP_SIZE = 512 * 1024;
 const WARN_AFTER_CHUNK_GZIP_SIZE = 1024 * 1024;
 
-/**@type {*} */
-const config = configFactory(buildEnv);
+(async () => {
+  try {
+    const previousFileSizes = await measureFileSizesBeforeBuild(paths.appBuild);
 
-measureFileSizesBeforeBuild(paths.appBuild)
-  .then(async (previousFileSizes) => {
-    await emptyDir(paths.appBuild);
-    await copy(paths.appStatic, paths.appBuild);
+    const [stats, warnings] = await new Promise((resolve, reject) => {
+      const config = configFactory(buildEnv);
 
-    return build(previousFileSizes);
-  })
-  .then(({ stats, previousFileSizes, warnings }) => {
+      console.log('\nProduction build...\n');
+
+      webpack(config, (error, stats) => {
+        let messages;
+
+        if (error) {
+          if (!error.message) {
+            return reject(error);
+          }
+
+          let errMessage = error.message;
+
+          // Add additional information for postcss errors
+          if (Object.prototype.hasOwnProperty.call(error, 'postcssNode')) {
+            errMessage +=
+            '\nCompileError: Begins at CSS selector ' +
+            error['postcssNode'].selector;
+          }
+
+          messages = formatWebpackMessages({
+            errors: [errMessage],
+            warnings: [],
+          });
+        } else {
+          messages = formatWebpackMessages(
+            stats.toJson({ all: false, warnings: true, errors: true }),
+          );
+        }
+
+        if (messages.errors.length > 0) {
+          return reject(new Error(messages.errors.join('\n\n')));
+        }
+
+        resolve([stats, messages.warnings]);
+      });
+    });
+
     if (warnings.length > 0) {
       console.log(
         'Compiled with warnings.\n\n\n',
@@ -43,8 +75,7 @@ measureFileSizesBeforeBuild(paths.appBuild)
       WARN_AFTER_BUNDLE_GZIP_SIZE,
       WARN_AFTER_CHUNK_GZIP_SIZE,
     );
-  },
-  (error) => {
+  } catch (error) {
     const tscCompileOnError = process.env.TSC_COMPILE_ON_ERROR === 'true';
 
     if (tscCompileOnError) {
@@ -55,56 +86,5 @@ measureFileSizesBeforeBuild(paths.appBuild)
       printBuildError(error);
       process.exit(1);
     }
-  })
-  .catch((error) => {
-    if (error && error.message) {
-      console.log(error.message);
-    }
-    process.exit(1);
-  });
-
-function build(previousFileSizes) {
-  console.log('Production build...');
-
-  const compiler = webpack(config);
-
-  return new Promise((resolve, reject) => {
-    compiler.run((error, stats) => {
-      let messages;
-
-      if (error) {
-        if (!error.message) {
-          return reject(error);
-        }
-
-        let errMessage = error.message;
-
-        // Add additional information for postcss errors
-        if (Object.prototype.hasOwnProperty.call(error, 'postcssNode')) {
-          errMessage +=
-            '\nCompileError: Begins at CSS selector ' +
-            error['postcssNode'].selector;
-        }
-
-        messages = formatWebpackMessages({
-          errors: [errMessage],
-          warnings: [],
-        });
-      } else {
-        messages = formatWebpackMessages(
-          stats.toJson({ all: false, warnings: true, errors: true }),
-        );
-      }
-
-      if (messages.errors.length > 0) {
-        return reject(new Error(messages.errors.join('\n\n')));
-      }
-
-      return resolve({
-        stats,
-        previousFileSizes,
-        warnings: messages.warnings,
-      });
-    });
-  });
-}
+  }
+})();

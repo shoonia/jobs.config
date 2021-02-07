@@ -1,5 +1,6 @@
 const path = require('path');
 const webpack = require('webpack');
+const CopyPlugin = require('copy-webpack-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const TerserPlugin = require('terser-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
@@ -34,6 +35,7 @@ module.exports = (buildEnv) => {
         .replace(/\\/g, '/'),
       chunkLoadingGlobal: 'jobsConfig',
       globalObject: 'window',
+      clean: isProd,
     },
     optimization: {
       minimize: isProd,
@@ -214,6 +216,14 @@ module.exports = (buildEnv) => {
       isProd && new HTMLInlineCSSWebpackPlugin({
         leaveCSSFile: true,
       }),
+      isProd && new CopyPlugin({
+        patterns: [
+          {
+            from: paths.appStatic,
+            to: paths.appBuild,
+          },
+        ],
+      }),
       isDev && new webpack.HotModuleReplacementPlugin(),
       isDev && new ForkTsCheckerWebpackPlugin({
         typescript: {
@@ -233,7 +243,6 @@ module.exports = (buildEnv) => {
         'process.emitWarning': 'undefined',
         'process': 'undefined',
       }),
-      // new webpack.IgnorePlugin(/^\.\/locale$/, /moment$/),
     ].filter(Boolean),
     performance: false,
   };
