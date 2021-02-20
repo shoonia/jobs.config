@@ -34,7 +34,7 @@
     "babel-plugin-const-enum": "^1.0.1",
     "copy-webpack-plugin": "^7.0.0",
     "css-loader": "^5.0.2",
-    "css-mqpacker-webpack-plugin": "^0.5.0",
+    "css-mqpacker-webpack-plugin": "^0.6.0",
     "eslint": "^7.20.0",
     "eslint-plugin-react": "^7.22.0",
     "fork-ts-checker-webpack-plugin": "^6.1.0",
