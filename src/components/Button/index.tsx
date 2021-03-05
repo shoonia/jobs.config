@@ -3,7 +3,7 @@ import { ComponentChildren, FunctionComponent, h } from 'preact';
 import s from './styles.css';
 
 interface Props {
-  onClick?: EventHandlerNonNull;
+  onClick?: EventListener;
   disabled?: boolean;
   children?: ComponentChildren;
   type?: 'button' | 'submit';

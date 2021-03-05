@@ -12,9 +12,9 @@ import { preventDefault } from '../../util/component';
 
 interface Props {
   data: IItem;
-  remove: EventHandlerNonNull;
-  clone: EventHandlerNonNull;
-  update: EventHandlerNonNull;
+  remove: EventListener;
+  clone: EventListener;
+  update: EventListener;
   isMax: boolean;
 }
 

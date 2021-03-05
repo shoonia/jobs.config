@@ -44,7 +44,7 @@ const createLocation = (location: string): string => {
 };
 
 const parseDate = (date: unknown): number => {
-  const t = ~~date;
+  const t = ~~Number(date);
 
   if (isNaN(t) || t < 1) return 1;
   if (t > 31) return 31;

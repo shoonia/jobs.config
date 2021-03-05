@@ -9,7 +9,7 @@ import { TState, TEvents } from '../../store';
 export const CreateButton: FunctionComponent = () => {
   const { dispatch, isMax } = useStoreon<TState, TEvents>('isMax');
 
-  const createItem: EventHandlerNonNull = () => {
+  const createItem: EventListener = () => {
     dispatch('items/new');
   };
 

@@ -3,8 +3,8 @@ import { FunctionComponent, h } from 'preact';
 import s from './styles.css';
 
 interface Props {
-  remove: EventHandlerNonNull;
-  clone: EventHandlerNonNull;
+  remove: EventListener;
+  clone: EventListener;
   isMax: boolean;
 }
 

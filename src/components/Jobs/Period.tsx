@@ -30,7 +30,7 @@ export const Period: FunctionComponent<Props> = ({
     : <Time value={time} />;
 
   const cronMessage = isCron && (
-    <span className={(isError && s.error)}>
+    <span className={isError ? s.error : undefined}>
       {CronTrue({ value: cronExpression, setValidity })}
     </span>
   );

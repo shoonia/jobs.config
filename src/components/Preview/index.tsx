@@ -13,9 +13,9 @@ export const Preview: FunctionComponent = () => {
   const output = useRef<HTMLPreElement>();
 
   const config = createConfig(items);
-  const dataURL = 'data:application/json,' + encodeURIComponent(config);
+  const dataURL = `data:application/json,${encodeURIComponent(config)}`;
 
-  const clipboard: EventHandlerNonNull = () => {
+  const clipboard: EventListener = () => {
     const selection = window.getSelection() as Selection;
     const range = document.createRange() as Range;
 
