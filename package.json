@@ -49,7 +49,7 @@
     "postcss-import": "^14.0.0",
     "postcss-loader": "^5.0.0",
     "postcss-simple-vars": "^6.0.3",
-    "react-dev-utils": "^11.0.3",
+    "react-dev-utils": "^11.0.4",
     "style-loader": "^2.0.0",
     "stylelint": "^13.11.0",
     "stylelint-config-css-modules": "^2.2.0",
