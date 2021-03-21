@@ -8,10 +8,6 @@ interface Props {
 }
 
 export const FunctionLocation: FunctionComponent<Props> = ({ target }) => {
-  const style = {
-    minWidth: target.offsetWidth,
-  };
-
   const tree = createPath(target.value).reduceRight((acc, item, index) => {
     const listClass = index === 0 ? s.list : s.sublist;
 
@@ -30,7 +26,7 @@ export const FunctionLocation: FunctionComponent<Props> = ({ target }) => {
   return (
     <div
       className={s.bar}
-      style={style}
+      style={`min-width:${target.offsetWidth}px`}
     >
       <div className={s.root}>
         Backend Files

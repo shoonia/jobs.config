@@ -9,10 +9,6 @@ interface Props {
 }
 
 export const FunctionName: FunctionComponent<Props> = ({ target }) => {
-  const style = {
-    minWidth: target.offsetWidth,
-  };
-
   const opClass = classNames([
     c.mtk4,
     !target.value && c.err,
@@ -26,7 +22,7 @@ export const FunctionName: FunctionComponent<Props> = ({ target }) => {
   return (
     <div
       className={s.editor}
-      style={style}
+      style={`min-width:${target.offsetWidth}px`}
     >
       <code className={s.field}>
         <span className={opClass}>
