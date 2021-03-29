@@ -7,10 +7,12 @@
 }
 
 @font-face {
-  font-family: 'HelveticaNeueW10-55Roman';
+  font-family: Madefor;
   font-display: swap;
+  font-weight: 400 800;
+  font-style: normal;
   src:
-    url('https://static.parastorage.com/services/santa-resources/resources/viewer/user-site-fonts/fonts/Helvetica/v2/1a14dcac-7c9e-471c-8039-33c730f871f2.woff2')
+    url('https://static.parastorage.com/unpkg/@wix/wix-fonts@1.9.3/media/WixMadeforTextVF_W_Wght.9b7def89.woff2')
     format('woff2');
 }
 
