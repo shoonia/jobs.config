@@ -1,4 +1,4 @@
-import { h, Component, Fragment, FunctionComponent } from 'preact';
+import { h, Component, createRef, FunctionComponent } from 'preact';
 import { useCallback } from 'preact/hooks';
 import HintFactory from 'react-hint';
 import { useStoreon } from 'storeon/preact';
@@ -8,7 +8,7 @@ import { FunctionName } from './FunctionName';
 import { FunctionLocation } from './FunctionLocation';
 import { TState } from '../../store';
 
-const Hint = HintFactory({ createElement: h, Component });
+const Hint = HintFactory({ createElement: h, Component, createRef });
 
 export const Tooltips: FunctionComponent = () => {
   const { items } = useStoreon<TState>('items');
@@ -32,7 +32,7 @@ export const Tooltips: FunctionComponent = () => {
   }, [items]);
 
   return (
-    <Fragment>
+    <>
       <Hint events delay="500" />
       <Hint
         persist
@@ -44,6 +44,6 @@ export const Tooltips: FunctionComponent = () => {
         className={s.fs}
         onRenderContent={onRenderContent}
       />
-    </Fragment>
+    </>
   );
 };

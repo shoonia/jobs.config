@@ -1,4 +1,4 @@
-import { h, render } from 'preact';
+import { render } from 'preact';
 import { StoreContext } from 'storeon/preact';
 
 import { App } from './components/App';

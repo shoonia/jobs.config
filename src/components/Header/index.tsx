@@ -1,4 +1,4 @@
-import { FunctionComponent, h } from 'preact';
+import { FunctionComponent } from 'preact';
 import { createPortal } from 'preact/compat';
 
 import s from './styles.css';

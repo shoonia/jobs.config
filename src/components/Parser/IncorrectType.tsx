@@ -1,4 +1,4 @@
-import { FunctionComponent, h } from 'preact';
+import { FunctionComponent } from 'preact';
 
 import { KEYS } from '../../constants';
 

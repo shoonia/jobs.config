@@ -1,4 +1,4 @@
-import { h, ComponentChildren, FunctionComponent } from 'preact';
+import { ComponentChildren, FunctionComponent } from 'preact';
 
 import s from '../../styles/code.css';
 

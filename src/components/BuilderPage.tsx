@@ -1,4 +1,4 @@
-import { FunctionComponent, h } from 'preact';
+import { FunctionComponent } from 'preact';
 
 import { Editor } from './Editor';
 import { Grid } from './Grid';

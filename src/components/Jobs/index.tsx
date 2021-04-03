@@ -1,4 +1,4 @@
-import { FunctionComponent, h } from 'preact';
+import { FunctionComponent } from 'preact';
 import { useCallback } from 'preact/hooks';
 import { useStoreon } from 'storeon/preact';
 

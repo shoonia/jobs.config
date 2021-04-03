@@ -1,4 +1,4 @@
-import { FunctionComponent, h } from 'preact';
+import { FunctionComponent } from 'preact';
 import { lazy, Suspense } from 'preact/compat';
 
 import { Props } from './Parser';

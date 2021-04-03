@@ -1,4 +1,4 @@
-import { h, Fragment, FunctionComponent } from 'preact';
+import { FunctionComponent } from 'preact';
 import { Suspense } from 'preact/compat';
 
 import { Header } from './Header';
@@ -10,12 +10,12 @@ export const App: FunctionComponent = () => {
   const Page = useLazyRouter();
 
   return (
-    <Fragment>
+    <>
       <Header />
       <Suspense fallback={<Fallback />}>
         <Page />
       </Suspense>
       <Tooltips />
-    </Fragment>
+    </>
   );
 };

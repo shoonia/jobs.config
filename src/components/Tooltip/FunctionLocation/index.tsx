@@ -1,4 +1,4 @@
-import { h, Fragment, FunctionComponent } from 'preact';
+import { FunctionComponent } from 'preact';
 
 import s from './FunctionLocation.css';
 import { createPath } from './util';
@@ -21,7 +21,7 @@ export const FunctionLocation: FunctionComponent<Props> = ({ target }) => {
         </li>
       </ul>
     );
-  }, <Fragment />);
+  }, <></>);
 
   return (
     <div

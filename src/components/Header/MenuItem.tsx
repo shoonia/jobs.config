@@ -1,4 +1,4 @@
-import { h, ComponentChildren, FunctionComponent } from 'preact';
+import { ComponentChildren, FunctionComponent } from 'preact';
 import { useStoreon } from 'storeon/preact';
 
 import s from './styles.css';

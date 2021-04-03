@@ -33,7 +33,7 @@ module.exports = (buildEnv) => {
       devtoolModuleFilenameTemplate: (info) => path
         .relative(paths.appSrc, info.absoluteResourcePath)
         .replace(/\\/g, '/'),
-      chunkLoadingGlobal: 'jobsConfig',
+      chunkLoadingGlobal: 'J',
       globalObject: 'window',
       clean: isProd,
     },
@@ -120,6 +120,7 @@ module.exports = (buildEnv) => {
                 cacheCompression: false,
                 compact: isProd,
                 presets: [
+                  '@babel/typescript',
                   [
                     '@babel/preset-env',
                     {
@@ -129,20 +130,13 @@ module.exports = (buildEnv) => {
                       useBuiltIns: 'entry',
                     },
                   ],
-                  [
-                    '@babel/typescript',
-                    {
-                      jsxPragma: 'h',
-                      jsxFragmentFactory: 'Fragment',
-                    },
-                  ],
                 ],
                 plugins: [
                   [
                     '@babel/transform-react-jsx',
                     {
-                      pragma: 'h',
-                      pragmaFrag: 'Fragment',
+                      runtime: 'automatic',
+                      importSource: 'preact',
                     },
                   ],
                   [
