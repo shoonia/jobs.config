@@ -29,6 +29,12 @@
     "react/prop-types": "off",
     "react/react-in-jsx-scope": "off",
     "react/jsx-uses-react": "off",
+    "react/no-unknown-property": [
+      "error",
+      {
+        "ignore": ["spellcheck"]
+      }
+    ],
     "linebreak-style": "off",
     "no-trailing-spaces": "error",
     "no-use-before-define": "error",

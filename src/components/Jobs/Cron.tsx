@@ -24,6 +24,7 @@ export const Cron: FunctionComponent<Props> = ({ value, error }) => {
         className={s.cron}
         value={value}
         data-name="cronExpression"
+        spellcheck={false}
         required
       />
     </Label>

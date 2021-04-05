@@ -26,6 +26,7 @@ export const FunctionInfo: FunctionComponent<Props> = ({
           value={functionLocation}
           placeholder="Function Location"
           pattern="^(\/)?[\w\-\.\/]*[\w-]\.jsw?$"
+          spellcheck={false}
           required
         />
       </Label>
@@ -42,6 +43,7 @@ export const FunctionInfo: FunctionComponent<Props> = ({
           value={functionName}
           placeholder="Function Name"
           pattern="^(\s)*?[\$a-zA-Z_][\$\w]*(\s)*?$"
+          spellcheck={false}
           required
         />
       </Label>

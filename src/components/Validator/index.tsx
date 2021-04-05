@@ -29,6 +29,7 @@ export const Validator: FunctionComponent = () => {
             className={s.area}
             value={validatorValue}
             placeholder="{}"
+            spellcheck={false}
           />
         </form>
         <Parser value={validatorValue} />
