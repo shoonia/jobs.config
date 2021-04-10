@@ -15,7 +15,7 @@ type TRouterModule = StoreonModule<IRouterState, IRouterEvents>;
 const getPath = (): ROUTER => {
   const hash = location.hash
     .trim()
-    .toLocaleLowerCase();
+    .toLowerCase();
 
   return (hash === ROUTER.VALIDATOR)
     ? ROUTER.VALIDATOR

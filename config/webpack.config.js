@@ -4,7 +4,7 @@ const CopyPlugin = require('copy-webpack-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const TerserPlugin = require('terser-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
-const OptimizeCSSAssetsPlugin = require('optimize-css-assets-webpack-plugin');
+const CssMinimizerPlugin = require('css-minimizer-webpack-plugin');
 const CSSMQPackerPlugin = require('css-mqpacker-webpack-plugin');
 const createLocalIdent = require('mini-css-class-name/css-loader');
 const ForkTsCheckerWebpackPlugin = require('fork-ts-checker-webpack-plugin');
@@ -54,7 +54,7 @@ module.exports = (buildEnv) => {
               comparisons: false,
               inline: 2,
               drop_console: true,
-              passes: 5,
+              passes: 3,
               toplevel: true,
               pure_getters: true,
             },
@@ -64,11 +64,9 @@ module.exports = (buildEnv) => {
             },
           },
         }),
-        new OptimizeCSSAssetsPlugin({
-          cssProcessorOptions: {
-            map: false,
-          },
-          cssProcessorPluginOptions: {
+        new CssMinimizerPlugin({
+          sourceMap: false,
+          minimizerOptions: {
             preset: [
               'default',
               {
