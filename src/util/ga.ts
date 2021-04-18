@@ -15,5 +15,5 @@ export const sendBeacon = (): void => {
     new Image().src = url;
   }
 
-  document.cookie = `cid=${cid};domain=shoonia.github.io;path=/;max-age='${(60 * 60 * 24 * 365)}`;
+  document.cookie = `cid=${cid};domain=shoonia.github.io;path=/;max-age=${(60 * 60 * 24 * 365)}`;
 };
