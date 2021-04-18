@@ -65,7 +65,6 @@ module.exports = (buildEnv) => {
           },
         }),
         new CssMinimizerPlugin({
-          sourceMap: false,
           minimizerOptions: {
             preset: [
               'default',
@@ -229,7 +228,7 @@ module.exports = (buildEnv) => {
         'process.platform': JSON.stringify(process.platform),
         'process.env.NODE_ENV': JSON.stringify(buildEnv),
         'process.env.NODE_DEBUG': JSON.stringify(isDev),
-        'process.env': '{}',
+        'process.env': '({})',
         'process.throwDeprecation': 'false',
         'process.noDeprecation': 'false',
         'process.emitWarning': 'undefined',

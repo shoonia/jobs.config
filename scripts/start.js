@@ -21,8 +21,7 @@ const devSocket = {
   errors: (errors) => devServer.sockWrite(devServer.sockets, 'errors', errors),
 };
 
-/**@type {*} */
-const compilerOptions = {
+const compiler = createCompiler({
   appName: name,
   config,
   devSocket,
@@ -30,10 +29,8 @@ const compilerOptions = {
   useYarn: false,
   useTypeScript: true,
   webpack,
-};
+});
 
-const compiler = createCompiler(compilerOptions);
-/**@type {*} */
 const serverConfig = createDevServerConfig(urls.lanUrlForConfig, HOST);
 const devServer = new WebpackDevServer(compiler, serverConfig);
 
