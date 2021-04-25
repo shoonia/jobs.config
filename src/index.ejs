@@ -1,6 +1,7 @@
 <%
   var title = 'Jobs Config | Velo by Wix';
   var description = 'Online generator and validator for Velo jobs.config scheduling file. Build and validate Wix Velo job scheduler, cron expression generator';
+  var image = `${homepage}favicon.png`;
 
   var jsonLd = JSON.stringify({
     '@context': 'https://schema.org',
@@ -50,9 +51,12 @@
   <meta property="og:description" content="<%= description %>">
   <meta property="og:type" content="website">
   <meta property="og:url" content="<%= homepage %>">
-  <meta property="og:image" content="<%= homepage %>favicon.png">
+  <meta property="og:image" content="<%= image %>">
   <meta property="og:image:width" content="450">
   <meta property="og:image:height" content="450">
+  <meta itemprop="name" content="<%= title %>">
+  <meta itemprop="description" content="<%= description %>">
+  <meta itemprop="image" content="<%= image %>">
   <script type="application/ld+json"><%= jsonLd %></script>
 </head>
 
