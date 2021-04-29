@@ -1,7 +1,8 @@
 <%
   var title = 'Jobs Config | Velo by Wix';
   var description = 'Online generator and validator for Velo jobs.config scheduling file. Build and validate Wix Velo job scheduler, cron expression generator';
-  var image = `${homepage}favicon.png`;
+  var favicon = 'favicon.png';
+  var image = new URL(favicon, homepage).href;
 
   var jsonLd = JSON.stringify({
     '@context': 'https://schema.org',
@@ -37,7 +38,7 @@
     <link rel="preload" href="https://api.github.com/repos/shoonia/jobs.config" as="fetch" crossorigin="anonymous">
     <base href="<%= homepage %>">
   <% } %>
-  <link rel="icon" href="favicon.png">
+  <link rel="icon" href="<%= favicon %>">
   <link rel="sitemap" type="application/xml" href="sitemap.xml" title="<%= title %>">
   <meta name="google-site-verification" content="JkNxAfkbyATcDv733CZNZPVT9UPc4rJNXxd31OgDwvY">
   <meta name="theme-color" content="#ffffff">
