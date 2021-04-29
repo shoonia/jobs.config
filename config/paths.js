@@ -13,6 +13,6 @@ module.exports = {
   appStatic: resolveApp('static'),
   appTsConfig: resolveApp('tsconfig.json'),
   appNodeModules: resolveApp('node_modules'),
-  publicUrlOrPath: '',
+  publicPath: '',
   appDirectory,
 };

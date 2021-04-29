@@ -7,14 +7,13 @@ const WebpackDevServer = require('webpack-dev-server');
 const { createCompiler, prepareUrls } = require('react-dev-utils/WebpackDevServerUtils');
 const paths = require('../config/paths');
 const configFactory = require('../config/webpack.config');
-const createDevServerConfig = require('../config/webpackDevServer.config');
 const { name } = require(paths.appPackageJson);
 
-const HOST = '0.0.0.0';
-const PORT = 3000;
+const host = '0.0.0.0';
+const port = 3000;
 
 const config = configFactory(buildEnv);
-const urls = prepareUrls('http', HOST, PORT);
+const urls = prepareUrls('http', host, port);
 
 const devSocket = {
   warnings: (warnings) => devServer.sockWrite(devServer.sockets, 'warnings', warnings),
@@ -31,10 +30,21 @@ const compiler = createCompiler({
   webpack,
 });
 
-const serverConfig = createDevServerConfig(urls.lanUrlForConfig, HOST);
-const devServer = new WebpackDevServer(compiler, serverConfig);
+const devServer = new WebpackDevServer(compiler, {
+  compress: true,
+  hot: true,
+  historyApiFallback: {
+    disableDotRule: true,
+    index: paths.publicPath,
+  },
+  host,
+  port,
+  public: host,
+  static: paths.appDirectory,
+  transportMode: 'ws',
+});
 
-devServer.listen(PORT, HOST, (error) => {
+devServer.listen(port, host, (error) => {
   if (error) {
     return console.log(error);
   }

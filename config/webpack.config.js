@@ -29,7 +29,7 @@ module.exports = (buildEnv) => {
       pathinfo: isDev,
       filename: 'js/[name].[contenthash:4].js',
       chunkFilename: 'js/[name].[chunkhash:4].js',
-      publicPath: paths.publicUrlOrPath,
+      publicPath: paths.publicPath,
       devtoolModuleFilenameTemplate: (info) => path
         .relative(paths.appSrc, info.absoluteResourcePath)
         .replace(/\\/g, '/'),
