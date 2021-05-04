@@ -170,7 +170,9 @@ module.exports = (buildEnv) => {
                       plugins: [
                         require('postcss-import'),
                         require('postcss-simple-vars'),
-                        isProd && require('autoprefixer'),
+                        isProd && require('autoprefixer')({
+                          flexbox: 'no-2009',
+                        }),
                       ].filter(Boolean),
                     },
                   },
@@ -194,6 +196,7 @@ module.exports = (buildEnv) => {
           removeScriptTypeAttributes: true,
           removeStyleLinkTypeAttributes: true,
           useShortDoctype: true,
+          sortAttributes: true,
         },
         templateParameters: {
           homepage,
