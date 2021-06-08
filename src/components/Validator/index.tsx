@@ -4,6 +4,7 @@ import { useStoreon } from 'storeon/preact';
 import s from './styles.css';
 import { preventDefault } from '../../util/component';
 import { Parser } from '../Parser';
+import { UploadFile } from '../UploadFile';
 import { TEvents, TState } from '../../store';
 
 export const Validator: FunctionComponent = () => {
@@ -11,6 +12,10 @@ export const Validator: FunctionComponent = () => {
 
   const onInput = ({ target }) => {
     dispatch('validator/input', target.value);
+  };
+
+  const onLoad = (value: string): void => {
+    dispatch('validator/input', value);
   };
 
   return (
@@ -31,6 +36,7 @@ export const Validator: FunctionComponent = () => {
             placeholder="{}"
             spellcheck={false}
           />
+          <UploadFile onLoad={onLoad} />
         </form>
         <Parser value={validatorValue} />
       </div>
