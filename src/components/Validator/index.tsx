@@ -5,6 +5,7 @@ import s from './styles.css';
 import { preventDefault } from '../../util/component';
 import { Parser } from '../Parser';
 import { UploadFile } from '../UploadFile';
+import { Issue } from '../Issue';
 import { TEvents, TState } from '../../store';
 
 export const Validator: FunctionComponent = () => {
@@ -36,7 +37,14 @@ export const Validator: FunctionComponent = () => {
             placeholder="{}"
             spellcheck={false}
           />
-          <UploadFile onLoad={onLoad} />
+          <aside className={s.tools}>
+            <span className={s.btn}>
+              <Issue />
+            </span>
+            <span className={s.btn}>
+              <UploadFile onLoad={onLoad} />
+            </span>
+          </aside>
         </form>
         <Parser value={validatorValue} />
       </div>

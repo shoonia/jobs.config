@@ -1,16 +1,7 @@
-@import "../../styles/vars.css";
-
 .issue {
-  color: $color-primary;
-  font-size: 13px;
-  text-decoration: none;
+  color: inherit;
   cursor: alias;
   outline: none;
-  display: inline-block;
-  padding: 3px;
-}
-
-.issue:hover,
-.issue:focus {
-  color: $color-success;
+  display: block;
+  padding: 2px;
 }

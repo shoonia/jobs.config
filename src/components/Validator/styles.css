@@ -36,6 +36,25 @@
   padding: 1em;
 }
 
+.tools {
+  position: absolute;
+  bottom: 20px;
+  right: 15px;
+  display: grid;
+  gap: 5px;
+  flex-direction: column;
+  background-color: #fff;
+}
+
+.btn {
+  color: $color-primary;
+}
+
+.btn:hover,
+.btn:focus {
+  color: $color-success;
+}
+
 @media (max-width: $mobile-width) {
   .box {
     max-width: calc(100vw - 30px);

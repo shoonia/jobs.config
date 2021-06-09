@@ -1,19 +1,8 @@
-@import '../../styles/vars.css';
-
 .box {
   display: inline-block;
-  position: absolute;
-  bottom: 20px;
-  right: 15px;
   cursor: pointer;
   height: 24px;
   width: 24px;
-  color: $color-primary;
-  background-color: #fff;
-}
-
-.box:hover {
-  color: $color-success;
 }
 
 .file {
