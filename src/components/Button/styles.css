@@ -34,13 +34,13 @@
   position: relative;
   overflow: hidden;
   color: #fff;
-  border-color: #3899ec;
-  background-color: #3899ec;
+  border-color: #116dff;
+  background-color: #116dff;
 }
 
 .primary:hover {
-  border-color: #5babef;
-  background-color: #5babef;
+  border-color: #3885ff;
+  background-color: #3885ff;
 }
 
 .primary::after {

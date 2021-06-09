@@ -18,12 +18,11 @@
 }
 
 .mtk6 {
-  color: #c03d73;
+  color: #8e21b1;
 }
 
-.func {
-  color: $color-extra;
-  font-weight: bold;
+.mtk10 {
+  color: #d0427d;
 }
 
 .err {

@@ -15,7 +15,7 @@ export const FunctionName: FunctionComponent<Props> = ({ target }) => {
   ]);
 
   const fnClass = classNames([
-    c.func,
+    c.mtk10,
     !target.validity.valid && c.err,
   ]);
 
