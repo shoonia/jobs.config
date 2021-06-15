@@ -1,5 +1,7 @@
 export const MAX_ITEMS = 20;
 
+export const KEY_VALIDATOR_VALUE = 'v';
+
 export const enum PERIOD {
   DAILY = 'Daily',
   WEEKLY = 'Weekly',
