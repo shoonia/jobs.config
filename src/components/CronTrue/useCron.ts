@@ -9,13 +9,21 @@ type CronResult = [
 const LESS_HOUR = /^every (\d+ )?(second|minute)s?\b/i;
 
 export const useCron = (value: string): CronResult => {
+  if (value.includes('?')) {
+    return [
+      true,
+      'Velo Jobs Config does not support the blank syntax with "?" symbol',
+    ];
+  }
+
   try {
     const message = toString(value);
 
     if (LESS_HOUR.test(message)) {
-      throw Error(
-        `"${message}"\n\nYou can schedule your job to run at intervals as short as one hour apart, but not shorter. If you define your job to run more frequently, the job will be ignored`
-      );
+      return [
+        true,
+        `"${message}"\n\nYou can schedule your job to run at intervals as short as one hour apart, but not shorter. If you define your job to run more frequently, the job will be ignored`,
+      ];
     }
 
     const isError = !isValidCron(value, {
