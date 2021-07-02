@@ -205,6 +205,10 @@
 
 .error {
   color: $color-danger;
+  white-space: pre-wrap;
+  margin-top: 1em;
+  min-height: 2.7em;
+  line-height: 1.5em;
 }
 
 @media (max-width: $mobile-width) {

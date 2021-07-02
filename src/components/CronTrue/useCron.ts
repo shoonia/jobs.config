@@ -14,7 +14,7 @@ export const useCron = (value: string): CronResult => {
 
     if (LESS_HOUR.test(message)) {
       throw Error(
-        `"${message}"\nYou can schedule your job to run at intervals as short as one hour apart, but not shorter. If you define your job to run more frequently, the job will be ignored`
+        `"${message}"\n\nYou can schedule your job to run at intervals as short as one hour apart, but not shorter. If you define your job to run more frequently, the job will be ignored`
       );
     }
 

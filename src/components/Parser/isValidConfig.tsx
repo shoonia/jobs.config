@@ -216,12 +216,6 @@ export const isValidConfig = (config: unknown): TValidResult => {
           <>
             <p>{`Invalid "cronExpression" at "jobs[${i}].executionConfig".`}</p>
             <p>{message}</p>
-            <p>
-              <em>
-                You can schedule your job to run at intervals as short as one hour apart, but not shorter.
-                If you define your job to run more frequently, the job will be ignored.
-              </em>
-            </p>
           </>,
         );
       }
