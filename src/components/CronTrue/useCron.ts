@@ -13,11 +13,16 @@ export const useCron = (value: string): CronResult => {
     const message = toString(value);
 
     if (LESS_HOUR.test(message)) {
-      return [true, message];
+      throw Error(
+        `"${message}"\nYou can schedule your job to run at intervals as short as one hour apart, but not shorter. If you define your job to run more frequently, the job will be ignored`
+      );
     }
 
     const isError = !isValidCron(value, {
       seconds: false,
+      allowBlankDay: false,
+      allowSevenAsSunday: true,
+      alias: true,
     });
 
     return [isError, message];
