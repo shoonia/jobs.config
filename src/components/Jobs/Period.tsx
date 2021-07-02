@@ -7,6 +7,7 @@ import { PeriodButton } from './PeriodButton';
 import { Time } from './Time';
 import { Cron } from './Cron';
 import { CronTrue } from '../CronTrue';
+import { classNames } from '../../util/component';
 
 interface Props {
   name: string;
@@ -30,7 +31,7 @@ export const Period: FunctionComponent<Props> = ({
     : <Time value={time} />;
 
   const cronMessage = isCron && (
-    <div className={isError ? s.error : undefined}>
+    <div className={classNames([s.message, isError && s.error ])}>
       {CronTrue({ value: cronExpression, setValidity })}
     </div>
   );

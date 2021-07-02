@@ -203,12 +203,15 @@
   user-select: none;
 }
 
-.error {
-  color: $color-danger;
+.message {
   white-space: pre-wrap;
   margin-top: 1em;
   min-height: 2.7em;
   line-height: 1.5em;
+}
+
+.error {
+  color: $color-danger;
 }
 
 @media (max-width: $mobile-width) {
