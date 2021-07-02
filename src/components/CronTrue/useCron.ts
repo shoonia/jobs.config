@@ -12,7 +12,7 @@ export const useCron = (value: string): CronResult => {
   if (value.includes('?')) {
     return [
       true,
-      'Velo Jobs Config does not support the blank syntax with "?" symbol',
+      'Velo: Job Scheduler does not support the blank syntax with "?" symbol.',
     ];
   }
 
@@ -22,7 +22,7 @@ export const useCron = (value: string): CronResult => {
     if (LESS_HOUR.test(message)) {
       return [
         true,
-        `"${message}"\n\nYou can schedule your job to run at intervals as short as one hour apart, but not shorter. If you define your job to run more frequently, the job will be ignored`,
+        `"${message}"\n\nYou can schedule your job to run at intervals as short as one hour apart, but not shorter. If you define your job to run more frequently, the job will be ignored.`,
       ];
     }
 
