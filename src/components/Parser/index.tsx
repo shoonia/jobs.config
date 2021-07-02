@@ -5,9 +5,7 @@ import { Props } from './Parser';
 
 const LazyParser: FunctionComponent<Props> = lazy(() => {
   return import('./Parser' /* webpackChunkName: "Parser" */).then((i) => {
-    return {
-      default: i.Parser,
-    };
+    return i.Parser;
   });
 });
 

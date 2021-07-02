@@ -3,9 +3,7 @@ import { lazy, Suspense } from 'preact/compat';
 
 const LazyTooltips: FunctionComponent = lazy(() => {
   return import('./Tooltip' /* webpackChunkName: "Tooltip" */).then((i) => {
-    return {
-      default: i.Tooltips,
-    };
+    return i.Tooltips;
   });
 });
 

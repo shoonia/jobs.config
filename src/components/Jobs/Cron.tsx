@@ -10,10 +10,10 @@ interface Props {
 }
 
 export const Cron: FunctionComponent<Props> = ({ value, error }) => {
-  const ref = useRef<HTMLInputElement>();
+  const ref = useRef<HTMLInputElement>(null);
 
   useEffect(() => {
-    ref.current.setCustomValidity(error ? 'error': '');
+    ref.current?.setCustomValidity(error ? 'error': '');
   }, [error]);
 
   return (

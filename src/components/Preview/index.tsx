@@ -6,11 +6,12 @@ import s from './styles.css';
 import { Button } from '../Button';
 import { JSON } from './JSON';
 import { createConfig } from '../../util/items';
+import { isHTMLElement } from '../../util/component';
 import { TState } from '../../store';
 
 export const Preview: FunctionComponent = () => {
   const { items } = useStoreon<TState>('items');
-  const output = useRef<HTMLPreElement>();
+  const output = useRef<HTMLPreElement>(null);
 
   const config = createConfig(items);
   const dataURL = `data:application/json,${encodeURIComponent(config)}`;
@@ -19,10 +20,12 @@ export const Preview: FunctionComponent = () => {
     const selection = window.getSelection() as Selection;
     const range = document.createRange() as Range;
 
-    range.selectNodeContents(output.current);
-    selection.removeAllRanges();
-    selection.addRange(range);
-    document.execCommand('copy');
+    if (isHTMLElement(output.current)) {
+      range.selectNodeContents(output.current);
+      selection.removeAllRanges();
+      selection.addRange(range);
+      document.execCommand('copy');
+    }
   };
 
   return (

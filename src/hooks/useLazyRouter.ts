@@ -10,9 +10,7 @@ const BuilderPage: FunctionComponent = lazy(() => {
     /* webpackPrefetch: true */
     '../components/BuilderPage'
   ).then((i) => {
-    return {
-      default: i.BuilderPage,
-    };
+    return i.BuilderPage;
   });
 });
 
@@ -22,9 +20,7 @@ const ValidatorPage: FunctionComponent = lazy(() => {
     /* webpackPrefetch: true */
     '../components/ValidatorPage'
   ).then((i) => {
-    return {
-      default: i.ValidatorPage,
-    };
+    return i.ValidatorPage;
   });
 });
 
