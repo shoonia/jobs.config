@@ -34,14 +34,20 @@ export const useCron = (value: string): CronResult => {
       );
     }
 
-    const isError = !isValidCron(value, {
+    const isValid = isValidCron(value, {
       seconds: false,
       allowBlankDay: false,
       allowSevenAsSunday: true,
       alias: true,
     });
 
-    return [isError, message];
+    if (!isValid) {
+      return ex(
+        `${message}.\n\nError: Velo Job Scheduler does not support this syntax.`,
+      );
+    }
+
+    return [false, message];
   } catch (error) {
     return ex(String(error));
   }
