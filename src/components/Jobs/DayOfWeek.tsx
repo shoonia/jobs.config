@@ -18,17 +18,13 @@ const week = weekList.map((day) => (
 ));
 
 export const DayOfWeek: FunctionComponent<Props> = ({ day }) => (
-  <fieldset className={s.fields}>
-    <div className={s.location}>
-      <Label top="The day of the week the job runs.">
-        <select
-          className={s.date}
-          data-name="dayOfWeek"
-          value={day}
-        >
-          {week}
-        </select>
-      </Label>
-    </div>
-  </fieldset>
+  <Label top="The day of the week the job runs.">
+    <select
+      className={s.func_input}
+      data-name="dayOfWeek"
+      value={day}
+    >
+      {week}
+    </select>
+  </Label>
 );

@@ -13,7 +13,7 @@ export const Time: FunctionComponent<Props> = ({ value }) => (
       type="time"
       value={value}
       data-name="time"
-      className={s.date}
+      className={s.mono}
       required
     />
   </Label>

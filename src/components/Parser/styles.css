@@ -15,9 +15,9 @@
 
 .error {
   composes: box;
-  border: 1px solid #8a342f;
-  color: #8a342f;
-  background-color: #ffebeb;
+  border: 1px solid $color-danger-dark;
+  color: $color-danger-dark;
+  background-color: $color-danger-light;
 }
 
 .success {

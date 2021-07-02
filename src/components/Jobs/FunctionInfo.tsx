@@ -22,7 +22,7 @@ export const FunctionInfo: FunctionComponent<Props> = ({
           data-name="functionLocation"
           data-fl
           data-fl-at="bottom"
-          className={s.funcInput}
+          className={s.func_input}
           value={functionLocation}
           placeholder="Function Location"
           pattern="^(\/)?[\w\-\.\/]*[\w-]\.jsw?$"
@@ -39,7 +39,7 @@ export const FunctionInfo: FunctionComponent<Props> = ({
           data-name="functionName"
           data-fl
           data-fl-at="bottom"
-          className={s.funcInput}
+          className={s.func_input}
           value={functionName}
           placeholder="Function Name"
           pattern="^(\s)*?[\$a-zA-Z_][\$\w]*(\s)*?$"

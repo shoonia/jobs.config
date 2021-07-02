@@ -2,11 +2,9 @@ import { FunctionComponent } from 'preact';
 
 import s from './styles.css';
 import { Period } from './Period';
-import { DayOfWeek } from './DayOfWeek';
-import { DateInMonth } from './DateInMonth';
 import { ItemMenu } from './ItemMenu';
 import { FunctionInfo } from './FunctionInfo';
-import { PERIOD } from '../../constants';
+import { ExecutionConfig } from './ExecutionConfig';
 import { IItem } from '../../util/items';
 import { preventDefault } from '../../util/component';
 
@@ -25,15 +23,17 @@ export const Item: FunctionComponent<Props> = ({
   update,
   isMax,
 }) => {
-  const { id, period } = data;
-
-  const dayOfWeek = period === PERIOD.WEEKLY && (
-    <DayOfWeek day={data.dayOfWeek} />
-  );
-
-  const dateInMonth = period === PERIOD.MONTHLY && (
-    <DateInMonth date={String(data.dateInMonth)} />
-  );
+  const {
+    id,
+    functionLocation,
+    functionName,
+    description,
+    period,
+    time,
+    dayOfWeek,
+    dateInMonth,
+    cronExpression,
+  } = data;
 
   return (
     <li>
@@ -45,18 +45,21 @@ export const Item: FunctionComponent<Props> = ({
         onSubmit={preventDefault}
       >
         <FunctionInfo
-          functionLocation={data.functionLocation}
-          functionName={data.functionName}
-          description={data.description}
+          functionLocation={functionLocation}
+          functionName={functionName}
+          description={description}
         />
         <Period
           name={id}
           period={period}
-          time={data.time}
-          cronExpression={data.cronExpression}
         />
-        {dayOfWeek}
-        {dateInMonth}
+        <ExecutionConfig
+          period={period}
+          time={time}
+          dayOfWeek={dayOfWeek}
+          dateInMonth={dateInMonth}
+          cronExpression={cronExpression}
+        />
         <ItemMenu
           remove={remove}
           clone={clone}

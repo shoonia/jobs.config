@@ -18,7 +18,7 @@ export const ItemMenu: FunctionComponent<Props> = ({
       type="button"
       aria-label="remove"
       onClick={remove}
-      className={s.btnRemove}
+      className={s.btn_remove}
       data-rh="Remove"
       data-rh-at="top"
     />
@@ -26,7 +26,7 @@ export const ItemMenu: FunctionComponent<Props> = ({
       type="button"
       aria-label="clone"
       onClick={clone}
-      className={s.btnClone}
+      className={s.btn_clone}
       data-rh="Clone"
       data-rh-at="top"
       disabled={isMax}

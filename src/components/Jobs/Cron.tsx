@@ -21,7 +21,7 @@ export const Cron: FunctionComponent<Props> = ({ value, error }) => {
       <input
         ref={ref}
         type="text"
-        className={s.cron}
+        className={s.mono}
         value={value}
         data-name="cronExpression"
         spellcheck={false}
