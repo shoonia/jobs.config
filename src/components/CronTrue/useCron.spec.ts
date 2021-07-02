@@ -10,6 +10,7 @@ const invalidList = [
   '*/2 * * * *',
   '0 * * * 8',
   '0 * * * ?',
+  '0 1 * * 3#2',
 ];
 
 describe('useCron', () => {
