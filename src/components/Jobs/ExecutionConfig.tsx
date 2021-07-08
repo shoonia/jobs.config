@@ -14,10 +14,7 @@ import { useFormScope } from '../../hooks/formScope';
 
 export const ExecutionConfig: FunctionComponent = () => {
   const [isError, setValidity] = useState<boolean>(false);
-  const {
-    period,
-    cronExpression,
-  } = useFormScope();
+  const { period, cronExpression } = useFormScope();
 
   const isCron = (period === PERIOD.CRON);
 

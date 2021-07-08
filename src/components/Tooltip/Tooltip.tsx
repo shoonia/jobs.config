@@ -4,6 +4,7 @@ import HintFactory from 'react-hint';
 import { useStoreon } from 'storeon/preact';
 
 import s from './styles.css';
+import { KEYS } from '../../constants';
 import { FunctionName } from './FunctionName';
 import { FunctionLocation } from './FunctionLocation';
 import { TState } from '../../store';
@@ -17,12 +18,12 @@ export const Tooltips: FunctionComponent = () => {
     const { name } = target.dataset;
 
     switch (name) {
-      case 'functionLocation': {
+      case KEYS.functionLocation: {
         return (
           <FunctionLocation target={target} />
         );
       }
-      case 'functionName': {
+      case KEYS.functionName: {
         return (
           <FunctionName target={target} />
         );

@@ -3,6 +3,7 @@ import { FunctionComponent } from 'preact';
 import s from './styles.css';
 import { Label } from './Label';
 import { useFormScope } from '../../hooks/formScope';
+import { KEYS } from '../../constants';
 
 export const DateInMonth: FunctionComponent = () => {
   const { dateInMonth } = useFormScope();
@@ -15,7 +16,7 @@ export const DateInMonth: FunctionComponent = () => {
         max="31"
         step="1"
         value={String(dateInMonth)}
-        data-name="dateInMonth"
+        data-name={KEYS.dateInMonth}
         className={s.mono}
         required
       />

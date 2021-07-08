@@ -4,6 +4,7 @@ import s from './styles.css';
 import { Label } from './Label';
 import { weekList } from '../../util/week';
 import { useFormScope } from '../../hooks/formScope';
+import { KEYS } from '../../constants';
 
 const week = weekList.map((day) => (
   <option
@@ -21,7 +22,7 @@ export const DayOfWeek: FunctionComponent = () => {
     <Label top="The day of the week the job runs.">
       <select
         className={s.func_input}
-        data-name="dayOfWeek"
+        data-name={KEYS.dayOfWeek}
         value={dayOfWeek}
       >
         {week}

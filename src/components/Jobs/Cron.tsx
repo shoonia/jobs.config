@@ -3,6 +3,7 @@ import { useEffect, useRef } from 'preact/hooks';
 
 import s from './styles.css';
 import { Label } from './Label';
+import { KEYS } from '../../constants';
 
 interface Props {
   value: string;
@@ -23,7 +24,7 @@ export const Cron: FunctionComponent<Props> = ({ value, error }) => {
         type="text"
         className={s.mono}
         value={value}
-        data-name="cronExpression"
+        data-name={KEYS.cronExpression}
         spellcheck={false}
         required
       />

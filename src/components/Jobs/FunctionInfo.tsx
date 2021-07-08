@@ -1,6 +1,7 @@
 import { FunctionComponent } from 'preact';
 
 import s from './styles.css';
+import { KEYS } from '../../constants';
 import { Label } from './Label';
 import { useFormScope } from '../../hooks/formScope';
 
@@ -17,7 +18,7 @@ export const FunctionInfo: FunctionComponent = () => {
         <Label top="Function Location">
           <input
             type="text"
-            data-name="functionLocation"
+            data-name={KEYS.functionLocation}
             data-fl
             data-fl-at="bottom"
             className={s.func_input}
@@ -34,7 +35,7 @@ export const FunctionInfo: FunctionComponent = () => {
         <Label top="Function Name">
           <input
             type="text"
-            data-name="functionName"
+            data-name={KEYS.functionName}
             data-fl
             data-fl-at="bottom"
             className={s.func_input}
@@ -52,7 +53,7 @@ export const FunctionInfo: FunctionComponent = () => {
             type="text"
             value={description}
             className={s.description}
-            data-name="description"
+            data-name={KEYS.description}
             placeholder="Description"
           />
         </Label>

@@ -3,6 +3,7 @@ import { FunctionComponent } from 'preact';
 import s from './CronExamples.css';
 import { Label } from './Label';
 import { useFormScope } from '../../hooks/formScope';
+import { KEYS } from '../../constants';
 
 export const CronExamples: FunctionComponent= () => {
   const { id } = useFormScope();
@@ -16,7 +17,7 @@ export const CronExamples: FunctionComponent= () => {
         aria-label="Show examples"
         data-fl
         data-fl-at="right"
-        data-name="cron-examples"
+        data-name={KEYS.cronExpression}
         data-id={id}
       >
         <svg
