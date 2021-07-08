@@ -54,6 +54,7 @@ export const Item: FunctionComponent<Props> = ({
           period={period}
         />
         <ExecutionConfig
+          id={id}
           period={period}
           time={time}
           dayOfWeek={dayOfWeek}

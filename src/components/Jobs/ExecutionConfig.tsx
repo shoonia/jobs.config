@@ -5,6 +5,7 @@ import s from './styles.css';
 import { CronTrue } from '../CronTrue';
 import { Cron } from './Cron';
 import { Time } from './Time';
+import { CronExamples } from './CronExamples';
 import { DayOfWeek } from './DayOfWeek';
 import { DateInMonth } from './DateInMonth';
 import { PERIOD } from '../../constants';
@@ -12,6 +13,7 @@ import { classNames } from '../../util/component';
 import { TWeekList } from '../../util/week';
 
 interface Props {
+  id: string;
   period: PERIOD;
   time: string;
   dayOfWeek: TWeekList;
@@ -20,6 +22,7 @@ interface Props {
 }
 
 export const ExecutionConfig: FunctionComponent<Props> = ({
+  id,
   period,
   time,
   dayOfWeek,
@@ -30,9 +33,13 @@ export const ExecutionConfig: FunctionComponent<Props> = ({
 
   const isCron = (period === PERIOD.CRON);
 
-  const CronOrTime = isCron
+  const cronOrTime = isCron
     ? <Cron value={cronExpression} error={isError} />
     : <Time value={time} />;
+
+  const cronExamples = isCron && (
+    <CronExamples id={id} />
+  );
 
   const cronMessage = isCron && (
     <div className={classNames([s.message, isError && s.error ])}>
@@ -40,21 +47,22 @@ export const ExecutionConfig: FunctionComponent<Props> = ({
     </div>
   );
 
-  const Day = period === PERIOD.WEEKLY && (
+  const dayInput = period === PERIOD.WEEKLY && (
     <DayOfWeek day={dayOfWeek} />
   );
 
-  const Month = period === PERIOD.MONTHLY && (
+  const monthInput = period === PERIOD.MONTHLY && (
     <DateInMonth date={String(dateInMonth)} />
   );
 
   return (
     <fieldset className={s.fields}>
       <div className={s.location}>
-        {CronOrTime}
+        {cronOrTime}
         <span className={s.slash} />
-        {Day}
-        {Month}
+        {cronExamples}
+        {dayInput}
+        {monthInput}
       </div>
       {cronMessage}
     </fieldset>
