@@ -31,7 +31,7 @@ export const Preview: FunctionComponent = () => {
   return (
     <div className={s.box}>
       <div className={s.copy}>
-        <Button onClick={clipboard}>
+        <Button primary onClick={clipboard}>
           Copy Code
         </Button>
       </div>
