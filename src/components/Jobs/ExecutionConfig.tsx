@@ -10,31 +10,20 @@ import { DayOfWeek } from './DayOfWeek';
 import { DateInMonth } from './DateInMonth';
 import { PERIOD } from '../../constants';
 import { classNames } from '../../util/component';
-import { TWeekList } from '../../util/week';
+import { useFormScope } from '../../hooks/formScope';
 
-interface Props {
-  id: string;
-  period: PERIOD;
-  time: string;
-  dayOfWeek: TWeekList;
-  dateInMonth: number;
-  cronExpression: string;
-}
-
-export const ExecutionConfig: FunctionComponent<Props> = ({
-  period,
-  time,
-  dayOfWeek,
-  dateInMonth,
-  cronExpression,
-}) => {
+export const ExecutionConfig: FunctionComponent = () => {
   const [isError, setValidity] = useState<boolean>(false);
+  const {
+    period,
+    cronExpression,
+  } = useFormScope();
 
   const isCron = (period === PERIOD.CRON);
 
   const cronOrTime = isCron
     ? <Cron value={cronExpression} error={isError} />
-    : <Time value={time} />;
+    : <Time />;
 
   const cronExamples = isCron && (
     <CronExamples />
@@ -47,11 +36,11 @@ export const ExecutionConfig: FunctionComponent<Props> = ({
   );
 
   const dayInput = period === PERIOD.WEEKLY && (
-    <DayOfWeek day={dayOfWeek} />
+    <DayOfWeek />
   );
 
   const monthInput = period === PERIOD.MONTHLY && (
-    <DateInMonth date={String(dateInMonth)} />
+    <DateInMonth />
   );
 
   return (

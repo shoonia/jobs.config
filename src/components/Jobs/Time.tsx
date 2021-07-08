@@ -2,19 +2,20 @@ import { FunctionComponent } from 'preact';
 
 import s from './styles.css';
 import { Label } from './Label';
+import { useFormScope } from '../../hooks/formScope';
 
-interface Props {
-  value: string;
-}
+export const Time: FunctionComponent = () => {
+  const { time } = useFormScope();
 
-export const Time: FunctionComponent<Props> = ({ value }) => (
-  <Label top="The time of day the job runs.">
-    <input
-      type="time"
-      value={value}
-      data-name="time"
-      className={s.mono}
-      required
-    />
-  </Label>
-);
+  return (
+    <Label top="The time of day the job runs.">
+      <input
+        type="time"
+        value={time}
+        data-name="time"
+        className={s.mono}
+        required
+      />
+    </Label>
+  );
+};

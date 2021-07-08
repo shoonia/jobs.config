@@ -23,53 +23,25 @@ export const Item: FunctionComponent<Props> = ({
   clone,
   update,
   isMax,
-}) => {
-  const {
-    id,
-    functionLocation,
-    functionName,
-    description,
-    period,
-    time,
-    dayOfWeek,
-    dateInMonth,
-    cronExpression,
-  } = data;
-
-  return (
-    <FormScope.Provider value={data}>
-      <li>
-        <form
-          id={id}
-          action="#"
-          className={s.item}
-          onInput={update}
-          onSubmit={preventDefault}
-        >
-          <FunctionInfo
-            functionLocation={functionLocation}
-            functionName={functionName}
-            description={description}
-          />
-          <Period
-            name={id}
-            period={period}
-          />
-          <ExecutionConfig
-            id={id}
-            period={period}
-            time={time}
-            dayOfWeek={dayOfWeek}
-            dateInMonth={dateInMonth}
-            cronExpression={cronExpression}
-          />
-          <ItemMenu
-            remove={remove}
-            clone={clone}
-            isMax={isMax}
-          />
-        </form>
-      </li>
-    </FormScope.Provider>
-  );
-};
+}) => (
+  <FormScope.Provider value={data}>
+    <li>
+      <form
+        id={data.id}
+        action="#"
+        className={s.item}
+        onInput={update}
+        onSubmit={preventDefault}
+      >
+        <FunctionInfo />
+        <Period />
+        <ExecutionConfig />
+        <ItemMenu
+          remove={remove}
+          clone={clone}
+          isMax={isMax}
+        />
+      </form>
+    </li>
+  </FormScope.Provider>
+);

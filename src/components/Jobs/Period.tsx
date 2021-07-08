@@ -3,36 +3,31 @@ import { FunctionComponent } from 'preact';
 import s from './styles.css';
 import { PERIOD } from '../../constants';
 import { PeriodButton } from './PeriodButton';
+import { useFormScope } from '../../hooks/formScope';
 
-interface Props {
-  name: string;
-  period: PERIOD;
-}
+export const Period: FunctionComponent = () => {
+  const { id, period } = useFormScope();
 
-export const Period: FunctionComponent<Props> = ({
-  name,
-  period,
-}) => {
   return (
     <fieldset className={s.fields}>
       <div className={s.period_box}>
         <PeriodButton
-          name={name}
+          name={id}
           value={PERIOD.DAILY}
           period={period}
         />
         <PeriodButton
-          name={name}
+          name={id}
           value={PERIOD.WEEKLY}
           period={period}
         />
         <PeriodButton
-          name={name}
+          name={id}
           value={PERIOD.MONTHLY}
           period={period}
         />
         <PeriodButton
-          name={name}
+          name={id}
           value={PERIOD.CRON}
           period={period}
         />
