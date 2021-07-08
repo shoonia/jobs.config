@@ -5,6 +5,7 @@ import { Period } from './Period';
 import { ItemMenu } from './ItemMenu';
 import { FunctionInfo } from './FunctionInfo';
 import { ExecutionConfig } from './ExecutionConfig';
+import { FormScope } from '../../hooks/formScope';
 import { IItem } from '../../util/items';
 import { preventDefault } from '../../util/component';
 
@@ -36,37 +37,39 @@ export const Item: FunctionComponent<Props> = ({
   } = data;
 
   return (
-    <li>
-      <form
-        id={id}
-        action="#"
-        className={s.item}
-        onInput={update}
-        onSubmit={preventDefault}
-      >
-        <FunctionInfo
-          functionLocation={functionLocation}
-          functionName={functionName}
-          description={description}
-        />
-        <Period
-          name={id}
-          period={period}
-        />
-        <ExecutionConfig
+    <FormScope.Provider value={data}>
+      <li>
+        <form
           id={id}
-          period={period}
-          time={time}
-          dayOfWeek={dayOfWeek}
-          dateInMonth={dateInMonth}
-          cronExpression={cronExpression}
-        />
-        <ItemMenu
-          remove={remove}
-          clone={clone}
-          isMax={isMax}
-        />
-      </form>
-    </li>
+          action="#"
+          className={s.item}
+          onInput={update}
+          onSubmit={preventDefault}
+        >
+          <FunctionInfo
+            functionLocation={functionLocation}
+            functionName={functionName}
+            description={description}
+          />
+          <Period
+            name={id}
+            period={period}
+          />
+          <ExecutionConfig
+            id={id}
+            period={period}
+            time={time}
+            dayOfWeek={dayOfWeek}
+            dateInMonth={dateInMonth}
+            cronExpression={cronExpression}
+          />
+          <ItemMenu
+            remove={remove}
+            clone={clone}
+            isMax={isMax}
+          />
+        </form>
+      </li>
+    </FormScope.Provider>
   );
 };

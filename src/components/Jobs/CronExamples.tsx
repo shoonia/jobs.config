@@ -2,12 +2,11 @@ import { FunctionComponent } from 'preact';
 
 import s from './CronExamples.css';
 import { Label } from './Label';
+import { useFormScope } from '../../hooks/formScope';
 
-interface Props {
-  id: string;
-}
+export const CronExamples: FunctionComponent= () => {
+  const { id } = useFormScope();
 
-export const CronExamples: FunctionComponent<Props> = ({ id }) => {
   return (
     <Label top="Cron Examples">
       <button

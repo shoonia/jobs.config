@@ -22,7 +22,6 @@ interface Props {
 }
 
 export const ExecutionConfig: FunctionComponent<Props> = ({
-  id,
   period,
   time,
   dayOfWeek,
@@ -38,7 +37,7 @@ export const ExecutionConfig: FunctionComponent<Props> = ({
     : <Time value={time} />;
 
   const cronExamples = isCron && (
-    <CronExamples id={id} />
+    <CronExamples />
   );
 
   const cronMessage = isCron && (
