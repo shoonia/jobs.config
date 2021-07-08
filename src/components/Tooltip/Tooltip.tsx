@@ -7,6 +7,7 @@ import s from './styles.css';
 import { KEYS } from '../../constants';
 import { FunctionName } from './FunctionName';
 import { FunctionLocation } from './FunctionLocation';
+import { CronExamplesTooltip } from './CronExamplesTooltip';
 import { TState } from '../../store';
 
 const Hint = HintFactory({ createElement: h, Component, createRef });
@@ -26,6 +27,11 @@ export const Tooltips: FunctionComponent = () => {
       case KEYS.functionName: {
         return (
           <FunctionName target={target} />
+        );
+      }
+      case KEYS.cronExpression: {
+        return (
+          <CronExamplesTooltip target={target} />
         );
       }
     }
