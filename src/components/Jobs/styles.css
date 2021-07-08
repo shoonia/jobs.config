@@ -44,17 +44,10 @@
 }
 
 .btn {
-  background-color: transparent;
-  font-size: 1em;
-  line-height: 1em;
   cursor: pointer;
-  outline: none;
-  margin-left: 5px;
-  border-radius: 50px;
   width: 2em;
   height: 2em;
   transition: all 0.1s ease-in-out;
-  border: 1px solid transparent;
   display: inline-flex;
   align-items: center;
   justify-content: center;

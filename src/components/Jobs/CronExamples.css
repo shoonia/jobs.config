@@ -1,0 +1,20 @@
+@import '../../styles/vars.css';
+
+.btn {
+  width: 24px;
+  height: 24px;
+  vertical-align: middle;
+  cursor: pointer;
+  color: $color-primary;
+  border: 1px solid $color-primary;
+  border-radius: 50%;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.btn:hover,
+.btn:focus {
+  color: $color-success;
+  border-color: $color-success;
+}

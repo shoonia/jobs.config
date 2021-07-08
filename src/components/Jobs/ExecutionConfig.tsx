@@ -5,34 +5,26 @@ import s from './styles.css';
 import { CronTrue } from '../CronTrue';
 import { Cron } from './Cron';
 import { Time } from './Time';
+import { CronExamples } from './CronExamples';
 import { DayOfWeek } from './DayOfWeek';
 import { DateInMonth } from './DateInMonth';
 import { PERIOD } from '../../constants';
 import { classNames } from '../../util/component';
-import { TWeekList } from '../../util/week';
+import { useFormScope } from '../../hooks/formScope';
 
-interface Props {
-  period: PERIOD;
-  time: string;
-  dayOfWeek: TWeekList;
-  dateInMonth: number;
-  cronExpression: string;
-}
-
-export const ExecutionConfig: FunctionComponent<Props> = ({
-  period,
-  time,
-  dayOfWeek,
-  dateInMonth,
-  cronExpression,
-}) => {
+export const ExecutionConfig: FunctionComponent = () => {
   const [isError, setValidity] = useState<boolean>(false);
+  const { period, cronExpression } = useFormScope();
 
   const isCron = (period === PERIOD.CRON);
 
-  const CronOrTime = isCron
+  const cronOrTime = isCron
     ? <Cron value={cronExpression} error={isError} />
-    : <Time value={time} />;
+    : <Time />;
+
+  const cronExamples = isCron && (
+    <CronExamples />
+  );
 
   const cronMessage = isCron && (
     <div className={classNames([s.message, isError && s.error ])}>
@@ -40,21 +32,22 @@ export const ExecutionConfig: FunctionComponent<Props> = ({
     </div>
   );
 
-  const Day = period === PERIOD.WEEKLY && (
-    <DayOfWeek day={dayOfWeek} />
+  const dayInput = period === PERIOD.WEEKLY && (
+    <DayOfWeek />
   );
 
-  const Month = period === PERIOD.MONTHLY && (
-    <DateInMonth date={String(dateInMonth)} />
+  const monthInput = period === PERIOD.MONTHLY && (
+    <DateInMonth />
   );
 
   return (
     <fieldset className={s.fields}>
       <div className={s.location}>
-        {CronOrTime}
+        {cronOrTime}
         <span className={s.slash} />
-        {Day}
-        {Month}
+        {cronExamples}
+        {dayInput}
+        {monthInput}
       </div>
       {cronMessage}
     </fieldset>

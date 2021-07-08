@@ -1,4 +1,4 @@
-export const classNames = (list: (string | false)[]): string => {
+export const classNames = (list: (string | false | undefined)[]): string => {
   return list.filter(Boolean).join(' ');
 };
 

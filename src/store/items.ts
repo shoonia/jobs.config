@@ -88,17 +88,21 @@ export const itemsModule: TItemsModule = ({ on }) => {
 
     const i = items.findIndex((item) => item.id === id);
 
-    items.splice(i, 0, { ...items[i], id: nanoid() });
+    if (i > -1) {
+      items.splice(i, 0, { ...items[i], id: nanoid() });
 
-    return payload([...items]);
+      return payload([...items]);
+    }
   });
 
   on('items/update', ({ items }, { id, name, value }) => {
     const i = items.findIndex((item) => item.id === id);
 
-    items.splice(i, 1, { ...items[i], [name]: value });
+    if (i > -1) {
+      items.splice(i, 1, { ...items[i], [name]: value });
 
-    return payload([...items]);
+      return payload([...items]);
+    }
   });
 
   on('items/replace', (_, items) => payload(items));

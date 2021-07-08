@@ -5,6 +5,7 @@ import { Period } from './Period';
 import { ItemMenu } from './ItemMenu';
 import { FunctionInfo } from './FunctionInfo';
 import { ExecutionConfig } from './ExecutionConfig';
+import { FormScope } from '../../hooks/formScope';
 import { IItem } from '../../util/items';
 import { preventDefault } from '../../util/component';
 
@@ -22,44 +23,19 @@ export const Item: FunctionComponent<Props> = ({
   clone,
   update,
   isMax,
-}) => {
-  const {
-    id,
-    functionLocation,
-    functionName,
-    description,
-    period,
-    time,
-    dayOfWeek,
-    dateInMonth,
-    cronExpression,
-  } = data;
-
-  return (
+}) => (
+  <FormScope.Provider value={data}>
     <li>
       <form
-        id={id}
+        id={data.id}
         action="#"
         className={s.item}
         onInput={update}
         onSubmit={preventDefault}
       >
-        <FunctionInfo
-          functionLocation={functionLocation}
-          functionName={functionName}
-          description={description}
-        />
-        <Period
-          name={id}
-          period={period}
-        />
-        <ExecutionConfig
-          period={period}
-          time={time}
-          dayOfWeek={dayOfWeek}
-          dateInMonth={dateInMonth}
-          cronExpression={cronExpression}
-        />
+        <FunctionInfo />
+        <Period />
+        <ExecutionConfig />
         <ItemMenu
           remove={remove}
           clone={clone}
@@ -67,5 +43,5 @@ export const Item: FunctionComponent<Props> = ({
         />
       </form>
     </li>
-  );
-};
+  </FormScope.Provider>
+);

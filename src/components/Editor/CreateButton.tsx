@@ -20,6 +20,7 @@ export const CreateButton: FunctionComponent = () => {
         className={s.tooltip}
       >
         <Button
+          primary
           onClick={createItem}
           disabled={isMax}
         >

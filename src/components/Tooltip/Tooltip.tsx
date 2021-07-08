@@ -4,8 +4,10 @@ import HintFactory from 'react-hint';
 import { useStoreon } from 'storeon/preact';
 
 import s from './styles.css';
+import { KEYS } from '../../constants';
 import { FunctionName } from './FunctionName';
 import { FunctionLocation } from './FunctionLocation';
+import { CronExamplesTooltip } from './CronExamplesTooltip';
 import { TState } from '../../store';
 
 const Hint = HintFactory({ createElement: h, Component, createRef });
@@ -17,14 +19,19 @@ export const Tooltips: FunctionComponent = () => {
     const { name } = target.dataset;
 
     switch (name) {
-      case 'functionLocation': {
+      case KEYS.functionLocation: {
         return (
           <FunctionLocation target={target} />
         );
       }
-      case 'functionName': {
+      case KEYS.functionName: {
         return (
           <FunctionName target={target} />
+        );
+      }
+      case KEYS.cronExpression: {
+        return (
+          <CronExamplesTooltip target={target} />
         );
       }
     }
