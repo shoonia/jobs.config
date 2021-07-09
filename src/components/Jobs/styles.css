@@ -52,6 +52,12 @@
   align-items: center;
   justify-content: center;
   filter: brightness(80%);
+  appearance: none;
+  background: none;
+  border: none;
+  outline: none;
+  margin-left: 5px;
+  padding: 0;
 }
 
 .btn:hover,

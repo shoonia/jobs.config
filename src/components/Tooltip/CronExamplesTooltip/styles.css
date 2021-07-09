@@ -14,6 +14,12 @@
 .btn {
   cursor: pointer;
   white-space: nowrap;
+  appearance: none;
+  background: none;
+  border: none;
+  outline: none;
+  margin: 0;
+  padding: 0;
 }
 
 .btn:hover,

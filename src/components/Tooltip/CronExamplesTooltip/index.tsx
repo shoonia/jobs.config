@@ -3,7 +3,6 @@ import { useStoreon } from 'storeon/preact';
 
 import s from './styles.css';
 import { KEYS } from '../../../constants';
-import { Button } from '../../Button';
 import { TEvents, TState } from '../../../store';
 import { cronExamples } from '../../../util/cronExamples';
 import { classNames } from '../../../util/component';
@@ -39,14 +38,14 @@ export const CronExamplesTooltip: FunctionComponent<Props> = ({ target }) => {
         key={i.value}
         className={s.item}
       >
-        <Button
-          blank
+        <button
+          type="button"
           value={i.value}
           title={i.value}
           className={buttonClassName}
         >
           {i.label}
-        </Button>
+        </button>
       </li>
     );
   });

@@ -1,7 +1,6 @@
 import { FunctionComponent } from 'preact';
 
 import s from './styles.css';
-import { Button } from '../Button';
 
 interface Props {
   remove: EventListener;
@@ -15,16 +14,16 @@ export const ItemMenu: FunctionComponent<Props> = ({
   isMax,
 }) => (
   <div className={s.buttons}>
-    <Button
-      blank
+    <button
+      type="button"
       aria-label="remove"
       onClick={remove}
       className={s.btn_remove}
       data-rh="Remove"
       data-rh-at="top"
     />
-    <Button
-      blank
+    <button
+      type="button"
       aria-label="clone"
       onClick={clone}
       className={s.btn_clone}

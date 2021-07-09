@@ -4,7 +4,6 @@
   font-size: 1em;
   padding: 0.3em 1.3em;
   border-radius: 50px;
-  background-color: #fff;
   outline: none;
   cursor: pointer;
   transition: all 0.2s ease-in-out;
@@ -14,23 +13,6 @@
   display: inline-flex;
   align-items: center;
   white-space: nowrap;
-}
-
-.btn:disabled {
-  background-color: $color-font;
-  border-color: $color-font;
-  color: #fff;
-  cursor: default;
-  pointer-events: none;
-  opacity: 0.6;
-}
-
-.btn:focus:not(:hover) {
-  box-shadow: 0 0 0 2px $color-focus;
-}
-
-.primary {
-  composes: btn;
   position: relative;
   overflow: hidden;
   color: #fff;
@@ -38,12 +20,24 @@
   background-color: #116dff;
 }
 
-.primary:hover {
+.btn:disabled {
+  background-color: $color-font;
+  border-color: $color-font;
+  cursor: default;
+  pointer-events: none;
+  opacity: 0.6;
+}
+
+.btn:hover {
   border-color: #3885ff;
   background-color: #3885ff;
 }
 
-.primary::after {
+.btn:focus:not(:hover) {
+  box-shadow: 0 0 0 2px $color-focus;
+}
+
+.btn::after {
   content: "";
   background-color: #d3edff;
   display: block;
@@ -56,18 +50,9 @@
   border-radius: 6px;
 }
 
-.primary:active::after {
+.btn:active::after {
   padding: 0;
   margin: 0;
   opacity: 1;
   transition: 0s;
-}
-
-.blank {
-  appearance: none;
-  background: none;
-  border: none;
-  outline: none;
-  margin: 0;
-  padding: 0;
 }

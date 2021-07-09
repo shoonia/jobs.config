@@ -19,7 +19,7 @@ export const EditButton: FunctionComponent<Props> = ({ config }) => {
   };
 
   return (
-    <Button primary onClick={onClick}>
+    <Button onClick={onClick}>
       Edit Config
     </Button>
   );
