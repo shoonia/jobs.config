@@ -1,10 +1,10 @@
-import { ComponentChildren, FunctionComponent } from 'preact';
+import type { ComponentChildren, FunctionComponent } from 'preact';
 import { useStoreon } from 'storeon/preact';
 
 import s from './styles.css';
-import { TState } from '../../store';
+import type { TState } from '../../store';
+import type { ROUTER } from '../../constants';
 import { classNames } from '../../util/component';
-import { ROUTER } from '../../constants';
 
 interface Props {
   children: ComponentChildren;

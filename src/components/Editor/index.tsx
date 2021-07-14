@@ -1,4 +1,4 @@
-import { FunctionComponent } from 'preact';
+import type { FunctionComponent } from 'preact';
 
 import { Jobs } from '../Jobs';
 import { CreateButton } from './CreateButton';

@@ -1,6 +1,6 @@
-import { FunctionComponent } from 'preact';
+import type { FunctionComponent } from 'preact';
 
-import { KEYS } from '../../constants';
+import type { KEYS } from '../../constants';
 
 interface Props {
   index: number;

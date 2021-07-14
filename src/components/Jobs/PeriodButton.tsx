@@ -1,7 +1,7 @@
-import { FunctionComponent } from 'preact';
+import type { FunctionComponent } from 'preact';
 
 import s from './styles.css';
-import { PERIOD } from '../../constants';
+import type { PERIOD } from '../../constants';
 
 interface Props {
   name: string;

@@ -1,12 +1,12 @@
-import { FunctionComponent } from 'preact';
+import type { FunctionComponent } from 'preact';
 import { useStoreon } from 'storeon/preact';
 
 import s from './styles.css';
+import type { TEvents, TState } from '../../store';
 import { preventDefault } from '../../util/component';
 import { Parser } from '../Parser';
 import { UploadFile } from '../UploadFile';
 import { Issue } from '../Issue';
-import { TEvents, TState } from '../../store';
 
 export const Validator: FunctionComponent = () => {
   const { validatorValue, dispatch } = useStoreon<TState, TEvents>('validatorValue');

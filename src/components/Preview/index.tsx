@@ -1,13 +1,13 @@
-import { FunctionComponent } from 'preact';
+import type { FunctionComponent } from 'preact';
 import { useStoreon } from 'storeon/preact';
 import { useRef } from 'preact/hooks';
 
 import s from './styles.css';
+import type { TState } from '../../store';
 import { Button } from '../Button';
 import { JSON } from './JSON';
 import { createConfig } from '../../util/items';
 import { isHTMLElement } from '../../util/component';
-import { TState } from '../../store';
 
 export const Preview: FunctionComponent = () => {
   const { items } = useStoreon<TState>('items');

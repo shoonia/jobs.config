@@ -1,4 +1,4 @@
-import { FunctionComponent } from 'preact';
+import type { FunctionComponent } from 'preact';
 import { Suspense } from 'preact/compat';
 
 import { Header } from './Header';

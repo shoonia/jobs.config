@@ -1,4 +1,4 @@
-import { FunctionComponent } from 'preact';
+import type { FunctionComponent } from 'preact';
 
 export const IconUpload: FunctionComponent = () => (
   <svg

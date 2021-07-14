@@ -1,4 +1,4 @@
-import { FunctionComponent } from 'preact';
+import type { FunctionComponent } from 'preact';
 
 import s from './styles.css';
 

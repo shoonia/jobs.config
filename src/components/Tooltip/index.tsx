@@ -1,4 +1,4 @@
-import { FunctionComponent } from 'preact';
+import type { FunctionComponent } from 'preact';
 import { lazy, Suspense } from 'preact/compat';
 
 const LazyTooltips: FunctionComponent = lazy(() => {

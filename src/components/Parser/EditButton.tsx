@@ -1,7 +1,7 @@
-import { FunctionComponent } from 'preact';
+import type { FunctionComponent } from 'preact';
 import { useStoreon } from 'storeon/preact';
 
-import { TEvents, TState } from '../../store';
+import type { TEvents, TState } from '../../store';
 import { Button } from '../Button';
 import { IConfig, createItems } from '../../util/items';
 import { ROUTER } from '../../constants';

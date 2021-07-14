@@ -1,10 +1,10 @@
-import { FunctionComponent } from 'preact';
+import type { FunctionComponent } from 'preact';
 import { useCallback } from 'preact/hooks';
 import { useStoreon } from 'storeon/preact';
 
 import s from './styles.css';
+import type { TState, TEvents } from '../../store';
 import { Item } from './Item';
-import { TState, TEvents } from '../../store';
 
 export const Jobs: FunctionComponent = () => {
   const { dispatch, items, isMax } = useStoreon<TState, TEvents>('items', 'isMax');

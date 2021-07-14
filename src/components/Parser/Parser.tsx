@@ -1,10 +1,10 @@
-import { FunctionComponent } from 'preact';
+import type { FunctionComponent } from 'preact';
 
+import type { IConfig } from '../../util/items';
 import { parseJSONC } from './parseJSONC';
 import { isValidConfig } from './isValidConfig';
 import { Message } from './Message';
 import { EditButton } from './EditButton';
-import { IConfig } from '../../util/items';
 
 export interface Props {
   value: string;

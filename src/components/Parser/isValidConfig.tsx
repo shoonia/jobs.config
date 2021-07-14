@@ -1,4 +1,4 @@
-import { ComponentChildren } from 'preact';
+import type { ComponentChildren } from 'preact';
 
 import { IncorrectType } from './IncorrectType';
 import { weekList } from '../../util/week';

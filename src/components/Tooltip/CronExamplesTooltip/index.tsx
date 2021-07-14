@@ -1,9 +1,9 @@
-import { FunctionComponent } from 'preact';
+import type { FunctionComponent } from 'preact';
 import { useStoreon } from 'storeon/preact';
 
 import s from './styles.css';
+import type { TEvents, TState } from '../../../store';
 import { KEYS } from '../../../constants';
-import { TEvents, TState } from '../../../store';
 import { cronExamples } from '../../../util/cronExamples';
 import { classNames } from '../../../util/component';
 

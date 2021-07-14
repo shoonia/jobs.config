@@ -1,4 +1,4 @@
-import { StoreonModule } from 'storeon';
+import type { StoreonModule } from 'storeon';
 
 import { getValidatorValue } from '../util/validatorValue';
 

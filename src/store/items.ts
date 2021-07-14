@@ -1,4 +1,4 @@
-import { StoreonModule } from 'storeon';
+import type { StoreonModule } from 'storeon';
 import { nanoid } from 'nanoid/non-secure';
 
 import { MAX_ITEMS } from '../constants';

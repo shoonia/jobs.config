@@ -1,7 +1,7 @@
 import { FunctionComponent, lazy } from 'preact/compat';
 import { useStoreon } from 'storeon/preact';
 
-import { TState } from '../store';
+import type { TState } from '../store';
 import { ROUTER } from '../constants';
 
 const BuilderPage: FunctionComponent = lazy(() => {

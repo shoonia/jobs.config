@@ -4,11 +4,11 @@ import HintFactory from 'react-hint';
 import { useStoreon } from 'storeon/preact';
 
 import s from './styles.css';
+import type { TState } from '../../store';
 import { KEYS } from '../../constants';
 import { FunctionName } from './FunctionName';
 import { FunctionLocation } from './FunctionLocation';
 import { CronExamplesTooltip } from './CronExamplesTooltip';
-import { TState } from '../../store';
 
 const Hint = HintFactory({ createElement: h, Component, createRef });
 
