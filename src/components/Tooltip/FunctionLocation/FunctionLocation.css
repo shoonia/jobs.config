@@ -11,14 +11,14 @@
 }
 
 .root {
-  font-weight: bold;
-  height: 32px;
-  line-height: 32px;
+  height: 30px;
+  line-height: 30px;
   display: flex;
   background-color: $color-background;
+  color: #17191c;
   padding: 0 5px;
   border-radius: 8px 8px 0 0;
-  border-bottom: 1px solid #d9e1e8;
+  border-bottom: 1px solid #e1e3e6;
 }
 
 .list {
@@ -57,8 +57,9 @@
 }
 
 .root::before {
-  content: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='8' height='4'%3E%3Cpath fill='%237a92a5' d='M0 0l4 4 4-4z'/%3E%3C/svg%3E");
+  content: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='8' height='4'%3E%3Cpath d='M0 0l4 4 4-4z'/%3E%3C/svg%3E");
   margin: 0 6px;
+  line-height: 28px;
 }
 
 .blank::before {

@@ -29,7 +29,7 @@ export const FunctionLocation: FunctionComponent<Props> = ({ target }) => {
       style={`min-width:${target.offsetWidth}px`}
     >
       <div className={s.root}>
-        Backend Files
+        Backend
       </div>
       {tree}
     </div>
