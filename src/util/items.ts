@@ -92,8 +92,8 @@ export const createConfig = (items: IItem[]): string => {
 
 export const newItem = (): IItem => ({
   id: nanoid(),
-  functionLocation: '/function_location.js',
-  functionName: 'function_name',
+  functionLocation: '/filename.js',
+  functionName: 'funcName',
   description: '',
   time: dTime,
   dayOfWeek: dDay,
