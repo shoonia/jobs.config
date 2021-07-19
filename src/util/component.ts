@@ -2,7 +2,7 @@ export const classNames = (list: (string | false | undefined)[]): string => {
   return list.filter(Boolean).join(' ');
 };
 
-export const preventDefault = (event: Event) => {
+export const preventDefault = (event: Event): void => {
   event.preventDefault();
   event.stopPropagation();
 };

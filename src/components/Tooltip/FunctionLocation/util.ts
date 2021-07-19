@@ -2,6 +2,11 @@ import s from './FunctionLocation.css';
 import { classNames } from '../../../util/component';
 import { isInvalidPath } from '../../../util/validator';
 
+interface TPathTree {
+  path: string;
+  className: string;
+}
+
 const iconClass = (path: string, isLast: boolean): string => {
   if (!isLast) return s.dir;
   if (/\.js$/.test(path)) return s.js;
@@ -10,7 +15,7 @@ const iconClass = (path: string, isLast: boolean): string => {
   return s.blank;
 };
 
-export const createPath = (location: string) => {
+export const createPath = (location: string): TPathTree[] => {
   return location
     .replace(/^\//, '')
     .split('/')

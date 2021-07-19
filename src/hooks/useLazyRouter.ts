@@ -24,7 +24,7 @@ const ValidatorPage: FunctionComponent = lazy(() => {
   });
 });
 
-export const useLazyRouter = () => {
+export const useLazyRouter = (): FunctionComponent => {
   const { path } = useStoreon<TState>('path');
 
   switch (path) {

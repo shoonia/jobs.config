@@ -9,7 +9,7 @@ const LazyParser: FunctionComponent<Props> = lazy(() => {
   });
 });
 
-export const Parser = (props: Props) => (
+export const Parser: FunctionComponent<Props> = (props) => (
   <Suspense fallback={null}>
     <LazyParser {...props} />
   </Suspense>
