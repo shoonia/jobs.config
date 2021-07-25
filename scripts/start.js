@@ -39,9 +39,7 @@ const devServer = new WebpackDevServer(compiler, {
   },
   host,
   port,
-  public: host,
   static: paths.appDirectory,
-  transportMode: 'ws',
 });
 
 devServer.listen(port, host, (error) => {
