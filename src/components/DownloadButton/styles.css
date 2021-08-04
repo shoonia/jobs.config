@@ -1,0 +1,35 @@
+@import "../../styles/vars.css";
+
+.btn {
+  color: #fff;
+  font-size: 1.5em;
+  line-height: 0.8em;
+  text-align: center;
+  text-decoration: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 2em;
+  height: 2em;
+  border-radius: 50px;
+  background-color: rgba(0, 0, 0, 0.3);
+  transition: all 0.2s ease-in-out;
+  outline: none;
+  border: none;
+  cursor: pointer;
+}
+
+.btn:hover,
+.btn:focus {
+  border-color: #3885ff;
+  background-color: #3885ff;
+}
+
+.btn:focus:not(:hover) {
+  box-shadow: 0 0 0 2px $color-focus;
+}
+
+.btn::before {
+  margin-left: 3px;
+  content: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='%23FFF' width='28' height='28'%3E%3Cpath d='M20 15v4c0 .276-.111.525-.293.707S19.276 20 19 20H5c-.276 0-.525-.111-.707-.293S4 19.276 4 19v-4a1 1 0 00-2 0v4a2.997 2.997 0 003 3h14a2.997 2.997 0 003-3v-4a1 1 0 00-2 0zm-7-2.414V3a1 1 0 00-2 0v9.586L7.707 9.293a.999.999 0 10-1.414 1.414l5 5A1.008 1.008 0 0012 16a.997.997 0 00.707-.293l5-5a.999.999 0 10-1.414-1.414z'/%3E%3C/svg%3E");
+}

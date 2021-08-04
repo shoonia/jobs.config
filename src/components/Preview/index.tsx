@@ -6,6 +6,7 @@ import s from './styles.css';
 import type { TState } from '../../store';
 import { Button } from '../Button';
 import { JSON } from './JSON';
+import { DownloadButton } from '../DownloadButton';
 import { createConfig } from '../../util/items';
 import { isHTMLElement } from '../../util/component';
 
@@ -14,7 +15,6 @@ export const Preview: FunctionComponent = () => {
   const output = useRef<HTMLPreElement>(null);
 
   const config = createConfig(items);
-  const dataURL = `data:application/json,${encodeURIComponent(config)}`;
 
   const clipboard: EventListener = () => {
     const selection = window.getSelection() as Selection;
@@ -41,15 +41,14 @@ export const Preview: FunctionComponent = () => {
       >
         <JSON input={config} />
       </pre>
-      <div className={s.export}>
-        <a
-          href={dataURL}
-          className={s.download}
-          download="jobs.config"
-          type="application/json"
-          aria-label="Download a file"
-          data-rh="Download a file"
-          data-rh-at="left"
+      <div
+        className={s.export}
+        data-rh="Download a file"
+        data-rh-at="left"
+      >
+        <DownloadButton
+          label="Download a file"
+          jsonString={config}
         />
       </div>
     </div>
