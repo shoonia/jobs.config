@@ -9,7 +9,7 @@ export const DateInMonth: FunctionComponent = () => {
   const { dateInMonth } = useFormScope();
 
   return (
-    <Label top="The day of the month the job runs.">
+    <Label top="The day of the month the job runs">
       <input
         type="number"
         min="1"

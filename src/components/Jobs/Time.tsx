@@ -8,7 +8,7 @@ export const Time: FunctionComponent = () => {
   const { time } = useFormScope();
 
   return (
-    <Label top="The time of day the job runs.">
+    <Label top="The time of day the job runs">
       <input
         type="time"
         value={time}

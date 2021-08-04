@@ -19,7 +19,7 @@ export const DayOfWeek: FunctionComponent = () => {
   const { dayOfWeek } = useFormScope();
 
   return (
-    <Label top="The day of the week the job runs.">
+    <Label top="The day of the week the job runs">
       <select
         className={s.func_input}
         data-name={KEYS.dayOfWeek}
