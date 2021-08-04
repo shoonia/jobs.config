@@ -41,13 +41,13 @@ export const useCron = (value: string): CronResult => {
       alias: true,
     });
 
-    if (!isValid) {
-      return ex(
-        `${message}.\n\nError: Velo Job Scheduler does not support this syntax.`,
-      );
+    if (isValid) {
+      return [false, message];
     }
 
-    return [false, message];
+    return ex(
+      `${message}.\n\nError: Velo Job Scheduler does not support this syntax.`,
+    );
   } catch (error) {
     return ex(String(error));
   }
