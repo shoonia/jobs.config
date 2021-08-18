@@ -65,8 +65,8 @@
     "pre-commit": "npm run lint && npm test"
   },
   "engines": {
-    "node": "16.2.0",
-    "npm": "7.13.0"
+    "node": "16",
+    "npm": "7"
   },
   "homepage": "https://shoonia.github.io/jobs.config/",
   "repository": "https://github.com/shoonia/jobs.config.git",
