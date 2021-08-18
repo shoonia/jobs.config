@@ -69,9 +69,3 @@
 .count:hover {
   color: #0366d6;
 }
-
-@media (max-width: $mobile-width) {
-  .widget {
-    display: none;
-  }
-}

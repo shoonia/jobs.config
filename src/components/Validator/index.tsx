@@ -6,7 +6,6 @@ import type { TEvents, TState } from '../../store';
 import { preventDefault } from '../../util/component';
 import { Parser } from '../Parser';
 import { UploadFile } from '../UploadFile';
-import { Issue } from '../Issue';
 
 export const Validator: FunctionComponent = () => {
   const { validatorValue, dispatch } = useStoreon<TState, TEvents>('validatorValue');
@@ -38,9 +37,6 @@ export const Validator: FunctionComponent = () => {
             spellcheck={false}
           />
           <aside className={s.tools}>
-            <span className={s.btn}>
-              <Issue />
-            </span>
             <span className={s.btn}>
               <UploadFile onLoad={onLoad} />
             </span>

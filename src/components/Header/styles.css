@@ -34,6 +34,11 @@
   align-items: center;
 }
 
+.git {
+  composes: nav;
+  gap: 10px;
+}
+
 .list {
   font-size: 16px;
   font-weight: normal;
@@ -60,4 +65,10 @@
 .active {
   color: $color-success;
   border-bottom: 1px solid $color-success;
+}
+
+@media (max-width: $mobile-width) {
+  .git {
+    display: none;
+  }
 }
