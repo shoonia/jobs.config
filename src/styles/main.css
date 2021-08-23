@@ -84,6 +84,7 @@ textarea {
   font-feature-settings: "liga" 0, "calt" 0;
   line-height: 18px;
   letter-spacing: 0;
+  -webkit-font-smoothing: initial;
 }
 
 :global(#root) {
