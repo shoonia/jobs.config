@@ -7,7 +7,8 @@
     "start": "node scripts/start.js",
     "build": "node scripts/build.js",
     "lint": "eslint 'src/**/*.{ts,tsx}' && stylelint 'src/**/*.css'",
-    "test": "tsc --noEmit && jest"
+    "test": "tsc --noEmit && jest",
+    "postinstall": "npx simple-git-hooks"
   },
   "dependencies": {
     "cron-validator": "^1.2.1",
