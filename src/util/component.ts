@@ -18,7 +18,3 @@ export const isString = (val: unknown): val is string => {
 export const isNumber = (val: unknown): val is number => {
   return typeof val === 'number';
 };
-
-export const isHTMLElement = (val: unknown): val is HTMLElement => {
-  return val instanceof HTMLElement;
-};

@@ -8,7 +8,6 @@ import { Button } from '../Button';
 import { JSON } from './JSON';
 import { DownloadButton } from '../DownloadButton';
 import { createConfig } from '../../util/items';
-import { isHTMLElement } from '../../util/component';
 
 export const Preview: FunctionComponent = () => {
   const { items } = useStoreon<TState>('items');
@@ -16,15 +15,16 @@ export const Preview: FunctionComponent = () => {
 
   const config = createConfig(items);
 
-  const clipboard: EventListener = () => {
-    const selection = window.getSelection() as Selection;
-    const range = document.createRange() as Range;
+  const clipboard: EventListener = async () => {
+    await navigator.clipboard.writeText(config);
 
-    if (isHTMLElement(output.current)) {
+    if (output.current instanceof Node) {
+      const selection = window.getSelection();
+      const range = document.createRange();
+
       range.selectNodeContents(output.current);
-      selection.removeAllRanges();
-      selection.addRange(range);
-      document.execCommand('copy');
+      selection?.removeAllRanges();
+      selection?.addRange(range);
     }
   };
 
