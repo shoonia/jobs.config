@@ -10,8 +10,10 @@ import { UploadFile } from '../UploadFile';
 export const Validator: FunctionComponent = () => {
   const { validatorValue, dispatch } = useStoreon<TState, TEvents>('validatorValue');
 
-  const onInput = ({ target }) => {
-    dispatch('validator/input', target.value);
+  const onInput: EventListener = ({ target }) => {
+    if (target instanceof HTMLTextAreaElement) {
+      dispatch('validator/input', target.value);
+    }
   };
 
   const onLoad = (value: string): void => {
