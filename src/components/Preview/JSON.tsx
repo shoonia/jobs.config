@@ -17,25 +17,21 @@ const tokens: IToken[] = [
     regex: /^[\s[\]{}:,]+/,
   },
   {
-    // Number literal
-    regex: /^-?\d+(?:\.\d+)?(?:e[+-]?\d+)?/i,
-    className: s.mtk5,
-  },
-  {
     // String literal
     regex: /^"(?:\\.|[^"\\])*"/,
     className: s.mtk6,
+  },
+  {
+    // Number literal
+    regex: /^-?\d+(?:\.\d+)?(?:e[+-]?\d+)?/,
+    className: s.mtk5,
   },
 ];
 
 export const JSON: FunctionComponent<Props> = ({ input }) => {
   const items: ComponentChildren[] = [];
 
-  let isFound: boolean;
-
-  do {
-    isFound = false;
-
+  while (input.length > 0) {
     for (let i = 0; i < tokens.length; i++) {
       const token = tokens[i];
       const match = token.regex.exec(input);
@@ -52,12 +48,12 @@ export const JSON: FunctionComponent<Props> = ({ input }) => {
           : row;
 
         items.push(item);
-        input = input.substring(row.length);
-        isFound = true;
+        input = input.slice(row.length);
+
         break;
       }
     }
-  } while (input.length > 0 && isFound);
+  }
 
   return (
     <code>
