@@ -101,6 +101,8 @@ module.exports = (buildEnv) => {
     },
     externals: {
       'color-convert': '{}', // A dead code. It's a dependency of "parse-json" that not use.
+      'supports-color': 'false',
+      'escape-string-regexp': 'function(){}'
     },
     module: {
       strictExportPresence: true,
@@ -228,13 +230,13 @@ module.exports = (buildEnv) => {
         },
       }),
       new webpack.DefinePlugin({
-        'process.platform': JSON.stringify(process.platform),
         'process.env.NODE_ENV': JSON.stringify(buildEnv),
         'process.env.NODE_DEBUG': JSON.stringify(isDev),
         'process.env': '({})',
         'process.throwDeprecation': 'false',
         'process.noDeprecation': 'false',
         'process.emitWarning': 'undefined',
+        'process.platform': 'undefined',
         'process': 'undefined',
       }),
     ].filter(Boolean),
