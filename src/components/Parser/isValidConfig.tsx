@@ -1,4 +1,5 @@
 import type { ComponentChildren } from 'preact';
+import { isKeyword, isStrictBindReservedWord } from '@babel/helper-validator-identifier';
 
 import { IncorrectType } from './IncorrectType';
 import { weekList } from '../../util/week';
@@ -173,7 +174,12 @@ export const isValidConfig = (config: unknown): TValidResult => {
       );
     }
 
-    if (!isValidFunctionName(FN)) {
+    if (
+      !isValidFunctionName(FN)
+      //  TODO: Add different error description
+      || isKeyword(FN)
+      || isStrictBindReservedWord(FN, true)
+    ) {
       return error(
         <>
           <p>{`Invalid "functionName" at "jobs[${i}]"`}</p>
