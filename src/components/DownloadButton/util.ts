@@ -1,7 +1,7 @@
 export const isSupportFilePicker = typeof window.showSaveFilePicker === 'function';
 
 export const saveFile = async (content: string): Promise<void> => {
-  const options = {
+  const file = await window.showSaveFilePicker({
     suggestedName: 'jobs.config',
     types: [
       {
@@ -13,9 +13,8 @@ export const saveFile = async (content: string): Promise<void> => {
         },
       },
     ],
-  };
+  });
 
-  const file = await window.showSaveFilePicker(options);
   const state = await file.queryPermission();
 
   if (state === 'granted') {
