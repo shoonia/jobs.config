@@ -9,11 +9,14 @@ interface Props {
   period: PERIOD;
 }
 
-const handlerClick = ({ key, target }: KeyboardEvent) => {
+const handlerClick = ({ key, target }: KeyboardEvent): void => {
   if (key === 'Enter' || key === ' ') {
-    const node = ((target as HTMLLabelElement).firstChild as HTMLInputElement);
-
-    node.click();
+    if (
+      target instanceof HTMLElement
+      && target.firstChild instanceof HTMLElement
+    ) {
+      target.firstChild.click();
+    }
   }
 };
 
@@ -23,8 +26,10 @@ export const PeriodButton: FunctionComponent<Props> = ({ name, value, period }) 
   return (
     <label
       className={s.label}
-      tabIndex={isChecked ? -1 : 0}
+      tabIndex={0}
       onKeyPress={handlerClick}
+      aria-checked={isChecked}
+      role="checkbox"
     >
       <input
         type="radio"
