@@ -3,8 +3,6 @@ import type { StoreonModule } from 'storeon';
 import { MAX_ITEMS } from '../constants';
 import { createId, newItem, IItem } from '../util/items';
 
-const { sessionStorage } = window;
-
 export interface IItemsState {
   items: IItem[];
   isMax: boolean;
