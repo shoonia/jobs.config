@@ -1,8 +1,7 @@
 import type { StoreonModule } from 'storeon';
-import { nanoid } from 'nanoid/non-secure';
 
 import { MAX_ITEMS } from '../constants';
-import { newItem, IItem } from '../util/items';
+import { createId, newItem, IItem } from '../util/items';
 
 const { sessionStorage } = window;
 
@@ -89,7 +88,7 @@ export const itemsModule: TItemsModule = ({ on }) => {
     const i = items.findIndex((item) => item.id === id);
 
     if (i > -1) {
-      items.splice(i, 0, { ...items[i], id: nanoid() });
+      items.splice(i, 0, { ...items[i], id: createId() });
 
       return payload([...items]);
     }

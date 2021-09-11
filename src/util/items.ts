@@ -68,6 +68,8 @@ const getPeriod = (exec: IExecutionConfig): PERIOD => {
   return PERIOD.DAILY;
 };
 
+export const createId = (): string => `i${nanoid(15)}`;
+
 export const createConfig = (items: IItem[]): string => {
   let noop: undefined;
 
@@ -91,7 +93,7 @@ export const createConfig = (items: IItem[]): string => {
 };
 
 export const newItem = (): IItem => ({
-  id: nanoid(),
+  id: createId(),
   functionLocation: '/filename.js',
   functionName: 'funcName',
   description: '',
@@ -107,7 +109,7 @@ export const createItems = (config: IConfig): IItem[] => {
     const exec = i.executionConfig;
 
     return {
-      id: nanoid(),
+      id: createId(),
       functionLocation: i.functionLocation,
       functionName: i.functionName,
       description: isString(i.description) ? i.description : '',
