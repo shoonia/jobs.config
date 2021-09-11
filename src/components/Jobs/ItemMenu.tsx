@@ -1,35 +1,41 @@
 import type { FunctionComponent } from 'preact';
+import { useStoreon } from 'storeon/preact';
 
 import s from './styles.css';
+import type { TEvents, TState } from '../../store';
+import { useFormScope } from '../../hooks/formScope';
 
-interface Props {
-  remove: EventListener;
-  clone: EventListener;
-  isMax: boolean;
-}
+export const ItemMenu: FunctionComponent = () => {
+  const { id } = useFormScope();
+  const { dispatch, isMax } = useStoreon<TState, TEvents>('isMax');
 
-export const ItemMenu: FunctionComponent<Props> = ({
-  remove,
-  clone,
-  isMax,
-}) => (
-  <div className={s.buttons}>
-    <button
-      type="button"
-      aria-label="remove"
-      onClick={remove}
-      className={s.btn_remove}
-      data-rh="Remove"
-      data-rh-at="top"
-    />
-    <button
-      type="button"
-      aria-label="clone"
-      onClick={clone}
-      className={s.btn_clone}
-      data-rh="Clone"
-      data-rh-at="top"
-      disabled={isMax}
-    />
-  </div>
-);
+  const remove: EventListener = () => {
+    dispatch('items/remove', id);
+  };
+
+  const clone: EventListener = () => {
+    dispatch('items/clone', id);
+  };
+
+  return (
+    <div className={s.buttons}>
+      <button
+        type="button"
+        aria-label="remove"
+        onClick={remove}
+        className={s.btn_remove}
+        data-rh="Remove"
+        data-rh-at="top"
+      />
+      <button
+        type="button"
+        aria-label="clone"
+        onClick={clone}
+        className={s.btn_clone}
+        data-rh="Clone"
+        data-rh-at="top"
+        disabled={isMax}
+      />
+    </div>
+  );
+};

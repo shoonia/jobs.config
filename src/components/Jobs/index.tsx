@@ -4,18 +4,11 @@ import { useStoreon } from 'storeon/preact';
 
 import s from './styles.css';
 import type { TState, TEvents } from '../../store';
+import { FormScope } from '../../hooks/formScope';
 import { Item } from './Item';
 
 export const Jobs: FunctionComponent = () => {
-  const { dispatch, items, isMax } = useStoreon<TState, TEvents>('items', 'isMax');
-
-  const removeItem = useCallback(({ target }) => {
-    dispatch('items/remove', target.form.id);
-  }, []);
-
-  const cloneItem = useCallback(({ target }) => {
-    dispatch('items/clone', target.form.id);
-  }, []);
+  const { dispatch, items } = useStoreon<TState, TEvents>('items');
 
   const updateItem = useCallback(({ target }) => {
     dispatch('items/update', {
@@ -26,14 +19,14 @@ export const Jobs: FunctionComponent = () => {
   }, []);
 
   const list = items.map((item) => (
-    <Item
-      key={item.id}
-      data={item}
-      remove={removeItem}
-      clone={cloneItem}
-      update={updateItem}
-      isMax={isMax}
-    />
+    <li key={item.id}>
+      <FormScope.Provider value={item}>
+        <Item
+          id={item.id}
+          update={updateItem}
+        />
+      </FormScope.Provider>
+    </li>
   ));
 
   return (
