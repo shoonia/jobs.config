@@ -46,10 +46,10 @@ module.exports = (buildEnv) => {
             module: true,
             toplevel: true,
             parse: {
-              ecma: 2018,
+              ecma: 2020,
             },
             compress: {
-              ecma: 2018,
+              ecma: 2020,
               module: true,
               comparisons: false,
               inline: 2,
@@ -59,7 +59,7 @@ module.exports = (buildEnv) => {
               pure_getters: true,
             },
             output: {
-              ecma: 2018,
+              ecma: 2020,
               comments: false,
             },
           },
@@ -102,7 +102,7 @@ module.exports = (buildEnv) => {
     externals: {
       'color-convert': '{}', // A dead code. It's a dependency of "parse-json" that not use.
       'supports-color': 'false',
-      'escape-string-regexp': 'function(){}'
+      'escape-string-regexp': '()=>{}'
     },
     module: {
       strictExportPresence: true,
