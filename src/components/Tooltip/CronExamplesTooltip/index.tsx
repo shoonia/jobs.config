@@ -17,12 +17,12 @@ export const CronExamplesTooltip: FunctionComponent<Props> = ({ target }) => {
   const { id } = target.dataset;
   const { cronExpression } = items.find((i) => i.id === id) || {};
 
-  const onClick = (ev: MouseEvent): void => {
-    if (ev.target instanceof HTMLButtonElement) {
+  const onClick: EventListener = (event) => {
+    if (event.target instanceof HTMLButtonElement) {
       dispatch('items/update', {
         id: id || '',
         name: KEYS.cronExpression,
-        value: ev.target.value,
+        value: event.target.value,
       });
     }
   };

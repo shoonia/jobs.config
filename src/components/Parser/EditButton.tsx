@@ -13,7 +13,7 @@ interface Props {
 export const EditButton: FunctionComponent<Props> = ({ config }) => {
   const { dispatch } = useStoreon<TState, TEvents>();
 
-  const onClick = () => {
+  const onClick: EventListener = () => {
     dispatch('items/replace', createItems(config));
     location.hash = ROUTER.BUILDER;
   };
