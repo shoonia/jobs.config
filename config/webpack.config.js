@@ -107,7 +107,6 @@ module.exports = (buildEnv) => {
     module: {
       strictExportPresence: true,
       rules: [
-        { parser: { requireEnsure: false } },
         {
           oneOf: [
             {

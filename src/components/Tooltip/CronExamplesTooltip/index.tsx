@@ -2,9 +2,9 @@ import type { FunctionComponent } from 'preact';
 import { useStoreon } from 'storeon/preact';
 
 import s from './styles.css';
+import cronExamples from './cronExamples.json';
 import type { TEvents, TState } from '../../../store';
 import { KEYS } from '../../../constants';
-import { cronExamples } from '../../../util/cronExamples';
 import { classNames } from '../../../util/component';
 
 interface Props {

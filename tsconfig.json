@@ -10,6 +10,7 @@
     "importsNotUsedAsValues": "error",
     "isolatedModules": true,
     "esModuleInterop": true,
+    "resolveJsonModule": true,
     "noEmit": true,
     "strict": false,
     "strictBindCallApply": true,
