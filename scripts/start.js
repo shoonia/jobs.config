@@ -12,45 +12,40 @@ const { name } = require(paths.appPackageJson);
 const host = '0.0.0.0';
 const port = 3000;
 
-const config = configFactory(buildEnv);
-const urls = prepareUrls('http', host, port);
-
-const devSocket = {
-  warnings: (warnings) => devServer.sockWrite(devServer.sockets, 'warnings', warnings),
-  errors: (errors) => devServer.sockWrite(devServer.sockets, 'errors', errors),
-};
-
-const compiler = createCompiler({
-  appName: name,
-  config,
-  devSocket,
-  urls,
-  useYarn: false,
-  useTypeScript: true,
-  webpack,
-});
-
-const devServer = new WebpackDevServer(compiler, {
-  compress: true,
-  hot: true,
-  historyApiFallback: {
-    disableDotRule: true,
-    index: paths.publicPath,
+const devServer = new WebpackDevServer({
+    compress: true,
+    hot: true,
+    historyApiFallback: {
+      disableDotRule: true,
+      index: paths.publicPath,
+    },
+    host,
+    port,
+    static: paths.appDirectory,
   },
-  host,
-  port,
-  static: paths.appDirectory,
-});
+  createCompiler({
+    appName: name,
+    config: configFactory(buildEnv),
+    urls: prepareUrls('http', host, port),
+    devSocket: {
+      warnings: (warnings) => devServer.sockWrite(devServer.sockets, 'warnings', warnings),
+      errors: (errors) => devServer.sockWrite(devServer.sockets, 'errors', errors),
+    },
+    useYarn: false,
+    useTypeScript: true,
+    webpack,
+  }),
+);
 
-devServer.listen(port, host, (error) => {
+devServer.start(port, host, (error) => {
   if (error) {
-    return console.log(error);
+    throw error;
   }
 });
 
 ['SIGINT', 'SIGTERM'].forEach((sig) => {
   process.on(sig, () => {
-    devServer.close();
+    devServer.stop();
     process.exit();
   });
 });
