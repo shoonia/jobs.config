@@ -36,3 +36,13 @@
   top: 2px;
   left: -11px;
 }
+
+.link {
+  font-size: 13px;
+  color: $color-primary;
+  display: block;
+  border-top: $decorate-border;
+  margin-top: 5px;
+  padding-top: 5px;
+  cursor: alias;
+}

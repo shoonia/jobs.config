@@ -56,6 +56,16 @@ export const CronExamplesTooltip: FunctionComponent<Props> = ({ target }) => {
       onClick={onClick}
     >
       {list}
+      <li className={s.item}>
+        <a
+          href="https://github.com/shoonia/jobs.config/discussions/15"
+          className={s.link}
+          target="_blank"
+          rel="noreferrer"
+        >
+          You can request an example
+        </a>
+      </li>
     </ul>
   );
 };
