@@ -11,6 +11,8 @@ $color-background: #f7f8f8;
 $color-focus: #aabdfc;
 $color-light: #657888;
 $color-gray: #898989;
+$color-decorative-border: #b6c1cd;
 $header-height: 70px;
 $body-height: calc(100vh - $header-height);
 $mobile-width: 750px;
+$decorate-border: 1px solid $color-decorative-border;

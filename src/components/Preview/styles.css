@@ -2,7 +2,7 @@
 
 .box {
   position: relative;
-  border-left: 1px solid #b6c1cd;
+  border-left: $decorate-border;
   cursor: text;
 }
 

@@ -2,7 +2,7 @@
 
 :global(#header) {
   height: $header-height;
-  border-bottom: 1px solid #b6c1cd;
+  border-bottom: $decorate-border;
   background-color: #fff;
 }
 
@@ -55,7 +55,6 @@
 
 .link {
   color: $color-primary;
-  text-decoration: none;
   position: relative;
   outline: none;
   white-space: nowrap;

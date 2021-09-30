@@ -31,7 +31,7 @@
   min-height: 50vh;
   overflow-y: scroll;
   outline: none;
-  border: 1px solid #b6c1cd;
+  border: $decorate-border;
   border-radius: 8px;
   padding: 1em;
 }
