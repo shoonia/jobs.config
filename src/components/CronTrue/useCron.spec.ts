@@ -1,4 +1,5 @@
 import { useCron } from './useCron';
+import list from '../Tooltip/CronExamplesTooltip/cronExamples.json';
 
 const invalidList = [
   '* * * * * * *',
@@ -19,5 +20,9 @@ const invalidList = [
 describe('useCron', () => {
   it.each(invalidList)('should be invalid config with %s', (extension) => {
     expect(useCron(extension)).toEqual([true, expect.any(String)]);
+  });
+
+  it.each(list)('should be valid cron expression', (item) => {
+    expect(useCron(item.value)).toEqual([false, expect.any(String)]);
   });
 });
