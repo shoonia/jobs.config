@@ -4,9 +4,9 @@ import type { ROUTER } from '../constants';
 import type { IItem } from '../util/items';
 
 export interface IUpdateEventData {
-  id: string;
-  name: string;
-  value: string;
+  readonly id: string;
+  readonly name: string;
+  readonly value: string;
 }
 
 export interface IEvents {
@@ -24,12 +24,12 @@ export interface IEvents {
 
 export interface IState {
   // items
-  items: IItem[];
-  isMax: boolean;
+  readonly items: IItem[];
+  readonly isMax: boolean;
   // router
-  path: ROUTER;
+  readonly path: ROUTER;
   // validator
-  validatorValue: string;
+  readonly validatorValue: string;
 }
 
 export type TModule = StoreonModule<IState, IEvents>;
