@@ -2,7 +2,7 @@ import type { ComponentChildren, FunctionComponent } from 'preact';
 import { useStoreon } from 'storeon/preact';
 
 import s from './styles.css';
-import type { TState } from '../../store';
+import type { IState } from '../../store';
 import type { ROUTER } from '../../constants';
 import { classNames } from '../../util/component';
 
@@ -12,7 +12,7 @@ interface Props {
 }
 
 export const MenuItem: FunctionComponent<Props> = ({ children, path }) => {
-  const i = useStoreon<TState>('path');
+  const i = useStoreon<IState>('path');
   const isActive = i.path === path;
 
   const className = classNames([

@@ -2,12 +2,12 @@ import type { FunctionComponent } from 'preact';
 import { useStoreon } from 'storeon/preact';
 
 import s from './styles.css';
-import type { TState, TEvents } from '../../store';
+import type { IState, IEvents } from '../../store';
 import { Button } from '../Button';
 import { IconPlus } from './IconPlus';
 
 export const CreateButton: FunctionComponent = () => {
-  const { dispatch, isMax } = useStoreon<TState, TEvents>('isMax');
+  const { dispatch, isMax } = useStoreon<IState, IEvents>('isMax');
 
   const createItem: EventListener = () => {
     dispatch('items/new');

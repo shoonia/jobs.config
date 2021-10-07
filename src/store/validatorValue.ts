@@ -1,18 +1,7 @@
-import type { StoreonModule } from 'storeon';
-
+import type { TModule } from './types';
 import { getValidatorValue } from '../util/validatorValue';
 
-export interface IValidatorState {
-  validatorValue: string;
-}
-
-export interface IValidatorEvents {
-  'validator/input': string;
-}
-
-type TValidatorModule = StoreonModule<IValidatorState, IValidatorEvents>;
-
-export const validatorModule: TValidatorModule = ({ on }) => {
+export const validatorModule: TModule = ({ on }) => {
   on('@init', () => {
     return {
       validatorValue: getValidatorValue(),

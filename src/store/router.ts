@@ -1,16 +1,5 @@
-import type { StoreonModule } from 'storeon';
-
+import type { TModule } from './types';
 import { ROUTER } from '../constants';
-
-export interface IRouterState {
-  path: ROUTER;
-}
-
-export interface IRouterEvents {
-  'router/change': ROUTER;
-}
-
-type TRouterModule = StoreonModule<IRouterState, IRouterEvents>;
 
 const getPath = (): ROUTER => {
   const hash = location.hash
@@ -22,7 +11,7 @@ const getPath = (): ROUTER => {
     : ROUTER.BUILDER;
 };
 
-export const routerModule: TRouterModule = ({ on, get, dispatch }) => {
+export const routerModule: TModule = ({ on, get, dispatch }) => {
   on('@init', () => ({ path: getPath() }));
   on('router/change', (_, path) => ({ path }));
 

@@ -1,13 +1,13 @@
 import { createStoreon } from 'storeon';
 
-import { itemsModule, IItemsState, IItemsEvents } from './items';
-import { routerModule, IRouterState, IRouterEvents } from './router';
-import { validatorModule, IValidatorState, IValidatorEvents } from './validatorValue';
+import type { IState, IEvents } from './types';
+import { itemsModule } from './items';
+import { routerModule } from './router';
+import { validatorModule } from './validatorValue';
 
-export type TState = IItemsState & IRouterState & IValidatorState;
-export type TEvents = IItemsEvents & IRouterEvents & IValidatorEvents;
+export type { IState, IEvents };
 
-export const store = createStoreon<TState, TEvents>([
+export const store = createStoreon<IState, IEvents>([
   itemsModule,
   routerModule,
   validatorModule,

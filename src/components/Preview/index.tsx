@@ -3,14 +3,14 @@ import { useStoreon } from 'storeon/preact';
 import { useRef } from 'preact/hooks';
 
 import s from './styles.css';
-import type { TState } from '../../store';
+import type { IState } from '../../store';
 import { Button } from '../Button';
 import { JSON } from './JSON';
 import { DownloadButton } from '../DownloadButton';
 import { createConfig } from '../../util/items';
 
 export const Preview: FunctionComponent = () => {
-  const { items } = useStoreon<TState>('items');
+  const { items } = useStoreon<IState>('items');
   const output = useRef<HTMLPreElement>(null);
 
   const config = createConfig(items);

@@ -1,28 +1,6 @@
-import type { StoreonModule } from 'storeon';
-
+import type { TModule } from './types';
 import { MAX_ITEMS } from '../constants';
 import { createId, newItem, IItem } from '../util/items';
-
-export interface IItemsState {
-  items: IItem[];
-  isMax: boolean;
-}
-
-interface IUpdateEventData {
-  id: string;
-  name: string;
-  value: string;
-}
-
-export interface IItemsEvents {
-  'items/new': never;
-  'items/remove': string;
-  'items/clone': string;
-  'items/update': IUpdateEventData;
-  'items/replace': IItem[];
-}
-
-type TItemsModule = StoreonModule<IItemsState, IItemsEvents>;
 
 const getItems = (): IItem[] => {
   const data = sessionStorage.getItem('items');
@@ -42,12 +20,12 @@ const getItems = (): IItem[] => {
   return [newItem()];
 };
 
-const payload = (items: IItem[]): IItemsState => ({
+const payload = (items: IItem[]) => ({
   items,
   isMax: items.length >= MAX_ITEMS,
 });
 
-export const itemsModule: TItemsModule = ({ on }) => {
+export const itemsModule: TModule = ({ on }) => {
   on('@init', () => {
     const items = getItems();
 

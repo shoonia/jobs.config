@@ -1,7 +1,7 @@
 import { FunctionComponent, lazy } from 'preact/compat';
 import { useStoreon } from 'storeon/preact';
 
-import type { TState } from '../store';
+import type { IState } from '../store';
 import { ROUTER } from '../constants';
 
 const BuilderPage: FunctionComponent = lazy(() => {
@@ -25,7 +25,7 @@ const ValidatorPage: FunctionComponent = lazy(() => {
 });
 
 export const useLazyRouter = (): FunctionComponent => {
-  const { path } = useStoreon<TState>('path');
+  const { path } = useStoreon<IState>('path');
 
   switch (path) {
     case ROUTER.VALIDATOR: {

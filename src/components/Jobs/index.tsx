@@ -3,12 +3,12 @@ import { useCallback } from 'preact/hooks';
 import { useStoreon } from 'storeon/preact';
 
 import s from './styles.css';
-import type { TState, TEvents } from '../../store';
+import type { IState, IEvents } from '../../store';
 import { FormScope } from '../../hooks/formScope';
 import { Item } from './Item';
 
 export const Jobs: FunctionComponent = () => {
-  const { dispatch, items } = useStoreon<TState, TEvents>('items');
+  const { dispatch, items } = useStoreon<IState, IEvents>('items');
 
   const updateItem = useCallback(({ target }) => {
     dispatch('items/update', {

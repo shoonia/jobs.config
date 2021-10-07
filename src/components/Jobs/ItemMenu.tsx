@@ -2,12 +2,12 @@ import type { FunctionComponent } from 'preact';
 import { useStoreon } from 'storeon/preact';
 
 import s from './styles.css';
-import type { TEvents, TState } from '../../store';
+import type { IState, IEvents } from '../../store';
 import { useFormScope } from '../../hooks/formScope';
 
 export const ItemMenu: FunctionComponent = () => {
   const { id } = useFormScope();
-  const { dispatch, isMax } = useStoreon<TState, TEvents>('isMax');
+  const { dispatch, isMax } = useStoreon<IState, IEvents>('isMax');
 
   const remove: EventListener = () => {
     dispatch('items/remove', id);

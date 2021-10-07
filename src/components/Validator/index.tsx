@@ -2,13 +2,13 @@ import type { FunctionComponent } from 'preact';
 import { useStoreon } from 'storeon/preact';
 
 import s from './styles.css';
-import type { TEvents, TState } from '../../store';
+import type { IState, IEvents } from '../../store';
 import { preventDefault } from '../../util/component';
 import { Parser } from '../Parser';
 import { UploadFile } from '../UploadFile';
 
 export const Validator: FunctionComponent = () => {
-  const { validatorValue, dispatch } = useStoreon<TState, TEvents>('validatorValue');
+  const { validatorValue, dispatch } = useStoreon<IState, IEvents>('validatorValue');
 
   const onInput: EventListener = ({ target }) => {
     if (target instanceof HTMLTextAreaElement) {
