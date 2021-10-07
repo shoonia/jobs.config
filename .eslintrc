@@ -23,6 +23,12 @@
       "version": "17.0.0"
     }
   },
+  "ignorePatterns": [
+    "node_modules/",
+    "dist/",
+    "config/",
+    "scripts/"
+  ],
   "rules": {
     "react/jsx-key": "error",
     "react/prop-types": "off",
@@ -31,7 +37,9 @@
     "react/no-unknown-property": [
       "error",
       {
-        "ignore": ["spellcheck"]
+        "ignore": [
+          "spellcheck"
+        ]
       }
     ],
     "linebreak-style": "off",
