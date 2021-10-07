@@ -20,11 +20,17 @@ export const MenuItem: FunctionComponent<Props> = ({ children, path }) => {
     isActive && s.active,
   ]);
 
+  const onClick: EventListener = (event) => {
+    event.preventDefault();
+    location.hash = path;
+  };
+
   return (
     <li className={s.item}>
       <a
         href={path}
         className={className}
+        onClick={onClick}
         aria-current={isActive ? 'page' : null}
       >
         {children}
