@@ -1,7 +1,7 @@
 {
   "compilerOptions": {
     "module": "ESNext",
-    "target": "ES2020",
+    "target": "ES2021",
     "moduleResolution": "Node",
     "jsx": "react-jsx",
     "jsxImportSource": "preact",
@@ -19,7 +19,7 @@
     "strictNullChecks": true,
     "stripInternal": true,
     "lib": [
-      "ES2020",
+      "ES2021",
       "DOM"
     ]
   },
