@@ -1,12 +1,12 @@
 const buildEnv = 'development';
 
-require('../config/env')(buildEnv);
+require('../config/env.cjs')(buildEnv);
 
 const webpack = require('webpack');
 const WebpackDevServer = require('webpack-dev-server');
 const { createCompiler, prepareUrls } = require('react-dev-utils/WebpackDevServerUtils');
-const paths = require('../config/paths');
-const configFactory = require('../config/webpack.config');
+const paths = require('../config/paths.cjs');
+const configFactory = require('../config/webpack.config.cjs');
 const { name } = require(paths.appPackageJson);
 
 const host = '0.0.0.0';

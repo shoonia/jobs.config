@@ -1,10 +1,10 @@
 const buildEnv = 'production';
 
-require('../config/env')(buildEnv);
+require('../config/env.cjs')(buildEnv);
 
 const webpack = require('webpack');
-const configFactory = require('../config/webpack.config');
-const paths = require('../config/paths');
+const configFactory = require('../config/webpack.config.cjs');
+const paths = require('../config/paths.cjs');
 const { measureFileSizesBeforeBuild, printFileSizesAfterBuild } = require('react-dev-utils/FileSizeReporter');
 const printBuildError = require('react-dev-utils/printBuildError');
 

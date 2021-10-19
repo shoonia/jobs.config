@@ -1,4 +1,4 @@
-delete require.cache[require.resolve('./paths')];
+delete require.cache[require.resolve('./paths.cjs')];
 
 process.on('unhandledRejection', (error) => {
   throw error;

@@ -9,7 +9,7 @@ const CSSMQPackerPlugin = require('css-mqpacker-webpack-plugin');
 const createLocalIdent = require('mini-css-class-name/css-loader');
 const ForkTsCheckerWebpackPlugin = require('fork-ts-checker-webpack-plugin');
 const HTMLInlineCSSWebpackPlugin = require('html-inline-css-webpack-plugin').default;
-const paths = require('./paths');
+const paths = require('./paths.cjs');
 const { homepage } = require(paths.appPackageJson);
 
 module.exports = (buildEnv) => {

@@ -1,5 +1,5 @@
-/* eslint-env node */
-module.exports = {
+/** @type {import('@jest/types').Config.InitialOptions} */
+const config = {
   roots: [
     '<rootDir>/src',
   ],
@@ -10,3 +10,5 @@ module.exports = {
     '^.+\\.(ts|tsx)$': 'ts-jest',
   },
 };
+
+export { config as default };
