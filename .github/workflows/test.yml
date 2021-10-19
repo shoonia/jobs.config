@@ -1,11 +1,10 @@
-name: deploy
+name: test
 
 on:
-  push:
-    branches: master
+  pull_request:
 
 jobs:
-  build-deploy:
+  tests:
     runs-on: ubuntu-20.04
     steps:
     - name: Checkout the repository
@@ -21,10 +20,3 @@ jobs:
     - run: npm run lint
     - run: npm run build
     - run: npm test
-
-    - name: Deploy
-      uses: peaceiris/actions-gh-pages@v3
-      with:
-        deploy_key: ${{ secrets.ACTIONS_DEPLOY_KEY }}
-        publish_branch: gh-pages
-        publish_dir: ./dist
