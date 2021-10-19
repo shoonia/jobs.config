@@ -5,6 +5,7 @@ import s from './styles.css';
 import type { IState, IEvents } from '../../store';
 import { preventDefault } from '../../util/component';
 import { Parser } from '../Parser';
+import { CopyLinkButton } from '../CopyLinkButton';
 import { UploadFile } from '../UploadFile';
 
 export const Validator: FunctionComponent = () => {
@@ -39,6 +40,7 @@ export const Validator: FunctionComponent = () => {
             spellcheck={false}
           />
           <aside className={s.tools}>
+            <CopyLinkButton className={s.btn} />
             <span className={s.btn}>
               <UploadFile onLoad={onLoad} />
             </span>
