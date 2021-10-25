@@ -16,6 +16,8 @@ export interface IEvents {
   'items/clone': string;
   'items/update': IUpdateEventData;
   'items/replace': IItem[];
+  'items/up': string;
+  'items/down': string;
   // router
   'router/change': ROUTER;
   // validator

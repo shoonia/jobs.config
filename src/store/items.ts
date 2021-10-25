@@ -81,4 +81,33 @@ export const itemsModule: TModule = ({ on }) => {
   });
 
   on('items/replace', (_, items) => payload(items));
+
+  on('items/up', ({ items }, id) => {
+    const i = items.findIndex((item) => item.id === id);
+
+    if (i > 0) {
+      const [item] = items.splice(i, 1);
+
+      items.splice((i - 1), 0, item);
+
+      return {
+        items: [...items],
+      };
+    }
+  });
+
+  on('items/down', ({ items }, id) => {
+    const i = items.findIndex((item) => item.id === id);
+    const len = items.length;
+
+    if (len > 1 && i < len) {
+      const [item] = items.splice(i, 1);
+
+      items.splice((i + 1), 0, item);
+
+      return {
+        items: [...items],
+      };
+    }
+  });
 };
