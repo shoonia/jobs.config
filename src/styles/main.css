@@ -12,8 +12,8 @@
   font-weight: 400 800;
   font-style: normal;
   src:
-    url('https://static.parastorage.com/unpkg/@wix/wix-fonts@1.9.3/media/WixMadeforTextVF_W_Wght.9b7def89.woff2')
-    format('woff2');
+    url("https://static.parastorage.com/unpkg/@wix/wix-fonts@1.9.3/media/WixMadeforTextVF_W_Wght.9b7def89.woff2")
+    format("woff2");
 }
 
 ::-webkit-scrollbar {
@@ -39,7 +39,7 @@
 
 html {
   line-height: 1.15;
-  -webkit-text-size-adjust: 100%;
+  text-size-adjust: 100%;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-rendering: optimizeLegibility;
@@ -71,12 +71,6 @@ a {
 
 select {
   appearance: none;
-  background:
-    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24' fill='%23116dff'%3E%3Cpath d='M7.41 7.84L12 12.42l4.59-4.58L18 9.25l-6 6-6-6z'/%3E%3C/svg%3E")
-    no-repeat
-    right
-    8px
-    bottom;
 }
 
 pre,

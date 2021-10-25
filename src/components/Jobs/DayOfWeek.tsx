@@ -21,7 +21,7 @@ export const DayOfWeek: FunctionComponent = () => {
   return (
     <Label top="The day of the week the job runs">
       <select
-        className={s.func_input}
+        className={s.day_of_week}
         data-name={KEYS.dayOfWeek}
         value={dayOfWeek}
       >

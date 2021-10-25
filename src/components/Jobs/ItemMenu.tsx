@@ -9,6 +9,14 @@ export const ItemMenu: FunctionComponent = () => {
   const { id } = useFormScope();
   const { dispatch, isMax } = useStoreon<IState, IEvents>('isMax');
 
+  const up: EventListener = () => {
+    dispatch('items/up', id);
+  };
+
+  const down: EventListener = () => {
+    dispatch('items/down', id);
+  };
+
   const remove: EventListener = () => {
     dispatch('items/remove', id);
   };
@@ -19,23 +27,43 @@ export const ItemMenu: FunctionComponent = () => {
 
   return (
     <div className={s.buttons}>
-      <button
-        type="button"
-        aria-label="remove"
-        onClick={remove}
-        className={s.btn_remove}
-        data-rh="Remove"
-        data-rh-at="top"
-      />
-      <button
-        type="button"
-        aria-label="clone"
-        onClick={clone}
-        className={s.btn_clone}
-        data-rh="Clone"
-        data-rh-at="top"
-        disabled={isMax}
-      />
+      <div>
+        <button
+          type="button"
+          aria-label="Move up"
+          onClick={up}
+          className={s.btn_up}
+          data-rh="Move up"
+          data-rh-at="top"
+        />
+        <button
+          type="button"
+          aria-label="Move down"
+          onClick={down}
+          className={s.btn_down}
+          data-rh="Move down"
+          data-rh-at="top"
+        />
+      </div>
+      <div>
+        <button
+          type="button"
+          aria-label="remove"
+          onClick={remove}
+          className={s.btn_remove}
+          data-rh="Remove"
+          data-rh-at="top"
+        />
+        <button
+          type="button"
+          aria-label="clone"
+          onClick={clone}
+          className={s.btn_clone}
+          data-rh="Clone"
+          data-rh-at="top"
+          disabled={isMax}
+        />
+      </div>
     </div>
   );
 };
