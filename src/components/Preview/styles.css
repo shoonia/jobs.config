@@ -11,7 +11,7 @@
   min-height: $body-height;
   max-height: $body-height;
   margin: 0;
-  padding: 4em 1em 1em 1em;
+  padding: 4em 1em 1em;
   overflow: auto;
   resize: none;
   border: none;

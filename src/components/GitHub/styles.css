@@ -11,12 +11,12 @@
   display: inline-block;
   padding: 3px 10px;
   font-size: 12px;
-  font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Helvetica, Arial, sans-serif, Apple Color Emoji, Segoe UI Emoji;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
   font-weight: 600;
   line-height: 20px;
   color: #24292e;
   vertical-align: middle;
-  border: 1px solid rgba(27, 31, 35, 0.2);
+  border: 1px solid rgb(27 31 35 / 20%);
   white-space: nowrap;
   cursor: pointer;
 }
@@ -38,7 +38,7 @@
   background-color: #e6ebf1;
   background-image: linear-gradient(180deg, #f0f3f6, #e6ebf1 90%);
   background-position: -0.5em;
-  border-color: rgba(27, 31, 35, 0.35);
+  border-color: rgb(27 31 35 / 35%);
 }
 
 .btnOnly {
