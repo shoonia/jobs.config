@@ -21,6 +21,8 @@ export const CopyLinkButton: FunctionComponent<Props> = ({ className }) => {
     const { validatorValue } = store.get();
     const link = createValidatorLink(validatorValue);
 
+    history.pushState(null, '', link);
+
     await navigator.clipboard.writeText(link);
     setState(true);
     await delay(2_000);
