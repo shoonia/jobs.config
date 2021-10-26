@@ -3,6 +3,7 @@ import type { FunctionComponent } from 'preact';
 import type { IConfig } from '../../util/items';
 import { parseJSONC } from './parseJSONC';
 import { isValidConfig } from './isValidConfig';
+import { VALIDATOR_VALUE_LIMIT } from '../../constants';
 import { Message } from './Message';
 import { EditButton } from './EditButton';
 
@@ -19,7 +20,7 @@ export const Parser: FunctionComponent<Props> = ({ value }) => {
     );
   }
 
-  if (value.length > 15000) {
+  if (value.length > VALIDATOR_VALUE_LIMIT) {
     return (
       <Message error>
         The file size is too large for the jobs.config.
@@ -37,12 +38,12 @@ export const Parser: FunctionComponent<Props> = ({ value }) => {
     );
   }
 
-  const [hasError, Error] = isValidConfig(config);
+  const [hasError, ErrorComponent] = isValidConfig(config);
 
   if (hasError) {
     return (
       <Message error>
-        {Error}
+        {ErrorComponent}
       </Message>
     );
   }
