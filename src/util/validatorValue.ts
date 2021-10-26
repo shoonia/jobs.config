@@ -12,10 +12,14 @@ export const getValidatorValue = (): string => {
   return '';
 };
 
-export const createValidatorLink = (value: string): string => {
+export const createValidatorLink = (value: string): string | null => {
   const url = new URL(location.href);
 
-  url.searchParams.set(KEY_VALIDATOR_VALUE, btoa(value));
+  try {
+    url.searchParams.set(KEY_VALIDATOR_VALUE, btoa(value));
 
-  return url.href;
+    return url.href;
+  } catch {
+    return null;
+  }
 };
