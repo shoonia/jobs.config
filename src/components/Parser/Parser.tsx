@@ -1,5 +1,3 @@
-import type { FunctionComponent } from 'preact';
-
 import type { IConfig } from '../../util/items';
 import { parseJSONC } from './parseJSONC';
 import { isValidConfig } from './isValidConfig';
@@ -11,7 +9,7 @@ export interface Props {
   value: string;
 }
 
-export const Parser: FunctionComponent<Props> = ({ value }) => {
+export const Parser: FC<Props> = ({ value }) => {
   if (value.trim() === '') {
     return (
       <Message>

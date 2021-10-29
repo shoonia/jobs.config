@@ -1,4 +1,3 @@
-import type { FunctionComponent } from 'preact';
 import { useState } from 'preact/hooks';
 
 import s from './styles.css';
@@ -12,7 +11,7 @@ import { PERIOD } from '../../constants';
 import { classNames } from '../../util/component';
 import { useFormScope } from '../../hooks/formScope';
 
-export const ExecutionConfig: FunctionComponent = () => {
+export const ExecutionConfig: FC = () => {
   const [isError, setValidity] = useState<boolean>(false);
   const { period, cronExpression } = useFormScope();
 

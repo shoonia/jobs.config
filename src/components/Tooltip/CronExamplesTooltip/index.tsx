@@ -1,4 +1,3 @@
-import type { FunctionComponent } from 'preact';
 import { useStoreon } from 'storeon/preact';
 
 import s from './styles.css';
@@ -11,7 +10,7 @@ interface Props {
   target: HTMLElement;
 }
 
-export const CronExamplesTooltip: FunctionComponent<Props> = ({ target }) => {
+export const CronExamplesTooltip: FC<Props> = ({ target }) => {
   const { items, dispatch } = useStoreon<IState, IEvents>('items');
 
   const { id } = target.dataset;

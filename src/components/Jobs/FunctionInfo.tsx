@@ -1,11 +1,9 @@
-import type { FunctionComponent } from 'preact';
-
 import s from './styles.css';
 import { KEYS } from '../../constants';
 import { Label } from './Label';
 import { useFormScope } from '../../hooks/formScope';
 
-export const FunctionInfo: FunctionComponent = () => {
+export const FunctionInfo: FC = () => {
   const {
     functionLocation,
     functionName,

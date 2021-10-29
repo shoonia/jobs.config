@@ -1,4 +1,3 @@
-import type { FunctionComponent } from 'preact';
 import { Suspense } from 'preact/compat';
 
 import { Header } from './Header';
@@ -6,7 +5,7 @@ import { Fallback } from './Fallback';
 import { Tooltips } from './Tooltip';
 import { useLazyRouter } from '../hooks/useLazyRouter';
 
-export const App: FunctionComponent = () => {
+export const App: FC = () => {
   const Page = useLazyRouter();
 
   return (

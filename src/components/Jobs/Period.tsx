@@ -1,11 +1,9 @@
-import type { FunctionComponent } from 'preact';
-
 import s from './styles.css';
 import { PERIOD } from '../../constants';
 import { PeriodButton } from './PeriodButton';
 import { useFormScope } from '../../hooks/formScope';
 
-export const Period: FunctionComponent = () => {
+export const Period: FC = () => {
   const { id, period } = useFormScope();
 
   return (

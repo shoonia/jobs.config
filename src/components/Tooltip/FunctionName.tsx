@@ -1,5 +1,3 @@
-import type { FunctionComponent } from 'preact';
-
 import s from './styles.css';
 import c from '../../styles/code.css';
 import { classNames } from '../../util/component';
@@ -8,7 +6,7 @@ interface Props {
   target: HTMLInputElement;
 }
 
-export const FunctionName: FunctionComponent<Props> = ({ target }) => {
+export const FunctionName: FC<Props> = ({ target }) => {
   const opClass = classNames([
     c.mtk4,
     !target.value && c.err,

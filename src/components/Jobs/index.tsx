@@ -1,4 +1,3 @@
-import type { FunctionComponent } from 'preact';
 import { useCallback } from 'preact/hooks';
 import { useStoreon } from 'storeon/preact';
 
@@ -8,7 +7,7 @@ import { FormScope } from '../../hooks/formScope';
 import { classNames } from '../../util/component';
 import { Item } from './Item';
 
-export const Jobs: FunctionComponent = () => {
+export const Jobs: FC = () => {
   const { dispatch, items } = useStoreon<IState, IEvents>('items');
   const len = items.length - 1;
 

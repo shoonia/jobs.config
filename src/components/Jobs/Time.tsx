@@ -1,10 +1,8 @@
-import type { FunctionComponent } from 'preact';
-
 import s from './styles.css';
 import { Label } from './Label';
 import { useFormScope } from '../../hooks/formScope';
 
-export const Time: FunctionComponent = () => {
+export const Time: FC = () => {
   const { time } = useFormScope();
 
   return (

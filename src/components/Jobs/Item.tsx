@@ -1,5 +1,3 @@
-import type { FunctionComponent } from 'preact';
-
 import s from './styles.css';
 import { Period } from './Period';
 import { ItemMenu } from './ItemMenu';
@@ -12,7 +10,7 @@ interface Props {
   update: EventListener;
 }
 
-export const Item: FunctionComponent<Props> = ({ id, update }) => (
+export const Item: FC<Props> = ({ id, update }) => (
   <form
     id={id}
     action="#"

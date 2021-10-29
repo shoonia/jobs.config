@@ -1,4 +1,3 @@
-import type { FunctionComponent } from 'preact';
 import { createPortal } from 'preact/compat';
 
 import s from './styles.css';
@@ -9,7 +8,7 @@ import { Issue } from '../Issue';
 
 const root = document.getElementById('header') as HTMLElement;
 
-export const Header: FunctionComponent = () => {
+export const Header: FC = () => {
   return createPortal(
     <div className={s.header}>
       <nav className={s.nav}>

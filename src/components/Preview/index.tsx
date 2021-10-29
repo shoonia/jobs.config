@@ -1,4 +1,3 @@
-import type { FunctionComponent } from 'preact';
 import { useStoreon } from 'storeon/preact';
 import { useRef } from 'preact/hooks';
 
@@ -9,7 +8,7 @@ import { JSON } from './JSON';
 import { DownloadButton } from '../DownloadButton';
 import { createConfig } from '../../util/items';
 
-export const Preview: FunctionComponent = () => {
+export const Preview: FC = () => {
   const { items } = useStoreon<IState>('items');
   const output = useRef<HTMLPreElement>(null);
 

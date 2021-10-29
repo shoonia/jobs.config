@@ -1,10 +1,10 @@
-import { FunctionComponent, lazy } from 'preact/compat';
+import { lazy } from 'preact/compat';
 import { useStoreon } from 'storeon/preact';
 
 import type { IState } from '../store';
 import { ROUTER } from '../constants';
 
-const BuilderPage: FunctionComponent = lazy(() => {
+const BuilderPage: FC = lazy(() => {
   return import(
     /* webpackChunkName: "BuilderPage" */
     /* webpackPrefetch: true */
@@ -14,7 +14,7 @@ const BuilderPage: FunctionComponent = lazy(() => {
   });
 });
 
-const ValidatorPage: FunctionComponent = lazy(() => {
+const ValidatorPage: FC = lazy(() => {
   return import(
     /* webpackChunkName: "ValidatorPage" */
     /* webpackPrefetch: true */
@@ -24,7 +24,7 @@ const ValidatorPage: FunctionComponent = lazy(() => {
   });
 });
 
-export const useLazyRouter = (): FunctionComponent => {
+export const useLazyRouter = (): FC => {
   const { path } = useStoreon<IState>('path');
 
   switch (path) {

@@ -1,11 +1,9 @@
-import type { FunctionComponent } from 'preact';
-
 import s from './CronExamples.css';
 import { Label } from './Label';
 import { useFormScope } from '../../hooks/formScope';
 import { KEYS } from '../../constants';
 
-export const CronExamples: FunctionComponent= () => {
+export const CronExamples: FC= () => {
   const { id } = useFormScope();
 
   return (

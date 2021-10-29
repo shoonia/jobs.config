@@ -1,6 +1,4 @@
-import type { FunctionComponent } from 'preact';
-
-export const CopyLinkIcon: FunctionComponent = () => (
+export const CopyLinkIcon: FC = () => (
   <svg
     fill="currentColor"
     width="24"

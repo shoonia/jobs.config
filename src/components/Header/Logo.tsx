@@ -1,6 +1,4 @@
-import type { FunctionComponent } from 'preact';
-
-export const Logo: FunctionComponent = () => (
+export const Logo: FC = () => (
   <svg
     viewBox="0 0 16 16"
     width="35"

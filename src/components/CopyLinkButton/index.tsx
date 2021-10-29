@@ -1,4 +1,3 @@
-import type { FunctionComponent } from 'preact';
 import { useState } from 'preact/hooks';
 
 import { store } from '../../store';
@@ -10,7 +9,7 @@ interface Props {
   className?: string;
 }
 
-export const CopyLinkButton: FunctionComponent<Props> = ({ className }) => {
+export const CopyLinkButton: FC<Props> = ({ className }) => {
   const [isCopied, setState] = useState(false);
 
   const label = isCopied

@@ -1,5 +1,3 @@
-import type { FunctionComponent } from 'preact';
-
 import s from './styles.css';
 import type { PERIOD } from '../../constants';
 
@@ -20,7 +18,7 @@ const handlerClick = ({ key, target }: KeyboardEvent): void => {
   }
 };
 
-export const PeriodButton: FunctionComponent<Props> = ({ name, value, period }) => {
+export const PeriodButton: FC<Props> = ({ name, value, period }) => {
   const isChecked = value === period;
 
   return (

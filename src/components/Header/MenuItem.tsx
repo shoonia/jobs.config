@@ -1,4 +1,4 @@
-import type { ComponentChildren, FunctionComponent } from 'preact';
+import type { ComponentChildren } from 'preact';
 import { useStoreon } from 'storeon/preact';
 
 import s from './styles.css';
@@ -11,7 +11,7 @@ interface Props {
   path: ROUTER;
 }
 
-export const MenuItem: FunctionComponent<Props> = ({ children, path }) => {
+export const MenuItem: FC<Props> = ({ children, path }) => {
   const i = useStoreon<IState>('path');
   const isActive = i.path === path;
 

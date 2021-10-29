@@ -1,4 +1,4 @@
-import type { ComponentChildren, FunctionComponent } from 'preact';
+import type { ComponentChildren } from 'preact';
 
 import s from './styles.css';
 
@@ -7,7 +7,7 @@ interface Props {
   children: ComponentChildren;
 }
 
-export const Label: FunctionComponent<Props> = ({ top, children }) => (
+export const Label: FC<Props> = ({ top, children }) => (
   <label className={s.block}>
     <span className={s.text}>
       {top}

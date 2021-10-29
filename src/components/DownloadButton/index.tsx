@@ -1,5 +1,3 @@
-import type { FunctionComponent } from 'preact';
-
 import s from './styles.css';
 import { isSupportFilePicker, saveFile } from './util';
 
@@ -8,7 +6,7 @@ interface Props {
   jsonString: string;
 }
 
-export const DownloadButton: FunctionComponent<Props> = ({
+export const DownloadButton: FC<Props> = ({
   label,
   jsonString,
 }) => {

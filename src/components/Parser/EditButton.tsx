@@ -1,4 +1,3 @@
-import type { FunctionComponent } from 'preact';
 import { useStoreon } from 'storeon/preact';
 
 import type { IState, IEvents } from '../../store';
@@ -10,7 +9,7 @@ interface Props {
   config: IConfig;
 }
 
-export const EditButton: FunctionComponent<Props> = ({ config }) => {
+export const EditButton: FC<Props> = ({ config }) => {
   const { dispatch } = useStoreon<IState, IEvents>();
 
   const onClick: EventListener = () => {

@@ -1,5 +1,3 @@
-import type { FunctionComponent } from 'preact';
-
 import s from './styles.css';
 import { Label } from './Label';
 import { weekList } from '../../util/week';
@@ -15,7 +13,7 @@ const week = weekList.map((day) => (
   </option>
 ));
 
-export const DayOfWeek: FunctionComponent = () => {
+export const DayOfWeek: FC = () => {
   const { dayOfWeek } = useFormScope();
 
   return (

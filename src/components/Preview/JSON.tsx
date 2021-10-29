@@ -1,4 +1,4 @@
-import type { ComponentChildren, FunctionComponent } from 'preact';
+import type { ComponentChildren } from 'preact';
 
 import s from '../../styles/code.css';
 
@@ -28,7 +28,7 @@ const tokens: IToken[] = [
   },
 ];
 
-export const JSON: FunctionComponent<Props> = ({ input }) => {
+export const JSON: FC<Props> = ({ input }) => {
   const items: ComponentChildren[] = [];
 
   while (input.length > 0) {

@@ -1,5 +1,3 @@
-import type { FunctionComponent } from 'preact';
-
 import s from './FunctionLocation.css';
 import { createPath } from './util';
 
@@ -7,7 +5,7 @@ interface Props {
   target: HTMLInputElement;
 }
 
-export const FunctionLocation: FunctionComponent<Props> = ({ target }) => {
+export const FunctionLocation: FC<Props> = ({ target }) => {
   const tree = createPath(target.value).reduceRight((acc, item, index) => {
     const listClass = index === 0 ? s.list : s.sublist;
 

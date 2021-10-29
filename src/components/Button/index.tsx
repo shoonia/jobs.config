@@ -1,4 +1,4 @@
-import type { ComponentChildren, FunctionComponent } from 'preact';
+import type { ComponentChildren } from 'preact';
 import { classNames } from '../../util/component';
 
 import s from './styles.css';
@@ -11,7 +11,7 @@ interface Props {
   [key: string]: unknown;
 }
 
-export const Button: FunctionComponent<Props> = ({
+export const Button: FC<Props> = ({
   onClick,
   children,
   className,

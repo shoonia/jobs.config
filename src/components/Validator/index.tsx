@@ -1,4 +1,3 @@
-import type { FunctionComponent } from 'preact';
 import { useStoreon } from 'storeon/preact';
 
 import s from './styles.css';
@@ -8,7 +7,7 @@ import { Parser } from '../Parser';
 import { CopyLinkButton } from '../CopyLinkButton';
 import { UploadFile } from '../UploadFile';
 
-export const Validator: FunctionComponent = () => {
+export const Validator: FC = () => {
   const { validatorValue, dispatch } = useStoreon<IState, IEvents>('validatorValue');
 
   const onInput: EventListener = ({ target }) => {
