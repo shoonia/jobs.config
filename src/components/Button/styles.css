@@ -25,7 +25,7 @@
   border-color: $color-font;
   cursor: default;
   pointer-events: none;
-  opacity: 60%;
+  opacity: 0.6;
 }
 
 .btn:hover {
@@ -45,7 +45,7 @@
   padding-top: 120%;
   padding-left: 120%;
   margin-left: -20px !important;
-  opacity: 0%;
+  opacity: 0;
   transition: all 0.6s;
   border-radius: 6px;
 }
@@ -53,6 +53,6 @@
 .btn:active::after {
   padding: 0;
   margin: 0;
-  opacity: 100%;
+  opacity: 1;
   transition: 0s;
 }

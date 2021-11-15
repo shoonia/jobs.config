@@ -71,7 +71,7 @@
 .btn:disabled {
   pointer-events: none;
   cursor: default;
-  opacity: 20%;
+  opacity: 0.2;
   filter: grayscale(100%);
 }
 
