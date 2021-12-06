@@ -102,7 +102,7 @@ module.exports = (buildEnv) => {
     externals: {
       'color-convert': '{}', // A dead code. It's a dependency of "parse-json" that not use.
       'supports-color': 'false',
-      'escape-string-regexp': 'i=>i'
+      'escape-string-regexp': '()=>{}'
     },
     module: {
       strictExportPresence: true,
