@@ -1,13 +1,13 @@
-const buildEnv = 'development';
+const { setEnv } = require('../config/env.cjs');
 
-require('../config/env.cjs')(buildEnv);
+const buildEnv = setEnv('development');
 
 const webpack = require('webpack');
 const WebpackDevServer = require('webpack-dev-server');
 const { createCompiler, prepareUrls } = require('react-dev-utils/WebpackDevServerUtils');
-const paths = require('../config/paths.cjs');
-const configFactory = require('../config/webpack.config.cjs');
-const { name } = require(paths.appPackageJson);
+const { appPaths } = require('../config/paths.cjs');
+const { configFactory } = require('../config/webpack.config.cjs');
+const { name } = require(appPaths.appPackageJson);
 
 const host = '0.0.0.0';
 const port = 3000;
@@ -17,11 +17,11 @@ const devServer = new WebpackDevServer({
     hot: true,
     historyApiFallback: {
       disableDotRule: true,
-      index: paths.publicPath,
+      index: appPaths.publicPath,
     },
     host,
     port,
-    static: paths.appDirectory,
+    static: appPaths.appDirectory,
   },
   createCompiler({
     appName: name,

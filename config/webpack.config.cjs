@@ -1,4 +1,4 @@
-const path = require('path');
+const { relative } = require('path');
 const webpack = require('webpack');
 const CopyPlugin = require('copy-webpack-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
@@ -9,10 +9,10 @@ const CSSMQPackerPlugin = require('css-mqpacker-webpack-plugin');
 const createLocalIdent = require('mini-css-class-name/css-loader');
 const ForkTsCheckerWebpackPlugin = require('fork-ts-checker-webpack-plugin');
 const HTMLInlineCSSWebpackPlugin = require('html-inline-css-webpack-plugin').default;
-const paths = require('./paths.cjs');
-const { homepage } = require(paths.appPackageJson);
+const { appPaths } = require('./paths.cjs');
+const { homepage } = require(appPaths.appPackageJson);
 
-module.exports = (buildEnv) => {
+exports.configFactory = (buildEnv) => {
   const isDev = buildEnv === 'development';
   const isProd = buildEnv === 'production';
 
@@ -21,19 +21,19 @@ module.exports = (buildEnv) => {
     bail: isProd,
     devtool: isDev && 'cheap-module-source-map',
     entry: [
-      isDev && require.resolve('react-dev-utils/webpackHotDevClient'),
-      paths.appIndexTs,
+      isDev && 'react-dev-utils/webpackHotDevClient',
+      appPaths.appIndexTs,
     ].filter(Boolean),
     output: {
-      path: isProd ? paths.appBuild : undefined,
+      path: isProd ? appPaths.appBuild : undefined,
       pathinfo: isDev,
       filename: 'js/[name].[contenthash:4].js',
       chunkFilename: 'js/[name].[chunkhash:4].js',
-      publicPath: paths.publicPath,
-      devtoolModuleFilenameTemplate: (info) => path
-        .relative(paths.appSrc, info.absoluteResourcePath)
-        .replace(/\\/g, '/'),
-      chunkLoadingGlobal: 'J',
+      publicPath: appPaths.publicPath,
+      devtoolModuleFilenameTemplate: (info) => {
+        return relative(appPaths.appSrc, info.absoluteResourcePath);
+      },
+      chunkLoadingGlobal: 'g',
       globalObject: 'window',
       clean: isProd,
     },
@@ -88,7 +88,7 @@ module.exports = (buildEnv) => {
     resolve: {
       modules: [
         'node_modules',
-        paths.appNodeModules,
+        appPaths.appNodeModules,
       ],
       extensions: [
         '.js',
@@ -111,8 +111,8 @@ module.exports = (buildEnv) => {
           oneOf: [
             {
               test: /\.(js|tsx?)$/,
-              include: paths.appSrc,
-              loader: require.resolve('babel-loader'),
+              include: appPaths.appSrc,
+              loader: 'babel-loader',
               options: {
                 cacheDirectory: true,
                 cacheCompression: false,
@@ -124,7 +124,7 @@ module.exports = (buildEnv) => {
                     {
                       loose: true,
                       browserslistEnv: buildEnv,
-                      configPath: paths.appDirectory,
+                      configPath: appPaths.appDirectory,
                       useBuiltIns: 'entry',
                     },
                   ],
@@ -149,10 +149,10 @@ module.exports = (buildEnv) => {
             {
               test: /\.css$/,
               use: [
-                isDev && require.resolve('style-loader'),
+                isDev && 'style-loader',
                 isProd && MiniCssExtractPlugin.loader,
                 {
-                  loader: require.resolve('css-loader'),
+                  loader: 'css-loader',
                   options: {
                     importLoaders: 1,
                     sourceMap: isDev,
@@ -164,7 +164,7 @@ module.exports = (buildEnv) => {
                   },
                 },
                 {
-                  loader: require.resolve('postcss-loader'),
+                  loader: 'postcss-loader',
                   options: {
                     sourceMap: isDev,
                     postcssOptions: {
@@ -188,7 +188,7 @@ module.exports = (buildEnv) => {
       new HtmlWebpackPlugin({
         filename: 'index.html',
         inject: 'head',
-        template: paths.appHtml,
+        template: appPaths.appHtml,
         scriptLoading: 'defer',
         minify: isProd && {
           collapseWhitespace: true,
@@ -214,15 +214,15 @@ module.exports = (buildEnv) => {
       isProd && new CopyPlugin({
         patterns: [
           {
-            from: paths.appStatic,
-            to: paths.appBuild,
+            from: appPaths.appStatic,
+            to: appPaths.appBuild,
           },
         ],
       }),
       isDev && new webpack.HotModuleReplacementPlugin(),
       isDev && new ForkTsCheckerWebpackPlugin({
         typescript: {
-          configFile: paths.appTsConfig,
+          configFile: appPaths.appTsConfig,
         },
         eslint: {
           files: './src/**/*.{ts,tsx}',

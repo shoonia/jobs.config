@@ -1,10 +1,10 @@
-const buildEnv = 'production';
+const { setEnv } = require('../config/env.cjs');
 
-require('../config/env.cjs')(buildEnv);
+const buildEnv = setEnv('production');
 
 const webpack = require('webpack');
-const configFactory = require('../config/webpack.config.cjs');
-const paths = require('../config/paths.cjs');
+const { configFactory } = require('../config/webpack.config.cjs');
+const { appPaths } = require('../config/paths.cjs');
 const { measureFileSizesBeforeBuild, printFileSizesAfterBuild } = require('react-dev-utils/FileSizeReporter');
 const printBuildError = require('react-dev-utils/printBuildError');
 
@@ -13,7 +13,7 @@ const WARN_AFTER_CHUNK_GZIP_SIZE = 1024 * 1024;
 
 (async () => {
   try {
-    const previousFileSizes = await measureFileSizesBeforeBuild(paths.appBuild);
+    const previousFileSizes = await measureFileSizesBeforeBuild(appPaths.appBuild);
 
     const stats = await new Promise((resolve, reject) => {
       const config = configFactory(buildEnv);
@@ -43,7 +43,7 @@ const WARN_AFTER_CHUNK_GZIP_SIZE = 1024 * 1024;
     printFileSizesAfterBuild(
       stats,
       previousFileSizes,
-      paths.appBuild,
+      appPaths.appBuild,
       WARN_AFTER_BUNDLE_GZIP_SIZE,
       WARN_AFTER_CHUNK_GZIP_SIZE,
     );
