@@ -3,31 +3,12 @@
 .box {
   display: grid;
   grid-gap: 0;
-  grid-template-columns: minmax(500px, auto) minmax(300px, 550px);
+  grid-template-columns: minmax(500px, auto) minmax(300px, 600px);
   padding: 0;
 }
 
 .column {
-  height: $body-height;
-  background-color: $color-background;
-  margin: 0;
-  border: 0;
-  width: 100%;
-}
-
-.left {
-  composes: column;
-  padding: 0 0 0 10px;
-  grid-column: 1;
-  min-width: 500px;
-  scrollbar-width: thin;
-}
-
-.right {
-  composes: column;
-  grid-column: 2;
-  min-width: 300px;
-  max-width: 550px;
+  min-height: $body-height;
 }
 
 @media (max-width: $mobile-width) {
@@ -36,12 +17,6 @@
   }
 
   .column {
-    height: auto;
-  }
-
-  .left,
-  .right {
-    min-width: auto;
-    max-width: 100%;
+    border-bottom: 1px solid $color-decorative-border;
   }
 }

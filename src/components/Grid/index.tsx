@@ -9,10 +9,10 @@ interface Props {
 
 export const Grid: FC<Props> = ({ left, right }) => (
   <div className={s.box}>
-    <div className={s.left}>
+    <div className={s.column}>
       {left}
     </div>
-    <div className={s.right}>
+    <div className={s.column}>
       {right}
     </div>
   </div>
