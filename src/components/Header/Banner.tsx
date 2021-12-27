@@ -1,5 +1,5 @@
 import s from './styles.css';
-import { Logo } from './Logo';
+import { Logo } from '../Icons/Logo';
 
 export const Banner: FC = () => (
   <figure className={s.nav}>
