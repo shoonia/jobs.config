@@ -1,6 +1,11 @@
-.section {
-  padding: 1em;
-  text-align: center;
+@import "../../styles/vars.css";
+
+.box {
+  height: $toolbar-height;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1em;
 }
 
 .hint {

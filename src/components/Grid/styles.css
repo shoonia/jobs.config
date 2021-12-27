@@ -10,7 +10,6 @@
 .column {
   height: $body-height;
   background-color: $color-background;
-  padding: 0;
   margin: 0;
   border: 0;
   width: 100%;
@@ -21,7 +20,6 @@
   padding: 0 0 0 10px;
   grid-column: 1;
   min-width: 500px;
-  overflow-y: scroll;
   scrollbar-width: thin;
 }
 
