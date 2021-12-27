@@ -4,6 +4,7 @@ import { useRef } from 'preact/hooks';
 import s from './styles.css';
 import type { IState } from '../../store';
 import { Button } from '../Button';
+import { Toolbar } from '../Toolbar';
 import { JSON } from './JSON';
 import { DownloadButton } from '../DownloadButton';
 import { createConfig } from '../../util/items';
@@ -29,27 +30,25 @@ export const Preview: FC = () => {
 
   return (
     <div className={s.box}>
-      <div className={s.copy}>
-        <Button onClick={clipboard}>
-          Copy Code
-        </Button>
-      </div>
+      <Toolbar.Wrapper>
+        <Toolbar.Hint>
+          <Button onClick={clipboard}>
+            Copy Code
+          </Button>
+        </Toolbar.Hint>
+        <Toolbar.Hint label="Download a file">
+          <DownloadButton
+            label="Download a file"
+            jsonString={config}
+          />
+        </Toolbar.Hint>
+      </Toolbar.Wrapper>
       <pre
         ref={output}
         className={s.out}
       >
         <JSON input={config} />
       </pre>
-      <div
-        className={s.export}
-        data-rh="Download a file"
-        data-rh-at="left"
-      >
-        <DownloadButton
-          label="Download a file"
-          jsonString={config}
-        />
-      </div>
     </div>
   );
 };

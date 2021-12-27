@@ -1,9 +1,9 @@
 import { Jobs } from '../Jobs';
-import { CreateButton } from './CreateButton';
+import { Buttons } from './Buttons';
 
 export const Editor: FC = () => (
   <>
-    <CreateButton />
+    <Buttons />
     <Jobs />
   </>
 );
