@@ -3,7 +3,7 @@ import { useState } from 'preact/hooks';
 import { store } from '../../store';
 import { delay } from '../../util/component';
 import { createValidatorLink } from '../../util/validatorValue';
-import { CopyLinkIcon } from '../Icons/CopyLinkIcon';
+import { IconCopyLink } from '../Icons/IconCopyLink';
 
 interface Props {
   className?: string;
@@ -39,7 +39,7 @@ export const CopyLinkButton: FC<Props> = ({ className }) => {
       data-rh={label}
       data-rh-at="left"
     >
-      <CopyLinkIcon />
+      <IconCopyLink />
     </button>
   );
 };
