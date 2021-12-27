@@ -1,0 +1,15 @@
+@import "../../styles/vars.css";
+
+.box {
+  width: 100%;
+  min-width: calc($mobile-width - 30px);
+  padding: 50px;
+  background-color: $color-background;
+  border-radius: 8px;
+}
+
+@media (max-width: $mobile-width) {
+  .box {
+    min-width: calc(100vw - 30px);
+  }
+}

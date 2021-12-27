@@ -19,7 +19,13 @@ export const routerModule: TModule = ({ on, get, dispatch }) => {
     };
   });
 
-  on('router/change', (_, path) => ({ path }));
+  on('router/change', (_, path) => {
+    return {
+      path,
+      openModal: false,
+    };
+  });
+
   on('router/open-modal', (_, openModal) => ({ openModal }));
 
   window.addEventListener('hashchange', () => {
