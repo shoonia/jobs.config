@@ -31,7 +31,7 @@ export const Preview: FC = () => {
   return (
     <div className={s.box}>
       <Toolbar.Wrapper>
-        <Toolbar.Hint>
+        <Toolbar.Hint label="Copy to clipboard">
           <Button onClick={clipboard}>
             Copy Code
           </Button>
