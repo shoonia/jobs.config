@@ -1,6 +1,6 @@
 import s from './styles.css';
 import { readFile } from './readFile';
-import { IconUpload } from './IconUpload';
+import { IconUpload } from '../Icons/IconUpload';
 
 interface Props {
   onLoad?: (value: string) => void;

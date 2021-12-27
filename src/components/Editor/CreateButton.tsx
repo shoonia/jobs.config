@@ -3,7 +3,7 @@ import { useStoreon } from 'storeon/preact';
 import s from './styles.css';
 import type { IState, IEvents } from '../../store';
 import { Button } from '../Button';
-import { IconPlus } from './IconPlus';
+import { IconPlus } from '../Icons/IconPlus';
 
 export const CreateButton: FC = () => {
   const { dispatch, isMax } = useStoreon<IState, IEvents>('isMax');

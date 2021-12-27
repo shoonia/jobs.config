@@ -3,7 +3,7 @@ import { useState } from 'preact/hooks';
 import { store } from '../../store';
 import { delay } from '../../util/component';
 import { createValidatorLink } from '../../util/validatorValue';
-import { CopyLinkIcon } from './CopyLinkIcon';
+import { CopyLinkIcon } from '../Icons/CopyLinkIcon';
 
 interface Props {
   className?: string;
