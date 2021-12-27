@@ -7,12 +7,12 @@ export interface Props {
   setValidity: (isError: boolean) => void;
 }
 
-export const CronTrue = ({ value, setValidity }: Props): string => {
+export const CronTrue: FC<Props> = ({ value, setValidity }) => {
   const [isError, message] = useCron(value);
 
   useEffect(() => {
     setValidity(isError);
   }, [isError]);
 
-  return message;
+  return <>{message}</>;
 };
