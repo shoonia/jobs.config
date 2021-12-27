@@ -13,6 +13,10 @@ export const Buttons: FC = () => {
     dispatch('items/new');
   };
 
+  const openUploadModal: EventListener = () => {
+    dispatch('router/open-modal', true);
+  };
+
   return (
     <Toolbar.Wrapper>
       <Toolbar.Hint label="You can configure up to 20 jobs">
@@ -25,7 +29,7 @@ export const Buttons: FC = () => {
         </Button>
       </Toolbar.Hint>
       <Toolbar.Hint label="Upload config">
-        <Button>
+        <Button onClick={openUploadModal}>
           <IconUpload />
         </Button>
       </Toolbar.Hint>
