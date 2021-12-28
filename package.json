@@ -17,6 +17,7 @@
     "parse-json": "^6.0.2",
     "preact": "^10.6.4",
     "react-hint": "^3.2.1",
+    "react-modal": "^3.14.4",
     "storeon": "^3.1.4",
     "strip-json-comments": "^4.0.0"
   },
@@ -29,8 +30,8 @@
     "@types/jest": "^27.0.3",
     "@types/node": "^16.11.17",
     "@types/wicg-file-system-access": "^2020.9.4",
-    "@typescript-eslint/eslint-plugin": "^5.8.0",
-    "@typescript-eslint/parser": "^5.8.0",
+    "@typescript-eslint/eslint-plugin": "^5.8.1",
+    "@typescript-eslint/parser": "^5.8.1",
     "autoprefixer": "^10.4.0",
     "babel-loader": "^8.2.3",
     "babel-plugin-const-enum": "^1.2.0",

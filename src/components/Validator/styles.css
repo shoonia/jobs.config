@@ -6,7 +6,6 @@
   justify-content: center;
   align-items: baseline;
   padding: 1em;
-  overflow-x: auto;
 }
 
 .title {
@@ -22,18 +21,6 @@
 .form {
   width: 100%;
   position: relative;
-}
-
-.area {
-  resize: vertical;
-  height: auto;
-  width: 100%;
-  min-height: 50vh;
-  overflow-y: scroll;
-  outline: none;
-  border: $decorate-border;
-  border-radius: 8px;
-  padding: 1em;
 }
 
 .tools {

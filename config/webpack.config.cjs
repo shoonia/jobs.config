@@ -98,6 +98,10 @@ exports.configFactory = (buildEnv) => {
       fallback: {
         util: false,
       },
+      alias: {
+        react: 'preact/compat',
+        'react-dom': 'preact/compat',
+      }
     },
     externals: {
       'color-convert': '{}', // A dead code. It's a dependency of "parse-json" that not use.

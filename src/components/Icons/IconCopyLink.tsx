@@ -1,4 +1,4 @@
-export const CopyLinkIcon: FC = () => (
+export const IconCopyLink: FC = () => (
   <svg
     fill="currentColor"
     width="24"

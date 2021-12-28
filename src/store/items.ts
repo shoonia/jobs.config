@@ -1,6 +1,6 @@
 import type { TModule } from './types';
 import { MAX_ITEMS } from '../constants';
-import { createId, newItem, IItem } from '../util/items';
+import { createId, newItem, type IItem } from '../util/items';
 
 const getItems = (): IItem[] => {
   const data = sessionStorage.getItem('items');

@@ -6,6 +6,7 @@ import { preventDefault } from '../../util/component';
 import { Parser } from '../Parser';
 import { CopyLinkButton } from '../CopyLinkButton';
 import { UploadFile } from '../UploadFile';
+import { TextBox } from '../TextBox';
 
 export const Validator: FC = () => {
   const { validatorValue, dispatch } = useStoreon<IState, IEvents>('validatorValue');
@@ -31,12 +32,9 @@ export const Validator: FC = () => {
           onSubmit={preventDefault}
           className={s.form}
         >
-          <textarea
+          <TextBox
             onInput={onInput}
-            className={s.area}
             value={validatorValue}
-            placeholder="{}"
-            spellcheck={false}
           />
           <aside className={s.tools}>
             <CopyLinkButton className={s.btn} />

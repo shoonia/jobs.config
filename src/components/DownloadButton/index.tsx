@@ -1,5 +1,6 @@
-import s from './styles.css';
+import btn from '../Button/styles.css';
 import { isSupportFilePicker, saveFile } from './util';
+import { IconDownload } from '../Icons/IconDownload';
 
 interface Props {
   label?: string;
@@ -18,20 +19,24 @@ export const DownloadButton: FC<Props> = ({
     return (
       <button
         type="button"
-        className={s.btn}
+        className={btn.btn}
         onClick={onClick}
         aria-label={label}
-      />
+      >
+        <IconDownload />
+      </button>
     );
   }
 
   return (
     <a
       href={`data:application/json,${encodeURIComponent(jsonString)}`}
-      className={s.btn}
+      className={btn.btn}
       download="jobs.config"
       type="application/json"
       aria-label={label}
-    />
+    >
+      <IconDownload />
+    </a>
   );
 };

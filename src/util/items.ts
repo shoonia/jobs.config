@@ -3,7 +3,7 @@ import { nanoid } from 'nanoid/non-secure';
 import { KEYS, PERIOD } from '../constants';
 import { isString } from './component';
 import { isUTCTime } from './validator';
-import { TWeekList, weekList } from './week';
+import { type TWeekList, weekList } from './week';
 
 export interface IItem {
   readonly id: string;

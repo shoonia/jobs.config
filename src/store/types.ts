@@ -20,6 +20,7 @@ export interface IEvents {
   'items/down': string;
   // router
   'router/change': ROUTER;
+  'router/open-modal': boolean;
   // validator
   'validator/input': string;
 }
@@ -30,6 +31,7 @@ export interface IState {
   readonly isMax: boolean;
   // router
   readonly path: ROUTER;
+  readonly openModal: boolean;
   // validator
   readonly validatorValue: string;
 }

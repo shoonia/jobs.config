@@ -11,7 +11,7 @@
   min-height: $body-height;
   max-height: $body-height;
   margin: 0;
-  padding: 4em 1em 1em;
+  padding: 0 1em 1em;
   overflow: auto;
   resize: none;
   border: none;
@@ -19,18 +19,6 @@
   white-space: pre;
   scrollbar-width: thin;
   user-select: all;
-}
-
-.copy {
-  position: absolute;
-  top: 1em;
-  right: 1.5em;
-}
-
-.export {
-  position: absolute;
-  bottom: 2em;
-  right: 2em;
 }
 
 @media (max-width: $mobile-width) {

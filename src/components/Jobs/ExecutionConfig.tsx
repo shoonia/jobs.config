@@ -27,7 +27,7 @@ export const ExecutionConfig: FC = () => {
 
   const cronMessage = isCron && (
     <div className={classNames([s.message, isError && s.error ])}>
-      {CronTrue({ value: cronExpression, setValidity })}
+      <CronTrue value={cronExpression} setValidity={setValidity} />
     </div>
   );
 
