@@ -3,9 +3,16 @@
 .box {
   width: 100%;
   min-width: calc($mobile-width - 30px);
-  padding: 50px;
+  padding: 10px 50px 25px;
   background-color: $color-background;
   border-radius: 8px;
+}
+
+.btns {
+  margin-top: 1em;
+  display: flex;
+  gap: 1em;
+  justify-content: end;
 }
 
 @media (max-width: $mobile-width) {

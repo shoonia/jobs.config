@@ -27,8 +27,16 @@ export const UploadModal: FC = () => {
     }
   };
 
-  const submit: EventListener = () => {
-    const [parsingError, config] = parseJSONC(ref.current);
+  const submit: EventListener = (event) => {
+    preventDefault(event);
+
+    const val = ref.current;
+
+    if (val.trim() === '') {
+      return close();
+    }
+
+    const [parsingError, config] = parseJSONC(val);
 
     if (!parsingError) {
       const [validationError] = isValidConfig(config);
@@ -40,17 +48,28 @@ export const UploadModal: FC = () => {
       }
     }
 
-    dispatch('validator/input', ref.current);
+    dispatch('validator/input', val);
     location.hash = ROUTER.VALIDATOR;
   };
 
   return (
-    <Modal label="Upload your config" close={close}>
-      <form onSubmit={preventDefault} className={s.box}>
+    <Modal label="Upload form" close={close}>
+      <form
+        onSubmit={submit}
+        className={s.box}
+      >
+        <h2>
+          Upload your config
+        </h2>
         <TextBox onInput={onInput} />
-        <Button onClick={submit}>
-          Upload
-        </Button>
+        <div className={s.btns}>
+          <Button type="submit">
+            Upload Config
+          </Button>
+          <Button onClick={close}>
+            Close
+          </Button>
+        </div>
       </form>
     </Modal>
   );
