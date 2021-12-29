@@ -38,9 +38,10 @@ export const Validator: FC = () => {
           />
           <aside className={s.tools}>
             <CopyLinkButton className={s.btn} />
-            <span className={s.btn}>
-              <UploadFile onLoad={onLoad} />
-            </span>
+            <UploadFile
+              className={s.btn}
+              onLoad={onLoad}
+            />
           </aside>
         </form>
         <Parser value={validatorValue} />

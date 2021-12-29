@@ -12,6 +12,7 @@ import { ROUTER } from '../../constants';
 import { Modal } from '../Modal';
 import { TextBox } from '../TextBox';
 import { Button } from '../Button';
+import { UploadFile } from '../UploadFile';
 
 export const UploadModal: FC = () => {
   const ref = useRef<string>('');
@@ -21,17 +22,7 @@ export const UploadModal: FC = () => {
     dispatch('router/open-modal', false);
   };
 
-  const onInput: EventListener = ({ target }) => {
-    if (target instanceof HTMLTextAreaElement) {
-      ref.current = target.value;
-    }
-  };
-
-  const submit: EventListener = (event) => {
-    preventDefault(event);
-
-    const val = ref.current;
-
+  const onLoad = (val: string): void => {
     if (val.trim() === '') {
       return close();
     }
@@ -52,16 +43,33 @@ export const UploadModal: FC = () => {
     location.hash = ROUTER.VALIDATOR;
   };
 
+  const onInput: EventListener = ({ target }) => {
+    if (target instanceof HTMLTextAreaElement) {
+      ref.current = target.value;
+    }
+  };
+
+  const onSubmit: EventListener = (event) => {
+    preventDefault(event);
+    onLoad(ref.current);
+  };
+
   return (
     <Modal label="Upload form" close={close}>
       <form
-        onSubmit={submit}
+        onSubmit={onSubmit}
         className={s.box}
       >
         <h2>
           Upload your config
         </h2>
-        <TextBox onInput={onInput} />
+        <div className={s.inputs}>
+          <UploadFile
+            className={s.file}
+            onLoad={onLoad}
+          />
+          <TextBox onInput={onInput} />
+        </div>
         <div className={s.btns}>
           <Button type="submit">
             Upload Config
