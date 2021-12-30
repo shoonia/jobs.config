@@ -1,20 +1,25 @@
 @import "../../styles/vars.css";
 
+.base {
+  cursor: pointer;
+  outline: none;
+  overflow: hidden;
+  position: relative;
+  user-select: none;
+  white-space: nowrap;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
 .btn {
+  composes: base;
   font-size: 1em;
   padding: 0.3em 1.3em;
   border-radius: 50px;
-  outline: none;
-  cursor: pointer;
   transition: all 0.2s ease-in-out;
-  user-select: none;
   border-style: solid;
   border-width: 1px;
-  display: inline-flex;
-  align-items: center;
-  white-space: nowrap;
-  position: relative;
-  overflow: hidden;
   color: #fff;
   border-color: #116dff;
   background-color: #116dff;
@@ -55,4 +60,15 @@
   margin: 0;
   opacity: 1;
   transition: 0s;
+}
+
+.blank {
+  composes: base;
+  appearance: none;
+  background-color: transparent;
+  border: none;
+  padding: 0;
+  margin: 0;
+  color: inherit;
+  font-size: inherit;
 }

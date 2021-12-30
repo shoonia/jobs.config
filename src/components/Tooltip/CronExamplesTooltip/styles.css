@@ -1,5 +1,7 @@
 @import "../../../styles/vars.css";
 
+$font-size: 0.8em;
+
 .list {
   list-style: none;
   padding: 10px 20px;
@@ -12,14 +14,7 @@
 }
 
 .btn {
-  cursor: pointer;
-  white-space: nowrap;
-  appearance: none;
-  background: none;
-  border: none;
-  outline: none;
-  margin: 0;
-  padding: 0;
+  font-size: $font-size;
 }
 
 .btn:hover,
@@ -38,7 +33,7 @@
 }
 
 .link {
-  font-size: 13px;
+  font-size: $font-size;
   color: $color-primary;
   display: block;
   border-top: $decorate-border;

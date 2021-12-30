@@ -1,6 +1,7 @@
 import btn from '../Button/styles.css';
 import { isSupportFilePicker, saveFile } from './util';
 import { IconDownload } from '../Icons/IconDownload';
+import { Button } from '../Button';
 
 interface Props {
   label?: string;
@@ -17,14 +18,12 @@ export const DownloadButton: FC<Props> = ({
     };
 
     return (
-      <button
-        type="button"
-        className={btn.btn}
+      <Button
         onClick={onClick}
         aria-label={label}
       >
         <IconDownload />
-      </button>
+      </Button>
     );
   }
 

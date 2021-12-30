@@ -4,18 +4,9 @@
   width: 24px;
   height: 24px;
   vertical-align: middle;
-  cursor: pointer;
   color: $color-primary;
   border: 1px solid $color-primary;
   border-radius: 50%;
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  appearance: none;
-  background: none;
-  outline: none;
-  margin: 0;
-  padding: 0;
 }
 
 .btn:hover,

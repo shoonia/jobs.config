@@ -3,6 +3,7 @@ import { useStoreon } from 'storeon/preact';
 import s from './styles.css';
 import type { IState, IEvents } from '../../store';
 import { useFormScope } from '../../hooks/formScope';
+import { BlankButton } from '../Button';
 
 export const ItemMenu: FC = () => {
   const { id } = useFormScope();
@@ -27,16 +28,14 @@ export const ItemMenu: FC = () => {
   return (
     <div className={s.buttons}>
       <div>
-        <button
-          type="button"
+        <BlankButton
           aria-label="Move up"
           onClick={up}
           className={s.btn_up}
           data-rh="Move up"
           data-rh-at="top"
         />
-        <button
-          type="button"
+        <BlankButton
           aria-label="Move down"
           onClick={down}
           className={s.btn_down}
@@ -45,16 +44,14 @@ export const ItemMenu: FC = () => {
         />
       </div>
       <div>
-        <button
-          type="button"
+        <BlankButton
           aria-label="remove"
           onClick={remove}
           className={s.btn_remove}
           data-rh="Remove"
           data-rh-at="top"
         />
-        <button
-          type="button"
+        <BlankButton
           aria-label="clone"
           onClick={clone}
           className={s.btn_clone}

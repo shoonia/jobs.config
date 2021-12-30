@@ -5,6 +5,7 @@ import cronExamples from './cronExamples.json';
 import type { IState, IEvents } from '../../../store';
 import { KEYS } from '../../../constants';
 import { classNames } from '../../../util/component';
+import { BlankButton } from '../../Button';
 
 interface Props {
   target: HTMLElement;
@@ -27,7 +28,7 @@ export const CronExamplesTooltip: FC<Props> = ({ target }) => {
   };
 
   const list = cronExamples.map((i) => {
-    const buttonClassName = classNames([
+    const classList = classNames([
       s.btn,
       cronExpression === i.value && s.active,
     ]);
@@ -37,14 +38,13 @@ export const CronExamplesTooltip: FC<Props> = ({ target }) => {
         key={i.value}
         className={s.item}
       >
-        <button
-          type="button"
+        <BlankButton
           value={i.value}
           title={i.value}
-          className={buttonClassName}
+          className={classList}
         >
           {i.label}
-        </button>
+        </BlankButton>
       </li>
     );
   });

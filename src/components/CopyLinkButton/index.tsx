@@ -4,6 +4,7 @@ import { store } from '../../store';
 import { delay } from '../../util/component';
 import { createValidatorLink } from '../../util/validatorValue';
 import { IconCopyLink } from '../Icons/IconCopyLink';
+import { BlankButton } from '../Button';
 
 interface Props {
   className?: string;
@@ -31,8 +32,7 @@ export const CopyLinkButton: FC<Props> = ({ className }) => {
   };
 
   return (
-    <button
-      type="button"
+    <BlankButton
       onClick={onClick}
       className={className}
       aria-label={label}
@@ -40,6 +40,6 @@ export const CopyLinkButton: FC<Props> = ({ className }) => {
       data-rh-at="left"
     >
       <IconCopyLink />
-    </button>
+    </BlankButton>
   );
 };
