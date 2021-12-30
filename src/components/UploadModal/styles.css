@@ -9,6 +9,12 @@
   position: relative;
 }
 
+.close {
+  position: absolute;
+  top: 20px;
+  right: 25px;
+}
+
 .btns {
   margin-top: 1em;
   display: flex;

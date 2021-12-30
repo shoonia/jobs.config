@@ -11,8 +11,9 @@ import { type IConfig, createItems } from '../../util/items';
 import { ROUTER } from '../../constants';
 import { Modal } from '../Modal';
 import { TextBox } from '../TextBox';
-import { Button } from '../Button';
+import { BlankButton, Button } from '../Button';
 import { UploadFile } from '../UploadFile';
+import { IconCancel } from '../Icons/IconCancel';
 
 export const UploadModal: FC = () => {
   const ref = useRef<string>('');
@@ -60,6 +61,13 @@ export const UploadModal: FC = () => {
         onSubmit={onSubmit}
         className={s.box}
       >
+        <BlankButton
+          onClick={close}
+          className={s.close}
+          aria-label="close modal"
+        >
+          <IconCancel />
+        </BlankButton>
         <h2>
           Upload your config
         </h2>
@@ -75,7 +83,7 @@ export const UploadModal: FC = () => {
             Upload Config
           </Button>
           <Button onClick={close}>
-            Close
+            Cancel
           </Button>
         </div>
       </form>
