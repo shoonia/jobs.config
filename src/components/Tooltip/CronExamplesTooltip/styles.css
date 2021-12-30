@@ -1,6 +1,6 @@
 @import "../../../styles/vars.css";
 
-$font-size: 0.8em;
+$font-size: 0.85em;
 
 .list {
   list-style: none;
@@ -15,21 +15,13 @@ $font-size: 0.8em;
 
 .btn {
   font-size: $font-size;
+  border-bottom: 1px solid transparent;
 }
 
 .btn:hover,
 .active {
   color: $color-success;
-}
-
-.active::before {
-  content: url("data:image/svg+xml,%3Csvg fill='%23428359' viewBox='0 0 100 100' width='6' height='6' xmlns='http://www.w3.org/2000/svg'%3E%3Ccircle cx='50' cy='50' r='50'/%3E%3C/svg%3E");
-  display: block;
-  width: 6px;
-  height: 6px;
-  position: absolute;
-  top: 2px;
-  left: -11px;
+  border-bottom-color: $color-success;
 }
 
 .link {
