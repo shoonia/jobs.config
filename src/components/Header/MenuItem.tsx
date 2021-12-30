@@ -32,6 +32,7 @@ export const MenuItem: FC<Props> = ({ children, path }) => {
         className={className}
         onClick={onClick}
         aria-current={isActive ? 'page' : null}
+        tabIndex={0}
       >
         {children}
       </a>

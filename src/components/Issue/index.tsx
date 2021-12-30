@@ -10,6 +10,7 @@ export const Issue: FC = () => (
     aria-label="Report issue"
     data-rh="Report issue"
     data-rh-at="left"
+    tabIndex={0}
   >
     <IssueIcon />
   </a>

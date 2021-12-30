@@ -61,6 +61,7 @@ export const CronExamplesTooltip: FC<Props> = ({ target }) => {
           className={s.link}
           target="_blank"
           rel="noreferrer"
+          tabIndex={0}
         >
           You can request an example
         </a>

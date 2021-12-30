@@ -34,6 +34,7 @@ export const DownloadButton: FC<Props> = ({
       download="jobs.config"
       type="application/json"
       aria-label={label}
+      tabIndex={0}
     >
       <IconDownload />
     </a>

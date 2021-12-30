@@ -16,6 +16,7 @@ export const GitHub: FC = () => {
         className={btnClass}
         href="https://github.com/shoonia/jobs.config"
         aria-label="Star on GitHub"
+        tabIndex={0}
       >
         <span className={s.label}>
           Star
@@ -28,6 +29,7 @@ export const GitHub: FC = () => {
           aria-label={`${stars} stargazers on GitHub`}
           target="_blank"
           rel="noopener noreferrer"
+          tabIndex={0}
         >
           {stars}
         </a>
