@@ -28,8 +28,11 @@ export const Buttons: FC = () => {
           {' New Job'}
         </Button>
       </Toolbar.Hint>
-      <Toolbar.Hint label="Upload config">
-        <Button onClick={openUploadModal}>
+      <Toolbar.Hint label="Upload your config">
+        <Button
+          onClick={openUploadModal}
+          aria-label="Upload your config"
+        >
           <IconUpload />
         </Button>
       </Toolbar.Hint>
