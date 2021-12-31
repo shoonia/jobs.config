@@ -229,6 +229,9 @@ exports.configFactory = (buildEnv) => {
           },
         ],
       }),
+      isProd && new webpack.optimize.MinChunkSizePlugin({
+        minChunkSize: 15_000,
+      }),
       isDev && new webpack.HotModuleReplacementPlugin(),
       isDev && new ForkTsCheckerWebpackPlugin({
         typescript: {
