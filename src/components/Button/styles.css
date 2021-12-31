@@ -4,7 +4,6 @@
   cursor: pointer;
   outline: none;
   overflow: hidden;
-  position: relative;
   user-select: none;
   white-space: nowrap;
   display: inline-flex;
@@ -23,6 +22,7 @@
   color: #fff;
   border-color: #116dff;
   background-color: #116dff;
+  position: relative;
 }
 
 .btn:disabled {

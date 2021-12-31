@@ -82,6 +82,12 @@ exports.configFactory = (buildEnv) => {
       splitChunks: {
         cacheGroups: {
           vendors: false,
+          styles: {
+            name: "styles",
+            type: "css/mini-extract",
+            chunks: "all",
+            enforce: true,
+          },
         },
       },
     },
