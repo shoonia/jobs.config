@@ -20,7 +20,7 @@ export const UploadModal: FC = () => {
   const { dispatch } = useStoreon<IState, IEvents>();
 
   const close = (): void => {
-    dispatch('router/open-modal', false);
+    location.hash = ROUTER.BUILDER;
   };
 
   const onLoad = (val: string): void => {

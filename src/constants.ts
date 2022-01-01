@@ -12,6 +12,7 @@ export const enum PERIOD {
 
 export const enum ROUTER {
   BUILDER = '#builder',
+  UPLOAD = '#upload',
   VALIDATOR = '#validator',
 }
 

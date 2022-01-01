@@ -6,27 +6,19 @@ const getPath = (): ROUTER => {
     .trim()
     .toLowerCase();
 
-  return (hash === ROUTER.VALIDATOR)
-    ? ROUTER.VALIDATOR
-    : ROUTER.BUILDER;
+  switch (hash) {
+    case ROUTER.VALIDATOR:
+    case ROUTER.UPLOAD:
+      return hash;
+
+    default:
+      return ROUTER.BUILDER;
+  }
 };
 
 export const routerModule: TModule = ({ on, get, dispatch }) => {
-  on('@init', () => {
-    return {
-      path: getPath(),
-      openModal: false,
-    };
-  });
-
-  on('router/change', (_, path) => {
-    return {
-      path,
-      openModal: false,
-    };
-  });
-
-  on('router/open-modal', (_, openModal) => ({ openModal }));
+  on('@init', () => ({ path: getPath() }));
+  on('router/change', (_, path) => ({ path }));
 
   window.addEventListener('hashchange', () => {
     const { path } = get();

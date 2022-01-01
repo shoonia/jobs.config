@@ -5,6 +5,7 @@ import { Button } from '../Button';
 import { Toolbar } from '../Toolbar';
 import { IconPlus } from '../Icons/IconPlus';
 import { IconUpload } from '../Icons/IconUpload';
+import { ROUTER } from '../../constants';
 
 export const Buttons: FC = () => {
   const { dispatch, isMax } = useStoreon<IState, IEvents>('isMax');
@@ -14,7 +15,7 @@ export const Buttons: FC = () => {
   };
 
   const openUploadModal: EventListener = () => {
-    dispatch('router/open-modal', true);
+    location.hash = ROUTER.UPLOAD;
   };
 
   return (
