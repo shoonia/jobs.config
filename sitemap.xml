@@ -9,6 +9,11 @@
     <changefreq>daily</changefreq>
     <priority>0.7</priority>
   </url>
+   <url>
+    <loc>https://shoonia.github.io/jobs.config/#upload</loc>
+    <changefreq>daily</changefreq>
+    <priority>0.7</priority>
+  </url>
   <url>
     <loc>https://shoonia.github.io/jobs.config/#validator</loc>
     <changefreq>daily</changefreq>
