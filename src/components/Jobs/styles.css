@@ -2,7 +2,7 @@
 
 .list {
   list-style: none;
-  padding: 0;
+  padding: 1em;
   margin: 0 auto;
   max-width: 100%;
   min-height: $body-height;
