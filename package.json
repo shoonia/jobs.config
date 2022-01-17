@@ -14,7 +14,7 @@
   "dependencies": {
     "cron-validator": "^1.2.1",
     "cronstrue": "^1.122.0",
-    "nanoid": "^3.1.30",
+    "nanoid": "^3.2.0",
     "parse-json": "^6.0.2",
     "preact": "^10.6.4",
     "react-hint": "^3.2.1",
