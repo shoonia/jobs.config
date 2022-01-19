@@ -8,6 +8,7 @@ Scheduling recurring `jobs.config` for Velo by Wix
 
 - [Builder](https://shoonia.github.io/jobs.config/#builder)
 - [Validator](https://shoonia.github.io/jobs.config/#validator)
+- [Upload a config to edit](https://shoonia.github.io/jobs.config/#upload)
 
 Documentation
 - [Scheduling Recurring Jobs](https://support.wix.com/en/article/velo-scheduling-recurring-jobs)
