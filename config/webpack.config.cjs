@@ -234,11 +234,9 @@ exports.configFactory = (buildEnv) => {
       }),
       isDev && new webpack.HotModuleReplacementPlugin(),
       isDev && new ForkTsCheckerWebpackPlugin({
+        async: isDev,
         typescript: {
           configFile: appPaths.appTsConfig,
-        },
-        eslint: {
-          files: './src/**/*.{ts,tsx}',
         },
       }),
       new webpack.DefinePlugin({

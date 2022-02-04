@@ -1,4 +1,4 @@
-export const IconClone = () => (
+export const IconClone: FC = () => (
   <svg
     width="24"
     height="24"

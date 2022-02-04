@@ -1,4 +1,4 @@
-export const IconBin = () => (
+export const IconBin: FC = () => (
   <svg
     width="24"
     height="24"
