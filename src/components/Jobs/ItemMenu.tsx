@@ -4,6 +4,9 @@ import s from './styles.css';
 import type { IState, IEvents } from '../../store';
 import { useFormScope } from '../../hooks/formScope';
 import { BlankButton } from '../Button';
+import { IconBin } from '../Icons/IconBin';
+import { IconClone } from '../Icons/IconClone';
+import { IconChevron } from '../Icons/IconChevron';
 
 export const ItemMenu: FC = () => {
   const { id } = useFormScope();
@@ -34,31 +37,39 @@ export const ItemMenu: FC = () => {
           className={s.btn_up}
           data-rh="Move up"
           data-rh-at="top"
-        />
+        >
+          <IconChevron up={false} />
+        </BlankButton>
         <BlankButton
           aria-label="Move down"
           onClick={down}
           className={s.btn_down}
           data-rh="Move down"
           data-rh-at="top"
-        />
+        >
+          <IconChevron up />
+        </BlankButton>
       </div>
       <div>
         <BlankButton
           aria-label="remove"
           onClick={remove}
-          className={s.btn_remove}
+          className={s.btn}
           data-rh="Remove"
           data-rh-at="top"
-        />
+        >
+          <IconBin />
+        </BlankButton>
         <BlankButton
           aria-label="clone"
           onClick={clone}
-          className={s.btn_clone}
+          className={s.btn}
           data-rh="Clone"
           data-rh-at="top"
           disabled={isMax}
-        />
+        >
+          <IconClone />
+        </BlankButton>
       </div>
     </div>
   );
