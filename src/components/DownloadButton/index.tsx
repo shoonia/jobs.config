@@ -13,7 +13,7 @@ export const DownloadButton: FC<Props> = ({
   jsonString,
 }) => {
   if (isSupportFilePicker) {
-    const onClick = (): void => {
+    const onClick: EventListener = () => {
       saveFile(jsonString);
     };
 
