@@ -217,6 +217,7 @@ exports.configFactory = (buildEnv) => {
       isProd && new MiniCssExtractPlugin({
         filename: 'css/[name].[contenthash:4].css',
         chunkFilename: 'css/[name].[chunkhash:4].css',
+        ignoreOrder: true,
       }),
       isProd && new HTMLInlineCSSWebpackPlugin({
         leaveCSSFile: true,
