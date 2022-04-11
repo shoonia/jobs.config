@@ -19,7 +19,7 @@
     "preact": "^10.6.6",
     "react-hint": "^3.2.1",
     "react-modal": "^3.14.4",
-    "storeon": "^3.1.4",
+    "storeon": "^3.1.5",
     "strip-json-comments": "^4.0.0"
   },
   "devDependencies": {
