@@ -20,10 +20,7 @@ exports.configFactory = (buildEnv) => {
     mode: buildEnv,
     bail: isProd,
     devtool: isDev && 'cheap-module-source-map',
-    entry: [
-      isDev && 'react-dev-utils/webpackHotDevClient',
-      appPaths.appIndexTs,
-    ].filter(Boolean),
+    entry: appPaths.appIndexTs,
     output: {
       path: isProd ? appPaths.appBuild : undefined,
       pathinfo: isDev,
@@ -83,9 +80,9 @@ exports.configFactory = (buildEnv) => {
         cacheGroups: {
           vendors: false,
           styles: {
-            name: "styles",
-            type: "css/mini-extract",
-            chunks: "all",
+            name: 'styles',
+            type: 'css/mini-extract',
+            chunks: 'all',
             enforce: true,
           },
         },
@@ -110,7 +107,7 @@ exports.configFactory = (buildEnv) => {
       }
     },
     externals: {
-      'color-convert': '{}', // A dead code. It's a dependency of "parse-json" that not use.
+      'color-convert': '{}', // A dead code. It's a dependency of 'parse-json' that not use.
       'supports-color': 'false',
       'escape-string-regexp': '()=>{}'
     },
@@ -181,9 +178,7 @@ exports.configFactory = (buildEnv) => {
                       plugins: [
                         require('postcss-import'),
                         require('postcss-simple-vars'),
-                        isProd && require('autoprefixer')({
-                          flexbox: 'no-2009',
-                        }),
+                        isProd && require('autoprefixer'),
                       ].filter(Boolean),
                     },
                   },
@@ -233,7 +228,6 @@ exports.configFactory = (buildEnv) => {
       isProd && new webpack.optimize.MinChunkSizePlugin({
         minChunkSize: 15_000,
       }),
-      isDev && new webpack.HotModuleReplacementPlugin(),
       isDev && new ForkTsCheckerWebpackPlugin({
         async: isDev,
         typescript: {

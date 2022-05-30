@@ -14,7 +14,7 @@ const port = 3000;
 
 const devServer = new WebpackDevServer({
     compress: true,
-    hot: true,
+    hot: false,
     historyApiFallback: {
       disableDotRule: true,
       index: appPaths.publicPath,
