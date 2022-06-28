@@ -16,7 +16,7 @@
     "cronstrue": "^2.10.0",
     "nanoid": "^4.0.0",
     "parse-json": "^6.0.2",
-    "preact": "^10.8.1",
+    "preact": "^10.8.2",
     "react-hint": "^3.2.1",
     "react-modal": "^3.15.1",
     "storeon": "^3.1.5",
