@@ -16,12 +16,8 @@ export const Builder: FC = () => {
 
   return (
     <div className={s.box}>
-      <div className={s.column}>
-        <Editor />
-      </div>
-      <div className={s.column}>
-        <Preview />
-      </div>
+      <Editor />
+      <Preview />
       {uploadModal}
     </div>
   );

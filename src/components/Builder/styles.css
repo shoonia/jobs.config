@@ -2,21 +2,11 @@
 
 .box {
   display: grid;
-  grid-gap: 0;
   grid-template-columns: minmax(500px, auto) minmax(300px, 600px);
-  padding: 0;
-}
-
-.column {
-  min-height: $body-height;
 }
 
 @media (max-width: $mobile-width) {
   .box {
     display: block;
-  }
-
-  .column {
-    border-bottom: 1px solid $color-decorative-border;
   }
 }
