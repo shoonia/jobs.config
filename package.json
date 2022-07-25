@@ -4,6 +4,7 @@
   "version": "2.0.0",
   "main": "src/index.html",
   "type": "module",
+  "packageManager": "^npm@8.15.0",
   "scripts": {
     "start": "node scripts/start.cjs",
     "build": "node scripts/build.cjs",
@@ -29,7 +30,7 @@
     "@babel/preset-typescript": "^7.18.6",
     "@types/css-modules": "^1.0.2",
     "@types/jest": "^28.1.6",
-    "@types/node": "^16.11.45",
+    "@types/node": "^18.6.1",
     "@types/wicg-file-system-access": "^2020.9.5",
     "@typescript-eslint/eslint-plugin": "^5.30.7",
     "@typescript-eslint/parser": "^5.30.7",
@@ -60,7 +61,7 @@
     "terser-webpack-plugin": "^5.3.3",
     "ts-jest": "^28.0.7",
     "typescript": "^4.7.4",
-    "webpack": "^5.73.0",
+    "webpack": "^5.74.0",
     "webpack-dev-server": "^4.9.3"
   },
   "homepage": "https://shoonia.github.io/jobs.config/",
