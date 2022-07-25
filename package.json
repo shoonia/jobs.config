@@ -20,7 +20,7 @@
     "react-hint": "^3.2.1",
     "react-modal": "^3.15.1",
     "storeon": "^3.1.5",
-    "strip-json-comments": "^4.0.0"
+    "strip-json-comments": "^5.0.0"
   },
   "devDependencies": {
     "@babel/core": "^7.18.9",
