@@ -1,5 +1,3 @@
-import { nanoid } from 'nanoid/non-secure';
-
 import { KEYS, PERIOD } from '../constants';
 import { isString } from './component';
 import { isUTCTime } from './validator';
@@ -68,8 +66,6 @@ const getPeriod = (exec: IExecutionConfig): PERIOD => {
   return PERIOD.DAILY;
 };
 
-export const createId = (): string => `i${nanoid(15)}`;
-
 export const createConfig = (items: IItem[]): string => {
   let noop: undefined;
 
@@ -93,7 +89,7 @@ export const createConfig = (items: IItem[]): string => {
 };
 
 export const newItem = (): IItem => ({
-  id: createId(),
+  id: crypto.randomUUID(),
   functionLocation: '/filename.js',
   functionName: 'funcName',
   description: '',
@@ -109,7 +105,7 @@ export const createItems = (config: IConfig): IItem[] => {
     const exec = i.executionConfig;
 
     return {
-      id: createId(),
+      id: crypto.randomUUID(),
       functionLocation: i.functionLocation,
       functionName: i.functionName,
       description: isString(i.description) ? i.description : '',

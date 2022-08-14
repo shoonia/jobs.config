@@ -1,5 +1,3 @@
-import { nanoid } from 'nanoid/non-secure';
-
 const serialize = (ops: Record<string, string>) => {
   const data: string[] = [];
 
@@ -12,7 +10,7 @@ const serialize = (ops: Record<string, string>) => {
 
 export const sendBeacon = (): void => {
   const cookie = document.cookie.replace(/(?:(?:^|.*;\s*)cid\s*=\s*([^;]*).*$)|^.*$/, '$1');
-  const cid = cookie !== '' ? cookie : nanoid();
+  const cid = cookie !== '' ? cookie : crypto.randomUUID();
 
   try {
     navigator.sendBeacon('https://www.google-analytics.com/collect',
