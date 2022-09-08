@@ -18,7 +18,7 @@ export const Preview: FC = () => {
   const clipboard: EventListener = async () => {
     await navigator.clipboard.writeText(config);
 
-    if (output.current instanceof Node) {
+    if (output.current) {
       const selection = window.getSelection();
       const range = document.createRange();
 

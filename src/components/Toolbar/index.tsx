@@ -7,7 +7,7 @@ interface IWrapperProps {
 }
 
 interface IHintProps {
-  label?: string;
+  label: string;
   children: ComponentChildren;
 }
 
