@@ -4,7 +4,7 @@ import { IconDownload } from '../Icons/IconDownload';
 import { Button } from '../Button';
 
 interface Props {
-  label?: string;
+  label: string;
   jsonString: string;
 }
 
@@ -13,9 +13,7 @@ export const DownloadButton: FC<Props> = ({
   jsonString,
 }) => {
   if (isSupportFilePicker) {
-    const onClick: EventListener = () => {
-      saveFile(jsonString);
-    };
+    const onClick = () => saveFile(jsonString);
 
     return (
       <Button

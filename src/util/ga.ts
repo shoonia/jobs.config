@@ -25,7 +25,7 @@ export const sendBeacon = (): void => {
         dl: location.origin + location.pathname,
         ul: navigator.language.toLowerCase(),
         sr: screen.width + 'x' + screen.height,
-        vp: visualViewport.width + 'x' + visualViewport.height,
+        vp: visualViewport?.width + 'x' + visualViewport?.height,
       }),
     );
   } catch { /**/ }
