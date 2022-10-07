@@ -5,15 +5,15 @@ import { Button } from '../Button';
 
 interface Props {
   label: string;
-  jsonString: string;
+  data: string;
 }
 
 export const DownloadButton: FC<Props> = ({
   label,
-  jsonString,
+  data,
 }) => {
   if (isSupportFilePicker) {
-    const onClick = () => saveFile(jsonString);
+    const onClick = () => saveFile(data);
 
     return (
       <Button
@@ -27,7 +27,7 @@ export const DownloadButton: FC<Props> = ({
 
   return (
     <a
-      href={`data:application/json,${encodeURIComponent(jsonString)}`}
+      href={`data:application/json,${encodeURIComponent(data)}`}
       className={btn.btn}
       download="jobs.config"
       type="application/json"
