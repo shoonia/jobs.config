@@ -1,4 +1,4 @@
-@import "../../styles/vars.css";
+@import url("../../styles/vars.css");
 
 @keyframes bounce {
   50% {
