@@ -1,7 +1,5 @@
-import { useStoreon } from 'storeon/preact';
-
 import s from './styles.css';
-import type { IState, IEvents } from '../../store';
+import { useStoreon } from '../../store';
 import { preventDefault } from '../../util/component';
 import { Parser } from '../Parser';
 import { CopyLinkButton } from '../CopyLinkButton';
@@ -9,7 +7,7 @@ import { UploadFile } from '../UploadFile';
 import { TextBox } from '../TextBox';
 
 export const Validator: FC = () => {
-  const { validatorValue, dispatch } = useStoreon<IState, IEvents>('validatorValue');
+  const { validatorValue, dispatch } = useStoreon('validatorValue');
 
   const onInput: EventListener = ({ target }) => {
     if (target instanceof HTMLTextAreaElement) {

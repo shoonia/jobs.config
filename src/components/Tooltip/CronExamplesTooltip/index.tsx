@@ -1,8 +1,6 @@
-import { useStoreon } from 'storeon/preact';
-
 import s from './styles.css';
 import cronExamples from './cronExamples.json';
-import type { IState, IEvents } from '../../../store';
+import { useStoreon } from '../../../store';
 import { KEYS } from '../../../constants';
 import { classNames } from '../../../util/component';
 import { BlankButton } from '../../Button';
@@ -12,7 +10,7 @@ interface Props {
 }
 
 export const CronExamplesTooltip: FC<Props> = ({ target }) => {
-  const { items, dispatch } = useStoreon<IState, IEvents>('items');
+  const { items, dispatch } = useStoreon('items');
 
   const { id } = target.dataset;
   const { cronExpression } = items.find((i) => i.id === id) || {};

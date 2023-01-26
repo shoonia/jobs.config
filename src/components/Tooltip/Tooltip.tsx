@@ -1,10 +1,9 @@
 import { h, Component, createRef } from 'preact';
 import { useCallback } from 'preact/hooks';
 import HintFactory from 'react-hint';
-import { useStoreon } from 'storeon/preact';
 
 import s from './styles.css';
-import type { IState } from '../../store';
+import { useStoreon } from '../../store';
 import { KEYS } from '../../constants';
 import { FunctionName } from './FunctionName';
 import { FunctionLocation } from './FunctionLocation';
@@ -13,7 +12,7 @@ import { CronExamplesTooltip } from './CronExamplesTooltip';
 const Hint = HintFactory({ createElement: h, Component, createRef });
 
 export const Tooltips: FC = () => {
-  const { items } = useStoreon<IState>('items');
+  const { items } = useStoreon('items');
 
   const onRenderContent = useCallback((target: HTMLInputElement) => {
     const { name } = target.dataset;

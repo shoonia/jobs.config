@@ -1,9 +1,8 @@
 
-import { useStoreon } from 'storeon/preact';
 import { useRef } from 'preact/hooks';
 
 import s from './styles.css';
-import type { IEvents, IState } from '../../store';
+import { useStoreon } from '../../store';
 import { preventDefault } from '../../util/component';
 import { parseJSONC } from '../Parser/parseJSONC';
 import { isValidConfig } from '../Parser/isValidConfig';
@@ -17,7 +16,7 @@ import { IconCancel } from '../Icons/IconCancel';
 
 export const UploadModal: FC = () => {
   const ref = useRef<string>('');
-  const { dispatch } = useStoreon<IState, IEvents>();
+  const { dispatch } = useStoreon();
 
   const close = (): void => {
     location.hash = ROUTER.BUILDER;
