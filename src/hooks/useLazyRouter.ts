@@ -1,7 +1,6 @@
 import { lazy } from 'preact/compat';
-import { useStoreon } from 'storeon/preact';
 
-import type { IState } from '../store';
+import { useStoreon } from '../store';
 import { ROUTER } from '../constants';
 
 const BuilderPage: FC = lazy(() => {
@@ -25,7 +24,7 @@ const ValidatorPage: FC = lazy(() => {
 });
 
 export const useLazyRouter = (): FC => {
-  const { path } = useStoreon<IState>('path');
+  const { path } = useStoreon('path');
 
   switch (path) {
     case ROUTER.VALIDATOR: {

@@ -1,14 +1,12 @@
-import { useStoreon } from 'storeon/preact';
-
 import s from './styles.css';
-import type { IState } from '../../store';
+import { useStoreon } from '../../store';
 import { ROUTER } from '../../constants';
 import { Editor } from '../Editor';
 import { Preview } from '../Preview';
 import { UploadModal } from '../UploadModal';
 
 export const Builder: FC = () => {
-  const { path } = useStoreon<IState>('path');
+  const { path } = useStoreon('path');
 
   const uploadModal = path === ROUTER.UPLOAD && (
     <UploadModal />

@@ -1,7 +1,5 @@
-import { useStoreon } from 'storeon/preact';
-
 import s from './styles.css';
-import type { IState, IEvents } from '../../store';
+import { useStoreon } from '../../store';
 import { useFormScope } from '../../hooks/formScope';
 import { BlankButton } from '../Button';
 import { IconBin } from '../Icons/IconBin';
@@ -10,7 +8,7 @@ import { IconChevron } from '../Icons/IconChevron';
 
 export const ItemMenu: FC = () => {
   const { id } = useFormScope();
-  const { dispatch, isMax } = useStoreon<IState, IEvents>('isMax');
+  const { dispatch, isMax } = useStoreon('isMax');
 
   const up: EventListener = () => {
     dispatch('items/up', id);

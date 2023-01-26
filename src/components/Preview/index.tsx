@@ -1,8 +1,7 @@
-import { useStoreon } from 'storeon/preact';
 import { useRef } from 'preact/hooks';
 
 import s from './styles.css';
-import type { IState } from '../../store';
+import { useStoreon } from '../../store';
 import { Button } from '../Button';
 import { Toolbar } from '../Toolbar';
 import { JSON } from './JSON';
@@ -15,7 +14,7 @@ const createData = (config: string): string => `// Jobs Config Generator
 ${config}`;
 
 export const Preview: FC = () => {
-  const { items } = useStoreon<IState>('items');
+  const { items } = useStoreon('items');
   const output = useRef<HTMLPreElement>(null);
 
   const config = createConfig(items);

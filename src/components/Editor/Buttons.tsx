@@ -1,6 +1,4 @@
-import { useStoreon } from 'storeon/preact';
-
-import type { IState, IEvents } from '../../store';
+import { useStoreon } from '../../store';
 import { Button } from '../Button';
 import { Toolbar } from '../Toolbar';
 import { IconPlus } from '../Icons/IconPlus';
@@ -8,7 +6,7 @@ import { IconUpload } from '../Icons/IconUpload';
 import { ROUTER } from '../../constants';
 
 export const Buttons: FC = () => {
-  const { dispatch, isMax } = useStoreon<IState, IEvents>('isMax');
+  const { dispatch, isMax } = useStoreon('isMax');
 
   const createItem: EventListener = () => {
     dispatch('items/new');
