@@ -8,7 +8,7 @@ export interface Props {
 }
 
 export const CronTrue: FC<Props> = ({ value, setValidity }) => {
-  const [isError, message] = useCron(value);
+  const [isError, message] = useCron(value.trim());
 
   useEffect(() => {
     setValidity(isError);
