@@ -46,7 +46,7 @@
     "fork-ts-checker-webpack-plugin": "^7.3.0",
     "html-inline-css-webpack-plugin": "^1.11.1",
     "html-webpack-plugin": "^5.5.0",
-    "jest": "^29.4.0",
+    "jest": "^29.4.1",
     "mini-css-class-name": "^0.13.2",
     "mini-css-extract-plugin": "^2.7.2",
     "postcss": "^8.4.21",

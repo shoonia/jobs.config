@@ -17,6 +17,12 @@ const invalidList = [
   '0 0 LW * *',
 ];
 
+jest.mock('preact/hooks', () => {
+  return {
+    useMemo: jest.fn((fn) => fn()),
+  };
+});
+
 describe('useCron', () => {
   it.each(invalidList)('should be invalid config with %s', (extension) => {
     expect(useCron(extension)).toEqual([true, expect.any(String)]);
