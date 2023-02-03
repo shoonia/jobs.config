@@ -1,4 +1,4 @@
-import { useCron } from './useCron';
+import { parseCron } from './parseCron';
 import list from '../Tooltip/CronExamplesTooltip/cronExamples.json';
 
 const invalidList = [
@@ -17,18 +17,12 @@ const invalidList = [
   '0 0 LW * *',
 ];
 
-jest.mock('preact/hooks', () => {
-  return {
-    useMemo: jest.fn((fn) => fn()),
-  };
-});
-
-describe('useCron', () => {
+describe('parseCron', () => {
   it.each(invalidList)('should be invalid config with %s', (extension) => {
-    expect(useCron(extension)).toEqual([true, expect.any(String)]);
+    expect(parseCron(extension)).toEqual([true, expect.any(String)]);
   });
 
   it.each(list)('should be valid cron expression', (item) => {
-    expect(useCron(item.value)).toEqual([false, expect.any(String)]);
+    expect(parseCron(item.value)).toEqual([false, expect.any(String)]);
   });
 });

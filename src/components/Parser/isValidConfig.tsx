@@ -6,7 +6,7 @@ import { weekList } from '../../util/week';
 import { isValidFunctionLocation, isUTCTime, isValidFunctionName } from '../../util/validator';
 import { isNumber, isObject, isString } from '../../util/component';
 import { KEYS } from '../../constants';
-import { useCron } from '../CronTrue/useCron';
+import { parseCron } from '../CronTrue/parseCron';
 
 type TValidResult = [
   hasError: boolean,
@@ -215,7 +215,7 @@ export const isValidConfig = (config: unknown): TValidResult => {
         );
       }
 
-      const [isError, message] = useCron(CRON_EXP);
+      const [isError, message] = parseCron(CRON_EXP);
 
       if (isError) {
         return error(
