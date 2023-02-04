@@ -9,8 +9,8 @@ interface TPathTree {
 
 const iconClass = (path: string, isLast: boolean): string => {
   if (!isLast) return s.dir;
-  if (/\.js$/.test(path)) return s.js;
-  if (/\.jsw$/.test(path)) return s.jsw;
+  if (path.endsWith('.js')) return s.js;
+  if (path.endsWith('.jsw')) return s.jsw;
 
   return s.blank;
 };

@@ -1,6 +1,6 @@
 import type { TModule } from './types';
 import { MAX_ITEMS } from '../constants';
-import { newItem, type IItem } from '../util/items';
+import { type IItem, newItem } from '../util/items';
 
 const getItems = (): IItem[] => {
   const data = sessionStorage.getItem('items');
@@ -27,9 +27,7 @@ const payload = (items: IItem[]) => ({
 
 export const itemsModule: TModule = ({ on }) => {
   on('@init', () => {
-    const items = getItems();
-
-    return payload(items);
+    return payload(getItems());
   });
 
   on('@changed', ({ items }, changes) => {
