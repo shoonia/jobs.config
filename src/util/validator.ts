@@ -14,12 +14,10 @@ export const isUTCTime = (val: unknown): val is string => {
 };
 
 export const isInvalidPath = (path: string, isLast: boolean): boolean => {
-  const DOT = '.';
-
   return path === ''
     || PATH.test(path)
-    || path[0] === DOT
-    || path[path.length - 1] === DOT
+    || path.startsWith('.')
+    || path.endsWith('.')
     || isLast && !FILE_NAME.test(path);
 };
 
@@ -30,9 +28,7 @@ const isValidPath = (path: string, index: number, list: string[]): boolean => {
 };
 
 export const isValidFunctionLocation = (val: string): boolean => {
-  const SLASH = '/';
-
   return isString(val)
-    && val[0] === SLASH
-    && val.split(SLASH).every(isValidPath);
+    && val.startsWith('/')
+    && val.split('/').every(isValidPath);
 };
