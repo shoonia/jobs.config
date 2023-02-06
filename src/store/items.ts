@@ -45,7 +45,7 @@ export const itemsModule: TModule = ({ on }) => {
       return;
     }
 
-    return payload([newItem(), ...items]);
+    return payload([newItem(true), ...items]);
   });
 
   on('items/remove', ({ items }, id) => {

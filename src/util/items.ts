@@ -91,7 +91,7 @@ export const createConfig = (items: IItem[]): string => {
   return JSON.stringify(config, null, 2);
 };
 
-export const newItem = (): IItem => ({
+export const newItem = (isNew?: boolean): IItem => ({
   id: crypto.randomUUID(),
   functionLocation: '/filename.js',
   functionName: 'funcName',
@@ -101,7 +101,7 @@ export const newItem = (): IItem => ({
   dateInMonth: 1,
   cronExpression: dCron,
   period: PERIOD.DAILY,
-  isNew: true,
+  isNew,
 });
 
 export const createItems = (config: IConfig): IItem[] => {
