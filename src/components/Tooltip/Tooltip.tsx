@@ -11,6 +11,10 @@ import { CronExamplesTooltip } from './CronExamplesTooltip';
 
 // @ts-expect-error @typescript-eslint/ban-ts-comment
 const Hint = HintFactory({ createElement: h, Component, createRef });
+const delay = {
+  show: 500,
+  hide: 100,
+};
 
 export const Tooltips: FC = () => {
   const { items } = useStoreon('items');
@@ -40,14 +44,14 @@ export const Tooltips: FC = () => {
 
   return (
     <>
-      <Hint events delay={500} />
+      <Hint events delay={delay} />
       <Hint
         persist
         attribute="data-fl"
         events={{
           focus: true,
           click: true,
-          hover: true,
+          hover: false,
         }}
         className={s.fs}
         // @ts-expect-error @typescript-eslint/ban-ts-comment
