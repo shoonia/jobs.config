@@ -228,7 +228,7 @@ exports.configFactory = (buildEnv) => {
       isProd && new webpack.optimize.MinChunkSizePlugin({
         minChunkSize: 15_000,
       }),
-      isDev && new ForkTsCheckerWebpackPlugin({
+      new ForkTsCheckerWebpackPlugin({
         async: isDev,
         typescript: {
           configFile: appPaths.appTsConfig,
