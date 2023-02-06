@@ -6,3 +6,8 @@ pre-commit:
       skip:
         - merge
         - rebase
+    tsc:
+      run: npx tsc
+      skip:
+        - merge
+        - rebase
