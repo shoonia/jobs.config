@@ -13,6 +13,7 @@ export interface IItem {
   readonly dateInMonth: number;
   readonly cronExpression: string;
   readonly period: PERIOD;
+  readonly isNew?: boolean;
 }
 
 export interface IExecutionConfig {
@@ -100,6 +101,7 @@ export const newItem = (): IItem => ({
   dateInMonth: 1,
   cronExpression: dCron,
   period: PERIOD.DAILY,
+  isNew: true,
 });
 
 export const createItems = (config: IConfig): IItem[] => {

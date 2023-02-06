@@ -62,7 +62,11 @@ export const itemsModule: TModule = ({ on }) => {
     const i = items.findIndex((item) => item.id === id);
 
     if (i > -1) {
-      items.splice((i + 1), 0, { ...items[i], id: crypto.randomUUID() });
+      items.splice((i + 1), 0, {
+        ...items[i],
+        id: crypto.randomUUID(),
+        isNew: true,
+      });
 
       return payload([...items]);
     }
