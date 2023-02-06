@@ -71,7 +71,7 @@ export const itemsModule: TModule = ({ on }) => {
   on('items/update', ({ items }, { id, name, value }) => {
     const i = items.findIndex((item) => item.id === id);
 
-    if (i > -1) {
+    if (i > -1 && name) {
       items.splice(i, 1, { ...items[i], [name]: value });
 
       return payload([...items]);

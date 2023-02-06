@@ -3,10 +3,10 @@ import type { StoreonModule } from 'storeon';
 import type { ROUTER } from '../constants';
 import type { IItem } from '../util/items';
 
-export interface IUpdateEventData {
+interface IUpdateEventData {
   readonly id: string;
-  readonly name: string;
-  readonly value: string;
+  readonly name?: string;
+  readonly value?: string;
 }
 
 export interface IEvents {

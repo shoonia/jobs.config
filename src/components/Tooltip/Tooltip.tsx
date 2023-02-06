@@ -9,6 +9,7 @@ import { FunctionName } from './FunctionName';
 import { FunctionLocation } from './FunctionLocation';
 import { CronExamplesTooltip } from './CronExamplesTooltip';
 
+// @ts-expect-error @typescript-eslint/ban-ts-comment
 const Hint = HintFactory({ createElement: h, Component, createRef });
 
 export const Tooltips: FC = () => {
@@ -39,15 +40,17 @@ export const Tooltips: FC = () => {
 
   return (
     <>
-      <Hint events delay="500" />
+      <Hint events delay={500} />
       <Hint
         persist
         attribute="data-fl"
         events={{
           focus: true,
           click: true,
+          hover: true,
         }}
         className={s.fs}
+        // @ts-expect-error @typescript-eslint/ban-ts-comment
         onRenderContent={onRenderContent}
       />
     </>

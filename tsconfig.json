@@ -1,8 +1,8 @@
 {
   "compilerOptions": {
     "module": "ESNext",
-    "target": "ES2021",
-    "moduleResolution": "Node",
+    "target": "ES2022",
+    "moduleResolution": "node",
     "jsx": "react-jsx",
     "jsxImportSource": "preact",
     "allowSyntheticDefaultImports": true,
@@ -12,14 +12,14 @@
     "esModuleInterop": true,
     "resolveJsonModule": true,
     "noEmit": true,
-    "strict": false,
+    "strict": true,
     "strictBindCallApply": true,
     "strictFunctionTypes": true,
     "strictPropertyInitialization": true,
     "strictNullChecks": true,
     "stripInternal": true,
     "lib": [
-      "ES2021",
+      "ESNext",
       "DOM"
     ]
   },

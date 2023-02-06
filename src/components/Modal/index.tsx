@@ -21,6 +21,6 @@ export const Modal: FC<IModalProps> = ({ close, label, children }) =>  (
     bodyOpenClassName={s.bodyOpen}
     htmlOpenClassName={s.rootOpen}
   >
-    {children}
+    {children as []}
   </ReactModal>
 );
