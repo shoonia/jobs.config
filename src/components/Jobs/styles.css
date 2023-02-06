@@ -79,6 +79,10 @@ button.btn {
   display: none;
 }
 
+.new {
+  box-shadow: 0 0 2px 2px $color-success;
+}
+
 .title {
   color: $color-primary;
   font-size: 16px;

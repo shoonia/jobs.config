@@ -30,6 +30,7 @@ export const Jobs: FC = () => {
         <FormScope.Provider value={item}>
           <Item
             id={item.id}
+            isNew={item.isNew}
             update={updateItem}
           />
         </FormScope.Provider>

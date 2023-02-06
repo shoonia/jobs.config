@@ -13,6 +13,7 @@ export interface IItem {
   readonly dateInMonth: number;
   readonly cronExpression: string;
   readonly period: PERIOD;
+  readonly isNew?: boolean;
 }
 
 export interface IExecutionConfig {
@@ -38,7 +39,9 @@ const dCron = '0 * * * *';
 const dDay: TWeekList = weekList[0];
 
 const createLocation = (location: string): string => {
-  return location[0] !== '/' ? `/${location}` : location;
+  const loc = location.trim();
+
+  return loc.startsWith('/') ? loc : '/' + loc;
 };
 
 const parseDate = (date: unknown): number => {
@@ -72,7 +75,7 @@ export const createConfig = (items: IItem[]): string => {
   const config: IConfig = {
     jobs: items.map((i) => {
       return {
-        functionLocation: createLocation(i.functionLocation).trim(),
+        functionLocation: createLocation(i.functionLocation),
         functionName: i.functionName.trim(),
         description: (i.description !== '') ? i.description : noop,
         executionConfig: {
@@ -98,6 +101,7 @@ export const newItem = (): IItem => ({
   dateInMonth: 1,
   cronExpression: dCron,
   period: PERIOD.DAILY,
+  isNew: true,
 });
 
 export const createItems = (config: IConfig): IItem[] => {

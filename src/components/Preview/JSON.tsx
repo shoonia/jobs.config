@@ -1,4 +1,4 @@
-import type { ComponentChildren } from 'preact';
+import type { ComponentChild } from 'preact';
 
 import s from '../../styles/code.css';
 
@@ -29,17 +29,16 @@ const tokens: IToken[] = [
 ];
 
 export const JSON: FC<Props> = ({ input }) => {
-  const items: ComponentChildren[] = [];
+  const items: ComponentChild[] = [];
 
-  while (input.length > 0) {
-    for (let i = 0; i < tokens.length; i++) {
-      const token = tokens[i];
+  while (input.length) {
+    for (const token of tokens) {
       const match = token.regex.exec(input);
 
       if (Array.isArray(match)) {
         const [row] = match;
 
-        const item = 'className' in token
+        const item = token.className
           ? (
             <span className={token.className}>
               {row}
