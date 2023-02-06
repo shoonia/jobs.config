@@ -8,20 +8,21 @@ import { Item } from './Item';
 
 export const Jobs: FC = () => {
   const { dispatch, items } = useStoreon('items');
-  const len = items.length - 1;
 
-  const updateItem = useCallback(({ target }) => {
+  const updateItem: EventListener = useCallback((event) => {
+    const t = event.target as HTMLFormElement;
+
     dispatch('items/update', {
-      id: target.form.id,
-      name: target.dataset.name,
-      value: target.value,
+      id: t.form.id,
+      name: t.dataset.name,
+      value: t.value,
     });
   }, []);
 
-  const list = items.map((item, index) => {
+  const list = items.map((item, index, list) => {
     const cn = classNames([
       index === 0 && s.first,
-      index === len && s.last,
+      index === (list.length - 1) && s.last,
     ]);
 
     return (
