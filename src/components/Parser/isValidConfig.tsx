@@ -1,5 +1,4 @@
-import type { ComponentChildren } from 'preact';
-import { isKeyword, isStrictBindReservedWord } from '@babel/helper-validator-identifier';
+import type { ComponentChild } from 'preact';
 
 import { IncorrectType } from './IncorrectType';
 import { weekList } from '../../util/week';
@@ -10,7 +9,7 @@ import { parseCron } from '../CronTrue/parseCron';
 
 type TValidResult = [
   hasError: boolean,
-  message?: ComponentChildren,
+  message?: ComponentChild,
 ];
 
 const $_ffe = [KEYS.functionLocation, KEYS.functionName, KEYS.executionConfig];
@@ -20,7 +19,7 @@ const $$_wm = [KEYS.dayOfWeek, KEYS.dateInMonth];
 const $$_twm = [KEYS.time, ...$$_wm];
 const $$_ctwm = [KEYS.cronExpression, ...$$_twm];
 
-const error = (message: ComponentChildren): TValidResult => [
+const error = (message: ComponentChild): TValidResult => [
   true,
   message,
 ];
@@ -174,12 +173,7 @@ export const isValidConfig = (config: unknown): TValidResult => {
       );
     }
 
-    if (
-      !isValidFunctionName(FN)
-      //  TODO: Add different error description
-      || isKeyword(FN)
-      || isStrictBindReservedWord(FN, true)
-    ) {
+    if (!isValidFunctionName(FN)) {
       return error(
         <>
           <p>{`Invalid "functionName" at "jobs[${i}]"`}</p>
