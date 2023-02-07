@@ -9,10 +9,10 @@ import { TextBox } from '../TextBox';
 export const Validator: FC = () => {
   const { validatorValue, dispatch } = useStoreon('validatorValue');
 
-  const onInput: EventListener = ({ target }) => {
-    if (target instanceof HTMLTextAreaElement) {
-      dispatch('validator/input', target.value);
-    }
+  const onInput: EventListener = (event) => {
+    const el = event.target as HTMLTextAreaElement;
+
+    dispatch('validator/input', el.value);
   };
 
   const onLoad = (value: string): void => {

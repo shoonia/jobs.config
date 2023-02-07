@@ -6,12 +6,13 @@ import { IconUpload } from '../Icons/IconUpload';
 interface Props {
   className?: string;
   onLoad?: (value: string) => void;
-  onError?: (error: unknown) => void;
 }
 
-export const UploadFile: FC<Props> = ({ className, onLoad, onError }) => {
-  const onChange: EventListener = ({ target }) => {
-    readFile(target).then(onLoad, onError);
+export const UploadFile: FC<Props> = ({ className, onLoad }) => {
+  const onChange: EventListener = (event) => {
+    const el = event.target as HTMLInputElement;
+
+    readFile(el.files).then(onLoad);
   };
 
   return (

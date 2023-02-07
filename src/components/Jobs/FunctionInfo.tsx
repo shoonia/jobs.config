@@ -5,16 +5,15 @@ import { useFormScope } from '../../hooks/formScope';
 import { type TValidator, isValidFunctionLocation, isValidFunctionName } from '../../util/validator';
 
 const validatorListener = (validator: TValidator): EventListener => {
-  return ({ target }) => {
-    if (target instanceof HTMLInputElement) {
-      const val = target.value.trim();
+  return (event) => {
+    const el = event.target as HTMLInputElement;
+    const value = el.value.trim();
 
-      if (target.value !== val) {
-        target.value = val;
-      }
-
-      target.setCustomValidity(validator(val) ? '' : 'error');
+    if (el.value !== value) {
+      el.value = value;
     }
+
+    el.setCustomValidity(validator(value) ? '' : 'error');
   };
 };
 
