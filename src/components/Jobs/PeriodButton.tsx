@@ -7,13 +7,12 @@ interface Props {
   period: PERIOD;
 }
 
-const handlerClick = ({ key, target }: KeyboardEvent): void => {
-  if (key === 'Enter' || key === ' ') {
-    if (
-      target instanceof HTMLElement
-      && target.firstChild instanceof HTMLElement
-    ) {
-      target.firstChild.click();
+const handlerClick = (event: KeyboardEvent): void => {
+  if (event.key === 'Enter' || event.key === ' ') {
+    const el = event.target as HTMLElement;
+
+    if (el.firstChild instanceof HTMLElement) {
+      el.firstChild.click();
     }
   }
 };

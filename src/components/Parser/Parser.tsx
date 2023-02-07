@@ -5,7 +5,7 @@ import { VALIDATOR_VALUE_LIMIT } from '../../constants';
 import { Message } from './Message';
 import { EditButton } from './EditButton';
 
-export interface Props {
+interface Props {
   value: string;
 }
 

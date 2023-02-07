@@ -1,12 +1,8 @@
 import { isString } from '../../util/component';
 
-export const readFile = (target: EventTarget | null): Promise<string> => {
+export const readFile = (files: FileList | null): Promise<string> => {
   return new Promise((resolve, reject) => {
-    if (
-      target instanceof HTMLInputElement
-      && target.files?.length === 1
-    ) {
-      const file = target.files[0];
+    if (files?.length) {
       const reader = new FileReader();
 
       reader.onload = () => {
@@ -18,7 +14,7 @@ export const readFile = (target: EventTarget | null): Promise<string> => {
       };
 
       reader.onerror = reject;
-      reader.readAsText(file);
+      reader.readAsText(files[0]);
     } else {
       reject();
     }

@@ -1,12 +1,18 @@
+import { isKeyword, isStrictBindReservedWord } from '@babel/helper-validator-identifier';
+
 import { isString } from './component';
+
+export type TValidator = (val: string) => boolean;
 
 const FUNCTION_NAME = /^[$a-z_][\da-z_$]*$/i;
 const UTC = /^([01]\d|2[0-3]):([0-5]\d)$/;
 const PATH = /[^\w\d.-]/;
 const FILE_NAME = /[^.]\.jsw?$/;
 
-export const isValidFunctionName = (name: string): boolean => {
-  return FUNCTION_NAME.test(name);
+export const isValidFunctionName: TValidator = (name) => {
+  return FUNCTION_NAME.test(name)
+    && !isKeyword(name)
+    && !isStrictBindReservedWord(name, true);
 };
 
 export const isUTCTime = (val: unknown): val is string => {
@@ -27,7 +33,7 @@ const isValidPath = (path: string, index: number, list: string[]): boolean => {
   return index === 0 || !isInvalidPath(path, isLast);
 };
 
-export const isValidFunctionLocation = (val: string): boolean => {
+export const isValidFunctionLocation: TValidator = (val) => {
   return isString(val)
     && val.startsWith('/')
     && val.split('/').every(isValidPath);

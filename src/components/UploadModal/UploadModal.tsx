@@ -43,10 +43,10 @@ export const UploadModal: FC = () => {
     location.hash = ROUTER.VALIDATOR;
   };
 
-  const onInput: EventListener = ({ target }) => {
-    if (target instanceof HTMLTextAreaElement) {
-      ref.current = target.value;
-    }
+  const onInput: EventListener = (event) => {
+    const el = event.target as HTMLTextAreaElement;
+
+    ref.current = el.value;
   };
 
   const onSubmit: EventListener = (event) => {

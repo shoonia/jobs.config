@@ -16,13 +16,13 @@ export const CronExamplesTooltip: FC<Props> = ({ target }) => {
   const { cronExpression } = items.find((i) => i.id === id) || {};
 
   const onClick: EventListener = (event) => {
-    if (event.target instanceof HTMLButtonElement) {
-      dispatch('items/update', {
-        id: id || '',
-        name: KEYS.cronExpression,
-        value: event.target.value,
-      });
-    }
+    const el = event.target as HTMLButtonElement;
+
+    dispatch('items/update', {
+      id: id || '',
+      name: KEYS.cronExpression,
+      value: el.value,
+    });
   };
 
   const list = cronExamples.map((i) => {
@@ -40,6 +40,7 @@ export const CronExamplesTooltip: FC<Props> = ({ target }) => {
           value={i.value}
           title={i.value}
           className={classList}
+          onClick={onClick}
         >
           {i.label}
         </BlankButton>
@@ -48,10 +49,7 @@ export const CronExamplesTooltip: FC<Props> = ({ target }) => {
   });
 
   return (
-    <ul
-      className={s.list}
-      onClick={onClick}
-    >
+    <ul className={s.list}>
       {list}
       <li className={s.item}>
         <a
