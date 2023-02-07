@@ -2,6 +2,24 @@ import s from './styles.css';
 import { KEYS } from '../../constants';
 import { Label } from './Label';
 import { useFormScope } from '../../hooks/formScope';
+import { type TValidator, isValidFunctionLocation, isValidFunctionName } from '../../util/validator';
+
+const validatorListener = (validator: TValidator): EventListener => {
+  return ({ target }) => {
+    if (target instanceof HTMLInputElement) {
+      const val = target.value.trim();
+
+      if (target.value !== val) {
+        target.value = val;
+      }
+
+      target.setCustomValidity(validator(val) ? '' : 'error');
+    }
+  };
+};
+
+export const validatorFunctionName = validatorListener(isValidFunctionName);
+export const validatorFunctionLocation = validatorListener(isValidFunctionLocation);
 
 export const FunctionInfo: FC = () => {
   const {
@@ -22,13 +40,13 @@ export const FunctionInfo: FC = () => {
             className={s.func_input}
             value={functionLocation}
             placeholder="Function Location"
-            pattern="^(\/)?[\w\-\.\/]*[\w-]\.jsw?$"
+            onInput={validatorFunctionLocation}
             spellcheck={false}
             required
           />
         </Label>
         <span className={s.slash}>
-        /
+          /
         </span>
         <Label top="Function Name">
           <input
@@ -39,7 +57,7 @@ export const FunctionInfo: FC = () => {
             className={s.func_input}
             value={functionName}
             placeholder="Function Name"
-            pattern="^(\s)*?[\$a-zA-Z_][\$\w]*(\s)*?$"
+            onInput={validatorFunctionName}
             spellcheck={false}
             required
           />
