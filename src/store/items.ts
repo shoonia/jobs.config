@@ -20,18 +20,15 @@ const getItems = (): IItem[] => {
   return [newItem()];
 };
 
-const payload = (items: IItem[]) => ({
-  items,
-  isMax: items.length >= MAX_ITEMS,
-});
-
 export const itemsModule: TModule = ({ on }) => {
   on('@init', () => {
-    return payload(getItems());
+    return {
+      items: getItems(),
+    };
   });
 
-  on('@changed', ({ items }, changes) => {
-    if ('items' in changes) {
+  on('@changed', (_, { items }) => {
+    if (Array.isArray(items)) {
       try {
         sessionStorage.setItem('items', JSON.stringify(items));
       } catch {
@@ -40,35 +37,35 @@ export const itemsModule: TModule = ({ on }) => {
     }
   });
 
-  on('items/new', ({ items, isMax }) => {
-    if (isMax) {
-      return;
+  on('items/new', ({ items }) => {
+    if (items.length < MAX_ITEMS) {
+      return {
+        items: [newItem(true), ...items],
+      };
     }
-
-    return payload([newItem(true), ...items]);
   });
 
   on('items/remove', ({ items }, id) => {
-    const newItems = items.filter((item) => item.id !== id);
-
-    return payload(newItems);
+    return {
+      items: items.filter((item) => item.id !== id),
+    };
   });
 
-  on('items/clone', ({ items, isMax }, id) => {
-    if (isMax) {
-      return;
-    }
+  on('items/clone', ({ items }, id) => {
+    if (items.length < MAX_ITEMS) {
+      const i = items.findIndex((item) => item.id === id);
 
-    const i = items.findIndex((item) => item.id === id);
+      if (i > -1) {
+        items.splice((i + 1), 0, {
+          ...items[i],
+          id: crypto.randomUUID(),
+          isNew: true,
+        });
 
-    if (i > -1) {
-      items.splice((i + 1), 0, {
-        ...items[i],
-        id: crypto.randomUUID(),
-        isNew: true,
-      });
-
-      return payload([...items]);
+        return {
+          items: [...items],
+        };
+      }
     }
   });
 
@@ -78,11 +75,13 @@ export const itemsModule: TModule = ({ on }) => {
     if (i > -1 && name) {
       items.splice(i, 1, { ...items[i], [name]: value });
 
-      return payload([...items]);
+      return {
+        items: [...items],
+      };
     }
   });
 
-  on('items/replace', (_, items) => payload(items));
+  on('items/replace', (_, items) => ({ items }));
 
   on('items/up', ({ items }, id) => {
     const i = items.findIndex((item) => item.id === id);

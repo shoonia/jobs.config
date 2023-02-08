@@ -25,12 +25,8 @@ export interface IEvents {
 }
 
 export interface IState {
-  // items
   readonly items: IItem[];
-  readonly isMax: boolean;
-  // router
   readonly path: ROUTER;
-  // validator
   readonly validatorValue: string;
 }
 

@@ -5,7 +5,7 @@ import { weekList } from '../../util/week';
 import { reservedWords } from '../../util/reservedWords';
 import { isValidFunctionLocation, isUTCTime, isValidFunctionName } from '../../util/validator';
 import { isNumber, isObject, isString } from '../../util/component';
-import { KEYS } from '../../constants';
+import { KEYS, MAX_ITEMS } from '../../constants';
 import { parseCron } from '../CronTrue/parseCron';
 
 type TValidResult = [
@@ -114,7 +114,7 @@ export const isValidConfig = (config: unknown): TValidResult => {
   const { jobs } = config;
   let i = jobs.length;
 
-  if (i > 20) {
+  if (i > MAX_ITEMS) {
     return error(
       <>
         <p>{`Too many scheduled jobs. (${i})`}</p>
