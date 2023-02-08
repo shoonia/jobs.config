@@ -2,9 +2,10 @@ import type { ComponentChild } from 'preact';
 
 import { IncorrectType } from './IncorrectType';
 import { weekList } from '../../util/week';
+import { reservedWords } from '../../util/reservedWords';
 import { isValidFunctionLocation, isUTCTime, isValidFunctionName } from '../../util/validator';
 import { isNumber, isObject, isString } from '../../util/component';
-import { KEYS } from '../../constants';
+import { KEYS, MAX_ITEMS } from '../../constants';
 import { parseCron } from '../CronTrue/parseCron';
 
 type TValidResult = [
@@ -12,20 +13,38 @@ type TValidResult = [
   message?: ComponentChild,
 ];
 
-const $_ffe = [KEYS.functionLocation, KEYS.functionName, KEYS.executionConfig];
-const $_ffed = [...$_ffe, KEYS.description];
-
-const $$_wm = [KEYS.dayOfWeek, KEYS.dateInMonth];
-const $$_twm = [KEYS.time, ...$$_wm];
-const $$_ctwm = [KEYS.cronExpression, ...$$_twm];
+const baseRequiredProps = [
+  KEYS.functionLocation,
+  KEYS.functionName,
+  KEYS.executionConfig,
+] as const;
+const baseProps = [
+  ...baseRequiredProps,
+  KEYS.description,
+] as const;
+const dateProps = [
+  KEYS.dayOfWeek,
+  KEYS.dateInMonth,
+] as const;
+const periodProps = [
+  ...dateProps,
+  KEYS.time,
+] as const;
+const executionProps = [
+  ...periodProps,
+  KEYS.cronExpression,
+] as const;
 
 const error = (message: ComponentChild): TValidResult => [
   true,
   message,
 ];
 
-const hasUnknownProps = (item: Record<string, unknown>, list: string[]): TValidResult => {
-  for (const key of Object.keys(item)) {
+const hasUnknownProps = (
+  item: Record<string, unknown>,
+  list: readonly string[]
+): TValidResult => {
+  for (const key in item) {
     const notOne = !list.includes(key);
 
     if (notOne) {
@@ -36,7 +55,10 @@ const hasUnknownProps = (item: Record<string, unknown>, list: string[]): TValidR
   return [false];
 };
 
-const hasMissingProps = (item: Record<string, unknown>, list: string[]): TValidResult => {
+const hasMissingProps = (
+  item: Record<string, unknown>,
+  list: readonly string[]
+): TValidResult => {
   for (const key of list) {
     if (!(key in item)) {
       return [true, key];
@@ -52,8 +74,8 @@ export const isValidConfig = (config: unknown): TValidResult => {
   if (!isObject(config)) {
     return error(
       <>
-        <p>{'Incorrect type. Expected "object".'}</p>
-        <p>{'The jobs.config file must contains a JSON object.'}</p>
+        <p>{'Incorrect type. Expected "object"'}</p>
+        <p>{'The jobs.config file must contains a JSON object'}</p>
       </>,
     );
   }
@@ -61,8 +83,8 @@ export const isValidConfig = (config: unknown): TValidResult => {
   if (!(KEYS.jobs in config)) {
     return error(
       <>
-        <p>{'Missing property "jobs".'}</p>
-        <p>{'The jobs object must contains one top-level key named "jobs".'}</p>
+        <p>{'Missing property "jobs"'}</p>
+        <p>{'The jobs object must contains one top-level key named "jobs"'}</p>
       </>,
     );
   }
@@ -74,8 +96,8 @@ export const isValidConfig = (config: unknown): TValidResult => {
 
     return error(
       <>
-        <p>{`Unknown property "${names}".`}</p>
-        <p>{'The jobs object must contains one top-level key named "jobs".'}</p>
+        <p>{`Unknown property "${names}"`}</p>
+        <p>{'The jobs object must contains one top-level key named "jobs"'}</p>
       </>,
     );
   }
@@ -83,228 +105,233 @@ export const isValidConfig = (config: unknown): TValidResult => {
   if (!Array.isArray(config.jobs)) {
     return error(
       <>
-        <p>{'Incorrect type. Expected "array".'}</p>
-        <p>{'The top-level key "jobs" must be an array.'}</p>
+        <p>{'Incorrect type. Expected "array"'}</p>
+        <p>{'The top-level key "jobs" must be an array'}</p>
       </>,
     );
   }
 
-  const JOBS = config.jobs;
-  let i = JOBS.length;
+  const { jobs } = config;
+  let i = jobs.length;
 
-  if (i > 20) {
+  if (i > MAX_ITEMS) {
     return error(
       <>
         <p>{`Too many scheduled jobs. (${i})`}</p>
-        <p>You can configure up to 20 jobs.</p>
+        <p>You can configure up to 20 jobs</p>
       </>,
     );
   }
 
   if (i < 1) {
-    return error(
-      <p>No scheduled jobs.</p>,
-    );
+    return error(<p>No scheduled jobs</p>);
   }
 
-  if (!JOBS.every(isObject)) {
+  if (!jobs.every(isObject)) {
     return error(
       <>
-        <p>{'Incorrect type. Expected "object."'}</p>
-        <p>{'The "jobs" array must contain only objects, each of which represents a scheduled job.'}</p>
+        <p>{'Incorrect type. Expected "object"'}</p>
+        <p>{'The "jobs" array must contain only objects, each of which represents a scheduled job'}</p>
       </>,
     );
   }
 
   while (0 < i--) {
-    const ITEM = JOBS[i];
+    const jobsItem = jobs[i];
 
-    const [hasUnknown, unknownKey] = hasUnknownProps(ITEM, $_ffed);
+    const [hasUnknown, unknownKey] = hasUnknownProps(jobsItem, baseProps);
+
     if (hasUnknown) {
       return error(
         <>
-          <p>{`Unknown property "${unknownKey}" at "jobs[${i}]".`}</p>
-          <p>{`Allowed one of "${$_ffed.join(separator)}"`}</p>
+          <p>{`Unknown property "${unknownKey}" at "jobs[${i}]"`}</p>
+          <p>{`Allowed one of "${baseProps.join(separator)}"`}</p>
         </>,
       );
     }
 
-    const [hasMissing, missingkey] = hasMissingProps(ITEM, $_ffe);
+    const [hasMissing, missingkey] = hasMissingProps(jobsItem, baseRequiredProps);
+
     if (hasMissing) {
       return error(
         <>
           <p>{`Missing property "${missingkey}" at "jobs[${i}]"`}</p>
-          <p>{`Each scheduled job object must contain the required fields "${$_ffe.join(separator)}".`}</p>
+          <p>{`Each scheduled job object must contain the required fields "${baseRequiredProps.join(separator)}"`}</p>
         </>,
       );
     }
 
-    if (KEYS.description in ITEM) {
-      if (!isString(ITEM.description)) {
+    if (KEYS.description in jobsItem) {
+      if (!isString(jobsItem.description)) {
         return error(
           <IncorrectType index={i} name={KEYS.description} expected="string" />,
         );
       }
     }
 
-    const FL = ITEM.functionLocation;
+    const { functionLocation } = jobsItem;
 
-    if (!isString(FL)) {
+    if (!isString(functionLocation)) {
       return error(
         <IncorrectType index={i} name={KEYS.functionLocation} expected="string" />,
       );
     }
 
-    if (!isValidFunctionLocation(FL)) {
+    if (!isValidFunctionLocation(functionLocation)) {
       return error(
         <>
-          <p>{`Invalid "functionLocation" at "jobs[${i}]".`}</p>
+          <p>{`Invalid "functionLocation" at "jobs[${i}]"`}</p>
           <p>The function location is a relative path within the Backend folder for <code>.js</code> or <code>.jsw</code> file.</p>
-          <p>File and Folder names can contain only alphanumeric characters, periods, hyphens and underscores, and can not begin or end with a period.</p>
+          <p>File and Folder names can contain only alphanumeric characters, periods, hyphens and underscores, and can not begin or end with a period</p>
         </>,
       );
     }
 
-    const FN = ITEM.functionName;
+    const { functionName } = jobsItem;
 
-    if (!isString(FN)) {
+    if (!isString(functionName)) {
       return error(
         <IncorrectType index={i} name={KEYS.functionName} expected="string" />,
       );
     }
 
-    if (!isValidFunctionName(FN)) {
+    if (!isValidFunctionName(functionName)) {
+      const message = reservedWords.has(functionName)
+        ? `reserved word "${functionName}"`
+        : `token "${functionName}"`;
+
       return error(
         <>
           <p>{`Invalid "functionName" at "jobs[${i}]"`}</p>
-          <p>{`Error: "${FN}".`}</p>
+          <p>{`Error: Unexpected ${message}`}</p>
         </>,
       );
     }
 
-    const EXEC_CONFIG = ITEM.executionConfig;
+    const { executionConfig } = jobsItem;
 
-    if (!isObject(EXEC_CONFIG)) {
+    if (!isObject(executionConfig)) {
       return error(
         <IncorrectType index={i} name={KEYS.executionConfig} expected="object" />,
       );
     }
 
-    const [hasUnknown1, unknownKey1] = hasUnknownProps(EXEC_CONFIG, $$_ctwm);
-    if (hasUnknown1) {
+    const [hasUnknownEx, unknownKeyEx] = hasUnknownProps(executionConfig, executionProps);
+
+    if (hasUnknownEx) {
       return error(
         <>
-          <p>{`Unknown property "${unknownKey1}" in "jobs[${i}].executionConfig".`}</p>
-          <p>{`Allowed one of "${$$_ctwm.join(separator)}"`}</p>
+          <p>{`Unknown property "${unknownKeyEx}" in "jobs[${i}].executionConfig"`}</p>
+          <p>{`Allowed one of "${executionProps.join(separator)}"`}</p>
         </>,
       );
     }
 
-    if (KEYS.cronExpression in EXEC_CONFIG) {
-      const CRON_EXP = EXEC_CONFIG.cronExpression;
+    if (KEYS.cronExpression in executionConfig) {
+      const { cronExpression } = executionConfig;
 
-      if (!isString(CRON_EXP)) {
+      if (!isString(cronExpression)) {
         return error(
           <IncorrectType index={i} name={KEYS.cronExpression} expected="string" />,
         );
       }
 
-      const [isError, message] = parseCron(CRON_EXP);
+      const [isError, message] = parseCron(cronExpression);
 
       if (isError) {
         return error(
           <>
-            <p>{`Invalid "cronExpression" at "jobs[${i}].executionConfig".`}</p>
+            <p>{`Invalid "cronExpression" at "jobs[${i}].executionConfig"`}</p>
             <p>{message}</p>
           </>,
         );
       }
-    } else if (KEYS.time in EXEC_CONFIG) {
-      const TIME = EXEC_CONFIG.time;
+    } else if (KEYS.time in executionConfig) {
+      const { time } = executionConfig;
 
-      if (!isString(TIME)) {
+      if (!isString(time)) {
         return error(
           <IncorrectType index={i} name={KEYS.time} expected="string" />,
         );
       }
 
-      if (!isUTCTime(TIME)) {
+      if (!isUTCTime(time)) {
         return error(
           <>
-            <p>{`Invalid "time" at "jobs[${i}].executionConfig".`}</p>
-            <p>{`Error: "${TIME}". The time is specified as UTC time in HH:MM format.`}</p>
+            <p>{`Invalid "time" at "jobs[${i}].executionConfig"`}</p>
+            <p>{`Error: "${time}". The time is specified as UTC time in HH:MM format`}</p>
           </>,
         );
       }
     } else {
       return error(
         <>
-          <p>{`Missing the time of the job runs at "jobs[${i}].executionConfig".`}</p>
-          <p>{'The "executionConfig" object must contain one of "time", "cronExpression" properties.'}</p>
+          <p>{`Missing the time of the job runs at "jobs[${i}].executionConfig"`}</p>
+          <p>{'The "executionConfig" object must contain one of "time", "cronExpression" properties'}</p>
         </>,
       );
     }
 
-    if (KEYS.dayOfWeek in EXEC_CONFIG) {
-      const DOW = EXEC_CONFIG.dayOfWeek;
+    if (KEYS.dayOfWeek in executionConfig) {
+      const { dayOfWeek } = executionConfig;
 
-      if (!isString(DOW)) {
+      if (!isString(dayOfWeek)) {
         return error(
           <IncorrectType index={i} name={KEYS.dayOfWeek} expected="string" />,
         );
       }
 
-      if (!weekList.some((i) => i === DOW)) {
+      if (!weekList.some((i) => i === dayOfWeek)) {
         return error(
           <>
-            <p>{`Incorrect value of "dayOfWeek" at "jobs[${i}].executionConfig".`}</p>
-            <p>{`Error: unknown value "${DOW}". Allowed one of "${weekList.join(separator)}"`}</p>
+            <p>{`Incorrect value of "dayOfWeek" at "jobs[${i}].executionConfig"`}</p>
+            <p>{`Error: unknown value "${dayOfWeek}". Allowed one of "${weekList.join(separator)}"`}</p>
           </>,
         );
       }
     }
 
-    if (KEYS.dateInMonth in EXEC_CONFIG) {
-      const DIM = EXEC_CONFIG.dateInMonth;
+    if (KEYS.dateInMonth in executionConfig) {
+      const { dateInMonth } = executionConfig;
 
-      if (!isNumber(DIM)) {
+      if (!isNumber(dateInMonth)) {
         return error(
           <IncorrectType index={i} name={KEYS.dateInMonth} expected="number" />,
         );
       }
 
-      if (!Number.isInteger(DIM) || DIM < 1 || DIM > 31) {
+      if (!Number.isInteger(dateInMonth) || dateInMonth < 1 || dateInMonth > 31) {
         return error(
           <>
-            <p>{`Invalid "dateInMonth" at "jobs[${i}].executionConfig".`}</p>
-            <p>{'The value of the "dateInMonth" property must be a number between 1 and 31.'}</p>
+            <p>{`Invalid "dateInMonth" at "jobs[${i}].executionConfig"`}</p>
+            <p>{'The value of the "dateInMonth" property must be a number between 1 and 31'}</p>
           </>,
         );
       }
     }
 
     if (
-      (KEYS.cronExpression in EXEC_CONFIG) &&
-      ($$_twm.some((i) => i in EXEC_CONFIG))
+      (KEYS.cronExpression in executionConfig) &&
+      (periodProps.some((i) => i in executionConfig))
     ) {
       return error(
         <>
-          <p>{`Mutual exclusion property at "jobs[${i}].executionConfig".`}</p>
-          <p>{`Error: "cronExpression" omit all of "${$$_twm.join(separator)}" properties.`}</p>
+          <p>{`Mutual exclusion property at "jobs[${i}].executionConfig"`}</p>
+          <p>{`Error: "cronExpression" omit all of "${periodProps.join(separator)}" properties`}</p>
           <p>
             <em>
-              {'When using a cron expression to specify when a job runs, the "executionConfig" object contains a single property, named "cronExpression", whose value is a valid cron expression.'}
+              {'When using a cron expression to specify when a job runs, the "executionConfig" object contains a single property, named "cronExpression", whose value is a valid cron expression'}
             </em>
           </p>
         </>,
       );
     }
 
-    if ($$_wm.every((i) => i in EXEC_CONFIG)) {
+    if (dateProps.every((i) => i in executionConfig)) {
       return error(
         <>
-          <p>{`Mutual exclusion property at "jobs[${i}].executionConfig".`}</p>
-          <p>{'Error: "dateInMonth" omit the "dayOfWeek" property.'}</p>
+          <p>{`Mutual exclusion property at "jobs[${i}].executionConfig"`}</p>
+          <p>{'Error: "dateInMonth" omit the "dayOfWeek" property'}</p>
         </>,
       );
     }

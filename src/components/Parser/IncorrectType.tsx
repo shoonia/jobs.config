@@ -8,6 +8,6 @@ interface Props {
 
 export const IncorrectType: FC<Props> = ({ index, name, expected }) => (
   <p>
-    {`Incorrect type of property "${name}" at "jobs[${index}]". Expected "${expected}".`}
+    {`Incorrect type of property "${name}" at "jobs[${index}]". Expected "${expected}"`}
   </p>
 );

@@ -3,10 +3,10 @@ import { Button } from '../Button';
 import { Toolbar } from '../Toolbar';
 import { IconPlus } from '../Icons/IconPlus';
 import { IconUpload } from '../Icons/IconUpload';
-import { ROUTER } from '../../constants';
+import { MAX_ITEMS, ROUTER } from '../../constants';
 
 export const Buttons: FC = () => {
-  const { dispatch, isMax } = useStoreon('isMax');
+  const { dispatch, items } = useStoreon('items');
 
   const createItem: EventListener = () => {
     dispatch('items/new');
@@ -21,7 +21,7 @@ export const Buttons: FC = () => {
       <Toolbar.Hint label="You can configure up to 20 jobs">
         <Button
           onClick={createItem}
-          disabled={isMax}
+          disabled={items.length >= MAX_ITEMS}
         >
           <IconPlus />
           {' New Job'}

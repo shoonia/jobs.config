@@ -1,0 +1,29 @@
+.buttons {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin: 0 10px;
+}
+
+.buttons .btn {
+  margin: 0 5px;
+  width: 24px;
+  height: 24px;
+  filter: brightness(80%);
+}
+
+.btn:hover,
+.btn:focus {
+  filter: none;
+}
+
+.btn:active {
+  transform: scale(0.85);
+}
+
+.btn:disabled {
+  pointer-events: none;
+  cursor: default;
+  opacity: 0.2;
+  filter: grayscale(100%);
+}
