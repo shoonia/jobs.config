@@ -1,30 +1,23 @@
-import s from './styles.css';
+import s from './ItemMenu.css';
 import { useStoreon } from '../../store';
 import { useFormScope } from '../../hooks/formScope';
 import { BlankButton } from '../Button';
 import { IconBin } from '../Icons/IconBin';
 import { IconClone } from '../Icons/IconClone';
 import { IconChevron } from '../Icons/IconChevron';
+import { MAX_ITEMS } from '../../constants';
 
 export const ItemMenu: FC = () => {
   const { id } = useFormScope();
-  const { dispatch, isMax } = useStoreon('isMax');
+  const { dispatch, items } = useStoreon('items');
 
-  const up: EventListener = () => {
-    dispatch('items/up', id);
-  };
+  const len = items.length;
+  const index = items.findIndex((i) => i.id === id);
 
-  const down: EventListener = () => {
-    dispatch('items/down', id);
-  };
-
-  const remove: EventListener = () => {
-    dispatch('items/remove', id);
-  };
-
-  const clone: EventListener = () => {
-    dispatch('items/clone', id);
-  };
+  const up = () => dispatch('items/up', id);
+  const down = () => dispatch('items/down', id);
+  const remove = () => dispatch('items/remove', id);
+  const clone = () => dispatch('items/clone', id);
 
   return (
     <div className={s.buttons}>
@@ -32,18 +25,20 @@ export const ItemMenu: FC = () => {
         <BlankButton
           aria-label="Move up"
           onClick={up}
-          className={s.btn_up}
+          className={s.btn}
           data-rh="Move up"
           data-rh-at="top"
+          disabled={index < 1}
         >
           <IconChevron up={false} />
         </BlankButton>
         <BlankButton
           aria-label="Move down"
           onClick={down}
-          className={s.btn_down}
+          className={s.btn}
           data-rh="Move down"
           data-rh-at="top"
+          disabled={index >= len - 1}
         >
           <IconChevron up />
         </BlankButton>
@@ -64,7 +59,7 @@ export const ItemMenu: FC = () => {
           className={s.btn}
           data-rh="Clone"
           data-rh-at="top"
-          disabled={isMax}
+          disabled={len >= MAX_ITEMS}
         >
           <IconClone />
         </BlankButton>
