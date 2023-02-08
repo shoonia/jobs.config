@@ -17,28 +17,22 @@ const handlerClick = (event: KeyboardEvent): void => {
   }
 };
 
-export const PeriodButton: FC<Props> = ({ name, value, period }) => {
-  const isChecked = value === period;
-
-  return (
-    <label
-      className={s.label}
-      tabIndex={0}
-      onKeyPress={handlerClick}
-      aria-checked={isChecked}
-      role="checkbox"
-    >
-      <input
-        type="radio"
-        name={name}
-        checked={isChecked}
-        data-name="period"
-        value={value}
-        className={s.period}
-      />
-      <span className={s.title}>
-        {value}
-      </span>
-    </label>
-  );
-};
+export const PeriodButton: FC<Props> = ({ name, value, period }) => (
+  <label
+    className={s.label}
+    tabIndex={0}
+    onKeyDown={handlerClick}
+  >
+    <input
+      type="radio"
+      name={name}
+      checked={value === period}
+      data-name="period"
+      value={value}
+      className={s.period}
+    />
+    <span className={s.title}>
+      {value}
+    </span>
+  </label>
+);

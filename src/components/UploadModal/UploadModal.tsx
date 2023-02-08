@@ -1,4 +1,3 @@
-
 import { useRef } from 'preact/hooks';
 
 import s from './styles.css';
