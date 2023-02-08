@@ -2,6 +2,7 @@ import type { ComponentChild } from 'preact';
 
 import { IncorrectType } from './IncorrectType';
 import { weekList } from '../../util/week';
+import { reservedWords } from '../../util/reservedWords';
 import { isValidFunctionLocation, isUTCTime, isValidFunctionName } from '../../util/validator';
 import { isNumber, isObject, isString } from '../../util/component';
 import { KEYS } from '../../constants';
@@ -174,10 +175,14 @@ export const isValidConfig = (config: unknown): TValidResult => {
     }
 
     if (!isValidFunctionName(FN)) {
+      const message = reservedWords.has(FN)
+        ? `reserved word "${FN}"`
+        : `token "${FN}"`;
+
       return error(
         <>
           <p>{`Invalid "functionName" at "jobs[${i}]"`}</p>
-          <p>{`Error: "${FN}".`}</p>
+          <p>{`Error: Unexpected ${message}`}</p>
         </>,
       );
     }
