@@ -107,9 +107,11 @@ exports.configFactory = (buildEnv) => {
       }
     },
     externals: {
-      'color-convert': '{}', // A dead code. It's a dependency of 'parse-json' that not use.
-      'supports-color': 'false',
-      'escape-string-regexp': '()=>{}'
+      // parse-json
+      '@babel/highlight': '{getChalk:e=>({grey:e=>e,red:{bold:e=>e}}),shouldHighlight:e=>0}',
+      // react-modal
+      'react-lifecycles-compat': '{polyfill:e=>e}',
+      'exenv': '{canUseDOM:1}',
     },
     module: {
       strictExportPresence: true,
