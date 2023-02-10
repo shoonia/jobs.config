@@ -31,7 +31,7 @@ exports.configFactory = (buildEnv) => {
         return relative(appPaths.appSrc, info.absoluteResourcePath);
       },
       chunkLoadingGlobal: 'g',
-      globalObject: 'window',
+      globalObject: 'self',
       clean: isProd,
     },
     optimization: {
@@ -104,13 +104,13 @@ exports.configFactory = (buildEnv) => {
       alias: {
         react: 'preact/compat',
         'react-dom': 'preact/compat',
-      }
+      },
     },
     externals: {
       // parse-json
-      '@babel/highlight': '{getChalk:e=>({grey:e=>e,red:{bold:e=>e}}),shouldHighlight:e=>0}',
+      '@babel/highlight': '{getChalk:e=>({grey:e=>e,red:{bold:e=>e}}),shouldHighlight(){}}',
       // react-modal
-      'react-lifecycles-compat': '{polyfill:e=>e}',
+      'react-lifecycles-compat': '{polyfill(){}}',
       'exenv': '{canUseDOM:1}',
     },
     module: {
@@ -120,7 +120,12 @@ exports.configFactory = (buildEnv) => {
           oneOf: [
             {
               test: /\.(js|tsx?)$/,
-              include: appPaths.appSrc,
+              include: isDev
+                ? appPaths.appSrc
+                : [
+                  appPaths.appSrc,
+                  appPaths.appNodeModules,
+                ],
               loader: 'babel-loader',
               options: {
                 cacheDirectory: true,
@@ -132,9 +137,10 @@ exports.configFactory = (buildEnv) => {
                     '@babel/preset-env',
                     {
                       loose: true,
+                      bugfixes: true,
                       browserslistEnv: buildEnv,
                       configPath: appPaths.appDirectory,
-                      useBuiltIns: 'entry',
+                      useBuiltIns: false,
                     },
                   ],
                 ],
@@ -198,7 +204,7 @@ exports.configFactory = (buildEnv) => {
         template: appPaths.appHtml,
         scriptLoading: 'defer',
         minify: isProd && {
-          collapseWhitespace: true,
+          collapseWhitespace: 'aggressive',
           removeComments: true,
           removeRedundantAttributes: true,
           removeScriptTypeAttributes: true,
@@ -212,12 +218,13 @@ exports.configFactory = (buildEnv) => {
         },
       }),
       isProd && new MiniCssExtractPlugin({
-        filename: 'css/[name].[contenthash:4].css',
-        chunkFilename: 'css/[name].[chunkhash:4].css',
+        filename: 'css/[name].css',
+        chunkFilename: 'css/[name].css',
         ignoreOrder: true,
       }),
       isProd && new HTMLInlineCSSWebpackPlugin({
         leaveCSSFile: true,
+        styleTagFactory: ({ style }) => `<style>${style}</style>`,
       }),
       isProd && new CopyPlugin({
         patterns: [
@@ -239,7 +246,7 @@ exports.configFactory = (buildEnv) => {
       new webpack.DefinePlugin({
         'process.env.NODE_ENV': JSON.stringify(buildEnv),
         'process.env.NODE_DEBUG': JSON.stringify(isDev),
-        'process.env': '({})',
+        'process.env': 'undefined',
         'process.throwDeprecation': 'false',
         'process.noDeprecation': 'false',
         'process.emitWarning': 'undefined',

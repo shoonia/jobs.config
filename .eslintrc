@@ -20,7 +20,7 @@
   },
   "settings": {
     "react": {
-      "version": "17.0.0"
+      "version": "18.0.0"
     }
   },
   "ignorePatterns": [
@@ -42,10 +42,6 @@
         ]
       }
     ],
-    "linebreak-style": "off",
-    "no-trailing-spaces": "error",
-    "no-use-before-define": "error",
-    "no-unused-vars": "off",
     "comma-dangle": [
       "error",
       "always-multiline"
@@ -62,11 +58,23 @@
       "error",
       "single"
     ],
+    "space-before-function-paren": [
+      "error",
+      {
+        "anonymous": "always",
+        "named": "never",
+        "asyncArrow": "always"
+      }
+    ],
+    "no-else-return": "error",
+    "no-trailing-spaces": "error",
+    "no-use-before-define": "error",
     "no-multiple-empty-lines": [
       "error",
       {
         "max": 1,
-        "maxEOF": 1
+        "maxBOF": 0,
+        "maxEOF": 0
       }
     ]
   }
