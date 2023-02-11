@@ -1,9 +1,13 @@
-import { createContext, useContext } from 'preact/compat';
+import { memo, createContext, useContext } from 'preact/compat';
 
 import { type IItem, newItem } from '../util/items';
 
-export const FormScope = createContext<IItem>(newItem());
+const Context = createContext<IItem>(newItem());
+
+export const FormScopeProvider = memo(Context.Provider, (prev, next) => {
+  return prev.value === next.value;
+});
 
 export const useFormScope = (): IItem => {
-  return useContext(FormScope);
+  return useContext(Context);
 };

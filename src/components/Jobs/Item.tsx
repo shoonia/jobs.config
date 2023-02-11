@@ -1,5 +1,3 @@
-import { memo } from 'preact/compat';
-
 import s from './styles.css';
 import { Period } from './Period';
 import { ItemMenu } from './ItemMenu';
@@ -14,7 +12,7 @@ interface Props {
   isNew?: boolean;
 }
 
-export const Item: FC<Props> = memo(({ id, update, isNew }) => {
+export const Item: FC<Props> = ({ id, update, isNew }) => {
   useNewItem(id, isNew);
 
   return (
@@ -31,4 +29,4 @@ export const Item: FC<Props> = memo(({ id, update, isNew }) => {
       <ItemMenu />
     </form>
   );
-});
+};

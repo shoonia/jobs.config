@@ -2,7 +2,7 @@ import { useCallback } from 'preact/hooks';
 
 import s from './styles.css';
 import { useStoreon } from '../../store';
-import { FormScope } from '../../hooks/formScope';
+import { FormScopeProvider } from '../../hooks/formScope';
 import { classNames } from '../../util/component';
 import { Item } from './Item';
 
@@ -27,13 +27,13 @@ export const Jobs: FC = () => {
 
     return (
       <li key={item.id} className={cn}>
-        <FormScope.Provider value={item}>
+        <FormScopeProvider value={item}>
           <Item
             id={item.id}
             isNew={item.isNew}
             update={updateItem}
           />
-        </FormScope.Provider>
+        </FormScopeProvider>
       </li>
     );
   });
