@@ -4,7 +4,6 @@
     "stylelint-config-css-modules"
   ],
   "rules": {
-    "selector-class-pattern": null,
-    "max-line-length": null
+    "selector-class-pattern": null
   }
 }
