@@ -1,42 +1,18 @@
-import { useCallback } from 'preact/hooks';
-
 import s from './styles.css';
 import { useStoreon } from '../../store';
 import { FormScopeProvider } from '../../hooks/formScope';
-import { classNames } from '../../util/component';
 import { Item } from './Item';
 
 export const Jobs: FC = () => {
-  const { dispatch, items } = useStoreon('items');
+  const { items } = useStoreon('items');
 
-  const updateItem: EventListener = useCallback((event) => {
-    const t = event.target as HTMLFormElement;
-
-    dispatch('items/update', {
-      id: t.form.id,
-      name: t.dataset.name,
-      value: t.value,
-    });
-  }, []);
-
-  const list = items.map((item, index, list) => {
-    const cn = classNames([
-      index === 0 && s.first,
-      index === (list.length - 1) && s.last,
-    ]);
-
-    return (
-      <li key={item.id} className={cn}>
-        <FormScopeProvider value={item}>
-          <Item
-            id={item.id}
-            isNew={item.isNew}
-            update={updateItem}
-          />
-        </FormScopeProvider>
-      </li>
-    );
-  });
+  const list = items.map((i) => (
+    <li key={i.id}>
+      <FormScopeProvider value={i}>
+        <Item id={i.id} isNew={i.isNew} />
+      </FormScopeProvider>
+    </li>
+  ));
 
   return (
     <ul className={s.list}>

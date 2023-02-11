@@ -5,14 +5,24 @@ import { FunctionInfo } from './FunctionInfo';
 import { ExecutionConfig } from './ExecutionConfig';
 import { classNames, preventDefault } from '../../util/component';
 import { useNewItem } from '../../hooks/useNewItem';
+import { store } from '../../store';
 
 interface Props {
   id: string;
-  update: EventListener;
   isNew?: boolean;
 }
 
-export const Item: FC<Props> = ({ id, update, isNew }) => {
+const updateItem: EventListener = (event) => {
+  const el = event.target as HTMLFormElement;
+
+  store.dispatch('items/update', {
+    id: el.form.id,
+    name: el.dataset.name,
+    value: el.value,
+  });
+};
+
+export const Item: FC<Props> = ({ id, isNew }) => {
   useNewItem(id, isNew);
 
   return (
@@ -20,7 +30,7 @@ export const Item: FC<Props> = ({ id, update, isNew }) => {
       id={id}
       action="#"
       className={classNames([s.item, isNew && s.new])}
-      onInput={update}
+      onInput={updateItem}
       onSubmit={preventDefault}
     >
       <FunctionInfo />
