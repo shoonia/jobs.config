@@ -133,16 +133,6 @@ exports.configFactory = (buildEnv) => {
                 compact: isProd,
                 presets: [
                   '@babel/typescript',
-                  [
-                    '@babel/preset-env',
-                    {
-                      loose: true,
-                      bugfixes: true,
-                      browserslistEnv: buildEnv,
-                      configPath: appPaths.appDirectory,
-                      useBuiltIns: false,
-                    },
-                  ],
                 ],
                 plugins: [
                   [
