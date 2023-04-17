@@ -3,7 +3,7 @@ import { StoreContext } from 'storeon/preact';
 
 import { App } from './components/App';
 import { store } from './store';
-import { sendBeacon } from './util/ga';
+import { gtag } from './util/gtag';
 import './styles/main.css';
 
 const root = document.getElementById('root') as HTMLDivElement;
@@ -15,6 +15,5 @@ render(
   root,
 );
 
-if (process.env.NODE_ENV === 'production') {
-  sendBeacon();
-}
+gtag('js', new Date());
+gtag('config', 'G-2W35Q7B86C');
