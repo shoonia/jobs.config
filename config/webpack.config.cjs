@@ -10,7 +10,9 @@ const createLocalIdent = require('mini-css-class-name/css-loader');
 const ForkTsCheckerWebpackPlugin = require('fork-ts-checker-webpack-plugin');
 const HTMLInlineCSSWebpackPlugin = require('html-inline-css-webpack-plugin').default;
 const { appPaths } = require('./paths.cjs');
+
 const { homepage } = require(appPaths.appPackageJson);
+const manifest = require(appPaths.manifestJson);
 
 exports.configFactory = (buildEnv) => {
   const isDev = buildEnv === 'development';
@@ -24,8 +26,8 @@ exports.configFactory = (buildEnv) => {
     output: {
       path: isProd ? appPaths.appBuild : undefined,
       pathinfo: isDev,
-      filename: 'js/[name].[contenthash:4].js',
-      chunkFilename: 'js/[name].[chunkhash:4].js',
+      filename: '[name].[contenthash:4].js',
+      chunkFilename: '[name].[chunkhash:4].js',
       publicPath: appPaths.publicPath,
       devtoolModuleFilenameTemplate: (info) => {
         return relative(appPaths.appSrc, info.absoluteResourcePath);
@@ -205,11 +207,12 @@ exports.configFactory = (buildEnv) => {
         templateParameters: {
           homepage,
           isProd,
+          manifest,
         },
       }),
       isProd && new MiniCssExtractPlugin({
-        filename: 'css/[name].css',
-        chunkFilename: 'css/[name].css',
+        filename: '[name].css',
+        chunkFilename: '[name].css',
         ignoreOrder: true,
       }),
       isProd && new HTMLInlineCSSWebpackPlugin({

@@ -13,6 +13,7 @@ exports.appPaths = {
   appStatic: resolveApp('static'),
   appTsConfig: resolveApp('tsconfig.json'),
   appNodeModules: resolveApp('node_modules'),
+  manifestJson: resolveApp('static/manifest.json'),
   publicPath: '',
   appDirectory,
 };
