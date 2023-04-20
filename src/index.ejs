@@ -1,6 +1,6 @@
 <%
-  var title = 'Jobs Config | Velo by Wix';
-  var description = 'Online generator and validator for Velo jobs.config scheduling file. Build and validate Wix Velo job scheduler, cron expression generator';
+  var title = manifest.name;
+  var description = manifest.description;
   var favicon = 'favicon.png';
   var image = new URL(favicon, homepage).href;
 
@@ -48,8 +48,9 @@
   <% } %>
   <link rel="icon" href="<%= favicon %>">
   <link rel="sitemap" type="application/xml" href="sitemap.xml" title="<%= title %>">
+  <link rel="manifest" href="manifest.json">
   <meta name="google-site-verification" content="JkNxAfkbyATcDv733CZNZPVT9UPc4rJNXxd31OgDwvY">
-  <meta name="theme-color" content="#ffffff">
+  <meta name="theme-color" content="<%= manifest.theme_color %>">
   <meta name="description" content="<%= description %>">
   <meta name="twitter:card" content="summary">
   <meta name="twitter:site" content="@_shoonia">
