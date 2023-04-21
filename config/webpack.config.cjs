@@ -24,6 +24,8 @@ exports.configFactory = (buildEnv) => {
     devtool: isDev && 'cheap-module-source-map',
     entry: appPaths.appIndexTs,
     output: {
+      iife: false,
+      scriptType: 'module',
       path: isProd ? appPaths.appBuild : undefined,
       pathinfo: isDev,
       filename: '[name].[contenthash:4].js',
@@ -194,7 +196,7 @@ exports.configFactory = (buildEnv) => {
         filename: 'index.html',
         inject: 'head',
         template: appPaths.appHtml,
-        scriptLoading: 'defer',
+        scriptLoading: 'module',
         minify: isProd && {
           collapseWhitespace: 'aggressive',
           removeComments: true,
