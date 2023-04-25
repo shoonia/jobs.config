@@ -3,7 +3,7 @@
   "background_color": "#ffffff",
   "display": "standalone",
   "scope": "https://shoonia.github.io/jobs.config/",
-  "start_url": "/",
+  "start_url": "/jobs.config/",
   "name": "Jobs Config | Velo by Wix",
   "short_name": "Jobs Config",
   "lang": "en",
