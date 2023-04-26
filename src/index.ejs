@@ -46,10 +46,10 @@
   <% if (isProd) { %>
     <link rel="preload" href="https://api.github.com/repos/shoonia/jobs.config" as="fetch" crossorigin="anonymous">
     <base href="<%= homepage %>">
+    <link rel="manifest" href="manifest.json">
   <% } %>
   <link rel="icon" href="<%= favicon %>">
   <link rel="sitemap" type="application/xml" href="sitemap.xml" title="<%= title %>">
-  <link rel="manifest" href="manifest.json">
   <meta name="google-site-verification" content="JkNxAfkbyATcDv733CZNZPVT9UPc4rJNXxd31OgDwvY">
   <meta name="theme-color" content="<%= manifest.theme_color %>">
   <meta name="description" content="<%= description %>">
