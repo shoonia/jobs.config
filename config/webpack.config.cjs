@@ -11,7 +11,6 @@ const ForkTsCheckerWebpackPlugin = require('fork-ts-checker-webpack-plugin');
 const HTMLInlineCSSWebpackPlugin = require('html-inline-css-webpack-plugin').default;
 const { appPaths } = require('./paths.cjs');
 
-const { homepage } = require(appPaths.appPackageJson);
 const manifest = require(appPaths.manifestJson);
 
 exports.configFactory = (buildEnv) => {
@@ -207,7 +206,6 @@ exports.configFactory = (buildEnv) => {
           sortAttributes: true,
         },
         templateParameters: {
-          homepage,
           isProd,
           manifest,
         },
