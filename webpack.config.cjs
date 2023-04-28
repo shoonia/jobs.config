@@ -158,8 +158,9 @@ module.exports = ({ NODE_ENV }) => {
             {
               test: /\.css$/,
               use: [
-                isDev && 'style-loader',
-                isProd && MiniCssExtractPlugin.loader,
+                isProd
+                  ? MiniCssExtractPlugin.loader
+                  : 'style-loader',
                 {
                   loader: 'css-loader',
                   options: {
@@ -185,7 +186,7 @@ module.exports = ({ NODE_ENV }) => {
                     },
                   },
                 },
-              ].filter(Boolean),
+              ],
             },
           ],
         },
