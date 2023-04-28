@@ -6,8 +6,9 @@
   "type": "module",
   "packageManager": "^npm@9.1.2",
   "scripts": {
-    "start": "node scripts/start.cjs",
-    "build": "node scripts/build.cjs",
+    "start": "webpack serve --env NODE_ENV=development",
+    "build": "webpack build --env NODE_ENV=production",
+    "analyze": "webpack build --analyze --env NODE_ENV=production",
     "lint": "eslint 'src/**/*.{ts,tsx}' && stylelint 'src/**/*.css'",
     "test": "tsc --noEmit && jest",
     "serve": "python3 -m http.server -d dist"
@@ -25,10 +26,10 @@
   "devDependencies": {
     "@babel/plugin-transform-react-jsx": "^7.21.0",
     "@babel/preset-typescript": "^7.21.4",
-    "@evilmartians/lefthook": "^1.3.10",
+    "@evilmartians/lefthook": "^1.3.12",
     "@types/css-modules": "^1.0.2",
     "@types/jest": "^29.5.1",
-    "@types/node": "^18.16.1",
+    "@types/node": "^18.16.2",
     "@types/react-hint": "^3.2.0",
     "@types/react-modal": "^3.16.0",
     "@types/wicg-file-system-access": "^2020.9.6",
@@ -53,7 +54,6 @@
     "postcss-import": "^15.1.0",
     "postcss-loader": "^7.2.4",
     "postcss-simple-vars": "^7.0.1",
-    "react-dev-utils": "^12.0.1",
     "style-loader": "^3.3.2",
     "stylelint": "^15.6.0",
     "stylelint-config-css-modules": "^4.2.0",
@@ -61,8 +61,9 @@
     "terser-webpack-plugin": "^5.3.7",
     "ts-jest": "^29.1.0",
     "typescript": "^5.0.4",
-    "webpack": "^5.80.0",
-    "webpack-dev-server": "^4.13.3"
+    "webpack": "^5.81.0",
+    "webpack-bundle-analyzer": "^4.8.0",
+    "webpack-cli": "^5.0.2"
   },
   "repository": "https://github.com/shoonia/jobs.config.git",
   "author": "alexanderz@wix.com",

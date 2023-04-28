@@ -1,4 +1,5 @@
-const { relative } = require('path');
+const { relative, resolve } = require('node:path');
+const { realpathSync } = require('node:fs');
 const webpack = require('webpack');
 const CopyPlugin = require('copy-webpack-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
@@ -9,29 +10,34 @@ const CSSMQPackerPlugin = require('css-mqpacker-webpack-plugin');
 const createLocalIdent = require('mini-css-class-name/css-loader');
 const ForkTsCheckerWebpackPlugin = require('fork-ts-checker-webpack-plugin');
 const HTMLInlineCSSWebpackPlugin = require('html-inline-css-webpack-plugin').default;
-const { appPaths } = require('./paths.cjs');
+const manifest = require('./static/manifest.json');
 
-const manifest = require(appPaths.manifestJson);
+const appDirectory = realpathSync(process.cwd());
+const resolveApp = (relativePath) => resolve(appDirectory, relativePath);
 
-exports.configFactory = (buildEnv) => {
-  const isDev = buildEnv === 'development';
-  const isProd = buildEnv === 'production';
+const staticDir = resolveApp('static');
+const srcDir = resolveApp('src');
+const distDir = resolveApp('dist');
+
+module.exports = ({ NODE_ENV }) => {
+  const isDev = NODE_ENV === 'development';
+  const isProd = NODE_ENV === 'production';
 
   return {
-    mode: buildEnv,
+    mode: NODE_ENV,
     bail: isProd,
     devtool: isDev && 'cheap-module-source-map',
-    entry: appPaths.appIndexTs,
+    entry: resolveApp('src/main.tsx'),
     output: {
       iife: false,
       scriptType: 'module',
-      path: isProd ? appPaths.appBuild : undefined,
+      path: isProd ? distDir : undefined,
       pathinfo: isDev,
       filename: '[name].[contenthash:4].js',
       chunkFilename: '[name].[chunkhash:4].js',
-      publicPath: appPaths.publicPath,
+      publicPath: '',
       devtoolModuleFilenameTemplate: (info) => {
-        return relative(appPaths.appSrc, info.absoluteResourcePath);
+        return relative(srcDir, info.absoluteResourcePath);
       },
       chunkLoadingGlobal: 'g',
       globalObject: 'self',
@@ -94,7 +100,7 @@ exports.configFactory = (buildEnv) => {
     resolve: {
       modules: [
         'node_modules',
-        appPaths.appNodeModules,
+        resolveApp('node_modules'),
       ],
       extensions: [
         '.js',
@@ -123,12 +129,7 @@ exports.configFactory = (buildEnv) => {
           oneOf: [
             {
               test: /\.(js|tsx?)$/,
-              include: isDev
-                ? appPaths.appSrc
-                : [
-                  appPaths.appSrc,
-                  appPaths.appNodeModules,
-                ],
+              include: srcDir,
               loader: 'babel-loader',
               options: {
                 cacheDirectory: true,
@@ -194,7 +195,7 @@ exports.configFactory = (buildEnv) => {
       new HtmlWebpackPlugin({
         filename: 'index.html',
         inject: 'head',
-        template: appPaths.appHtml,
+        template: resolveApp('src/index.ejs'),
         scriptLoading: 'module',
         minify: isProd && {
           collapseWhitespace: 'aggressive',
@@ -222,8 +223,8 @@ exports.configFactory = (buildEnv) => {
       isProd && new CopyPlugin({
         patterns: [
           {
-            from: appPaths.appStatic,
-            to: appPaths.appBuild,
+            from: staticDir,
+            to: distDir,
           },
         ],
       }),
@@ -233,11 +234,11 @@ exports.configFactory = (buildEnv) => {
       new ForkTsCheckerWebpackPlugin({
         async: isDev,
         typescript: {
-          configFile: appPaths.appTsConfig,
+          configFile: resolveApp('tsconfig.json'),
         },
       }),
       new webpack.DefinePlugin({
-        'process.env.NODE_ENV': JSON.stringify(buildEnv),
+        'process.env.NODE_ENV': JSON.stringify(NODE_ENV),
         'process.env.NODE_DEBUG': JSON.stringify(isDev),
         'process.env': 'undefined',
         'process.throwDeprecation': 'false',
@@ -252,5 +253,11 @@ exports.configFactory = (buildEnv) => {
     },
     performance: false,
     node: false,
+    devServer: {
+      hot: true,
+      compress: true,
+      static: srcDir,
+      port: 3000,
+    },
   };
 };

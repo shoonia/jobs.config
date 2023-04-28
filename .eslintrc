@@ -24,10 +24,9 @@
     }
   },
   "ignorePatterns": [
+    "webpack.config.cjs",
     "node_modules/",
-    "dist/",
-    "config/",
-    "scripts/"
+    "dist/"
   ],
   "rules": {
     "react/jsx-key": "error",
