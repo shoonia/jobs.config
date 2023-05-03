@@ -2,8 +2,10 @@ import type { TModule } from './types';
 import { MAX_ITEMS } from '../constants';
 import { type IItem, newItem } from '../util/items';
 
+const key = 'items';
+
 const getItems = (): IItem[] => {
-  const data = sessionStorage.getItem('items');
+  const data = localStorage.getItem(key);
 
   if (data !== null) {
     try {
@@ -13,7 +15,7 @@ const getItems = (): IItem[] => {
         return items;
       }
     } catch {
-      sessionStorage.removeItem('items');
+      localStorage.removeItem(key);
     }
   }
 
@@ -30,9 +32,9 @@ export const itemsModule: TModule = ({ on }) => {
   on('@changed', (_, { items }) => {
     if (Array.isArray(items)) {
       try {
-        sessionStorage.setItem('items', JSON.stringify(items));
+        localStorage.setItem(key, JSON.stringify(items));
       } catch {
-        sessionStorage.removeItem('items');
+        localStorage.removeItem(key);
       }
     }
   });
