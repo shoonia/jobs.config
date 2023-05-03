@@ -17,3 +17,7 @@ render(
 
 gtag('js', new Date());
 gtag('config', 'G-2W35Q7B86C');
+
+window.addEventListener('load', () => {
+  navigator.serviceWorker?.register('service-worker.js');
+});

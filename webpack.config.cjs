@@ -10,6 +10,7 @@ const CSSMQPackerPlugin = require('css-mqpacker-webpack-plugin');
 const createLocalIdent = require('mini-css-class-name/css-loader');
 const ForkTsCheckerWebpackPlugin = require('fork-ts-checker-webpack-plugin');
 const HTMLInlineCSSWebpackPlugin = require('html-inline-css-webpack-plugin').default;
+const { GenerateSW } = require('workbox-webpack-plugin');
 const manifest = require('./static/manifest.json');
 
 const appDirectory = realpathSync(process.cwd());
@@ -247,6 +248,18 @@ module.exports = ({ NODE_ENV }) => {
         'process.emitWarning': 'undefined',
         'process.platform': 'undefined',
         'process': 'undefined',
+      }),
+      new GenerateSW({
+        clientsClaim: true,
+        skipWaiting: true,
+        mode: NODE_ENV,
+        sourcemap: isDev,
+        inlineWorkboxRuntime: true,
+        exclude: [
+          '.DS_Store',
+          'styles.css',
+          /\.(txt|xml)$/,
+        ],
       }),
     ].filter(Boolean),
     experiments: {
