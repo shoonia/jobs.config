@@ -219,7 +219,6 @@ module.exports = ({ NODE_ENV }) => {
         ignoreOrder: true,
       }),
       isProd && new HTMLInlineCSSWebpackPlugin({
-        leaveCSSFile: true,
         styleTagFactory: ({ style }) => `<style>${style}</style>`,
       }),
       isProd && new CopyPlugin({
@@ -257,7 +256,6 @@ module.exports = ({ NODE_ENV }) => {
         inlineWorkboxRuntime: true,
         exclude: [
           '.DS_Store',
-          'styles.css',
           /\.(txt|xml)$/,
         ],
       }),
