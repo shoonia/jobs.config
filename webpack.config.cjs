@@ -168,7 +168,7 @@ module.exports = ({ NODE_ENV }) => {
                     importLoaders: 1,
                     sourceMap: isDev,
                     modules: isDev ? {
-                      localIdentName: '[local]_[hash:base64:4]',
+                      localIdentName: '[file]--[local]',
                     } : {
                       getLocalIdent: createLocalIdent(),
                     },
@@ -248,7 +248,7 @@ module.exports = ({ NODE_ENV }) => {
         'process.platform': 'undefined',
         'process': 'undefined',
       }),
-      new GenerateSW({
+      isProd && new GenerateSW({
         clientsClaim: true,
         skipWaiting: true,
         mode: NODE_ENV,
