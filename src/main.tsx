@@ -6,13 +6,11 @@ import { store } from './store';
 import { gtag } from './util/gtag';
 import './styles/main.css';
 
-const root = document.getElementById('root') as HTMLDivElement;
-
 render(
   <StoreContext.Provider value={store}>
     <App />
   </StoreContext.Provider>,
-  root,
+  document.getElementById('root') as HTMLDivElement,
 );
 
 gtag('js', new Date());
