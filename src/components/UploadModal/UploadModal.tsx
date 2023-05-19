@@ -1,7 +1,7 @@
 import { useRef } from 'preact/hooks';
 
 import s from './styles.css';
-import { useStoreon } from '../../store';
+import { useStore } from '../../store';
 import { preventDefault } from '../../util/component';
 import { parseJSONC } from '../Parser/parseJSONC';
 import { isValidConfig } from '../Parser/isValidConfig';
@@ -13,13 +13,13 @@ import { BlankButton, Button } from '../Button';
 import { UploadFile } from '../UploadFile';
 import { IconCancel } from '../Icons/IconCancel';
 
+const close = (): void => {
+  location.hash = ROUTER.BUILDER;
+};
+
 export const UploadModal: FC = () => {
   const ref = useRef<string>('');
-  const { dispatch } = useStoreon();
-
-  const close = (): void => {
-    location.hash = ROUTER.BUILDER;
-  };
+  const store = useStore();
 
   const onLoad = (val: string): void => {
     if (val.trim() === '') {
@@ -32,13 +32,13 @@ export const UploadModal: FC = () => {
       const [validationError] = isValidConfig(config);
 
       if (!validationError) {
-        dispatch('items/replace', createItems(config as IConfig));
+        store.dispatch('items/replace', createItems(config as IConfig));
 
         return close();
       }
     }
 
-    dispatch('validator/input', val);
+    store.dispatch('validator/input', val);
     location.hash = ROUTER.VALIDATOR;
   };
 

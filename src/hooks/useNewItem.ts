@@ -1,8 +1,10 @@
 import { useEffect } from 'preact/hooks';
 
-import { store } from '../store';
+import { useStore } from '../store';
 
 export const useNewItem = (id: string, isNew?: boolean) => {
+  const store = useStore();
+
   useEffect(() => {
     if (isNew) {
       const t = setTimeout(() => {

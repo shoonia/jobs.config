@@ -1,6 +1,6 @@
 import { useState } from 'preact/hooks';
 
-import { store } from '../../store';
+import { useStore } from '../../store';
 import { delay } from '../../util/component';
 import { createValidatorLink } from '../../util/validatorValue';
 import { IconCopyLink } from '../Icons/IconCopyLink';
@@ -11,6 +11,7 @@ interface Props {
 }
 
 export const CopyLinkButton: FC<Props> = ({ className }) => {
+  const store = useStore();
   const [isCopied, setState] = useState(false);
 
   const label = isCopied
