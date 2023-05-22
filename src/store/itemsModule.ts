@@ -22,14 +22,14 @@ const getItems = (): IItem[] => {
   return [newItem()];
 };
 
-export const itemsModule: TModule = ({ on }) => {
-  on('@init', () => {
+export const itemsModule: TModule = (store) => {
+  store.on('@init', () => {
     return {
       items: getItems(),
     };
   });
 
-  on('@changed', (_, { items }) => {
+  store.on('@changed', (_, { items }) => {
     if (Array.isArray(items)) {
       try {
         localStorage.setItem(key, JSON.stringify(items));
@@ -39,7 +39,7 @@ export const itemsModule: TModule = ({ on }) => {
     }
   });
 
-  on('items/new', ({ items }) => {
+  store.on('items/new', ({ items }) => {
     if (items.length < MAX_ITEMS) {
       return {
         items: [newItem(true), ...items],
@@ -47,13 +47,13 @@ export const itemsModule: TModule = ({ on }) => {
     }
   });
 
-  on('items/remove', ({ items }, id) => {
+  store.on('items/remove', ({ items }, id) => {
     return {
       items: items.filter((item) => item.id !== id),
     };
   });
 
-  on('items/clone', ({ items }, id) => {
+  store.on('items/clone', ({ items }, id) => {
     if (items.length < MAX_ITEMS) {
       const i = items.findIndex((item) => item.id === id);
 
@@ -71,7 +71,7 @@ export const itemsModule: TModule = ({ on }) => {
     }
   });
 
-  on('items/update', ({ items }, { id, name, value }) => {
+  store.on('items/update', ({ items }, { id, name, value }) => {
     const i = items.findIndex((item) => item.id === id);
 
     if (i > -1 && name) {
@@ -83,15 +83,13 @@ export const itemsModule: TModule = ({ on }) => {
     }
   });
 
-  on('items/replace', (_, items) => ({ items }));
+  store.on('items/replace', (_, items) => ({ items }));
 
-  on('items/up', ({ items }, id) => {
+  store.on('items/up', ({ items }, id) => {
     const i = items.findIndex((item) => item.id === id);
 
     if (i > 0) {
-      const [item] = items.splice(i, 1);
-
-      items.splice((i - 1), 0, item);
+      items.splice((i - 1), 0, items.splice(i, 1)[0]);
 
       return {
         items: [...items],
@@ -99,14 +97,12 @@ export const itemsModule: TModule = ({ on }) => {
     }
   });
 
-  on('items/down', ({ items }, id) => {
+  store.on('items/down', ({ items }, id) => {
     const i = items.findIndex((item) => item.id === id);
     const len = items.length;
 
     if (len > 1 && i < len) {
-      const [item] = items.splice(i, 1);
-
-      items.splice((i + 1), 0, item);
+      items.splice((i + 1), 0, items.splice(i, 1)[0]);
 
       return {
         items: [...items],
