@@ -45,6 +45,8 @@ module.exports = ({ NODE_ENV }) => {
       clean: isProd,
     },
     optimization: {
+      mangleExports: 'size',
+      moduleIds: 'size',
       minimize: isProd,
       minimizer: [
         new TerserPlugin({
