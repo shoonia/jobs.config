@@ -4,7 +4,7 @@ import { IncorrectType } from './IncorrectType';
 import { weekList } from '../../util/week';
 import { reservedWords } from '../../util/reservedWords';
 import { isValidFunctionLocation, isUTCTime, isValidFunctionName } from '../../util/validator';
-import { isNumber, isObject, isString } from '../../util/component';
+import { isString } from '../../util/component';
 import { KEYS, MAX_ITEMS } from '../../constants';
 import { parseCron } from '../CronTrue/parseCron';
 
@@ -34,6 +34,14 @@ const executionProps = [
   ...periodProps,
   KEYS.cronExpression,
 ] as const;
+
+const isInteger = (val: unknown): val is number => {
+  return Number.isInteger(val);
+};
+
+const isObject = (val: unknown): val is Readonly<Record<string, unknown>> => {
+  return typeof val === 'object' && !Array.isArray(val) && val !== null;
+};
 
 const error = (message: ComponentChild): TValidResult => [
   true,
@@ -294,13 +302,13 @@ export const isValidConfig = (config: unknown): TValidResult => {
     if (KEYS.dateInMonth in executionConfig) {
       const { dateInMonth } = executionConfig;
 
-      if (!isNumber(dateInMonth)) {
+      if (!isInteger(dateInMonth)) {
         return error(
           <IncorrectType index={i} name={KEYS.dateInMonth} expected="number" />,
         );
       }
 
-      if (!Number.isInteger(dateInMonth) || dateInMonth < 1 || dateInMonth > 31) {
+      if (dateInMonth < 1 || dateInMonth > 31) {
         return error(
           <>
             <p>{`Invalid "dateInMonth" at "jobs[${i}].executionConfig"`}</p>

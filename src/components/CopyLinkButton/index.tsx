@@ -1,7 +1,6 @@
 import { useState } from 'preact/hooks';
 
 import { useStore } from '../../store';
-import { delay } from '../../util/component';
 import { createValidatorLink } from '../../util/validatorValue';
 import { IconCopyLink } from '../Icons/IconCopyLink';
 import { BlankButton } from '../Button';
@@ -27,8 +26,7 @@ export const CopyLinkButton: FC<Props> = ({ className }) => {
 
       await navigator.clipboard.writeText(link);
       setState(true);
-      await delay(2_000);
-      setState(false);
+      setTimeout(setState, 2_000, false);
     }
   };
 
