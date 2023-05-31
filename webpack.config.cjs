@@ -119,6 +119,7 @@ module.exports = ({ NODE_ENV }) => {
         'react-dom': 'preact/compat',
       },
     },
+    externalsType: 'assign',
     externals: {
       // parse-json
       '@babel/highlight': '{getChalk:e=>({grey:e=>e,red:{bold:e=>e}}),shouldHighlight(){}}',
@@ -265,6 +266,7 @@ module.exports = ({ NODE_ENV }) => {
     ].filter(Boolean),
     experiments: {
       backCompat: false,
+      outputModule: true,
     },
     performance: false,
     node: false,
