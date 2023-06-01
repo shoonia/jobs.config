@@ -122,10 +122,11 @@ module.exports = ({ NODE_ENV }) => {
     externalsType: 'assign',
     externals: {
       // parse-json
+      'is-arrayish': 'Array.isArray',
       '@babel/highlight': '{getChalk:e=>({grey:e=>e,red:{bold:e=>e}}),shouldHighlight(){}}',
       // react-modal
       'react-lifecycles-compat': '{polyfill(){}}',
-      'exenv': '{canUseDOM:1}',
+      'exenv': '{canUseDOM:true}',
     },
     module: {
       strictExportPresence: true,

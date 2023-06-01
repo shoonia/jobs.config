@@ -5,7 +5,6 @@ import { ROUTER } from '../constants';
 
 const BuilderPage: FC = lazy(() => {
   return import(
-    /* webpackChunkName: "BuilderPage" */
     /* webpackPrefetch: true */
     '../components/BuilderPage'
   ).then((i) => {
@@ -15,7 +14,6 @@ const BuilderPage: FC = lazy(() => {
 
 const ValidatorPage: FC = lazy(() => {
   return import(
-    /* webpackChunkName: "ValidatorPage" */
     /* webpackPrefetch: true */
     '../components/ValidatorPage'
   ).then((i) => {
