@@ -1,5 +1,5 @@
 import type { ComponentChildren } from 'preact';
-import  ReactModal from 'react-modal';
+import ReactModal from 'react-modal';
 
 import s from './styles.css';
 
@@ -11,7 +11,7 @@ export interface IModalProps {
 
 ReactModal.setAppElement('#app');
 
-export const Modal: FC<IModalProps> = ({ close, label, children }) =>  (
+export const Modal: FC<IModalProps> = ({ close, label, children }) => (
   <ReactModal
     isOpen
     onRequestClose={close}
