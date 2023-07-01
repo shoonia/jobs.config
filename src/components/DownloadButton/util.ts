@@ -5,12 +5,8 @@ export const saveFile = async (content: string): Promise<void> => {
     suggestedName: 'jobs.config',
   });
 
-  const state = await file.queryPermission();
+  const writable = await file.createWritable();
 
-  if (state === 'granted') {
-    const writable = await file.createWritable();
-
-    await writable.write(content);
-    await writable.close();
-  }
+  await writable.write(content);
+  await writable.close();
 };
