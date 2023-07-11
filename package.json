@@ -21,7 +21,7 @@
     "react-hint": "^3.2.1",
     "react-modal": "^3.16.1",
     "storeon": "^3.1.5",
-    "strip-json-comments": "^5.0.0"
+    "strip-json-comments": "^5.0.1"
   },
   "devDependencies": {
     "@babel/plugin-transform-react-jsx": "^7.22.5",
