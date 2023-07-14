@@ -1,4 +1,4 @@
-import type { ComponentChildren } from 'preact';
+import type { ComponentChildren, ComponentClass } from 'preact';
 import ReactModal from 'react-modal';
 
 import s from './styles.css';
@@ -9,10 +9,13 @@ export interface IModalProps {
   close: () => void;
 }
 
+// @ts-expect-error @typescript-eslint/ban-ts-comment
+const ReactModalPreactTyped: ComponentClass<ReactModal.Props> = ReactModal;
+
 ReactModal.setAppElement('#app');
 
 export const Modal: FC<IModalProps> = ({ close, label, children }) => (
-  <ReactModal
+  <ReactModalPreactTyped
     isOpen
     onRequestClose={close}
     contentLabel={label}
@@ -22,5 +25,5 @@ export const Modal: FC<IModalProps> = ({ close, label, children }) => (
     htmlOpenClassName={s.rootOpen}
   >
     {children as []}
-  </ReactModal>
+  </ReactModalPreactTyped>
 );

@@ -1,6 +1,6 @@
-import { h, Component, createRef } from 'preact';
+import { h, Component, createRef, type ComponentClass } from 'preact';
 import { useCallback } from 'preact/hooks';
-import HintFactory from 'react-hint';
+import HintFactory, { type ReactHintProps } from 'react-hint';
 
 import s from './styles.css';
 import { useStoreon } from '../../store';
@@ -10,7 +10,7 @@ import { FunctionLocation } from './FunctionLocation';
 import { CronExamplesTooltip } from './CronExamplesTooltip';
 
 // @ts-expect-error @typescript-eslint/ban-ts-comment
-const Hint = HintFactory({ createElement: h, Component, createRef });
+const Hint: ComponentClass<ReactHintProps> = HintFactory({ createElement: h, Component, createRef });
 const delay = {
   show: 500,
   hide: 100,
