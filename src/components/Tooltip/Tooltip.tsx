@@ -14,7 +14,7 @@ const Hint: ComponentClass<ReactHintProps> = HintFactory({ createElement: h, Com
 const delay = {
   show: 500,
   hide: 100,
-};
+} as const;
 
 export const Tooltips: FC = () => {
   const { items } = useStoreon('items');

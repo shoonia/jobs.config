@@ -12,7 +12,7 @@ export const isValidFunctionName: TValidator = (name) => {
   return FUNCTION_NAME.test(name) && !reservedWords.has(name);
 };
 
-export const isUTCTime = (val: unknown): val is string => {
+export const isUTCTime = (val?: string): val is string => {
   return isString(val) && UTC.test(val);
 };
 
@@ -27,7 +27,7 @@ export const isInvalidPath = (path: string, isLast: boolean): boolean => {
 const isValidPath = (path: string, index: number, list: string[]): boolean => {
   const isLast = (index === list.length - 1);
 
-  return index === 0 || !isInvalidPath(path, isLast);
+  return index < 1 || !isInvalidPath(path, isLast);
 };
 
 export const isValidFunctionLocation: TValidator = (val) => {

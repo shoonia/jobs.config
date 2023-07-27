@@ -1,17 +1,12 @@
 import stripJsonComments from 'strip-json-comments';
 import parseJson from 'parse-json';
 
-type TJSONCResult = Readonly<[
-  error: string | null,
-  config?: Record<string, unknown>,
-]>;
-
-export const parseJSONC = (value: string): TJSONCResult => {
+export const parseJSONC = (value: string) => {
   try {
     const json = stripJsonComments(value);
 
-    return [null, parseJson(json)];
+    return [null, parseJson(json)] as const;
   } catch (error) {
-    return [String(error)];
+    return [String(error)] as const;
   }
 };

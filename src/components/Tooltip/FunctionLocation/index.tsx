@@ -1,4 +1,4 @@
-import type { ComponentChild } from 'preact';
+import type { ComponentChild as CC } from 'preact';
 import s from './FunctionLocation.css';
 import { createPath } from './util';
 
@@ -7,8 +7,8 @@ interface Props {
 }
 
 export const FunctionLocation: FC<Props> = ({ target }) => {
-  const tree = createPath(target.value).reduceRight<ComponentChild>((acc, item, index) => (
-    <ul className={index === 0 ? s.list : s.sublist}>
+  const tree = createPath(target.value).reduceRight<CC>((acc, item, index): CC => (
+    <ul className={index < 1 ? s.list : s.sublist}>
       <li>
         <div className={item.className}>
           {item.path}

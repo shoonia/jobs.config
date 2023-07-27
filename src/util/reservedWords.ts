@@ -1,4 +1,4 @@
-export const reservedWords = new Set([
+export const reservedWords = new Set<string>([
   'arguments',
   'async',
   'await',

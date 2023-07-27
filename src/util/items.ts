@@ -73,7 +73,7 @@ export const createConfig = (items: IItem[]): string => {
   let noop: undefined;
 
   const config: IConfig = {
-    jobs: items.map((i) => {
+    jobs: items.map<IJob>((i): IJob => {
       return {
         functionLocation: createLocation(i.functionLocation),
         functionName: i.functionName.trim(),
@@ -105,7 +105,7 @@ export const newItem = (isNew?: boolean): IItem => ({
 });
 
 export const createItems = (config: IConfig): IItem[] => {
-  return config.jobs.map((i) => {
+  return config.jobs.map<IItem>((i): IItem => {
     const exec = i.executionConfig;
 
     return {
