@@ -143,7 +143,13 @@ module.exports = ({ NODE_ENV }) => {
                 cacheCompression: false,
                 compact: isProd,
                 presets: [
-                  '@babel/typescript',
+                  [
+                    '@babel/preset-typescript',
+                    {
+                      optimizeConstEnums: true,
+                      onlyRemoveTypeImports: true,
+                    },
+                  ],
                 ],
                 plugins: [
                   [
@@ -151,12 +157,6 @@ module.exports = ({ NODE_ENV }) => {
                     {
                       runtime: 'automatic',
                       importSource: 'preact',
-                    },
-                  ],
-                  [
-                    'const-enum',
-                    {
-                      transform: 'constObject',
                     },
                   ],
                 ],
