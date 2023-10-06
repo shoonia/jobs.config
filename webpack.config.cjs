@@ -147,7 +147,6 @@ module.exports = ({ NODE_ENV }) => {
                     '@babel/preset-typescript',
                     {
                       optimizeConstEnums: true,
-                      onlyRemoveTypeImports: true,
                     },
                   ],
                 ],
