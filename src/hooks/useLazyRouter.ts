@@ -4,19 +4,13 @@ import { useStoreon } from '../store';
 import { ROUTER } from '../constants';
 
 const BuilderPage: FC = lazy(() => {
-  return import(
-    /* webpackPrefetch: true */
-    '../components/BuilderPage'
-  ).then((i) => {
+  return import('../components/BuilderPage').then((i) => {
     return i.BuilderPage;
   });
 });
 
 const ValidatorPage: FC = lazy(() => {
-  return import(
-    /* webpackPrefetch: true */
-    '../components/ValidatorPage'
-  ).then((i) => {
+  return import('../components/ValidatorPage').then((i) => {
     return i.ValidatorPage;
   });
 });

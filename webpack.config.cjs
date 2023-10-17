@@ -20,6 +20,10 @@ const staticDir = resolveApp('static');
 const srcDir = resolveApp('src');
 const distDir = resolveApp('dist');
 
+/**
+ * @param {NodeJS.ProcessEnv} env
+ * @returns {webpack.Configuration}
+ */
 module.exports = ({ NODE_ENV }) => {
   const isDev = NODE_ENV === 'development';
   const isProd = NODE_ENV === 'production';
@@ -37,9 +41,7 @@ module.exports = ({ NODE_ENV }) => {
       filename: '[name].[contenthash:4].js',
       chunkFilename: '[name].[chunkhash:4].js',
       publicPath: '',
-      devtoolModuleFilenameTemplate: (info) => {
-        return relative(srcDir, info.absoluteResourcePath);
-      },
+      devtoolModuleFilenameTemplate: (i) => relative(srcDir, i.absoluteResourcePath),
       chunkLoadingGlobal: 'g',
       globalObject: 'self',
       clean: isProd,
@@ -48,6 +50,7 @@ module.exports = ({ NODE_ENV }) => {
       mangleExports: 'size',
       moduleIds: 'size',
       chunkIds: 'total-size',
+      mergeDuplicateChunks: true,
       minimize: isProd,
       minimizer: [
         new TerserPlugin({
@@ -130,12 +133,19 @@ module.exports = ({ NODE_ENV }) => {
       'exenv': '{canUseDOM:true}',
     },
     module: {
-      strictExportPresence: true,
+      parser: {
+        javascript: {
+          strictExportPresence: true,
+          dynamicImportFetchPriority: 'high',
+          dynamicImportPrefetch: true,
+          harmony: true,
+        },
+      },
       rules: [
         {
           oneOf: [
             {
-              test: /\.(js|tsx?)$/,
+              test: /\.tsx?$/,
               include: srcDir,
               loader: 'babel-loader',
               options: {
@@ -268,6 +278,7 @@ module.exports = ({ NODE_ENV }) => {
     experiments: {
       backCompat: false,
       outputModule: true,
+      topLevelAwait: true,
     },
     performance: false,
     node: false,
