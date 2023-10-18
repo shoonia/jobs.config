@@ -54,6 +54,7 @@ module.exports = ({ NODE_ENV }) => {
       minimize: isProd,
       minimizer: [
         new TerserPlugin({
+          extractComments: false,
           terserOptions: {
             ecma: 2020,
             module: true,
@@ -271,7 +272,7 @@ module.exports = ({ NODE_ENV }) => {
         inlineWorkboxRuntime: true,
         exclude: [
           '.DS_Store',
-          /\.(txt|xml)$/,
+          'sitemap.xml',
         ],
       }),
     ].filter(Boolean),
