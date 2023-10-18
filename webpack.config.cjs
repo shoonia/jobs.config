@@ -19,6 +19,7 @@ const resolveApp = (relativePath) => resolve(appDirectory, relativePath);
 const staticDir = resolveApp('static');
 const srcDir = resolveApp('src');
 const distDir = resolveApp('dist');
+const nodeModulesDir = resolveApp('node_modules');
 
 /**
  * @param {NodeJS.ProcessEnv} env
@@ -108,7 +109,7 @@ module.exports = ({ NODE_ENV }) => {
     resolve: {
       modules: [
         'node_modules',
-        resolveApp('node_modules'),
+        nodeModulesDir,
       ],
       extensions: [
         '.js',
@@ -145,6 +146,20 @@ module.exports = ({ NODE_ENV }) => {
       rules: [
         {
           oneOf: [
+            {
+              test: /\.js?$/,
+              include: nodeModulesDir,
+              exclude: srcDir,
+              loader: 'babel-loader',
+              options: {
+                cacheDirectory: true,
+                cacheCompression: false,
+                compact: isProd,
+                plugins: [
+                  './plugins/babel.cjs',
+                ],
+              },
+            },
             {
               test: /\.tsx?$/,
               include: srcDir,
