@@ -152,7 +152,7 @@ module.exports = ({ NODE_ENV }) => {
               exclude: srcDir,
               loader: 'babel-loader',
               options: {
-                cacheDirectory: true,
+                cacheDirectory: isDev,
                 cacheCompression: false,
                 compact: isProd,
                 plugins: [
@@ -165,7 +165,7 @@ module.exports = ({ NODE_ENV }) => {
               include: srcDir,
               loader: 'babel-loader',
               options: {
-                cacheDirectory: true,
+                cacheDirectory: isDev,
                 cacheCompression: false,
                 compact: isProd,
                 presets: [
