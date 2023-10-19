@@ -11,8 +11,7 @@ interface Props {
 }
 
 export const MenuItem: FC<Props> = ({ children, path }) => {
-  const i = useStoreon('path');
-  const isActive = i.path === path;
+  const isActive = useStoreon('path').path === path;
 
   const className = classNames([
     s.link,

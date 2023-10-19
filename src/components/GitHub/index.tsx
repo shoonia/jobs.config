@@ -3,8 +3,6 @@ import { useStars } from './useStars';
 
 export const GitHub: FC = () => {
   const stars = useStars();
-  const hasStars = (stars > 0);
-  const btnClass = hasStars ? s.btn : s.btnOnly;
 
   return (
     <div
@@ -13,7 +11,7 @@ export const GitHub: FC = () => {
       data-rh-at="left"
     >
       <a
-        className={btnClass}
+        className={stars ? s.btn : s.btnOnly}
         href="https://github.com/shoonia/jobs.config"
         aria-label="Star on GitHub"
         tabIndex={0}
@@ -22,7 +20,7 @@ export const GitHub: FC = () => {
           Star
         </span>
       </a>
-      {hasStars && (
+      {stars && (
         <a
           className={s.count}
           href="https://github.com/shoonia/jobs.config/stargazers"

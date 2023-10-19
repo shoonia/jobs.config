@@ -31,7 +31,7 @@ const tokens: IToken[] = [
 export const JSON: FC<Props> = ({ input }) => {
   const items: ComponentChild[] = [];
 
-  while (input.length) {
+  while (input) {
     for (const token of tokens) {
       const match = token.regex.exec(input);
 
