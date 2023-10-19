@@ -1,24 +1,9 @@
 /* eslint-disable no-undef */
 
-/**
- * @template {T extends object}
- * @param {T} source
- * @param {Partial<T>} patter
- * @returns {boolean}
- */
 const deepMatch = (source, patter) => {
   if (
-    source instanceof Array &&
-    patter instanceof Array
-  ) {
-    return patter.every((item, i) => {
-      return deepMatch(source[i], item);
-    });
-  }
-
-  if (
-    typeof source === 'object' && source !== null &&
-    typeof patter === 'object' && patter !== null
+    typeof source === 'object' &&
+    typeof patter === 'object'
   ) {
     return Object.keys(patter).every((key) => {
       return deepMatch(source[key], patter[key]);
