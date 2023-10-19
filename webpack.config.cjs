@@ -134,7 +134,8 @@ module.exports = ({ NODE_ENV }) => {
       // react-modal
       'react-lifecycles-compat': '{polyfill(){}}',
       'exenv': '{canUseDOM:true}',
-      'prop-types': 'undefined',
+      'prop-types': '0',
+      'warning': 'e=>e',
     },
     module: {
       parser: {
