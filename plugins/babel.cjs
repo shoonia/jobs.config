@@ -1,14 +1,66 @@
 /* eslint-disable no-undef */
 
 /**
- * @param {import('@babel/types')} t
- * @returns {import('@babel/core').PluginObj}
+ * @template {T extends object}
+ * @param {T} source
+ * @param {Partial<T>} patter
+ * @returns {boolean}
  */
+const deepMatch = (source, patter) => {
+  if (
+    source instanceof Array &&
+    patter instanceof Array
+  ) {
+    return patter.every((item, i) => {
+      return deepMatch(source[i], item);
+    });
+  }
+
+  if (
+    typeof source === 'object' && source !== null &&
+    typeof patter === 'object' && patter !== null
+  ) {
+    return Object.keys(patter).every((key) => {
+      return deepMatch(source[key], patter[key]);
+    });
+  }
+
+  return source === patter;
+};
+
+/** @returns {import('@babel/core').PluginObj} */
 module.exports = () => {
   const componentNames = new Set([
     'Modal',
     'ModalPortal',
   ]);
+
+  /** @type {import('@babel/types').MemberExpression} */
+  const objectAssign = {
+    type: 'MemberExpression',
+    computed: false,
+    object: {
+      type: 'Identifier',
+      name: 'Object',
+    },
+    property: {
+      type: 'Identifier',
+      name: 'assign',
+    },
+  };
+
+  /** @type {import('@babel/types').MemberExpression} */
+  const propTypes = {
+    type: 'MemberExpression',
+    computed: false,
+    object: {
+      type: 'Identifier',
+    },
+    property: {
+      type: 'Identifier',
+      name: 'propTypes',
+    },
+  };
 
   return {
     name: 'minimizer',
@@ -19,20 +71,16 @@ module.exports = () => {
 
         if (
           node.operator === '||' &&
-          node.left.type === 'MemberExpression' &&
           node.right.type === 'FunctionExpression' &&
-          node.left.object.type === 'Identifier' &&
-          node.left.property.type === 'Identifier' &&
-          node.left.object.name === 'Object' &&
-          node.left.property.name === 'assign'
+          deepMatch(node.left, objectAssign)
         ) {
           path.replaceWith({
             type: 'MemberExpression',
+            computed: false,
             object: {
               type: 'Identifier',
               name: 'Object',
             },
-            computed: false,
             property: {
               type: 'Identifier',
               name: 'assign',
@@ -48,10 +96,7 @@ module.exports = () => {
         if (
           node.operator === '=' &&
           node.right.type === 'ObjectExpression' &&
-          node.left.type === 'MemberExpression' &&
-          node.left.property.type === 'Identifier' &&
-          node.left.property.name === 'propTypes' &&
-          node.left.object.type === 'Identifier' &&
+          deepMatch(node.left, propTypes) &&
           componentNames.has(node.left.object.name)
         ) {
           path.remove();
