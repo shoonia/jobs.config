@@ -31,6 +31,7 @@ module.exports = ({ NODE_ENV }) => {
 
   return {
     mode: NODE_ENV,
+    cache: isDev,
     bail: isProd,
     devtool: isDev && 'cheap-module-source-map',
     entry: resolveApp('src/main.tsx'),
@@ -151,20 +152,20 @@ module.exports = ({ NODE_ENV }) => {
               test: /\.js?$/,
               include: nodeModulesDir,
               exclude: srcDir,
-              loader: 'babel-loader',
+              loader: require.resolve('babel-loader'),
               options: {
                 cacheDirectory: isDev,
                 cacheCompression: false,
                 compact: isProd,
                 plugins: [
-                  './plugins/babel.cjs',
+                  resolveApp('plugins/babel.cjs'),
                 ],
               },
             },
             {
               test: /\.tsx?$/,
               include: srcDir,
-              loader: 'babel-loader',
+              loader: require.resolve('babel-loader'),
               options: {
                 cacheDirectory: isDev,
                 cacheCompression: false,
@@ -193,9 +194,9 @@ module.exports = ({ NODE_ENV }) => {
               use: [
                 isProd
                   ? MiniCssExtractPlugin.loader
-                  : 'style-loader',
+                  : require.resolve('style-loader'),
                 {
-                  loader: 'css-loader',
+                  loader: require.resolve('css-loader'),
                   options: {
                     importLoaders: 1,
                     sourceMap: isDev,
@@ -207,7 +208,7 @@ module.exports = ({ NODE_ENV }) => {
                   },
                 },
                 {
-                  loader: 'postcss-loader',
+                  loader: require.resolve('postcss-loader'),
                   options: {
                     sourceMap: isDev,
                     postcssOptions: {
@@ -246,8 +247,7 @@ module.exports = ({ NODE_ENV }) => {
         },
       }),
       isProd && new MiniCssExtractPlugin({
-        filename: '[name].css',
-        chunkFilename: '[name].css',
+        filename: 'styles.css',
         ignoreOrder: true,
       }),
       isProd && new HTMLInlineCSSWebpackPlugin({
@@ -273,12 +273,6 @@ module.exports = ({ NODE_ENV }) => {
       new webpack.DefinePlugin({
         'process.env.NODE_ENV': JSON.stringify(NODE_ENV),
         'process.env.NODE_DEBUG': JSON.stringify(isDev),
-        'process.env': 'undefined',
-        'process.throwDeprecation': 'false',
-        'process.noDeprecation': 'false',
-        'process.emitWarning': 'undefined',
-        'process.platform': 'undefined',
-        'process': 'undefined',
       }),
       isProd && new GenerateSW({
         clientsClaim: true,

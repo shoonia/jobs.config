@@ -7,7 +7,7 @@ const config = {
     '**/**.spec.ts',
   ],
   transform: {
-    '^.+\\.(ts|tsx)$': 'ts-jest',
+    '^.+\\.tsx?$': 'ts-jest',
   },
 };
 
