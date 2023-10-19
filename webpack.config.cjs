@@ -295,8 +295,8 @@ module.exports = ({ NODE_ENV }) => {
     performance: false,
     node: false,
     devServer: {
-      hot: true,
-      compress: true,
+      hot: false,
+      compress: false,
       static: srcDir,
       port: 3000,
     },
