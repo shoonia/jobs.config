@@ -2,7 +2,7 @@ export const IconDownload: FC = () => (
   <svg
     width="24"
     height="24"
-    fill="currentColor"
+    fill="currentcolor"
     aria-hidden="true"
   >
     <path

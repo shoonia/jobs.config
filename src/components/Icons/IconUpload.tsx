@@ -6,7 +6,7 @@ export const IconUpload: FC = () => (
     aria-hidden="true"
   >
     <path
-      stroke="currentColor"
+      stroke="currentcolor"
       strokeLinecap="round"
       strokeLinejoin="round"
       strokeWidth="2"

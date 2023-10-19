@@ -2,7 +2,7 @@ export const IconThreeDots: FC = () => (
   <svg
     width="18"
     height="18"
-    fill="currentColor"
+    fill="currentcolor"
     viewBox="0 0 24 24"
     aria-hidden="true"
   >

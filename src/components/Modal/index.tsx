@@ -3,8 +3,8 @@ import ReactModal from 'react-modal';
 
 import s from './styles.css';
 
-export interface IModalProps {
-  label?: string;
+interface Props {
+  label: string;
   children: ComponentChildren;
   close: () => void;
 }
@@ -14,7 +14,7 @@ const ReactModalPreactTyped: ComponentClass<ReactModal.Props> = ReactModal;
 
 ReactModal.setAppElement('#app');
 
-export const Modal: FC<IModalProps> = ({ close, label, children }) => (
+export const Modal: FC<Props> = ({ close, label, children }) => (
   <ReactModalPreactTyped
     isOpen
     onRequestClose={close}

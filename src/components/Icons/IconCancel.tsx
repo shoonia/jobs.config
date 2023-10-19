@@ -1,6 +1,6 @@
 export const IconCancel: FC = () => (
   <svg
-    fill="currentColor"
+    fill="currentcolor"
     width="12"
     height="12"
     viewBox="0 0 8 8"
