@@ -59,18 +59,7 @@ module.exports = () => {
           node.right.type === 'FunctionExpression' &&
           deepMatch(node.left, objectAssign)
         ) {
-          path.replaceWith({
-            type: 'MemberExpression',
-            computed: false,
-            object: {
-              type: 'Identifier',
-              name: 'Object',
-            },
-            property: {
-              type: 'Identifier',
-              name: 'assign',
-            },
-          });
+          path.replaceWith(node.left);
         }
       },
 
