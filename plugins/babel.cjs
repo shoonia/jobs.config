@@ -13,15 +13,16 @@ const deepMatch = (source, patter) => {
   return source === patter;
 };
 
-/** @returns {import('@babel/core').PluginObj} */
-module.exports = () => {
-  const componentNames = new Set([
-    'Modal',
-    'ModalPortal',
-  ]);
+const components = new Set([
+  'Modal',
+  'ModalPortal',
+]);
 
-  /** @type {import('@babel/types').MemberExpression} */
-  const objectAssign = {
+/** @type {import('@babel/types').LogicalExpression} */
+const objectAssign = {
+  operator: '||',
+  right: { type: 'FunctionExpression' },
+  left: {
     type: 'MemberExpression',
     computed: false,
     object: {
@@ -32,21 +33,26 @@ module.exports = () => {
       type: 'Identifier',
       name: 'assign',
     },
-  };
+  },
+};
 
-  /** @type {import('@babel/types').MemberExpression} */
-  const propTypes = {
+/** @type {import('@babel/types').AssignmentExpression} */
+const propTypes = {
+  operator: '=',
+  right: { type: 'ObjectExpression' },
+  left: {
     type: 'MemberExpression',
     computed: false,
-    object: {
-      type: 'Identifier',
-    },
+    object: { type: 'Identifier' },
     property: {
       type: 'Identifier',
       name: 'propTypes',
     },
-  };
+  },
+};
 
+/** @returns {import('@babel/core').PluginObj} */
+module.exports = () => {
   return {
     name: 'minimizer',
     visitor: {
@@ -54,11 +60,7 @@ module.exports = () => {
       LogicalExpression(path) {
         const { node } = path;
 
-        if (
-          node.operator === '||' &&
-          node.right.type === 'FunctionExpression' &&
-          deepMatch(node.left, objectAssign)
-        ) {
+        if (deepMatch(node, objectAssign)) {
           path.replaceWith(node.left);
         }
       },
@@ -68,10 +70,8 @@ module.exports = () => {
         const { node } = path;
 
         if (
-          node.operator === '=' &&
-          node.right.type === 'ObjectExpression' &&
-          deepMatch(node.left, propTypes) &&
-          componentNames.has(node.left.object.name)
+          deepMatch(node, propTypes) &&
+          components.has(node.left.object.name)
         ) {
           path.remove();
         }
