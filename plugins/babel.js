@@ -1,5 +1,3 @@
-/* eslint-disable no-undef */
-
 const deepMatch = (source, patter) => {
   if (
     typeof source === 'object' &&
@@ -52,7 +50,7 @@ const propTypes = {
 };
 
 /** @returns {import('@babel/core').PluginObj} */
-module.exports = () => {
+const plugin = () => {
   return {
     name: 'minimizer',
     visitor: {
@@ -79,3 +77,5 @@ module.exports = () => {
     },
   };
 };
+
+export { plugin as default };
