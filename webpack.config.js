@@ -7,7 +7,7 @@ import HtmlWebpackPlugin from 'html-webpack-plugin';
 import TerserPlugin from 'terser-webpack-plugin';
 import MiniCssExtractPlugin from 'mini-css-extract-plugin';
 import CssMinimizerPlugin from 'css-minimizer-webpack-plugin';
-import CSSMQPackerPlugin from 'css-mqpacker-webpack-plugin';
+import CssMqpackerPlugin from 'css-mqpacker-webpack-plugin';
 import createLocalIdent from 'mini-css-class-name/css-loader';
 import ForkTsCheckerWebpackPlugin from 'fork-ts-checker-webpack-plugin';
 import HTMLInlineCSSWebpackPlugin from 'html-inline-css-webpack-plugin';
@@ -98,7 +98,7 @@ const buildConfig = ({ NODE_ENV }) => {
             ],
           },
         }),
-        new CSSMQPackerPlugin(),
+        new CssMqpackerPlugin(),
       ],
       splitChunks: {
         cacheGroups: {
