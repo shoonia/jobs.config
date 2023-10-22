@@ -31,10 +31,28 @@ const createObjectAssign = () => ({
 });
 
 /** @type {import('@babel/types').LogicalExpression} */
-const objectAssign = {
+const maybePolyfill = {
   operator: '||',
   right: { type: 'FunctionExpression' },
-  left: createObjectAssign(),
+};
+
+/** @type {import('@babel/types').MemberExpression} */
+const objectAssign = createObjectAssign();
+
+/** @type {import('@babel/types').LogicalExpression} */
+const objectAssignTs = {
+  type: 'LogicalExpression',
+  operator: '&&',
+  left: { type: 'ThisExpression' },
+  right: {
+    type: 'MemberExpression',
+    computed: false,
+    object: { type: 'ThisExpression' },
+    property: {
+      type: 'Identifier',
+      name: '__assign',
+    },
+  },
 };
 
 /** @type {import('@babel/types').AssignmentExpression} */
@@ -61,8 +79,13 @@ const plugin = () => {
       LogicalExpression(path) {
         const { node } = path;
 
-        if (deepMatch(node, objectAssign)) {
-          path.replaceWith(createObjectAssign());
+        if (deepMatch(node, maybePolyfill)) {
+          if (
+            deepMatch(node.left, objectAssign) ||
+            deepMatch(node.left, objectAssignTs)
+          ) {
+            path.replaceWith(createObjectAssign());
+          }
         }
       },
 
