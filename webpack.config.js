@@ -1,3 +1,4 @@
+/* eslint-env node */
 import { relative, resolve } from 'node:path';
 import { realpathSync } from 'node:fs';
 import webpack from 'webpack';
@@ -163,7 +164,7 @@ const buildConfig = ({ NODE_ENV }) => {
                 cacheCompression: false,
                 compact: isProd,
                 plugins: [
-                  resolveApp('plugins/babel.cjs'),
+                  resolveApp('plugins/babel.js'),
                 ],
               },
             },
