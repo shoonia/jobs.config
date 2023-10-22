@@ -1,17 +1,21 @@
-const { relative, resolve } = require('node:path');
-const { realpathSync } = require('node:fs');
-const webpack = require('webpack');
-const CopyPlugin = require('copy-webpack-plugin');
-const HtmlWebpackPlugin = require('html-webpack-plugin');
-const TerserPlugin = require('terser-webpack-plugin');
-const MiniCssExtractPlugin = require('mini-css-extract-plugin');
-const CssMinimizerPlugin = require('css-minimizer-webpack-plugin');
-const CSSMQPackerPlugin = require('css-mqpacker-webpack-plugin');
-const createLocalIdent = require('mini-css-class-name/css-loader');
-const ForkTsCheckerWebpackPlugin = require('fork-ts-checker-webpack-plugin');
-const HTMLInlineCSSWebpackPlugin = require('html-inline-css-webpack-plugin').default;
-const { GenerateSW } = require('workbox-webpack-plugin');
-const manifest = require('./static/manifest.json');
+import { relative, resolve } from 'node:path';
+import { realpathSync } from 'node:fs';
+import webpack from 'webpack';
+import CopyPlugin from 'copy-webpack-plugin';
+import HtmlWebpackPlugin from 'html-webpack-plugin';
+import TerserPlugin from 'terser-webpack-plugin';
+import MiniCssExtractPlugin from 'mini-css-extract-plugin';
+import CssMinimizerPlugin from 'css-minimizer-webpack-plugin';
+import CSSMQPackerPlugin from 'css-mqpacker-webpack-plugin';
+import createLocalIdent from 'mini-css-class-name/css-loader';
+import ForkTsCheckerWebpackPlugin from 'fork-ts-checker-webpack-plugin';
+import HTMLInlineCSSWebpackPlugin from 'html-inline-css-webpack-plugin';
+import { GenerateSW } from 'workbox-webpack-plugin';
+import postcssImport from 'postcss-import';
+import simpleVars from 'postcss-simple-vars';
+import autoprefixer from 'autoprefixer';
+
+import manifest from './static/manifest.json' assert { type: 'json' };
 
 const appDirectory = realpathSync(process.cwd());
 const resolveApp = (relativePath) => resolve(appDirectory, relativePath);
@@ -25,7 +29,7 @@ const nodeModulesDir = resolveApp('node_modules');
  * @param {NodeJS.ProcessEnv} env
  * @returns {webpack.Configuration}
  */
-module.exports = ({ NODE_ENV }) => {
+const buildConfig = ({ NODE_ENV }) => {
   const isDev = NODE_ENV === 'development';
   const isProd = NODE_ENV === 'production';
 
@@ -153,7 +157,7 @@ module.exports = ({ NODE_ENV }) => {
               test: /\.js?$/,
               include: nodeModulesDir,
               exclude: srcDir,
-              loader: require.resolve('babel-loader'),
+              loader: 'babel-loader',
               options: {
                 cacheDirectory: isDev,
                 cacheCompression: false,
@@ -166,7 +170,7 @@ module.exports = ({ NODE_ENV }) => {
             {
               test: /\.tsx?$/,
               include: srcDir,
-              loader: require.resolve('babel-loader'),
+              loader: 'babel-loader',
               options: {
                 cacheDirectory: isDev,
                 cacheCompression: false,
@@ -195,9 +199,9 @@ module.exports = ({ NODE_ENV }) => {
               use: [
                 isProd
                   ? MiniCssExtractPlugin.loader
-                  : require.resolve('style-loader'),
+                  : 'style-loader',
                 {
-                  loader: require.resolve('css-loader'),
+                  loader: 'css-loader',
                   options: {
                     importLoaders: 1,
                     sourceMap: isDev,
@@ -209,14 +213,14 @@ module.exports = ({ NODE_ENV }) => {
                   },
                 },
                 {
-                  loader: require.resolve('postcss-loader'),
+                  loader: 'postcss-loader',
                   options: {
                     sourceMap: isDev,
                     postcssOptions: {
                       plugins: [
-                        require('postcss-import'),
-                        require('postcss-simple-vars'),
-                        isProd && require('autoprefixer'),
+                        postcssImport,
+                        simpleVars,
+                        isProd && autoprefixer,
                       ].filter(Boolean),
                     },
                   },
@@ -251,7 +255,7 @@ module.exports = ({ NODE_ENV }) => {
         filename: 'styles.css',
         ignoreOrder: true,
       }),
-      isProd && new HTMLInlineCSSWebpackPlugin({
+      isProd && new HTMLInlineCSSWebpackPlugin.default({
         styleTagFactory: ({ style }) => `<style>${style}</style>`,
       }),
       isProd && new CopyPlugin({
@@ -302,3 +306,5 @@ module.exports = ({ NODE_ENV }) => {
     },
   };
 };
+
+export { buildConfig as default };
