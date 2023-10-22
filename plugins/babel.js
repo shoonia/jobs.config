@@ -16,22 +16,25 @@ const components = new Set([
   'ModalPortal',
 ]);
 
+/** @returns {import('@babel/types').MemberExpression} */
+const createObjectAssign = () => ({
+  type: 'MemberExpression',
+  computed: false,
+  object: {
+    type: 'Identifier',
+    name: 'Object',
+  },
+  property: {
+    type: 'Identifier',
+    name: 'assign',
+  },
+});
+
 /** @type {import('@babel/types').LogicalExpression} */
 const objectAssign = {
   operator: '||',
   right: { type: 'FunctionExpression' },
-  left: {
-    type: 'MemberExpression',
-    computed: false,
-    object: {
-      type: 'Identifier',
-      name: 'Object',
-    },
-    property: {
-      type: 'Identifier',
-      name: 'assign',
-    },
-  },
+  left: createObjectAssign(),
 };
 
 /** @type {import('@babel/types').AssignmentExpression} */
@@ -59,7 +62,7 @@ const plugin = () => {
         const { node } = path;
 
         if (deepMatch(node, objectAssign)) {
-          path.replaceWith(node.left);
+          path.replaceWith(createObjectAssign());
         }
       },
 
