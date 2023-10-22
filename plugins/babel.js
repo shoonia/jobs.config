@@ -16,20 +16,41 @@ const components = new Set([
   'ModalPortal',
 ]);
 
+/** @returns {import('@babel/types').MemberExpression} */
+const createObjectAssign = () => ({
+  type: 'MemberExpression',
+  computed: false,
+  object: {
+    type: 'Identifier',
+    name: 'Object',
+  },
+  property: {
+    type: 'Identifier',
+    name: 'assign',
+  },
+});
+
 /** @type {import('@babel/types').LogicalExpression} */
-const objectAssign = {
+const maybePolyfill = {
   operator: '||',
   right: { type: 'FunctionExpression' },
-  left: {
+};
+
+/** @type {import('@babel/types').MemberExpression} */
+const objectAssign = createObjectAssign();
+
+/** @type {import('@babel/types').LogicalExpression} */
+const objectAssignTs = {
+  type: 'LogicalExpression',
+  operator: '&&',
+  left: { type: 'ThisExpression' },
+  right: {
     type: 'MemberExpression',
     computed: false,
-    object: {
-      type: 'Identifier',
-      name: 'Object',
-    },
+    object: { type: 'ThisExpression' },
     property: {
       type: 'Identifier',
-      name: 'assign',
+      name: '__assign',
     },
   },
 };
@@ -58,8 +79,13 @@ const plugin = () => {
       LogicalExpression(path) {
         const { node } = path;
 
-        if (deepMatch(node, objectAssign)) {
-          path.replaceWith(node.left);
+        if (deepMatch(node, maybePolyfill)) {
+          if (
+            deepMatch(node.left, objectAssign) ||
+            deepMatch(node.left, objectAssignTs)
+          ) {
+            path.replaceWith(createObjectAssign());
+          }
         }
       },
 
