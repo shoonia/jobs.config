@@ -1,14 +1,17 @@
-const deepMatch = (source, patter) => {
-  if (
-    typeof source === 'object' &&
-    typeof patter === 'object'
-  ) {
-    return Object.keys(patter).every((key) => {
-      return deepMatch(source[key], patter[key]);
-    });
+const isMatch = (a, b) => {
+  if (a === null) {
+    return b === null;
   }
 
-  return source === patter;
+  if (Array.isArray(a)) {
+    return Array.isArray(b) && b.every((p, i) => isMatch(a[i], p));
+  }
+
+  if (typeof a === 'object') {
+    return typeof b === 'object' && Object.keys(b).every((i) => isMatch(a[i], b[i]));
+  }
+
+  return a === b;
 };
 
 const components = new Set([
@@ -16,8 +19,11 @@ const components = new Set([
   'ModalPortal',
 ]);
 
-/** @returns {import('@babel/types').MemberExpression} */
-const createObjectAssign = () => ({
+/**
+ * @param {string} prop
+ * @returns {import('@babel/types').MemberExpression}
+ */
+const objectMember = (prop) => ({
   type: 'MemberExpression',
   computed: false,
   object: {
@@ -26,7 +32,7 @@ const createObjectAssign = () => ({
   },
   property: {
     type: 'Identifier',
-    name: 'assign',
+    name: prop,
   },
 });
 
@@ -37,7 +43,7 @@ const maybePolyfill = {
 };
 
 /** @type {import('@babel/types').MemberExpression} */
-const objectAssign = createObjectAssign();
+const objectAssign = objectMember('assign');
 
 /** @type {import('@babel/types').LogicalExpression} */
 const objectAssignTs = {
@@ -79,12 +85,12 @@ const plugin = () => {
       LogicalExpression(path) {
         const { node } = path;
 
-        if (deepMatch(node, maybePolyfill)) {
+        if (isMatch(node, maybePolyfill)) {
           if (
-            deepMatch(node.left, objectAssign) ||
-            deepMatch(node.left, objectAssignTs)
+            isMatch(node.left, objectAssign) ||
+            isMatch(node.left, objectAssignTs)
           ) {
-            path.replaceWith(createObjectAssign());
+            path.replaceWith(objectMember('assign'));
           }
         }
       },
@@ -94,7 +100,7 @@ const plugin = () => {
         const { node } = path;
 
         if (
-          deepMatch(node, propTypes) &&
+          isMatch(node, propTypes) &&
           components.has(node.left.object.name)
         ) {
           path.remove();
