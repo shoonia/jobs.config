@@ -8,6 +8,7 @@ import { KEYS } from '../../constants';
 import { FunctionName } from './FunctionName';
 import { FunctionLocation } from './FunctionLocation';
 import { CronExamplesTooltip } from './CronExamplesTooltip';
+import cronExamples from './CronExamplesTooltip/cronExamples.json';
 
 // @ts-expect-error @typescript-eslint/ban-ts-comment
 const Hint: ComponentClass<ReactHintProps> = HintFactory({ createElement: h, Component, createRef });
@@ -15,6 +16,12 @@ const delay = {
   show: 500,
   hide: 100,
 } as const;
+
+const dataList = cronExamples.map((i) => (
+  <option key={i.value} value={i.value}>
+    {i.label}
+  </option>
+));
 
 export const Tooltips: FC = () => {
   const { items } = useStoreon('items');
@@ -57,6 +64,9 @@ export const Tooltips: FC = () => {
         // @ts-expect-error @typescript-eslint/ban-ts-comment
         onRenderContent={onRenderContent}
       />
+      <datalist id="cron-examples">
+        {dataList}
+      </datalist>
     </>
   );
 };
