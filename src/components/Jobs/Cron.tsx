@@ -25,6 +25,7 @@ export const Cron: FC<Props> = ({ value, error }) => {
         value={value}
         data-name={KEYS.cronExpression}
         spellcheck={false}
+        list="cron-examples"
         required
       />
     </Label>
