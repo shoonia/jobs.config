@@ -11,4 +11,4 @@ Scheduling recurring `jobs.config` for Velo by Wix
 - [Upload a config to edit](https://shoonia.github.io/jobs.config/#upload)
 
 Documentation
-- [Scheduling Recurring Jobs](https://support.wix.com/en/article/velo-scheduling-recurring-jobs)
+- [Scheduling Recurring Jobs](https://dev.wix.com/docs/develop-websites/articles/workspace-tools/developer-tools/recurring-jobs/scheduling-recurring-jobs)
