@@ -3,7 +3,7 @@ import { reservedWords } from './reservedWords';
 
 export type TValidator = (val: string) => boolean;
 
-const FUNCTION_NAME = /^[$a-z_][\da-z_$]*$/i;
+const FUNCTION_NAME = /^[a-z_$][\da-z_$]*$/i;
 const UTC = /^([01]\d|2[0-3]):([0-5]\d)$/;
 const INVALID_PATH_CHARS = /[^\w\d.-]/;
 const FILE_EXT = /\.jsw?$/;
