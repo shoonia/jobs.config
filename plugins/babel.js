@@ -1,10 +1,10 @@
 const isMatch = (a, b) => {
-  if (a === null) {
-    return b === null;
-  }
-
   if (Array.isArray(a)) {
     return Array.isArray(b) && b.every((p, i) => isMatch(a[i], p));
+  }
+
+  if (a == null || b == null) {
+    return a === b;
   }
 
   if (typeof a === 'object') {
