@@ -133,7 +133,6 @@ const buildConfig = ({ NODE_ENV }) => {
     externalsType: 'assign',
     externals: {
       // parse-json
-      'is-arrayish': 'Array.isArray',
       '@babel/highlight': '{shouldHighlight(){}}',
       'chalk': '{grey:e=>e,red:{bold:e=>e}}',
       // react-modal
