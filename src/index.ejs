@@ -40,11 +40,23 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width,initial-scale=1">
-  <link rel="preload" href="https://static.parastorage.com/unpkg/@wix/wix-fonts@1.11.0/media/WixMadeforTextVF_W_Wght.8022447a.woff2" as="font" type="font/woff2" crossorigin="anonymous">
+  <link
+    rel="preload"
+    href="https://static.parastorage.com/unpkg/@wix/wix-fonts@1.12.0/media/WixMadeforTextVF_W_Wght.8022447a.woff2"
+    as="font"
+    type="font/woff2"
+    crossorigin="anonymous"
+  >
   <link rel="canonical" href="<%= homepage %>">
   <title><%= title %></title>
   <% if (isProd) { %>
-    <link rel="preload" href="https://api.github.com/repos/shoonia/jobs.config" as="fetch" crossorigin="anonymous">
+    <link
+      rel="preload"
+      href="https://api.github.com/repos/shoonia/jobs.config"
+      as="fetch"
+      fetchpriority="high"
+      crossorigin="anonymous"
+    >
     <base href="<%= homepage %>">
     <link rel="manifest" href="manifest.json">
   <% } %>
