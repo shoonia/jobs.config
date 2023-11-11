@@ -12,6 +12,7 @@ import { TextBox } from '../TextBox';
 import { BlankButton, Button } from '../Button';
 import { UploadFile } from '../UploadFile';
 import { IconCancel } from '../Icons/IconCancel';
+import { IconConfirm } from '../Icons/IconConfirm';
 
 const close = (): void => {
   location.hash = ROUTER.BUILDER;
@@ -78,9 +79,11 @@ export const UploadModal: FC = () => {
         </div>
         <div className={s.btns}>
           <Button type="submit">
+            <IconConfirm />
             Upload Config
           </Button>
           <Button onClick={close}>
+            <IconCancel />
             Cancel
           </Button>
         </div>

@@ -1,5 +1,6 @@
 import { useStore } from '../../store';
 import { Button } from '../Button';
+import { IconEdit } from '../Icons/IconEdit';
 import { type IConfig, createItems } from '../../util/items';
 import { ROUTER } from '../../constants';
 
@@ -17,6 +18,7 @@ export const EditButton: FC<Props> = ({ config }) => {
 
   return (
     <Button onClick={onClick}>
+      <IconEdit />
       Edit Config
     </Button>
   );
