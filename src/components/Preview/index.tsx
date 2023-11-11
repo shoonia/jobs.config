@@ -25,7 +25,7 @@ export const Preview: FC = () => {
     await navigator.clipboard.writeText(data);
 
     if (output.current) {
-      const selection = window.getSelection();
+      const selection = getSelection();
       const range = document.createRange();
 
       range.selectNodeContents(output.current);

@@ -1,7 +1,7 @@
-export const isSupportFilePicker = typeof window.showSaveFilePicker === 'function';
+export const isSupportFilePicker = typeof showSaveFilePicker === 'function';
 
 export const saveFile = async (content: string): Promise<void> => {
-  const file = await window.showSaveFilePicker({
+  const file = await showSaveFilePicker({
     suggestedName: 'jobs.config',
   });
 

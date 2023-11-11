@@ -35,7 +35,7 @@ export const appModule: TModule = (store) => {
     };
   });
 
-  window.addEventListener('hashchange', () => {
+  addEventListener('hashchange', () => {
     const { path } = store.get();
     const newPath = getPath();
 
