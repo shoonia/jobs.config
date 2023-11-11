@@ -279,6 +279,7 @@ const buildConfig = ({ NODE_ENV }) => {
         'process.env.NODE_ENV': JSON.stringify(NODE_ENV),
       }),
       isProd && new GenerateSW({
+        swDest: 'sw.js',
         clientsClaim: true,
         skipWaiting: true,
         mode: NODE_ENV,
