@@ -13,7 +13,6 @@
 
 .btn {
   composes: base;
-  font-size: 1em;
   padding: 0.3em 1.3em;
   border-radius: 50px;
   transition: all 0.2s ease-in-out;
