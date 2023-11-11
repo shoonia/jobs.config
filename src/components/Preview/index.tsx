@@ -6,6 +6,7 @@ import { Button } from '../Button';
 import { Toolbar } from '../Toolbar';
 import { JSON } from './JSON';
 import { DownloadButton } from '../DownloadButton';
+import { IconDuplicate } from '../Icons/IconDuplicate';
 import { createConfig } from '../../util/items';
 
 const createData = (config: string): string => `// Jobs Config Generator
@@ -38,6 +39,7 @@ export const Preview: FC = () => {
       <Toolbar.Wrapper>
         <Toolbar.Hint label="Copy to clipboard">
           <Button onClick={clipboard}>
+            <IconDuplicate />
             Copy Code
           </Button>
         </Toolbar.Hint>

@@ -3,7 +3,6 @@ export const IssueIcon: FC = () => (
     width="20"
     height="20"
     viewBox="0 0 16 16"
-    aria-hidden="true"
     fill="currentcolor"
   >
     <path

@@ -7,7 +7,6 @@ export const IconChevron: FC<Props> = ({ up }) => (
     width="24"
     height="24"
     fill="#116dff"
-    aria-hidden="true"
   >
     <path
       d={up
