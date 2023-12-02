@@ -17,7 +17,7 @@ export const Cron: FC<Props> = ({ value, error }) => {
   }, [error]);
 
   return (
-    <Label top="A valid cron expression">
+    <Label top="Cron Expression">
       <input
         ref={ref}
         type="text"

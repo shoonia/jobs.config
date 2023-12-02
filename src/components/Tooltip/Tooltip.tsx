@@ -27,9 +27,7 @@ export const Tooltips: FC = () => {
   const { items } = useStoreon('items');
 
   const onRenderContent = useCallback((target: HTMLInputElement) => {
-    const { name } = target.dataset;
-
-    switch (name) {
+    switch (target.dataset.name) {
       case KEYS.functionLocation: {
         return (
           <FunctionLocation target={target} />

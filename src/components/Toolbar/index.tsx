@@ -1,23 +1,16 @@
-import type { ComponentChildren } from 'preact';
-
 import s from './styles.css';
-
-interface IWrapperProps {
-  children: ComponentChildren;
-}
 
 interface IHintProps {
   label: string;
-  children: ComponentChildren;
 }
 
-const Wrapper: FC<IWrapperProps> = ({ children }) => (
+export const ToolbarWrapper: FC = ({ children }) => (
   <div className={s.box}>
     {children}
   </div>
 );
 
-const Hint: FC<IHintProps> = ({ children, label }) => (
+export const ToolbarHint: FC<IHintProps> = ({ children, label }) => (
   <span
     data-rh={label}
     data-rh-at="top"
@@ -26,8 +19,3 @@ const Hint: FC<IHintProps> = ({ children, label }) => (
     {children}
   </span>
 );
-
-export const Toolbar = {
-  Wrapper,
-  Hint,
-} as const;
