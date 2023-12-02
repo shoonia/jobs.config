@@ -3,7 +3,7 @@ import { useRef } from 'preact/hooks';
 import s from './styles.css';
 import { useStoreon } from '../../store';
 import { Button } from '../Button';
-import { Toolbar } from '../Toolbar';
+import { ToolbarWrapper, ToolbarHint } from '../Toolbar';
 import { JSON } from './JSON';
 import { DownloadButton } from '../DownloadButton';
 import { IconDuplicate } from '../Icons/IconDuplicate';
@@ -36,20 +36,20 @@ export const Preview: FC = () => {
 
   return (
     <div className={s.box}>
-      <Toolbar.Wrapper>
-        <Toolbar.Hint label="Copy to clipboard">
+      <ToolbarWrapper>
+        <ToolbarHint label="Copy to clipboard">
           <Button onClick={clipboard}>
             <IconDuplicate />
             Copy Code
           </Button>
-        </Toolbar.Hint>
-        <Toolbar.Hint label="Download a file">
+        </ToolbarHint>
+        <ToolbarHint label="Download a file">
           <DownloadButton
             label="Download a file"
             data={data}
           />
-        </Toolbar.Hint>
-      </Toolbar.Wrapper>
+        </ToolbarHint>
+      </ToolbarWrapper>
       <pre
         ref={output}
         className={s.out}

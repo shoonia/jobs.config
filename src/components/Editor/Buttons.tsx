@@ -1,6 +1,6 @@
 import { useStoreon } from '../../store';
 import { Button } from '../Button';
-import { Toolbar } from '../Toolbar';
+import { ToolbarWrapper, ToolbarHint } from '../Toolbar';
 import { IconPlus } from '../Icons/IconPlus';
 import { IconUpload } from '../Icons/IconUpload';
 import { MAX_ITEMS, ROUTER } from '../../constants';
@@ -17,8 +17,8 @@ export const Buttons: FC = () => {
   };
 
   return (
-    <Toolbar.Wrapper>
-      <Toolbar.Hint label="You can configure up to 20 jobs">
+    <ToolbarWrapper>
+      <ToolbarHint label="You can configure up to 20 jobs">
         <Button
           onClick={createItem}
           disabled={items.length >= MAX_ITEMS}
@@ -26,15 +26,15 @@ export const Buttons: FC = () => {
           <IconPlus />
           {' New Job'}
         </Button>
-      </Toolbar.Hint>
-      <Toolbar.Hint label="Upload your config">
+      </ToolbarHint>
+      <ToolbarHint label="Upload your config">
         <Button
           onClick={openUploadModal}
           aria-label="Upload your config"
         >
           <IconUpload />
         </Button>
-      </Toolbar.Hint>
-    </Toolbar.Wrapper>
+      </ToolbarHint>
+    </ToolbarWrapper>
   );
 };
