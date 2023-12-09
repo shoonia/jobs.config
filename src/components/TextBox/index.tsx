@@ -1,7 +1,9 @@
+import type { JSX } from 'preact';
+
 import s from './styles.css';
 
 interface Props {
-  onInput: EventListener
+  onInput: JSX.InputEventHandler<HTMLTextAreaElement>;
   value?: string;
 }
 

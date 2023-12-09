@@ -1,3 +1,4 @@
+import type { JSX } from 'preact';
 import { useRef } from 'preact/hooks';
 
 import s from './styles.css';
@@ -43,10 +44,8 @@ export const UploadModal: FC = () => {
     location.hash = ROUTER.VALIDATOR;
   };
 
-  const onInput: EventListener = (event) => {
-    const el = event.target as HTMLTextAreaElement;
-
-    ref.current = el.value;
+  const onInput: JSX.InputEventHandler<HTMLTextAreaElement> = (event) => {
+    ref.current = event.currentTarget.value;
   };
 
   const onSubmit: EventListener = (event) => {

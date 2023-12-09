@@ -1,12 +1,14 @@
+import type { JSX } from 'preact';
+
 import s from './styles.css';
 import { KEYS } from '../../constants';
 import { Label } from './Label';
 import { useFormScope } from '../../hooks/formScope';
 import { type TValidator, isValidFunctionLocation, isValidFunctionName } from '../../util/validator';
 
-const validatorListener = (validator: TValidator): EventListener => {
+const validatorListener = (validator: TValidator): JSX.InputEventHandler<HTMLInputElement> => {
   return (event) => {
-    const el = event.target as HTMLInputElement;
+    const el = event.currentTarget;
     const value = el.value.trim();
 
     if (el.value !== value) {

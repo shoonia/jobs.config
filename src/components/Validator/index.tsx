@@ -1,3 +1,5 @@
+import type { JSX } from 'preact';
+
 import s from './styles.css';
 import { useStoreon } from '../../store';
 import { preventDefault } from '../../util/component';
@@ -9,15 +11,11 @@ import { TextBox } from '../TextBox';
 export const Validator: FC = () => {
   const { validatorValue, dispatch } = useStoreon('validatorValue');
 
-  const onInput: EventListener = (event) => {
-    const el = event.target as HTMLTextAreaElement;
+  const onInput: JSX.InputEventHandler<HTMLTextAreaElement> = (event) =>
+    dispatch('validator/input', event.currentTarget.value);
 
-    dispatch('validator/input', el.value);
-  };
-
-  const onLoad = (value: string): void => {
+  const onLoad = (value: string): void =>
     dispatch('validator/input', value);
-  };
 
   return (
     <section className={s.page}>
