@@ -64,9 +64,7 @@ export const itemsModule: TModule = (store) => {
           isNew: true,
         });
 
-        return {
-          items: [...items],
-        };
+        return { items };
       }
     }
   });
@@ -91,9 +89,7 @@ export const itemsModule: TModule = (store) => {
     if (i > 0) {
       items.splice((i - 1), 0, items.splice(i, 1)[0]);
 
-      return {
-        items: [...items],
-      };
+      return { items };
     }
   });
 
@@ -104,9 +100,7 @@ export const itemsModule: TModule = (store) => {
     if (len > 1 && i < len) {
       items.splice((i + 1), 0, items.splice(i, 1)[0]);
 
-      return {
-        items: [...items],
-      };
+      return { items };
     }
   });
 };
