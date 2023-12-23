@@ -7,7 +7,7 @@ const key = 'items';
 const getItems = (): IItem[] => {
   const data = localStorage.getItem(key);
 
-  if (data !== null) {
+  if (data != null) {
     try {
       const items = JSON.parse(data);
 
@@ -72,13 +72,13 @@ export const itemsModule: TModule = (store) => {
   });
 
   store.on('items/update', ({ items }, { id, name, value }) => {
-    const i = items.findIndex((item) => item.id === id);
-
-    if (i > -1 && name) {
-      items.splice(i, 1, { ...items[i], [name]: value });
-
+    if (name) {
       return {
-        items: [...items],
+        items: items.map((item) => {
+          return item.id === id
+            ? { ...item, [name]: value }
+            : item;
+        }),
       };
     }
   });
