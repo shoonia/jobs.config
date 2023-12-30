@@ -16,7 +16,7 @@ import postcssImport from 'postcss-import';
 import simpleVars from 'postcss-simple-vars';
 import autoprefixer from 'autoprefixer';
 
-import manifest from './static/manifest.json' assert { type: 'json' };
+import manifest from './static/manifest.json' with { type: 'json' };
 
 const appDirectory = realpathSync(process.cwd());
 const resolveApp = (relativePath) => resolve(appDirectory, relativePath);
