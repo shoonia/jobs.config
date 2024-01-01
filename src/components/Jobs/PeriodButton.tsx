@@ -1,3 +1,5 @@
+import type { JSX } from 'preact';
+
 import s from './styles.css';
 import type { PERIOD } from '../../constants';
 
@@ -7,9 +9,9 @@ interface Props {
   period: PERIOD;
 }
 
-const handlerClick = (event: KeyboardEvent): void => {
+const handlerClick: JSX.KeyboardEventHandler<HTMLLabelElement> = (event): void => {
   if (event.key === 'Enter' || event.key === ' ') {
-    const el = event.target as HTMLElement;
+    const el = event.currentTarget;
 
     if (el.firstChild instanceof HTMLElement) {
       el.firstChild.click();
