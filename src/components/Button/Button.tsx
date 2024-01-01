@@ -1,15 +1,10 @@
-import type { ComponentChildren } from 'preact';
+import type { JSX } from 'preact';
 
 import s from './styles.css';
 import { classNames } from '../../util/component';
 
-interface Props {
-  type?: string;
-  onClick?: EventListener;
-  disabled?: boolean;
-  children?: ComponentChildren;
+interface Props extends JSX.HTMLAttributes<HTMLButtonElement> {
   className?: string;
-  [key: string]: unknown;
 }
 
 export const Button: FC<Props> = ({

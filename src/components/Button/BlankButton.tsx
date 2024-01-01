@@ -1,13 +1,10 @@
-import type { JSX, ComponentChildren } from 'preact';
+import type { JSX } from 'preact';
 
 import s from './styles.css';
 import { classNames } from '../../util/component';
 
-interface Props {
-  onClick?: JSX.MouseEventHandler<HTMLButtonElement>;
-  children?: ComponentChildren;
+interface Props extends JSX.HTMLAttributes<HTMLButtonElement> {
   className?: string;
-  [key: string]: unknown;
 }
 
 export const BlankButton: FC<Props> = ({ children, className, ...rest }) => {
