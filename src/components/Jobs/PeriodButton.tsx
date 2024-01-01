@@ -9,7 +9,7 @@ interface Props {
   period: PERIOD;
 }
 
-const handlerClick: JSX.KeyboardEventHandler<HTMLLabelElement> = (event): void => {
+const handlerClick: JSX.KeyboardEventHandler<HTMLLabelElement> = (event) => {
   if (event.key === 'Enter' || event.key === ' ') {
     const el = event.currentTarget;
 

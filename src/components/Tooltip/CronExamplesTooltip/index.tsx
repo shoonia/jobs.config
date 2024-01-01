@@ -1,3 +1,5 @@
+import type { JSX } from 'preact';
+
 import s from './styles.css';
 import cronExamples from './cronExamples.json';
 import { useStoreon } from '../../../store';
@@ -12,18 +14,15 @@ interface Props {
 export const CronExamplesTooltip: FC<Props> = ({ target }) => {
   const { items, dispatch } = useStoreon('items');
 
-  const { id } = target.dataset;
+  const id = target.dataset.id || '';
   const { cronExpression } = items.find((i) => i.id === id) || {};
 
-  const onClick: EventListener = (event) => {
-    const el = event.target as HTMLButtonElement;
-
+  const onClick: JSX.MouseEventHandler<HTMLButtonElement> = (event) =>
     dispatch('items/update', {
-      id: id || '',
+      id,
       name: KEYS.cronExpression,
-      value: el.value,
+      value: event.currentTarget.value,
     });
-  };
 
   const list = cronExamples.map((i) => {
     const classList = classNames([
