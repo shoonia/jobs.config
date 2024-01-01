@@ -1,10 +1,10 @@
-import type { ComponentChildren } from 'preact';
+import type { JSX, ComponentChildren } from 'preact';
 
 import s from './styles.css';
 import { classNames } from '../../util/component';
 
 interface Props {
-  onClick?: EventListener;
+  onClick?: JSX.MouseEventHandler<HTMLButtonElement>;
   children?: ComponentChildren;
   className?: string;
   [key: string]: unknown;

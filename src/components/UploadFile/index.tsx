@@ -1,3 +1,5 @@
+import type { JSX } from 'preact';
+
 import s from './styles.css';
 import { readFile } from './readFile';
 import { classNames } from '../../util/component';
@@ -9,11 +11,8 @@ interface Props {
 }
 
 export const UploadFile: FC<Props> = ({ className, onLoad }) => {
-  const onChange: EventListener = (event) => {
-    const el = event.target as HTMLInputElement;
-
-    readFile(el.files).then(onLoad);
-  };
+  const onChange: JSX.GenericEventHandler<HTMLInputElement> = (event) =>
+    readFile(event.currentTarget.files).then(onLoad);
 
   return (
     <label

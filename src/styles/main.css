@@ -90,16 +90,8 @@ textarea {
   min-height: 100vh;
 }
 
-:global(#root) {
-  height: $body-height;
-}
-
 @media (max-width: $mobile-width) {
   body {
     overflow-y: auto;
-  }
-
-  :global(#root) {
-    height: auto;
   }
 }
