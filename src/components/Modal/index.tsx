@@ -1,18 +1,17 @@
-import type { ComponentChildren, ComponentClass } from 'preact';
+import type { ComponentClass } from 'preact';
 import ReactModal from 'react-modal';
 
 import s from './styles.css';
 
 interface Props {
   label: string;
-  children: ComponentChildren;
   close: () => void;
 }
 
+ReactModal.setAppElement('#app');
+
 // @ts-expect-error @typescript-eslint/ban-ts-comment
 const ReactModalPreactTyped: ComponentClass<ReactModal.Props> = ReactModal;
-
-ReactModal.setAppElement('#app');
 
 export const Modal: FC<Props> = ({ close, label, children }) => (
   <ReactModalPreactTyped
