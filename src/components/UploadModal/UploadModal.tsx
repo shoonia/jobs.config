@@ -2,7 +2,7 @@ import type { JSX } from 'preact';
 import { useRef } from 'preact/hooks';
 
 import s from './styles.css';
-import { useStore } from '../../store';
+import { useDispatch } from '../../store';
 import { preventDefault } from '../../util/component';
 import { parseJSONC } from '../Parser/parseJSONC';
 import { isValidConfig } from '../Parser/isValidConfig';
@@ -21,7 +21,7 @@ const close = (): void => {
 
 export const UploadModal: FC = () => {
   const ref = useRef<string>('');
-  const store = useStore();
+  const dispatch = useDispatch();
 
   const onLoad = (val: string): void => {
     if (val.trim() === '') {
@@ -34,13 +34,13 @@ export const UploadModal: FC = () => {
       const [validationError] = isValidConfig(config);
 
       if (!validationError) {
-        store.dispatch('items/replace', createItems(config as IConfig));
+        dispatch('items/replace', createItems(config as IConfig));
 
         return close();
       }
     }
 
-    store.dispatch('validator/input', val);
+    dispatch('validator/input', val);
     location.hash = ROUTER.VALIDATOR;
   };
 

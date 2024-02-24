@@ -1,4 +1,4 @@
-import { useStore } from '../../store';
+import { useDispatch } from '../../store';
 import { Button } from '../Button';
 import { IconEdit } from '../Icons/IconEdit';
 import { type IConfig, createItems } from '../../util/items';
@@ -9,10 +9,10 @@ interface Props {
 }
 
 export const EditButton: FC<Props> = ({ config }) => {
-  const store = useStore();
+  const dispatch = useDispatch();
 
   const onClick: EventListener = () => {
-    store.dispatch('items/replace', createItems(config));
+    dispatch('items/replace', createItems(config));
     location.hash = ROUTER.BUILDER;
   };
 

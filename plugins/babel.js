@@ -1,17 +1,22 @@
-const isMatch = (a, b) => {
-  if (Array.isArray(a)) {
-    return Array.isArray(b) && b.every((p, i) => isMatch(a[i], p));
+/**
+ * @param {import('@babel/types').Expression} node
+ * @param {import('@babel/types').Expression} pattern
+ * @returns {boolean}
+ */
+const isMatch = (node, pattern) => {
+  if (Array.isArray(node)) {
+    return Array.isArray(pattern) && pattern.every((p, i) => isMatch(node[i], p));
   }
 
-  if (a == null || b == null) {
-    return a === b;
+  if (node == null || pattern == null) {
+    return node === pattern;
   }
 
-  if (typeof a === 'object') {
-    return typeof b === 'object' && Object.keys(b).every((i) => isMatch(a[i], b[i]));
+  if (typeof node === 'object') {
+    return typeof pattern === 'object' && Object.keys(pattern).every((i) => isMatch(node[i], pattern[i]));
   }
 
-  return a === b;
+  return node === pattern;
 };
 
 const components = new Set([
@@ -20,10 +25,13 @@ const components = new Set([
 ]);
 
 /**
- * @param {string} prop
  * @returns {import('@babel/types').MemberExpression}
+ * @example
+ * ```
+ * Object.assing
+ * ```
  */
-const objectMember = (prop) => ({
+const createObjectAssign = () => ({
   type: 'MemberExpression',
   computed: false,
   object: {
@@ -32,20 +40,32 @@ const objectMember = (prop) => ({
   },
   property: {
     type: 'Identifier',
-    name: prop,
+    name: 'assign',
   },
 });
 
-/** @type {import('@babel/types').LogicalExpression} */
+/**
+ * @type {import('@babel/types').LogicalExpression}
+ * @example
+ * ```
+ * || functon() {}
+ * ```
+ */
 const maybePolyfill = {
   operator: '||',
   right: { type: 'FunctionExpression' },
 };
 
 /** @type {import('@babel/types').MemberExpression} */
-const objectAssign = objectMember('assign');
+const objectAssign = createObjectAssign();
 
-/** @type {import('@babel/types').LogicalExpression} */
+/**
+ * @type {import('@babel/types').LogicalExpression}
+ * @example
+ * ```
+ * this.__assign
+ * ```
+ */
 const objectAssignTs = {
   type: 'LogicalExpression',
   operator: '&&',
@@ -61,7 +81,13 @@ const objectAssignTs = {
   },
 };
 
-/** @type {import('@babel/types').AssignmentExpression} */
+/**
+ * @type {import('@babel/types').AssignmentExpression}
+ * @example
+ * ```
+ * Name.propTypes =
+ * ```
+ */
 const propTypes = {
   operator: '=',
   right: { type: 'ObjectExpression' },
@@ -76,7 +102,9 @@ const propTypes = {
   },
 };
 
-/** @returns {import('@babel/core').PluginObj} */
+/**
+ * @returns {import('@babel/core').PluginObj}
+ */
 const plugin = () => {
   return {
     name: 'minimizer',
@@ -90,7 +118,7 @@ const plugin = () => {
             isMatch(node.left, objectAssign) ||
             isMatch(node.left, objectAssignTs)
           ) {
-            path.replaceWith(objectMember('assign'));
+            path.replaceWith(createObjectAssign());
           }
         }
       },
