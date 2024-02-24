@@ -139,9 +139,6 @@ const buildConfig = ({ NODE_ENV }) => {
       parser: {
         javascript: {
           strictExportPresence: true,
-          dynamicImportFetchPriority: 'high',
-          dynamicImportPrefetch: true,
-          harmony: true,
         },
       },
       rules: [
@@ -155,6 +152,7 @@ const buildConfig = ({ NODE_ENV }) => {
               options: {
                 cacheDirectory: isDev,
                 cacheCompression: false,
+                comments: isDev,
                 compact: isProd,
                 plugins: [
                   resolveApp('plugins/babel.js'),
@@ -168,6 +166,7 @@ const buildConfig = ({ NODE_ENV }) => {
               options: {
                 cacheDirectory: isDev,
                 cacheCompression: false,
+                comments: isDev,
                 compact: isProd,
                 presets: [
                   [
