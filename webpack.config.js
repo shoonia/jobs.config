@@ -156,6 +156,7 @@ const buildConfig = ({ NODE_ENV }) => {
                 compact: isProd,
                 plugins: [
                   resolveApp('plugins/babel.js'),
+                  'babel-plugin-transform-remove-polyfill',
                 ],
               },
             },
