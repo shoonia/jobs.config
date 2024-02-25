@@ -37,7 +37,7 @@
     "@typescript-eslint/parser": "^7.0.2",
     "autoprefixer": "^10.4.17",
     "babel-loader": "^9.1.3",
-    "babel-plugin-transform-remove-polyfill": "^0.2.0",
+    "babel-plugin-transform-remove-polyfill": "^0.4.0",
     "copy-webpack-plugin": "^12.0.2",
     "css-loader": "^6.10.0",
     "css-minimizer-webpack-plugin": "^6.0.0",
