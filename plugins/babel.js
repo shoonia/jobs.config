@@ -4,19 +4,22 @@
  * @returns {boolean}
  */
 const isMatch = (node, pattern) => {
-  if (Array.isArray(node)) {
-    return Array.isArray(pattern) && pattern.every((p, i) => isMatch(node[i], p));
-  }
-
   if (node == null || pattern == null) {
     return node === pattern;
   }
 
-  if (typeof node === 'object') {
-    return typeof pattern === 'object' && Object.keys(pattern).every((i) => isMatch(node[i], pattern[i]));
+  if (Array.isArray(node)) {
+    return Array.isArray(pattern)
+      && node.length === pattern.length
+      && pattern.every((p, i) => isMatch(node[i], p));
   }
 
-  return node === pattern;
+  if (typeof node === 'object') {
+    return typeof pattern === 'object'
+      && Object.keys(pattern).every((i) => isMatch(node[i], pattern[i]));
+  }
+
+  return Object.is(node, pattern);
 };
 
 const components = new Set([
@@ -25,58 +28,27 @@ const components = new Set([
 ]);
 
 /**
- * @returns {import('@babel/types').MemberExpression}
- * @example
- * ```
- * Object.assing
- * ```
- */
-const createObjectAssign = () => ({
-  type: 'MemberExpression',
-  computed: false,
-  object: {
-    type: 'Identifier',
-    name: 'Object',
-  },
-  property: {
-    type: 'Identifier',
-    name: 'assign',
-  },
-});
-
-/**
  * @type {import('@babel/types').LogicalExpression}
  * @example
  * ```
- * || functon() {}
- * ```
- */
-const maybePolyfill = {
-  operator: '||',
-  right: { type: 'FunctionExpression' },
-};
-
-/** @type {import('@babel/types').MemberExpression} */
-const objectAssign = createObjectAssign();
-
-/**
- * @type {import('@babel/types').LogicalExpression}
- * @example
- * ```
- * this.__assign
+ * this && this.__assign || functon() {}
  * ```
  */
 const objectAssignTs = {
-  type: 'LogicalExpression',
-  operator: '&&',
-  left: { type: 'ThisExpression' },
-  right: {
-    type: 'MemberExpression',
-    computed: false,
-    object: { type: 'ThisExpression' },
-    property: {
-      type: 'Identifier',
-      name: '__assign',
+  operator: '||',
+  right: { type: 'FunctionExpression' },
+  left: {
+    operator: '&&',
+    type: 'LogicalExpression',
+    left: { type: 'ThisExpression' },
+    right: {
+      type: 'MemberExpression',
+      computed: false,
+      object: { type: 'ThisExpression' },
+      property: {
+        type: 'Identifier',
+        name: '__assign',
+      },
     },
   },
 };
@@ -103,6 +75,52 @@ const propTypes = {
 };
 
 /**
+ * @type {import('@babel/types').CallExpression}
+ * @example
+ * ```
+ * Object.defineProperty(t, "__esModule", { value: true });
+ * ```
+ */
+const esModule = {
+  callee: {
+    type: 'MemberExpression',
+    object: {
+      type: 'Identifier',
+      name: 'Object',
+    },
+    computed: false,
+    property: {
+      type: 'Identifier',
+      name: 'defineProperty',
+    },
+  },
+  arguments: [
+    {
+      type: 'Identifier',
+    },
+    {
+      type: 'StringLiteral',
+      value: '__esModule',
+    },
+    {
+      type: 'ObjectExpression',
+      properties: [
+        {
+          type: 'ObjectProperty',
+          method: false,
+          key: {
+            type: 'Identifier',
+            name: 'value',
+          },
+          computed: false,
+          shorthand: false,
+        },
+      ],
+    },
+  ],
+};
+
+/**
  * @returns {import('@babel/core').PluginObj}
  */
 const plugin = () => {
@@ -113,13 +131,19 @@ const plugin = () => {
       LogicalExpression(path) {
         const { node } = path;
 
-        if (isMatch(node, maybePolyfill)) {
-          if (
-            isMatch(node.left, objectAssign) ||
-            isMatch(node.left, objectAssignTs)
-          ) {
-            path.replaceWith(createObjectAssign());
-          }
+        if (isMatch(node, objectAssignTs)) {
+          path.replaceWith({
+            type: 'MemberExpression',
+            computed: false,
+            object: {
+              type: 'Identifier',
+              name: 'Object',
+            },
+            property: {
+              type: 'Identifier',
+              name: 'assign',
+            },
+          });
         }
       },
 
@@ -132,6 +156,27 @@ const plugin = () => {
           components.has(node.left.object.name)
         ) {
           path.remove();
+        }
+      },
+
+      CallExpression(path) {
+        const { node } = path;
+
+        if (isMatch(node, esModule)) {
+          path.replaceWith({
+            type: 'AssignmentExpression',
+            operator: '=',
+            left: {
+              type: 'MemberExpression',
+              object: node.arguments[0],
+              computed: false,
+              property: {
+                type: 'Identifier',
+                name: '__esModule',
+              },
+            },
+            right: node.arguments[2].properties[0].value,
+          });
         }
       },
     },
