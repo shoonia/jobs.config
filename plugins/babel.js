@@ -28,32 +28,6 @@ const components = new Set([
 ]);
 
 /**
- * @type {import('@babel/types').LogicalExpression}
- * @example
- * ```
- * this && this.__assign || functon() {}
- * ```
- */
-const objectAssignTs = {
-  operator: '||',
-  right: { type: 'FunctionExpression' },
-  left: {
-    operator: '&&',
-    type: 'LogicalExpression',
-    left: { type: 'ThisExpression' },
-    right: {
-      type: 'MemberExpression',
-      computed: false,
-      object: { type: 'ThisExpression' },
-      property: {
-        type: 'Identifier',
-        name: '__assign',
-      },
-    },
-  },
-};
-
-/**
  * @type {import('@babel/types').AssignmentExpression}
  * @example
  * ```
@@ -127,27 +101,6 @@ const plugin = () => {
   return {
     name: 'minimizer',
     visitor: {
-      // Remove `Object.assign` polyfill
-      LogicalExpression(path) {
-        const { node } = path;
-
-        if (isMatch(node, objectAssignTs)) {
-          path.replaceWith({
-            type: 'MemberExpression',
-            computed: false,
-            object: {
-              type: 'Identifier',
-              name: 'Object',
-            },
-            property: {
-              type: 'Identifier',
-              name: 'assign',
-            },
-          });
-        }
-      },
-
-      // Remove React PropTypes
       AssignmentExpression(path) {
         const { node } = path;
 
