@@ -58,6 +58,9 @@ const buildConfig = ({ NODE_ENV }) => {
       moduleIds: 'size',
       chunkIds: 'total-size',
       mergeDuplicateChunks: true,
+      removeAvailableModules: true,
+      removeEmptyChunks: true,
+      concatenateModules: true,
       minimize: isProd,
       minimizer: [
         new TerserPlugin({
@@ -116,9 +119,6 @@ const buildConfig = ({ NODE_ENV }) => {
         '.ts',
         '.tsx',
       ],
-      fallback: {
-        util: false,
-      },
       alias: {
         react: 'preact/compat',
         'react-dom': 'preact/compat',
@@ -259,9 +259,6 @@ const buildConfig = ({ NODE_ENV }) => {
             to: distDir,
           },
         ],
-      }),
-      isProd && new webpack.optimize.MinChunkSizePlugin({
-        minChunkSize: 15_000,
       }),
       new ForkTsCheckerWebpackPlugin({
         async: isDev,
