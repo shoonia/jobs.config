@@ -97,9 +97,7 @@ const esModule = {
 /**
  * @returns {import('@babel/core').PluginObj}
  */
-const plugin = (api) => {
-  const isHasOwn = api.types.buildMatchMemberExpression('Object.prototype.hasOwnProperty.call', false);
-
+const plugin = () => {
   return {
     name: 'minimizer',
     visitor: {
@@ -132,20 +130,6 @@ const plugin = (api) => {
             },
             right: node.arguments[2].properties[0].value,
           });
-        }
-        else if (isHasOwn(node.callee)) {
-          node.callee = {
-            type: 'MemberExpression',
-            object: {
-              type: 'Identifier',
-              name: 'Object',
-            },
-            computed: false,
-            property: {
-              type: 'Identifier',
-              name: 'hasOwn',
-            },
-          };
         }
       },
     },
