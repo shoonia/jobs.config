@@ -130,11 +130,11 @@ const buildConfig = ({ NODE_ENV }) => {
     externals: {
       // parse-json
       '@babel/highlight': '{shouldHighlight(){}}',
-      'chalk': '{grey:e=>e,red:{bold:e=>e}}',
+      'picocolors': '{}',
       // react-modal
       'react-lifecycles-compat': '{polyfill(){}}',
       'exenv': '{canUseDOM:true}',
-      'prop-types': '0',
+      'prop-types': '{}',
       'warning': 'e=>e',
     },
     module: {
@@ -156,6 +156,7 @@ const buildConfig = ({ NODE_ENV }) => {
                 cacheCompression: false,
                 comments: isDev,
                 compact: isProd,
+                minified: isProd,
                 plugins: [
                   resolveApp('plugins/babel.js'),
                   [
@@ -176,6 +177,7 @@ const buildConfig = ({ NODE_ENV }) => {
                 cacheCompression: false,
                 comments: isDev,
                 compact: isProd,
+                minified: isProd,
                 presets: [
                   [
                     '@babel/preset-typescript',
