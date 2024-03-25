@@ -188,7 +188,7 @@ const buildConfig = ({ NODE_ENV }) => {
                 ],
                 plugins: [
                   [
-                    '@babel/transform-react-jsx',
+                    '@babel/plugin-transform-react-jsx',
                     {
                       runtime: 'automatic',
                       importSource: 'preact',
@@ -277,6 +277,7 @@ const buildConfig = ({ NODE_ENV }) => {
       }),
       new webpack.DefinePlugin({
         'process.env.NODE_ENV': JSON.stringify(NODE_ENV),
+        'process.env.FORCE_COLOR': '0',
       }),
       isProd && new GenerateSW({
         swDest: 'sw.js',
