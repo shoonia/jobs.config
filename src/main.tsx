@@ -15,7 +15,3 @@ render(
 
 gtag('js', new Date());
 gtag('config', 'G-2W35Q7B86C');
-
-if (process.env.NODE_ENV === 'production') {
-  addEventListener('load', () => navigator.serviceWorker?.register('sw.js'));
-}

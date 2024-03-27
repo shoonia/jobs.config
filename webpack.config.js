@@ -11,7 +11,6 @@ import CssMqpackerPlugin from 'css-mqpacker-webpack-plugin';
 import createLocalIdent from 'mini-css-class-name/css-loader';
 import ForkTsCheckerWebpackPlugin from 'fork-ts-checker-webpack-plugin';
 import HTMLInlineCSSWebpackPlugin from 'html-inline-css-webpack-plugin';
-import { GenerateSW } from 'workbox-webpack-plugin';
 import postcssImport from 'postcss-import';
 import simpleVars from 'postcss-simple-vars';
 import autoprefixer from 'autoprefixer';
@@ -69,6 +68,7 @@ const buildConfig = ({ NODE_ENV }) => {
             ecma: 2020,
             module: true,
             toplevel: true,
+            sourceMap: false,
             compress: {
               ecma: 2020,
               module: true,
@@ -278,18 +278,6 @@ const buildConfig = ({ NODE_ENV }) => {
       new webpack.DefinePlugin({
         'process.env.NODE_ENV': JSON.stringify(NODE_ENV),
         'process.env.FORCE_COLOR': '0',
-      }),
-      isProd && new GenerateSW({
-        swDest: 'sw.js',
-        clientsClaim: true,
-        skipWaiting: true,
-        mode: NODE_ENV,
-        sourcemap: isDev,
-        inlineWorkboxRuntime: true,
-        exclude: [
-          '.DS_Store',
-          'sitemap.xml',
-        ],
       }),
     ].filter(Boolean),
     experiments: {
