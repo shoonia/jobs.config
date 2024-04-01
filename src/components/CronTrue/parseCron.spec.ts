@@ -1,5 +1,8 @@
+import { describe, it } from 'node:test';
+import { strictEqual } from 'node:assert/strict';
+
 import { parseCron } from './parseCron';
-import list from '../Tooltip/CronExamplesTooltip/cronExamples.json';
+import list from '../Tooltip/CronExamplesTooltip/cronExamples.json' with { type: 'json' };
 
 const invalidList = [
   '* * * * * * *',
@@ -18,11 +21,21 @@ const invalidList = [
 ];
 
 describe('parseCron', () => {
-  it.each(invalidList)('should be invalid config with %s', (extension) => {
-    expect(parseCron(extension)).toEqual([true, expect.any(String)]);
+  invalidList.forEach((extension) => {
+    it(`should be invalid config with "${extension}"`, () => {
+      const [hasError, message] = parseCron(extension);
+
+      strictEqual(hasError, true);
+      strictEqual(typeof message, 'string');
+    });
   });
 
-  it.each(list)('should be valid cron expression', (item) => {
-    expect(parseCron(item.value)).toEqual([false, expect.any(String)]);
+  list.forEach((i) => {
+    it(`should be valid cron expression "${i.value}"`, () => {
+      const [hasError, message] = parseCron(i.value);
+
+      strictEqual(hasError, false);
+      strictEqual(typeof message, 'string');
+    });
   });
 });

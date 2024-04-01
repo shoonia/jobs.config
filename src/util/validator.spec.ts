@@ -1,3 +1,6 @@
+import { describe, it } from 'node:test';
+import { strictEqual } from 'node:assert/strict';
+
 import { isValidFunctionLocation, isValidFunctionName } from './validator';
 
 describe('isValidFunctionLocation()', () => {
@@ -30,12 +33,16 @@ describe('isValidFunctionLocation()', () => {
     '/отакої.js',
   ];
 
-  it.each(validList)('"%s" should be valid "functionLocation"', (path) => {
-    expect(isValidFunctionLocation(path)).toBe(true);
+  validList.forEach((path) => {
+    it(`"${path}" should be valid "functionLocation"`, () => {
+      strictEqual(isValidFunctionLocation(path), true);
+    });
   });
 
-  it.each(invalidList)('"%s" should be invalid "functionLocation"', (path) => {
-    expect(isValidFunctionLocation(path)).toBe(false);
+  invalidList.forEach((path) => {
+    it(`"${path}" should be invalid "functionLocation"`, () => {
+      strictEqual(isValidFunctionLocation(path), false);
+    });
   });
 });
 
@@ -58,11 +65,15 @@ describe('isValidFunctionName()', () => {
     'some@Name',
   ];
 
-  it.each(validList)('"%s" should be valid "functionName"', (name) => {
-    expect(isValidFunctionName(name)).toBe(true);
+  validList.forEach((path) => {
+    it(`"${path}" should be valid "functionName"`, () => {
+      strictEqual(isValidFunctionName(path), true);
+    });
   });
 
-  it.each(invalidList)('"%s" should be invalid "functionName"', (name) => {
-    expect(isValidFunctionName(name)).toBe(false);
+  invalidList.forEach((path) => {
+    it(`"${path}" should be invalid "functionName"`, () => {
+      strictEqual(isValidFunctionName(path), false);
+    });
   });
 });
