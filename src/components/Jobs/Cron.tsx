@@ -3,18 +3,15 @@ import { useEffect, useRef } from 'preact/hooks';
 import s from './styles.css';
 import { Label } from './Label';
 import { KEYS } from '../../constants';
+import { useFormScope } from '../../hooks/formScope';
 
-interface Props {
-  value: string;
-  error: boolean;
-}
-
-export const Cron: FC<Props> = ({ value, error }) => {
+export const Cron: FC = () => {
+  const { cronExpression, cronError = '' } = useFormScope();
   const ref = useRef<HTMLInputElement>(null);
 
   useEffect(() => {
-    ref.current?.setCustomValidity(error ? 'error': '');
-  }, [error]);
+    ref.current?.setCustomValidity(cronError);
+  }, [cronError]);
 
   return (
     <Label top="Cron Expression">
@@ -22,7 +19,7 @@ export const Cron: FC<Props> = ({ value, error }) => {
         ref={ref}
         type="text"
         className={s.mono}
-        value={value}
+        value={cronExpression}
         data-name={KEYS.cronExpression}
         spellcheck={false}
         list="cron-examples"

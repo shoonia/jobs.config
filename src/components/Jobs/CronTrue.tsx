@@ -3,17 +3,20 @@ import { useEffect } from 'preact/hooks';
 import s from './CronTrue.css';
 import { parseCron } from '../../util/parseCron';
 import { classNames } from '../../util/component';
+import { useFormScope } from '../../hooks/formScope';
+import { useDispatch } from '../../store';
 
-interface Props {
-  value: string;
-  setValidity: (isError: boolean) => void;
-}
-
-export const CronTrue: FC<Props> = ({ value, setValidity }) => {
-  const [isError, message] = parseCron(value);
+export const CronTrue: FC = () => {
+  const dispatch = useDispatch();
+  const { id, cronExpression } = useFormScope();
+  const [isError, message] = parseCron(cronExpression);
 
   useEffect(() => {
-    setValidity(isError);
+    dispatch('items/update', {
+      id,
+      name: 'cronError',
+      value: isError ? message : '',
+    });
   }, [isError]);
 
   return (
