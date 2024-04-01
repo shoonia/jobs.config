@@ -6,7 +6,7 @@ import { reservedWords } from '../../util/reservedWords';
 import { isValidFunctionLocation, isUTCTime, isValidFunctionName } from '../../util/validator';
 import { isString } from '../../util/component';
 import { KEYS, MAX_ITEMS } from '../../constants';
-import { parseCron } from '../CronTrue/parseCron';
+import { parseCron } from '../../util/parseCron';
 
 type TValidResult = [
   hasError: boolean,

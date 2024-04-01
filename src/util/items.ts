@@ -12,6 +12,7 @@ export interface IItem {
   readonly dayOfWeek: TWeekList;
   readonly dateInMonth: number;
   readonly cronExpression: string;
+  readonly cronError?: string;
   readonly period: PERIOD;
   readonly isNew?: boolean;
 }
@@ -100,6 +101,7 @@ export const newItem = (isNew?: boolean): IItem => ({
   dayOfWeek: dDay,
   dateInMonth: 1,
   cronExpression: dCron,
+  cronError: '',
   period: PERIOD.DAILY,
   isNew,
 });
