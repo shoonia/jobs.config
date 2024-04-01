@@ -154,7 +154,6 @@ const buildConfig = ({ NODE_ENV }) => {
               options: {
                 cacheDirectory: isDev,
                 cacheCompression: false,
-                comments: isDev,
                 compact: isProd,
                 minified: isProd,
                 plugins: [
@@ -175,7 +174,6 @@ const buildConfig = ({ NODE_ENV }) => {
               options: {
                 cacheDirectory: isDev,
                 cacheCompression: false,
-                comments: isDev,
                 compact: isProd,
                 minified: isProd,
                 presets: [
