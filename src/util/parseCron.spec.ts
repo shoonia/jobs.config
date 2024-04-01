@@ -2,7 +2,7 @@ import { describe, it } from 'node:test';
 import { strictEqual } from 'node:assert/strict';
 
 import { parseCron } from './parseCron';
-import list from '../Tooltip/CronExamplesTooltip/cronExamples.json' with { type: 'json' };
+import list from '../components/Tooltip/CronExamplesTooltip/cronExamples.json' with { type: 'json' };
 
 const invalidList = [
   '* * * * * * *',

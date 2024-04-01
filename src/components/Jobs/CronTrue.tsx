@@ -1,6 +1,8 @@
 import { useEffect } from 'preact/hooks';
 
-import { parseCron } from './parseCron';
+import s from './CronTrue.css';
+import { parseCron } from '../../util/parseCron';
+import { classNames } from '../../util/component';
 
 interface Props {
   value: string;
@@ -14,5 +16,9 @@ export const CronTrue: FC<Props> = ({ value, setValidity }) => {
     setValidity(isError);
   }, [isError]);
 
-  return <>{message}</>;
+  return (
+    <div className={classNames([s.message, isError && s.error ])}>
+      {message}
+    </div>
+  );
 };

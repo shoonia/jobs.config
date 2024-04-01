@@ -1,14 +1,13 @@
 import { useState } from 'preact/hooks';
 
 import s from './styles.css';
-import { CronTrue } from '../CronTrue';
+import { CronTrue } from './CronTrue';
 import { Cron } from './Cron';
 import { Time } from './Time';
 import { CronExamples } from './CronExamples';
 import { DayOfWeek } from './DayOfWeek';
 import { DateInMonth } from './DateInMonth';
 import { PERIOD } from '../../constants';
-import { classNames } from '../../util/component';
 import { useFormScope } from '../../hooks/formScope';
 
 export const ExecutionConfig: FC = () => {
@@ -26,9 +25,7 @@ export const ExecutionConfig: FC = () => {
   );
 
   const cronMessage = isCron && (
-    <div className={classNames([s.message, isError && s.error ])}>
-      <CronTrue value={cronExpression} setValidity={setValidity} />
-    </div>
+    <CronTrue value={cronExpression} setValidity={setValidity} />
   );
 
   const dayInput = period === PERIOD.WEEKLY && (

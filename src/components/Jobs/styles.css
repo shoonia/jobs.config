@@ -169,21 +169,6 @@
   text-align: center;
 }
 
-.message {
-  white-space: pre-wrap;
-  line-height: 1.5em;
-  margin-bottom: 1em;
-  padding: 1em;
-  border: 1px solid $color-focus;
-  border-radius: 6px;
-}
-
-.error {
-  color: $color-danger-dark;
-  border-color: $color-danger-dark;
-  background-color: $color-danger-light;
-}
-
 @media (max-width: $mobile-width) {
   .item {
     min-width: auto;
