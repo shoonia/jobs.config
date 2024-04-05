@@ -25,7 +25,13 @@ export const appModule: TModule = (store) => {
     };
   });
 
-  store.on('router/change', (_, path) => ({ path }));
+  store.on('router/change', (state, path) => {
+    if (state.path !== path) {
+      return {
+        path,
+      };
+    }
+  });
 
   store.on('validator/input', (_, value) => {
     return {
@@ -36,11 +42,6 @@ export const appModule: TModule = (store) => {
   });
 
   addEventListener('hashchange', () => {
-    const { path } = store.get();
-    const newPath = getPath();
-
-    if (path !== newPath) {
-      store.dispatch('router/change', newPath);
-    }
+    store.dispatch('router/change', getPath());
   });
 };
