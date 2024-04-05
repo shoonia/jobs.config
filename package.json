@@ -6,11 +6,10 @@
   "type": "module",
   "packageManager": "^npm@10.2.3",
   "scripts": {
-    "start": "webpack serve --env NODE_ENV=development",
-    "build": "webpack build --env NODE_ENV=production",
-    "analyze": "webpack build --analyze --env NODE_ENV=production",
+    "start": "NODE_NO_WARNINGS=1 webpack serve --env NODE_ENV=development",
+    "build": "NODE_NO_WARNINGS=1 webpack build --env NODE_ENV=production",
     "lint": "eslint 'src/**/*.{ts,tsx}' && stylelint 'src/**/*.css'",
-    "test": "node --experimental-specifier-resolution=node --experimental-loader ts-node/esm --test src/**/*.spec.ts",
+    "test": "NODE_NO_WARNINGS=1 node --experimental-specifier-resolution=node --experimental-loader ts-node/esm --test src/**/*.spec.ts",
     "serve": "python3 -m http.server -d dist"
   },
   "dependencies": {
