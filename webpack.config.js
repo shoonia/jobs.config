@@ -162,9 +162,7 @@ const buildConfig = ({ NODE_ENV }) => {
                   [
                     'babel-plugin-transform-remove-polyfill',
                     {
-                      transform: {
-                        'Object.hasOwn': true,
-                      },
+                      transform: true,
                     },
                   ],
                 ],
