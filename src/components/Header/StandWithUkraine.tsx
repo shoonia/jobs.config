@@ -1,4 +1,4 @@
-import s from './styles.css';
+import s from './StandWithUkraine.css';
 
 export const StandWithUkraine: FC = () => (
   <div className={s.swu_box}>

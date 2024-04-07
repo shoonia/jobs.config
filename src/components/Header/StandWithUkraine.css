@@ -1,0 +1,17 @@
+@import url("../../styles/vars.css");
+
+.swu_box {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-top: $decorate-border;
+  border-bottom: $decorate-border;
+  background-color: #eaf8ff;
+  height: $swu-h;
+}
+
+.swu_link {
+  composes: link from './styles.css';
+  display: flex;
+  gap: 1em;
+}
