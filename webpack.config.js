@@ -1,5 +1,5 @@
 /* eslint-env node */
-import { relative, resolve } from 'node:path';
+import { resolve } from 'node:path';
 import { realpathSync } from 'node:fs';
 import webpack from 'webpack';
 import CopyPlugin from 'copy-webpack-plugin';
@@ -41,16 +41,30 @@ const buildConfig = ({ NODE_ENV }) => {
     entry: resolveApp('src/main.tsx'),
     output: {
       iife: false,
+      module: true,
       scriptType: 'module',
       path: isProd ? distDir : undefined,
       pathinfo: isDev,
       filename: '[name].[contenthash:4].js',
       chunkFilename: '[name].[chunkhash:4].js',
       publicPath: '',
-      devtoolModuleFilenameTemplate: (i) => relative(srcDir, i.absoluteResourcePath),
       chunkLoadingGlobal: 'g',
       globalObject: 'self',
       clean: isProd,
+      environment: {
+        arrowFunction: true,
+        asyncFunction: true,
+        bigIntLiteral: true,
+        const: true,
+        destructuring: true,
+        dynamicImport: true,
+        dynamicImportInWorker: true,
+        forOf: true,
+        globalThis: true,
+        module: true,
+        optionalChaining: true,
+        templateLiteral: true,
+      },
     },
     optimization: {
       mangleExports: 'size',
@@ -207,10 +221,12 @@ const buildConfig = ({ NODE_ENV }) => {
                   options: {
                     importLoaders: 1,
                     sourceMap: isDev,
-                    modules: isDev ? {
-                      localIdentName: '[file]--[local]',
-                    } : {
-                      getLocalIdent: createLocalIdent(),
+                    modules: {
+                      namedExport: false,
+                      exportLocalsConvention: 'as-is',
+                      ...(isDev
+                        ? { localIdentName: '[file]--[local]' }
+                        : { getLocalIdent: createLocalIdent() }),
                     },
                   },
                 },
@@ -283,6 +299,7 @@ const buildConfig = ({ NODE_ENV }) => {
       backCompat: false,
       outputModule: true,
       topLevelAwait: true,
+      layers: true,
     },
     performance: false,
     node: false,
