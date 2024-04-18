@@ -173,7 +173,13 @@ const buildConfig = ({ NODE_ENV }) => {
                 minified: isProd,
                 plugins: [
                   resolveApp('plugins/babel.js'),
-                  'babel-plugin-transform-remove-polyfill',
+                  [
+                    'babel-plugin-transform-remove-polyfill',
+                    {
+                      globalObjects: ['window', 'document'],
+                      globalFunctions: ['requestAnimationFrame'],
+                    },
+                  ],
                 ],
               },
             },
