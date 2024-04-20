@@ -14,5 +14,6 @@ export const TextBox: FC<Props> = ({ onInput, value }) => (
     value={value}
     placeholder="{}"
     spellcheck={false}
+    data-gramm="false"
   />
 );
