@@ -1,28 +1,13 @@
-import type { JSX } from 'preact';
-
 import s from './styles.css';
 import { KEYS } from '../../constants';
 import { Label } from './Label';
 import { useFormScope } from '../../hooks/formScope';
-import { type TValidator, isValidFunctionLocation, isValidFunctionName } from '../../util/validator';
-
-const validatorListener = (validator: TValidator): JSX.InputEventHandler<HTMLInputElement> => {
-  return (event) => {
-    const el = event.currentTarget;
-    const value = el.value.trim();
-
-    if (el.value !== value) {
-      el.value = value;
-    }
-
-    el.setCustomValidity(validator(value) ? '' : 'error');
-  };
-};
-
-export const validatorFunctionName = validatorListener(isValidFunctionName);
-export const validatorFunctionLocation = validatorListener(isValidFunctionLocation);
+import { useValidator } from '../../hooks/useValidator';
+import { isValidFunctionLocation, isValidFunctionName } from '../../util/validator';
 
 export const FunctionInfo: FC = () => {
+  const locationRef = useValidator(isValidFunctionLocation);
+  const nameRef = useValidator(isValidFunctionName);
   const {
     functionLocation,
     functionName,
@@ -34,6 +19,7 @@ export const FunctionInfo: FC = () => {
       <div className={s.location}>
         <Label top="Function Location">
           <input
+            ref={locationRef}
             type="text"
             data-name={KEYS.functionLocation}
             data-fl
@@ -41,7 +27,6 @@ export const FunctionInfo: FC = () => {
             className={s.func_input}
             value={functionLocation}
             placeholder="Function Location"
-            onInput={validatorFunctionLocation}
             spellcheck={false}
             required
           />
@@ -51,6 +36,7 @@ export const FunctionInfo: FC = () => {
         </span>
         <Label top="Function Name">
           <input
+            ref={nameRef}
             type="text"
             data-name={KEYS.functionName}
             data-fl
@@ -58,7 +44,6 @@ export const FunctionInfo: FC = () => {
             className={s.func_input}
             value={functionName}
             placeholder="Function Name"
-            onInput={validatorFunctionName}
             spellcheck={false}
             required
           />
