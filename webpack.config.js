@@ -180,6 +180,13 @@ const buildConfig = ({ NODE_ENV }) => {
                       globalFunctions: ['requestAnimationFrame'],
                     },
                   ],
+                  [
+                    '@babel/plugin-transform-react-jsx',
+                    {
+                      runtime: 'automatic',
+                      importSource: 'preact',
+                    },
+                  ],
                 ],
               },
             },
