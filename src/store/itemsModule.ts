@@ -7,7 +7,7 @@ const key = 'items';
 const getItems = (): IItem[] => {
   const data = localStorage.getItem(key);
 
-  if (data != null) {
+  if (data) {
     try {
       const items = JSON.parse(data);
 

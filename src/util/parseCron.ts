@@ -1,7 +1,7 @@
 import { isValidCron } from 'cron-validator';
 import { toString } from 'cronstrue';
 
-type CronResult = [
+type CronResult = readonly [
   isError: boolean,
   message: string,
 ];

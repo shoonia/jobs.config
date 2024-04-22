@@ -1,12 +1,15 @@
 import s from './styles.css';
 import c from '../../styles/code.css';
 import { classNames } from '../../util/component';
+import { useStoreon } from '../../store';
 
 interface Props {
   target: HTMLInputElement;
 }
 
 export const FunctionName: FC<Props> = ({ target }) => {
+  useStoreon('items');
+
   const opClass = classNames([
     c.mtk4,
     !target.value && c.err,
