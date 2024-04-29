@@ -5,7 +5,7 @@ import { BlankButton } from '../Button';
 import { useFormScope } from '../../hooks/formScope';
 import { KEYS } from '../../constants';
 
-export const CronExamples: FC= () => {
+export const CronExamples: FC = () => {
   const { id } = useFormScope();
 
   return (

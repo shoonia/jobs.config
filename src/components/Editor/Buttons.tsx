@@ -5,15 +5,15 @@ import { IconPlus } from '../Icons/IconPlus';
 import { IconUpload } from '../Icons/IconUpload';
 import { MAX_ITEMS, ROUTER } from '../../constants';
 
+const openUploadModal: EventListener = () => {
+  location.hash = ROUTER.UPLOAD;
+};
+
 export const Buttons: FC = () => {
   const { dispatch, items } = useStoreon('items');
 
   const createItem: EventListener = () => {
     dispatch('items/new');
-  };
-
-  const openUploadModal: EventListener = () => {
-    location.hash = ROUTER.UPLOAD;
   };
 
   return (

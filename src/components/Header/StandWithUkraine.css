@@ -1,6 +1,6 @@
 @import url("../../styles/vars.css");
 
-.swu_box {
+.box {
   display: flex;
   align-items: center;
   justify-content: center;
@@ -10,7 +10,7 @@
   height: $swu-h;
 }
 
-.swu_link {
+.link {
   composes: link from './styles.css';
   display: flex;
   gap: 1em;
