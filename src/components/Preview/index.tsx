@@ -1,3 +1,4 @@
+import type { JSX } from 'preact';
 import { useRef } from 'preact/hooks';
 
 import s from './styles.css';
@@ -8,6 +9,7 @@ import { JSON } from './JSON';
 import { DownloadButton } from '../DownloadButton';
 import { IconDuplicate } from '../Icons/IconDuplicate';
 import { createConfig } from '../../util/items';
+import { preventDefault } from '../../util/component';
 
 const createData = (config: string): string => `// Jobs Config Generator
 // https://wix.to/NDAQn6c
@@ -34,6 +36,11 @@ export const Preview: FC = () => {
     }
   };
 
+  const copy: JSX.ClipboardEventHandler<HTMLPreElement> = (event) => {
+    event.clipboardData?.setData('text/plain', data);
+    preventDefault(event);
+  };
+
   return (
     <div className={s.box}>
       <ToolbarWrapper>
@@ -52,6 +59,7 @@ export const Preview: FC = () => {
       </ToolbarWrapper>
       <pre
         ref={output}
+        onCopy={copy}
         className={s.out}
       >
         <JSON input={config} />
