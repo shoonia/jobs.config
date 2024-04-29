@@ -6,7 +6,7 @@ import { ItemMenu } from './ItemMenu';
 import { FunctionInfo } from './FunctionInfo';
 import { ExecutionConfig } from './ExecutionConfig';
 import { classNames, preventDefault } from '../../util/component';
-import { useDispatch } from '../../store';
+import { dispatch } from '../../store';
 
 interface Props {
   id: string;
@@ -14,8 +14,6 @@ interface Props {
 }
 
 export const Item: FC<Props> = ({ id, isNew }) => {
-  const dispatch = useDispatch();
-
   useEffect(() => {
     if (isNew) {
       const t = setTimeout(() => {

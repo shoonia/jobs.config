@@ -12,5 +12,5 @@ export const store = createStoreon<IState, IEvents>([
 
 export const useStoreon = _useStoreon<IState, IEvents>;
 
-export const useStore = () => store;
-export const useDispatch = () => store.dispatch;
+export const getState = store.get;
+export const dispatch = store.dispatch;

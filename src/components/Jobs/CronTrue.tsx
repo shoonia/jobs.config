@@ -4,10 +4,9 @@ import s from './CronTrue.css';
 import { parseCron } from '../../util/parseCron';
 import { classNames } from '../../util/component';
 import { useFormScope } from '../../hooks/formScope';
-import { useDispatch } from '../../store';
+import { dispatch } from '../../store';
 
 export const CronTrue: FC = () => {
-  const dispatch = useDispatch();
   const { id, cronExpression } = useFormScope();
   const [isError, message] = parseCron(cronExpression);
 
