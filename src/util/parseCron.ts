@@ -18,19 +18,25 @@ export const parseCron = (value: string): CronResult => {
 
     if (LESS_HOUR.test(message)) {
       return ex(
-        `${message}\n\nError: You can schedule your job to run at intervals as short as one hour apart, but not shorter. If you define your job to run more frequently, the job will be ignored.`,
+        `${message}\n\nError: You can schedule your job to run at intervals as short as one hour apart, but not shorter. If you define your job to run more frequently, the job will be ignored`,
       );
     }
 
     if (value.includes('?')) {
       return ex(
-        `${message}.\n\nError: Velo Job Scheduler does not support the blank syntax with (?) symbol.`,
+        `${message}.\n\nError: Velo Job Scheduler does not support the blank syntax with (?) symbol`,
       );
     }
 
     if (value.includes('#')) {
       return ex(
-        `${message}.\n\nError: Velo Job Scheduler does not support the hash (#) symbol.`,
+        `${message}.\n\nError: Velo Job Scheduler does not support the hash (#) symbol`,
+      );
+    }
+
+    if (value.startsWith('@')) {
+      return ex(
+        `${message}.\n\nError: Velo Job Scheduler does not support the @options syntax (i.e., @daily, @weekly, @monthly, @yearly, and so on)`
       );
     }
 
@@ -46,7 +52,7 @@ export const parseCron = (value: string): CronResult => {
     }
 
     return ex(
-      `${message}.\n\nError: Velo Job Scheduler does not support this syntax.`,
+      `${message}.\n\nError: Velo Job Scheduler does not support this syntax`,
     );
   } catch (error) {
     return ex(String(error));
