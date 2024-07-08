@@ -22,32 +22,6 @@ const isMatch = (node, pattern) => {
   return Object.is(node, pattern);
 };
 
-const components = new Set([
-  'Modal',
-  'ModalPortal',
-]);
-
-/**
- * @type {import('@babel/types').AssignmentExpression}
- * @example
- * ```
- * Name.propTypes =
- * ```
- */
-const propTypes = {
-  operator: '=',
-  right: { type: 'ObjectExpression' },
-  left: {
-    type: 'MemberExpression',
-    computed: false,
-    object: { type: 'Identifier' },
-    property: {
-      type: 'Identifier',
-      name: 'propTypes',
-    },
-  },
-};
-
 /**
  * @type {import('@babel/types').CallExpression}
  * @example
@@ -101,17 +75,6 @@ const plugin = () => {
   return {
     name: 'minimizer',
     visitor: {
-      AssignmentExpression(path) {
-        const { node } = path;
-
-        if (
-          isMatch(node, propTypes) &&
-          components.has(node.left.object.name)
-        ) {
-          path.remove();
-        }
-      },
-
       CallExpression(path) {
         const { node } = path;
 
