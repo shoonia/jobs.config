@@ -1,28 +1,29 @@
-import type { ComponentClass } from 'preact';
-import ReactModal from 'react-modal';
-
+import { useEffect, useRef } from 'preact/hooks';
 import s from './styles.css';
 
 interface Props {
+  open: boolean;
   label: string;
-  close: () => void;
 }
 
-ReactModal.setAppElement('#app');
+export const Modal: FC<Props> = ({ open, label, children }) => {
+  const ref = useRef<HTMLDialogElement>(null);
 
-// @ts-expect-error @typescript-eslint/ban-ts-comment
-const ReactModalPreactTyped: ComponentClass<ReactModal.Props> = ReactModal;
+  useEffect(() => {
+    if (open) {
+      ref.current?.showModal();
+    } else {
+      ref.current?.close();
+    }
+  }, [open]);
 
-export const Modal: FC<Props> = ({ close, label, children }) => (
-  <ReactModalPreactTyped
-    isOpen
-    onRequestClose={close}
-    contentLabel={label}
-    overlayClassName={s.overlay}
-    className={s.modal}
-    bodyOpenClassName={s.bodyOpen}
-    htmlOpenClassName={s.rootOpen}
-  >
-    {children as []}
-  </ReactModalPreactTyped>
-);
+  return (
+    <dialog
+      ref={ref}
+      className={s.modal}
+      aria-label={label}
+    >
+      {children}
+    </dialog>
+  );
+};
