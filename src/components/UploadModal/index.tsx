@@ -55,10 +55,7 @@ export const UploadModal: FC = () => {
   };
 
   return (
-    <Modal
-      label="Upload form"
-      open={path === ROUTER.UPLOAD}
-    >
+    <Modal open={path === ROUTER.UPLOAD}>
       <form
         method="dialog"
         onSubmit={onSubmit}

@@ -3,10 +3,9 @@ import s from './styles.css';
 
 interface Props {
   open: boolean;
-  label: string;
 }
 
-export const Modal: FC<Props> = ({ open, label, children }) => {
+export const Modal: FC<Props> = ({ open, children }) => {
   const ref = useRef<HTMLDialogElement>(null);
 
   useEffect(() => {
@@ -21,7 +20,6 @@ export const Modal: FC<Props> = ({ open, label, children }) => {
     <dialog
       ref={ref}
       className={s.modal}
-      aria-label={label}
     >
       {children}
     </dialog>
