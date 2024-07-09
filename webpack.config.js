@@ -145,11 +145,6 @@ const buildConfig = ({ NODE_ENV }) => {
       // parse-json
       '@babel/highlight': '{shouldHighlight(){}}',
       'picocolors': '{}',
-      // react-modal
-      'react-lifecycles-compat': '{polyfill(){}}',
-      'exenv': '{canUseDOM:true}',
-      'prop-types': '{}',
-      'warning': 'e=>e',
     },
     module: {
       parser: {

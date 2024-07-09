@@ -1,5 +1,6 @@
 import type { JSX } from 'preact';
 import { useRef } from 'preact/hooks';
+import { useStoreon } from 'storeon/preact';
 
 import s from './styles.css';
 import { dispatch } from '../../store';
@@ -41,6 +42,7 @@ const onLoad = (val: string) => {
 };
 
 export const UploadModal: FC = () => {
+  const { path } = useStoreon('path');
   const ref = useRef<string>('');
 
   const onInput: JSX.InputEventHandler<HTMLTextAreaElement> = (event) => {
@@ -53,8 +55,9 @@ export const UploadModal: FC = () => {
   };
 
   return (
-    <Modal label="Upload form" close={close}>
+    <Modal open={path === ROUTER.UPLOAD}>
       <form
+        method="dialog"
         onSubmit={onSubmit}
         className={s.box}
       >
