@@ -50,7 +50,7 @@ const error = (message: ComponentChild): TValidResult => [
 
 const hasUnknownProps = (
   item: Record<string, unknown>,
-  list: readonly string[]
+  list: readonly string[],
 ): TValidResult => {
   for (const key in item) {
     const notOne = !list.includes(key);
@@ -65,7 +65,7 @@ const hasUnknownProps = (
 
 const hasMissingProps = (
   item: Record<string, unknown>,
-  list: readonly string[]
+  list: readonly string[],
 ): TValidResult => {
   for (const key of list) {
     if (!(key in item)) {

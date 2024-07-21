@@ -36,7 +36,7 @@ export const parseCron = (value: string): CronResult => {
 
     if (value.startsWith('@')) {
       return ex(
-        `${message}.\n\nError: Velo Job Scheduler does not support the @options syntax (i.e., @daily, @weekly, @monthly, @yearly, and so on)`
+        `${message}.\n\nError: Velo Job Scheduler does not support the @options syntax (i.e., @daily, @weekly, @monthly, @yearly, and so on)`,
       );
     }
 

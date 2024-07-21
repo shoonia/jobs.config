@@ -58,7 +58,7 @@ export const Tooltips: FC = () =>
       {cronExamples.map((i) =>
         <option key={i.value} value={i.value}>
           {i.label}
-        </option>
+        </option>,
       )}
     </datalist>
   </>;

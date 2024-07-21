@@ -42,6 +42,6 @@ export const appModule: TModule = (store) => {
   });
 
   addEventListener('hashchange', () =>
-    store.dispatch('router/change', getPath())
+    store.dispatch('router/change', getPath()),
   );
 };
