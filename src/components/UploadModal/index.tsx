@@ -1,6 +1,5 @@
 import type { JSX } from 'preact';
 import { useRef } from 'preact/hooks';
-import { useStoreon } from 'storeon/preact';
 
 import s from './styles.css';
 import { dispatch } from '../../store';
@@ -9,7 +8,6 @@ import { parseJSONC } from '../Parser/parseJSONC';
 import { isValidConfig } from '../Parser/isValidConfig';
 import { type IConfig, createItems } from '../../util/items';
 import { ROUTER } from '../../constants';
-import { Modal } from '../Modal';
 import { TextBox } from '../TextBox';
 import { BlankButton, Button } from '../Button';
 import { UploadFile } from '../UploadFile';
@@ -42,8 +40,7 @@ const onLoad = (val: string) => {
 };
 
 export const UploadModal: FC = () => {
-  const { path } = useStoreon('path');
-  const ref = useRef<string>('');
+  const ref = useRef('');
 
   const onInput: JSX.InputEventHandler<HTMLTextAreaElement> = (event) => {
     ref.current = event.currentTarget.value;
@@ -55,40 +52,38 @@ export const UploadModal: FC = () => {
   };
 
   return (
-    <Modal open={path === ROUTER.UPLOAD}>
-      <form
-        method="dialog"
-        onSubmit={onSubmit}
-        className={s.box}
+    <form
+      method="dialog"
+      onSubmit={onSubmit}
+      className={s.box}
+    >
+      <BlankButton
+        onClick={close}
+        className={s.close}
+        aria-label="close modal"
       >
-        <BlankButton
-          onClick={close}
-          className={s.close}
-          aria-label="close modal"
-        >
+        <IconCancel />
+      </BlankButton>
+      <h2>
+        Upload your config
+      </h2>
+      <div className={s.inputs}>
+        <UploadFile
+          className={s.file}
+          onLoad={onLoad}
+        />
+        <TextBox onInput={onInput} />
+      </div>
+      <div className={s.btns}>
+        <Button type="submit">
+          <IconConfirm />
+          Upload Config
+        </Button>
+        <Button onClick={close}>
           <IconCancel />
-        </BlankButton>
-        <h2>
-          Upload your config
-        </h2>
-        <div className={s.inputs}>
-          <UploadFile
-            className={s.file}
-            onLoad={onLoad}
-          />
-          <TextBox onInput={onInput} />
-        </div>
-        <div className={s.btns}>
-          <Button type="submit">
-            <IconConfirm />
-            Upload Config
-          </Button>
-          <Button onClick={close}>
-            <IconCancel />
-            Cancel
-          </Button>
-        </div>
-      </form>
-    </Modal>
+          Cancel
+        </Button>
+      </div>
+    </form>
   );
 };
