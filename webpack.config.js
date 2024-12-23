@@ -137,10 +137,8 @@ const buildConfig = ({ NODE_ENV }) => {
       alias: {
         react: 'preact/compat',
         'react-dom': 'preact/compat',
+        '@babel/code-frame': resolveApp('src/codeFrame.js'),
       },
-    },
-    externalsType: 'assign',
-    externals: {
     },
     module: {
       parser: {
