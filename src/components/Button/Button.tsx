@@ -3,7 +3,7 @@ import type { JSX } from 'preact';
 import s from './styles.css';
 import { classNames } from '../../util/component';
 
-interface Props extends JSX.HTMLAttributes<HTMLButtonElement> {
+interface Props extends JSX.ButtonHTMLAttributes {
   className?: string;
 }
 
