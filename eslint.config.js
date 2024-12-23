@@ -6,6 +6,13 @@ export default ts.config(
     ignores: [
       'dist',
     ],
+    languageOptions: {
+      ecmaVersion: 2024,
+      sourceType: 'module',
+      globals: {
+        process: 'readonly',
+      },
+    },
   },
   js.configs.recommended,
   ...ts.configs.recommended,

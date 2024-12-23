@@ -1,4 +1,3 @@
-/* eslint-env node */
 import { resolve } from 'node:path';
 import { realpathSync } from 'node:fs';
 import webpack from 'webpack';
