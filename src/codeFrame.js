@@ -1,8 +1,8 @@
 export const codeFrameColumns = (raw, loc) => {
   const lines = raw.split(/\r\n|[\n\r\u2028\u2029]/);
 
-  const startLoc = Object.assign({ column: 0, line: -1 }, loc.start);
-  const endLoc = Object.assign({}, startLoc, loc.end);
+  const startLoc = { column: 0, line: -1, ...loc.start };
+  const endLoc = {...startLoc, ...loc.end };
 
   const startLine = startLoc.line;
   const startColumn = startLoc.column;
