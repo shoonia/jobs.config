@@ -45,13 +45,10 @@ const createLocation = (location: string): string => {
   return loc.startsWith('/') ? loc : '/' + loc;
 };
 
-const parseDate = (date: unknown): number => {
-  const t = ~~Number(date);
+export const parseDate = (date: unknown): number => {
+  const t = Number(date);
 
-  if (isNaN(t) || t < 1) return 1;
-  if (t > 31) return 31;
-
-  return t;
+  return isNaN(t) ? 1 : Math.min(Math.max(~~t, 1), 31);
 };
 
 const getPeriod = (exec: IExecutionConfig): PERIOD => {
