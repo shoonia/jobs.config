@@ -13,7 +13,8 @@ export const Parser: FC<Props> = ({ value }) => {
   if (value.trim() === '') {
     return (
       <Message>
-        No input
+        <p>No content to validate</p>
+        <p>Please enter your <strong>jobs.config</strong> content to validate the scheduled job configuration.</p>
       </Message>
     );
   }
@@ -21,7 +22,8 @@ export const Parser: FC<Props> = ({ value }) => {
   if (value.length > VALIDATOR_VALUE_LIMIT) {
     return (
       <Message error>
-        The file size is too large for the jobs.config.
+        <p>File too large to validate</p>
+        <p>The <strong>jobs.config</strong> file content exceeds the maximum size limit for validation. Please reduce the file size and try again.</p>
       </Message>
     );
   }
@@ -48,7 +50,7 @@ export const Parser: FC<Props> = ({ value }) => {
 
   return (
     <Message>
-      <p>Valid jobs.config</p>
+      <p>Valid <strong>jobs.config</strong> file</p>
       <EditButton config={(config as IConfig)} />
     </Message>
   );
