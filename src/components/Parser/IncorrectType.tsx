@@ -1,4 +1,3 @@
-import type { FC } from 'preact/compat';
 import type { KEYS } from '../../constants';
 
 interface Props {
