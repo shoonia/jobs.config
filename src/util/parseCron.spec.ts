@@ -18,6 +18,13 @@ const invalidList = [
   '0 1 * * 3#2',
   '0 0 * * L',
   '0 0 LW * *',
+
+  '@weekly',
+  '@daily',
+  '@monthly',
+  '@yearly',
+  '@hourly',
+  '@every 1 hour',
 ];
 
 describe('parseCron', () => {
