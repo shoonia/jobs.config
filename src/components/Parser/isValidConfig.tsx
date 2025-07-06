@@ -82,8 +82,8 @@ export const isValidConfig = (config: unknown): TValidResult => {
   if (!isObject(config)) {
     return error(
       <>
-        <p>{'Incorrect type. Expected "object"'}</p>
-        <p>{'The jobs.config file must contains a JSON object'}</p>
+        <p>Invalid file format</p>
+        <p>The <strong>jobs.config</strong> file must contain a JSON object that defines the jobs you want to schedule.</p>
       </>,
     );
   }
@@ -91,8 +91,8 @@ export const isValidConfig = (config: unknown): TValidResult => {
   if (!(KEYS.jobs in config)) {
     return error(
       <>
-        <p>{'Missing property "jobs"'}</p>
-        <p>{'The jobs object must contains one top-level key named "jobs"'}</p>
+        <p>Missing "jobs" property</p>
+        <p>The <strong>jobs.config</strong> file must contain a "jobs" array that defines your scheduled jobs.</p>
       </>,
     );
   }
@@ -100,12 +100,10 @@ export const isValidConfig = (config: unknown): TValidResult => {
   const keys = Object.keys(config);
 
   if (keys.length > 1) {
-    const names = keys.filter((i) => i !== KEYS.jobs).join(separator);
-
-    return error(
+    const names = keys.filter((i) => i !== KEYS.jobs).join(separator);    return error(
       <>
         <p>{`Unknown property "${names}"`}</p>
-        <p>{'The jobs object must contains one top-level key named "jobs"'}</p>
+        <p>The <strong>jobs.config</strong> file should only contain a single "jobs" property that defines your scheduled jobs.</p>
       </>,
     );
   }
@@ -113,8 +111,8 @@ export const isValidConfig = (config: unknown): TValidResult => {
   if (!Array.isArray(config.jobs)) {
     return error(
       <>
-        <p>{'Incorrect type. Expected "array"'}</p>
-        <p>{'The top-level key "jobs" must be an array'}</p>
+        <p>Invalid "jobs" property type</p>
+        <p>The "jobs" property must be an array where each job is represented by an object.</p>
       </>,
     );
   }
@@ -125,21 +123,26 @@ export const isValidConfig = (config: unknown): TValidResult => {
   if (i > MAX_ITEMS) {
     return error(
       <>
-        <p>{`Too many scheduled jobs. (${i})`}</p>
-        <p>You can configure up to 20 jobs</p>
+        <p>Too many scheduled jobs ({i})</p>
+        <p>You can configure up to 20 jobs. Please reduce the number of jobs in your configuration.</p>
       </>,
     );
   }
 
   if (i < 1) {
-    return error(<p>No scheduled jobs</p>);
+    return error(
+      <>
+        <p>No scheduled jobs found</p>
+        <p>The "jobs" array is empty. Please add at least one job definition to schedule.</p>
+      </>,
+    );
   }
 
   if (!jobs.every(isObject)) {
     return error(
       <>
-        <p>{'Incorrect type. Expected "object"'}</p>
-        <p>{'The "jobs" array must contain only objects, each of which represents a scheduled job'}</p>
+        <p>Invalid job format</p>
+        <p>Each job in the "jobs" array must be an object that represents a scheduled job definition.</p>
       </>,
     );
   }
@@ -153,7 +156,7 @@ export const isValidConfig = (config: unknown): TValidResult => {
       return error(
         <>
           <p>{`Unknown property "${unknownKey}" at "jobs[${i}]"`}</p>
-          <p>{`Allowed one of "${baseProps.join(separator)}"`}</p>
+          <p>{`Valid job properties are: "${baseProps.join(separator)}"`}</p>
         </>,
       );
     }
@@ -164,7 +167,7 @@ export const isValidConfig = (config: unknown): TValidResult => {
       return error(
         <>
           <p>{`Missing property "${missingkey}" at "jobs[${i}]"`}</p>
-          <p>{`Each scheduled job object must contain the required fields "${baseRequiredProps.join(separator)}"`}</p>
+          <p>{`Each job definition must contain the required properties: "${baseRequiredProps.join(separator)}"`}</p>
         </>,
       );
     }
@@ -189,8 +192,8 @@ export const isValidConfig = (config: unknown): TValidResult => {
       return error(
         <>
           <p>{`Invalid "functionLocation" at "jobs[${i}]"`}</p>
-          <p>The function location is a relative path within the Backend folder for <code>.js</code> or <code>.jsw</code> file.</p>
-          <p>File and Folder names can contain only alphanumeric characters, periods, hyphens and underscores, and can not begin or end with a period</p>
+          <p>The function location must be a path to the backend file in which the job function resides. Use a relative path within the Backend folder for <strong>.js</strong> or <strong>.jsw</strong> files.</p>
+          <p>File and folder names can contain only alphanumeric characters, periods, hyphens and underscores, and cannot begin or end with a period.</p>
         </>,
       );
     }
@@ -211,7 +214,7 @@ export const isValidConfig = (config: unknown): TValidResult => {
       return error(
         <>
           <p>{`Invalid "functionName" at "jobs[${i}]"`}</p>
-          <p>{`Error: Unexpected ${message}`}</p>
+          <p>{`The function name must be a valid JavaScript identifier. Unexpected ${message}.`}</p>
         </>,
       );
     }
@@ -230,7 +233,7 @@ export const isValidConfig = (config: unknown): TValidResult => {
       return error(
         <>
           <p>{`Unknown property "${unknownKeyEx}" in "jobs[${i}].executionConfig"`}</p>
-          <p>{`Allowed one of "${executionProps.join(separator)}"`}</p>
+          <p>{`Valid execution config properties are: "${executionProps.join(separator)}"`}</p>
         </>,
       );
     }
@@ -267,15 +270,15 @@ export const isValidConfig = (config: unknown): TValidResult => {
         return error(
           <>
             <p>{`Invalid "time" at "jobs[${i}].executionConfig"`}</p>
-            <p>{`Error: "${time}". The time is specified as UTC time in HH:MM format`}</p>
+            <p>{`The time "${time}" is not valid. All times in job configurations must be UTC time in HH:MM format (24-hour format).`}</p>
           </>,
         );
       }
     } else {
       return error(
         <>
-          <p>{`Missing the time of the job runs at "jobs[${i}].executionConfig"`}</p>
-          <p>{'The "executionConfig" object must contain one of "time", "cronExpression" properties'}</p>
+          <p>{`Missing execution time configuration at "jobs[${i}].executionConfig"`}</p>
+          <p>The execution configuration must contain either a "time" property (with optional "dayOfWeek" or "dateInMonth") or a "cronExpression" property to define when the job runs.</p>
         </>,
       );
     }
@@ -292,8 +295,8 @@ export const isValidConfig = (config: unknown): TValidResult => {
       if (!weekList.some((i) => i === dayOfWeek)) {
         return error(
           <>
-            <p>{`Incorrect value of "dayOfWeek" at "jobs[${i}].executionConfig"`}</p>
-            <p>{`Error: unknown value "${dayOfWeek}". Allowed one of "${weekList.join(separator)}"`}</p>
+            <p>{`Invalid "dayOfWeek" value at "jobs[${i}].executionConfig"`}</p>
+            <p>{`The value "${dayOfWeek}" is not recognized. Valid day names are: "${weekList.join(separator)}"`}</p>
           </>,
         );
       }
@@ -311,8 +314,8 @@ export const isValidConfig = (config: unknown): TValidResult => {
       if (dateInMonth < 1 || dateInMonth > 31) {
         return error(
           <>
-            <p>{`Invalid "dateInMonth" at "jobs[${i}].executionConfig"`}</p>
-            <p>{'The value of the "dateInMonth" property must be a number between 1 and 31'}</p>
+            <p>{`Invalid "dateInMonth" value at "jobs[${i}].executionConfig"`}</p>
+            <p>The date in month must be a number between 1 and 31 representing the day of the month when the job should run.</p>
           </>,
         );
       }
@@ -324,11 +327,11 @@ export const isValidConfig = (config: unknown): TValidResult => {
     ) {
       return error(
         <>
-          <p>{`Mutual exclusion property at "jobs[${i}].executionConfig"`}</p>
-          <p>{`Error: "cronExpression" omit all of "${periodProps.join(separator)}" properties`}</p>
+          <p>{`Conflicting execution configuration at "jobs[${i}].executionConfig"`}</p>
+          <p>{`When using a cron expression, you cannot use the "${periodProps.join(separator)}" properties. These are mutually exclusive ways to define when the job runs.`}</p>
           <p>
             <em>
-              {'When using a cron expression to specify when a job runs, the "executionConfig" object contains a single property, named "cronExpression", whose value is a valid cron expression'}
+              Use either a cron expression OR the time property with optional dayOfWeek/dateInMonth properties, but not both.
             </em>
           </p>
         </>,
@@ -338,8 +341,8 @@ export const isValidConfig = (config: unknown): TValidResult => {
     if (dateProps.every((i) => i in executionConfig)) {
       return error(
         <>
-          <p>{`Mutual exclusion property at "jobs[${i}].executionConfig"`}</p>
-          <p>{'Error: "dateInMonth" omit the "dayOfWeek" property'}</p>
+          <p>{`Conflicting execution configuration at "jobs[${i}].executionConfig"`}</p>
+          <p>You cannot use both "dateInMonth" and "dayOfWeek" properties together. Choose either a specific date in the month OR a specific day of the week.</p>
         </>,
       );
     }
