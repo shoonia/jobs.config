@@ -41,13 +41,6 @@ export default ts.config(
         'always-multiline',
       ],
       'semi': 'error',
-      'indent': [
-        'error',
-        2,
-        {
-          'SwitchCase': 1,
-        },
-      ],
       'quotes': [
         'error',
         'single',
