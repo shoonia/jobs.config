@@ -2,8 +2,8 @@ import type { JSX } from 'preact';
 import { useRef } from 'preact/hooks';
 
 import s from './styles.css';
-import { dispatch } from '../../store';
-import { useValidatorStore } from '../../store-v2/useValidatorStore';
+import { useItemsStore } from '../../store/useItemsStore';
+import { useValidatorStore } from '../../store/useValidatorStore';
 import { preventDefault } from '../../util/component';
 import { parseJSONC } from '../Parser/parseJSONC';
 import { isValidConfig } from '../Parser/isValidConfig';
@@ -30,7 +30,7 @@ const onLoad = (value: string) => {
     const [validationError] = isValidConfig(config);
 
     if (!validationError) {
-      dispatch('items/replace', createItems(config as IConfig));
+      useItemsStore.setState({ items: createItems(config as IConfig) });
 
       return close();
     }

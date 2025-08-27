@@ -1,7 +1,7 @@
 import type { JSX } from 'preact';
 
 import s from './styles.css';
-import { useValidatorStore } from '../../store-v2/useValidatorStore';
+import { useValidatorStore } from '../../store/useValidatorStore';
 import { preventDefault } from '../../util/component';
 import { Parser } from '../Parser';
 import { CopyLinkButton } from '../CopyLinkButton';

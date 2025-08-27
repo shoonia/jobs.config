@@ -2,7 +2,7 @@ import type { JSX } from 'preact';
 
 import s from './styles.css';
 import cronExamples from './cronExamples.json';
-import { useStoreon } from '../../../store';
+import { useItemsStore } from '../../../store/useItemsStore';
 import { KEYS } from '../../../constants';
 import { classNames } from '../../../util/component';
 import { BlankButton } from '../../Button';
@@ -12,13 +12,13 @@ interface Props {
 }
 
 export const CronExamplesTooltip: FC<Props> = ({ target }) => {
-  const { items, dispatch } = useStoreon('items');
+  const { items, update } = useItemsStore();
 
   const id = target.dataset.id || '';
   const { cronExpression } = items.find((i) => i.id === id) || {};
 
   const onClick: JSX.MouseEventHandler<HTMLButtonElement> = (event) =>
-    dispatch('items/update', {
+    update({
       id,
       name: KEYS.cronExpression,
       value: event.currentTarget.value,

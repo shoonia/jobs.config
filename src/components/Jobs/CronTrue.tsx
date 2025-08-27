@@ -4,14 +4,14 @@ import s from './CronTrue.css';
 import { parseCron } from '../../util/parseCron';
 import { classNames } from '../../util/component';
 import { useFormScope } from '../../hooks/formScope';
-import { dispatch } from '../../store';
+import { useItemsStore } from '../../store/useItemsStore';
 
 export const CronTrue: FC = () => {
   const { id, cronExpression } = useFormScope();
   const [isError, message] = parseCron(cronExpression);
 
   useEffect(() => {
-    dispatch('items/update', {
+    useItemsStore.getState().update({
       id,
       name: 'cronError',
       value: isError ? message : '',

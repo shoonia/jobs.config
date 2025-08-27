@@ -5,7 +5,7 @@ import { Tooltips } from './Tooltip';
 import { UploadModal } from './UploadModal';
 import { Validator } from './Validator';
 import { Modal } from './Modal';
-import { useRouterStore } from '../store-v2/useRouterStore';
+import { useRouterStore } from '../store/useRouterStore';
 
 export const App: FC = () => {
   const { path } = useRouterStore();

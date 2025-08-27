@@ -1,6 +1,6 @@
 import { useState } from 'preact/hooks';
 
-import { useValidatorStore } from '../../store-v2/useValidatorStore';
+import { useValidatorStore } from '../../store/useValidatorStore';
 import { createValidatorLink } from '../../util/validatorValue';
 import { IconCopyLink } from '../Icons/IconCopyLink';
 import { BlankButton } from '../Button';

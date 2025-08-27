@@ -6,7 +6,7 @@ import { ItemMenu } from './ItemMenu';
 import { FunctionInfo } from './FunctionInfo';
 import { ExecutionConfig } from './ExecutionConfig';
 import { classNames, preventDefault } from '../../util/component';
-import { dispatch } from '../../store';
+import { useItemsStore } from '../../store/useItemsStore';
 
 interface Props {
   id: string;
@@ -17,7 +17,7 @@ export const Item: FC<Props> = ({ id, isNew }) => {
   useEffect(() => {
     if (isNew) {
       const t = setTimeout(() => {
-        dispatch('items/update', {
+        useItemsStore.getState().update({
           id,
           name: 'isNew',
           value: undefined,
@@ -31,7 +31,7 @@ export const Item: FC<Props> = ({ id, isNew }) => {
   const updateItem: EventListener = (event) => {
     const el = event.target as HTMLFormElement;
 
-    dispatch('items/update', {
+    useItemsStore.getState().update({
       id,
       name: el.dataset.name,
       value: el.value,

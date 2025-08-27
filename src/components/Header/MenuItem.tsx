@@ -2,7 +2,7 @@ import type { ComponentChildren } from 'preact';
 
 import s from './styles.css';
 import type { ROUTER } from '../../constants';
-import { useRouterStore } from '../../store-v2/useRouterStore';
+import { useRouterStore } from '../../store/useRouterStore';
 import { classNames } from '../../util/component';
 
 interface Props {
