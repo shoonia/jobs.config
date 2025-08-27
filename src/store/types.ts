@@ -1,6 +1,5 @@
 import type { StoreonModule } from 'storeon';
 
-import type { ROUTER } from '../constants';
 import type { IItem } from '../util/items';
 
 interface IUpdateEventData {
@@ -18,15 +17,12 @@ export interface IEvents {
   'items/replace': IItem[];
   'items/up': string;
   'items/down': string;
-  // router
-  'router/change': ROUTER;
   // validator
   'validator/input': string;
 }
 
 export interface IState {
   readonly items: IItem[];
-  readonly path: ROUTER;
   readonly validatorValue: string;
 }
 

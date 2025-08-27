@@ -1,36 +1,12 @@
 import type { TModule } from './types';
 import { getValidatorValue } from '../util/validatorValue';
-import { ROUTER, VALIDATOR_VALUE_LIMIT } from '../constants';
-
-const getPath = (): ROUTER => {
-  const hash = location.hash
-    .trim()
-    .toLowerCase();
-
-  switch (hash) {
-    case ROUTER.VALIDATOR:
-    case ROUTER.UPLOAD:
-      return hash;
-
-    default:
-      return ROUTER.BUILDER;
-  }
-};
+import { VALIDATOR_VALUE_LIMIT } from '../constants';
 
 export const appModule: TModule = (store) => {
   store.on('@init', () => {
     return {
-      path: getPath(),
       validatorValue: getValidatorValue(),
     };
-  });
-
-  store.on('router/change', (state, path) => {
-    if (state.path !== path) {
-      return {
-        path,
-      };
-    }
   });
 
   store.on('validator/input', (_, value) => {
@@ -40,8 +16,4 @@ export const appModule: TModule = (store) => {
         : value,
     };
   });
-
-  addEventListener('hashchange', () =>
-    store.dispatch('router/change', getPath()),
-  );
 };
