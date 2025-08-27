@@ -5,10 +5,10 @@ import { Tooltips } from './Tooltip';
 import { UploadModal } from './UploadModal';
 import { Validator } from './Validator';
 import { Modal } from './Modal';
-import { useRouter } from '../store-v2/useRouter';
+import { useRouterStore } from '../store-v2/useRouterStore';
 
 export const App: FC = () => {
-  const { path } = useRouter();
+  const { path } = useRouterStore();
   const Page = path === ROUTER.VALIDATOR
     ? Validator
     : Builder;

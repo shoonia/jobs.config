@@ -4,7 +4,6 @@ import { ROUTER } from '../constants';
 
 interface IState {
   readonly path: ROUTER;
-  to(path: ROUTER): void;
 }
 
 const getPath = (): ROUTER => {
@@ -22,18 +21,12 @@ const getPath = (): ROUTER => {
   }
 };
 
-export const useRouter = create<IState>((set, get) => ({
-  path: getPath(),
+export const useRouterStore = create<IState>((set) => {
+  addEventListener('hashchange', () =>
+    set({ path: getPath() }),
+  );
 
-  to(path) {
-    const state = get();
-
-    if (state.path !== path) {
-      set({ path });
-    }
-  },
-}));
-
-addEventListener('hashchange', () =>
-  useRouter.getState().to(getPath()),
-);
+  return {
+    path: getPath(),
+  };
+});

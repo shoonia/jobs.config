@@ -2,7 +2,7 @@ import type { ComponentChildren } from 'preact';
 
 import s from './styles.css';
 import type { ROUTER } from '../../constants';
-import { useRouter } from '../../store-v2/useRouter';
+import { useRouterStore } from '../../store-v2/useRouterStore';
 import { classNames } from '../../util/component';
 
 interface Props {
@@ -11,7 +11,7 @@ interface Props {
 }
 
 export const MenuItem: FC<Props> = ({ children, path }) => {
-  const isActive = useRouter().path === path;
+  const isActive = useRouterStore().path === path;
 
   const className = classNames([
     s.link,
