@@ -1,10 +1,10 @@
 import s from './styles.css';
-import { useStoreon } from '../../store';
+import { useItemsStore } from '../../store/useItemsStore';
 import { FormScopeProvider } from '../../hooks/formScope';
 import { Item } from './Item';
 
 export const Jobs: FC = () => {
-  const { items } = useStoreon('items');
+  const { items } = useItemsStore();
 
   const list = items.map((i) => (
     <li key={i.id}>

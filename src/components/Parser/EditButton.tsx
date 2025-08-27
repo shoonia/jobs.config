@@ -1,4 +1,4 @@
-import { dispatch } from '../../store';
+import { useItemsStore } from '../../store/useItemsStore';
 import { Button } from '../Button';
 import { IconEdit } from '../Icons/IconEdit';
 import { type IConfig, createItems } from '../../util/items';
@@ -10,7 +10,7 @@ interface Props {
 
 export const EditButton: FC<Props> = ({ config }) => {
   const onClick: EventListener = () => {
-    dispatch('items/replace', createItems(config));
+    useItemsStore.setState({ items: createItems(config) });
     location.hash = ROUTER.BUILDER;
   };
 

@@ -1,14 +1,14 @@
 import type { ComponentChild as CC } from 'preact';
 import s from './FunctionLocation.css';
 import { createPath } from './util';
-import { useStoreon } from '../../../store';
+import { useItemsStore } from '../../../store/useItemsStore';
 
 interface Props {
   target: HTMLInputElement;
 }
 
 export const FunctionLocation: FC<Props> = ({ target }) => {
-  useStoreon('items');
+  useItemsStore();
 
   const tree = createPath(target.value).reduceRight<CC>((acc, item, index): CC => (
     <ul className={index < 1 ? s.list : s.sublist}>

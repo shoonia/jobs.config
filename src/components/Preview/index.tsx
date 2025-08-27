@@ -2,7 +2,7 @@ import type { JSX } from 'preact';
 import { useRef } from 'preact/hooks';
 
 import s from './styles.css';
-import { useStoreon } from '../../store';
+import { useItemsStore } from '../../store/useItemsStore';
 import { Button } from '../Button';
 import { ToolbarWrapper, ToolbarHint } from '../Toolbar';
 import { JSON } from './JSON';
@@ -17,7 +17,7 @@ const createData = (config: string): string => `// Jobs Config Generator
 ${config}`;
 
 export const Preview: FC = () => {
-  const { items } = useStoreon('items');
+  const { items } = useItemsStore();
   const output = useRef<HTMLPreElement>(null);
 
   const config = createConfig(items);

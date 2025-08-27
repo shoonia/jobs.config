@@ -7,7 +7,7 @@ import { IconUpload } from '../Icons/IconUpload';
 
 interface Props {
   className?: string;
-  onLoad?: (value: string) => void;
+  onLoad(value: string): void;
 }
 
 export const UploadFile: FC<Props> = ({ className, onLoad }) => {

@@ -1,4 +1,4 @@
-import { useStoreon } from '../../store';
+import { useItemsStore } from '../../store/useItemsStore';
 import { Button } from '../Button';
 import { ToolbarWrapper, ToolbarHint } from '../Toolbar';
 import { IconPlus } from '../Icons/IconPlus';
@@ -10,17 +10,13 @@ const openUploadModal: EventListener = () => {
 };
 
 export const Buttons: FC = () => {
-  const { dispatch, items } = useStoreon('items');
-
-  const createItem: EventListener = () => {
-    dispatch('items/new');
-  };
+  const { items, add } = useItemsStore();
 
   return (
     <ToolbarWrapper>
       <ToolbarHint label="You can configure up to 20 jobs">
         <Button
-          onClick={createItem}
+          onClick={add}
           disabled={items.length >= MAX_ITEMS}
         >
           <IconPlus />

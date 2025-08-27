@@ -1,5 +1,5 @@
 import s from './ItemMenu.css';
-import { useStoreon } from '../../store';
+import { useItemsStore } from '../../store/useItemsStore';
 import { useFormScope } from '../../hooks/formScope';
 import { BlankButton } from '../Button';
 import { IconBin } from '../Icons/IconBin';
@@ -9,15 +9,15 @@ import { MAX_ITEMS } from '../../constants';
 
 export const ItemMenu: FC = () => {
   const { id } = useFormScope();
-  const { dispatch, items } = useStoreon('items');
+  const store = useItemsStore();
 
-  const len = items.length;
-  const index = items.findIndex((i) => i.id === id);
+  const len = store.items.length;
+  const index = store.items.findIndex((i) => i.id === id);
 
-  const up = () => dispatch('items/up', id);
-  const down = () => dispatch('items/down', id);
-  const remove = () => dispatch('items/remove', id);
-  const clone = () => dispatch('items/clone', id);
+  const up = () => store.up(id);
+  const down = () => store.down(id);
+  const remove = () => store.remove(id);
+  const clone = () => store.clone(id);
 
   return (
     <div className={s.buttons}>
