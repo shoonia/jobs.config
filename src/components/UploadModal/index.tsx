@@ -3,6 +3,7 @@ import { useRef } from 'preact/hooks';
 
 import s from './styles.css';
 import { dispatch } from '../../store';
+import { useValidatorStore } from '../../store-v2/useValidatorStore';
 import { preventDefault } from '../../util/component';
 import { parseJSONC } from '../Parser/parseJSONC';
 import { isValidConfig } from '../Parser/isValidConfig';
@@ -18,12 +19,12 @@ const close = () => {
   location.hash = ROUTER.BUILDER;
 };
 
-const onLoad = (val: string) => {
-  if (val.trim() === '') {
+const onLoad = (value: string) => {
+  if (value.trim() === '') {
     return close();
   }
 
-  const [parsingError, config] = parseJSONC(val);
+  const [parsingError, config] = parseJSONC(value);
 
   if (!parsingError) {
     const [validationError] = isValidConfig(config);
@@ -35,7 +36,7 @@ const onLoad = (val: string) => {
     }
   }
 
-  dispatch('validator/input', val);
+  useValidatorStore.setState({ value });
   location.hash = ROUTER.VALIDATOR;
 };
 

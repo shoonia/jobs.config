@@ -17,13 +17,10 @@ export interface IEvents {
   'items/replace': IItem[];
   'items/up': string;
   'items/down': string;
-  // validator
-  'validator/input': string;
 }
 
 export interface IState {
   readonly items: IItem[];
-  readonly validatorValue: string;
 }
 
 export type TModule = StoreonModule<IState, IEvents>;

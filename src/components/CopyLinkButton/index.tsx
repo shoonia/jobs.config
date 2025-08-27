@@ -1,6 +1,6 @@
 import { useState } from 'preact/hooks';
 
-import { getState } from '../../store';
+import { useValidatorStore } from '../../store-v2/useValidatorStore';
 import { createValidatorLink } from '../../util/validatorValue';
 import { IconCopyLink } from '../Icons/IconCopyLink';
 import { BlankButton } from '../Button';
@@ -17,8 +17,8 @@ export const CopyLinkButton: FC<Props> = ({ className }) => {
     : 'Copy link to validation results';
 
   const onClick: EventListener = async () => {
-    const { validatorValue } = getState();
-    const link = createValidatorLink(validatorValue);
+    const { value } = useValidatorStore.getState();
+    const link = createValidatorLink(value);
 
     if (link) {
       history.pushState(null, '', link);
