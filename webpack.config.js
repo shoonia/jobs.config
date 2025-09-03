@@ -162,6 +162,7 @@ const buildConfig = ({ NODE_ENV }) => {
                 minified: isProd,
                 plugins: [
                   resolveApp('plugins/babel.js'),
+                  'babel-plugin-transform-minify-catch-param',
                   [
                     'babel-plugin-transform-remove-polyfill',
                     {
