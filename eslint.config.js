@@ -1,7 +1,8 @@
+import { defineConfig } from '@eslint/config-helpers';
 import js from '@eslint/js';
 import ts from 'typescript-eslint';
 
-export default ts.config(
+export default defineConfig(
   {
     ignores: [
       'dist',
@@ -15,7 +16,7 @@ export default ts.config(
     },
   },
   js.configs.recommended,
-  ...ts.configs.recommended,
+  ts.configs.recommended,
   {
     plugins: {
       'eslint-plugin-react': {
@@ -40,17 +41,17 @@ export default ts.config(
         'error',
         'always-multiline',
       ],
-      'semi': 'error',
-      'quotes': [
+      semi: 'error',
+      quotes: [
         'error',
         'single',
       ],
       'space-before-function-paren': [
         'error',
         {
-          'anonymous': 'always',
-          'named': 'never',
-          'asyncArrow': 'always',
+          anonymous: 'always',
+          named: 'never',
+          asyncArrow: 'always',
         },
       ],
       'no-else-return': 'error',
@@ -59,9 +60,9 @@ export default ts.config(
       'no-multiple-empty-lines': [
         'error',
         {
-          'max': 1,
-          'maxBOF': 0,
-          'maxEOF': 0,
+          max: 1,
+          maxBOF: 0,
+          maxEOF: 0,
         },
       ],
     },
