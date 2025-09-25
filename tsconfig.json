@@ -2,7 +2,7 @@
   "compilerOptions": {
     "module": "ESNext",
     "target": "ES2022",
-    "moduleResolution": "node",
+    "moduleResolution": "bundler",
     "jsx": "react-jsx",
     "jsxImportSource": "preact",
     "allowSyntheticDefaultImports": true,
@@ -31,7 +31,8 @@
   },
   "ts-node": {
     "esm": true,
-    "transpileOnly": true
+    "transpileOnly": true,
+    "experimentalSpecifierResolution": "node"
   },
   "include": [
     "src"
