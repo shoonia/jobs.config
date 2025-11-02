@@ -1,10 +1,7 @@
-import type { ComponentChildren } from 'preact';
-
 import s from './styles.css';
 
 interface Props {
   top: string;
-  children: ComponentChildren;
 }
 
 export const Label: FC<Props> = ({ top, children }) => (

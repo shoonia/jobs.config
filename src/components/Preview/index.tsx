@@ -1,4 +1,4 @@
-import type { JSX } from 'preact';
+import type { ClipboardEventHandler } from 'preact';
 import { useRef } from 'preact/hooks';
 
 import s from './styles.css';
@@ -36,7 +36,7 @@ export const Preview: FC = () => {
     }
   };
 
-  const copy: JSX.ClipboardEventHandler<HTMLPreElement> = (event) => {
+  const copy: ClipboardEventHandler<HTMLPreElement> = (event) => {
     event.clipboardData?.setData('text/plain', data);
     preventDefault(event);
   };

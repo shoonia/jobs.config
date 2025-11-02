@@ -1,4 +1,4 @@
-import type { JSX } from 'preact';
+import type { InputEventHandler } from 'preact';
 
 import s from './styles.css';
 import { useValidatorStore } from '../../store/useValidatorStore';
@@ -11,7 +11,7 @@ import { TextBox } from '../TextBox';
 export const Validator: FC = () => {
   const { value, setValue } = useValidatorStore();
 
-  const onInput: JSX.InputEventHandler<HTMLTextAreaElement> = (event) =>
+  const onInput: InputEventHandler<HTMLTextAreaElement> = (event) =>
     setValue(event.currentTarget.value);
 
   return (

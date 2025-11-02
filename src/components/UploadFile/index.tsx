@@ -1,4 +1,4 @@
-import type { JSX } from 'preact';
+import type { GenericEventHandler } from 'preact';
 
 import s from './styles.css';
 import { readFile } from './readFile';
@@ -11,7 +11,7 @@ interface Props {
 }
 
 export const UploadFile: FC<Props> = ({ className, onLoad }) => {
-  const onChange: JSX.GenericEventHandler<HTMLInputElement> = (event) =>
+  const onChange: GenericEventHandler<HTMLInputElement> = (event) =>
     readFile(event.currentTarget.files).then(onLoad);
 
   return (

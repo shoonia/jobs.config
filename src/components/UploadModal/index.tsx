@@ -1,4 +1,4 @@
-import type { JSX } from 'preact';
+import type { InputEventHandler } from 'preact';
 import { useRef } from 'preact/hooks';
 
 import s from './styles.css';
@@ -43,7 +43,7 @@ const onLoad = (value: string) => {
 export const UploadModal: FC = () => {
   const ref = useRef('');
 
-  const onInput: JSX.InputEventHandler<HTMLTextAreaElement> = (event) => {
+  const onInput: InputEventHandler<HTMLTextAreaElement> = (event) => {
     ref.current = event.currentTarget.value;
   };
 

@@ -1,4 +1,4 @@
-import type { JSX } from 'preact';
+import type { KeyboardEventHandler } from 'preact';
 
 import s from './styles.css';
 import type { PERIOD } from '../../constants';
@@ -9,7 +9,7 @@ interface Props {
   period: PERIOD;
 }
 
-const handlerClick: JSX.KeyboardEventHandler<HTMLLabelElement> = (event) => {
+const handlerClick: KeyboardEventHandler<HTMLLabelElement> = (event) => {
   if (event.key === 'Enter' || event.key === ' ') {
     const el = event.currentTarget;
 

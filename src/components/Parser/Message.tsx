@@ -1,9 +1,6 @@
-import type { ComponentChildren } from 'preact';
-
 import s from './styles.css';
 
 interface Props {
-  children: ComponentChildren;
   error?: boolean;
 }
 

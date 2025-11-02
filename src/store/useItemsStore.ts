@@ -71,9 +71,9 @@ export const useItemsStore = create<IState>((set, get) => ({
   },
 
   update: ({ id, name, value }) => {
-    const { items } = get();
-
     if (name) {
+      const { items } = get();
+
       set({
         items: items.map((item) => {
           return item.id === id
