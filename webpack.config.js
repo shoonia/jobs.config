@@ -290,7 +290,6 @@ const buildConfig = ({ NODE_ENV }) => {
       }),
       new webpack.DefinePlugin({
         'process.env.NODE_ENV': JSON.stringify(NODE_ENV),
-        'process.env.FORCE_COLOR': '"0"',
       }),
     ].filter(Boolean),
     experiments: {
