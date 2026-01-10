@@ -2,6 +2,6 @@ version: 2
 updates:
   - package-ecosystem: "npm"
     directory: "/"
-    rsioning-strategy: "auto"
+    versioning-strategy: "auto"
     schedule:
       interval: "weekly"
