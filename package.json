@@ -52,7 +52,7 @@
     "stylelint-config-css-modules": "^4.5.1",
     "stylelint-config-standard": "^39.0.1",
     "terser-webpack-plugin": "^5.3.16",
-    "ts-node": "^1.7.1",
+    "ts-node": "^10.9.2",
     "typescript": "^5.9.3",
     "typescript-eslint": "^8.53.0",
     "webpack": "^5.104.1",
