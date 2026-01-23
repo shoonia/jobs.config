@@ -50,7 +50,7 @@
     "style-loader": "^4.0.0",
     "stylelint": "^17.0.0",
     "stylelint-config-css-modules": "^4.5.1",
-    "stylelint-config-standard": "^39.0.1",
+    "stylelint-config-standard": "^40.0.0",
     "terser-webpack-plugin": "^5.3.16",
     "ts-node": "^10.9.2",
     "typescript": "^5.9.3",
