@@ -2,14 +2,12 @@ export const codeFrameColumns = (raw, loc) => {
   const lines = raw.split(/\r\n|[\n\r\u2028\u2029]/);
 
   const startLoc = { column: 0, line: -1, ...loc.start };
-  const endLoc = {...startLoc, ...loc.end };
+  const endLoc = { ...startLoc, ...loc.end };
 
-  const startLine = startLoc.line;
-  const startColumn = startLoc.column;
-  const endLine = endLoc.line;
-  const endColumn = endLoc.column;
+  const { line: startLine, column: startColumn } = startLoc;
+  const { line: endLine, column: endColumn } = endLoc;
 
-  const start = startLine === -1 ? 0 : Math.max(startLine - 3, 0);
+  const start = Math.max(startLine - 3, 0);
   const end = endLine === -1 ? lines.length : Math.min(lines.length, endLine + 3);
 
   const lineDiff = endLine - startLine;
@@ -32,15 +30,14 @@ export const codeFrameColumns = (raw, loc) => {
       }
     }
   } else {
-    if (startColumn === endColumn) {
-      if (startColumn) {
-        markerLines.set(startLine, [startColumn, 0]);
-      } else {
-        markerLines.set(startLine, true);
-      }
-    } else {
-      markerLines.set(startLine, [startColumn, endColumn - startColumn]);
-    }
+    markerLines.set(
+      startLine,
+      startColumn === endColumn
+        ? startColumn
+          ? [startColumn, 0]
+          : true
+        : [startColumn, endColumn - startColumn],
+    );
   }
 
   const numberMaxWidth = String(end).length;

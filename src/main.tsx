@@ -5,5 +5,5 @@ import './styles/main.css';
 
 render(
   <App />,
-  document.getElementById('root') as HTMLDivElement,
+  document.getElementById('root')!,
 );
