@@ -39,7 +39,7 @@ const dTime = '00:00';
 const dCron = '0 * * * *';
 const dDay: TWeekList = weekList[0];
 
-const createLocation = (location: string): string => {
+export const localTransformer = (location: string): string => {
   const loc = location.trim();
 
   return loc.startsWith('/') ? loc : '/' + loc;
@@ -73,7 +73,7 @@ export const createConfig = (items: IItem[]): string => {
   const config: IConfig = {
     jobs: items.map<IJob>((i): IJob => {
       return {
-        functionLocation: createLocation(i.functionLocation),
+        functionLocation: localTransformer(i.functionLocation),
         functionName: i.functionName.trim(),
         description: (i.description !== '') ? i.description : noop,
         executionConfig: {

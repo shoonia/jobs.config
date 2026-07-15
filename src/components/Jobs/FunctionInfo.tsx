@@ -4,11 +4,7 @@ import { Label } from './Label';
 import { useFormScope } from '../../hooks/formScope';
 import { useValidator } from '../../hooks/useValidator';
 import { isValidFunctionLocation, isValidFunctionName } from '../../util/validator';
-
-const localTransformer = (val: string) => {
-  const trimmed = val.trim();
-  return trimmed.startsWith('/') ? trimmed : `/${trimmed}`;
-};
+import { localTransformer } from '../../util/items';
 
 const nameTransformer = (val: string) => val.trim();
 
