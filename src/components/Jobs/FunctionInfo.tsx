@@ -5,9 +5,16 @@ import { useFormScope } from '../../hooks/formScope';
 import { useValidator } from '../../hooks/useValidator';
 import { isValidFunctionLocation, isValidFunctionName } from '../../util/validator';
 
+const localTransformer = (val: string) => {
+  const trimmed = val.trim();
+  return trimmed.startsWith('/') ? trimmed : `/${trimmed}`;
+};
+
+const nameTransformer = (val: string) => val.trim();
+
 export const FunctionInfo: FC = () => {
-  const locationRef = useValidator(isValidFunctionLocation);
-  const nameRef = useValidator(isValidFunctionName);
+  const locationRef = useValidator(isValidFunctionLocation, localTransformer);
+  const nameRef = useValidator(isValidFunctionName, nameTransformer);
   const {
     functionLocation,
     functionName,

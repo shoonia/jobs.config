@@ -1,8 +1,14 @@
+import type { RefObject } from 'preact';
 import { useEffect, useRef } from 'preact/hooks';
 
 import type { TValidator } from '../util/validator';
 
-export const useValidator = (validator: TValidator) => {
+type TUseValidator = (
+  validator: TValidator,
+  transformer: (val: string) => string,
+) => RefObject<HTMLInputElement>;
+
+export const useValidator: TUseValidator = (validator, transformer) => {
   const ref = useRef<HTMLInputElement>(null);
 
   useEffect(() => {
@@ -10,7 +16,7 @@ export const useValidator = (validator: TValidator) => {
 
     if (node) {
       const listener = () => {
-        const value = node.value.trim();
+        const value = transformer(node.value);
 
         if (node.value !== value) {
           node.value = value;
