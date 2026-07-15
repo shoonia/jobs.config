@@ -3,12 +3,12 @@ import { useEffect, useRef } from 'preact/hooks';
 
 import type { TValidator } from '../util/validator';
 
-type IUseValidator = (
+type TUseValidator = (
   validator: TValidator,
   transformer: (val: string) => string,
 ) => RefObject<HTMLInputElement>;
 
-export const useValidator: IUseValidator = (validator, transformer) => {
+export const useValidator: TUseValidator = (validator, transformer) => {
   const ref = useRef<HTMLInputElement>(null);
 
   useEffect(() => {
