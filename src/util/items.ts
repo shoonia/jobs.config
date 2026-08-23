@@ -68,7 +68,7 @@ const getPeriod = (exec: IExecutionConfig): PERIOD => {
 };
 
 export const createConfig = (items: IItem[]): string => {
-  let noop: undefined;
+  const noop = undefined;
 
   const config: IConfig = {
     jobs: items.map<IJob>((i): IJob => {

@@ -7,18 +7,18 @@ on:
 
 jobs:
   build-deploy:
-    runs-on: ubuntu-22.04
+    runs-on: ubuntu-24.04
     steps:
     - name: Checkout the repository
-      uses: actions/checkout@v4
+      uses: actions/checkout@v6
 
     - name: Setup Node.js
-      uses: actions/setup-node@v4
+      uses: actions/setup-node@v6
       with:
-        node-version: 22
+        node-version: 24
         cache: npm
 
-    - run: npm install
+    - run: npm ci --legacy-peer-deps
     - run: npm run lint
     - run: npm run build
     - run: npm test
