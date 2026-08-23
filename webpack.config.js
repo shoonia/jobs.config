@@ -1,18 +1,18 @@
-import { resolve } from 'node:path';
-import { realpathSync } from 'node:fs';
-import webpack from 'webpack';
+import autoprefixer from 'autoprefixer';
 import CopyPlugin from 'copy-webpack-plugin';
-import HtmlWebpackPlugin from 'html-webpack-plugin';
-import TerserPlugin from 'terser-webpack-plugin';
-import MiniCssExtractPlugin from 'mini-css-extract-plugin';
 import CssMinimizerPlugin from 'css-minimizer-webpack-plugin';
 import CssMqpackerPlugin from 'css-mqpacker-webpack-plugin';
-import createLocalIdent from 'mini-css-class-name/css-loader';
 import ForkTsCheckerWebpackPlugin from 'fork-ts-checker-webpack-plugin';
 import HTMLInlineCSSWebpackPlugin from 'html-inline-css-webpack-plugin';
+import HtmlWebpackPlugin from 'html-webpack-plugin';
+import createLocalIdent from 'mini-css-class-name/css-loader';
+import MiniCssExtractPlugin from 'mini-css-extract-plugin';
+import { realpathSync } from 'node:fs';
+import { resolve } from 'node:path';
 import postcssImport from 'postcss-import';
 import simpleVars from 'postcss-simple-vars';
-import autoprefixer from 'autoprefixer';
+import TerserPlugin from 'terser-webpack-plugin';
+import webpack from 'webpack';
 
 import manifest from './static/manifest.json' with { type: 'json' };
 
@@ -150,7 +150,7 @@ const buildConfig = ({ NODE_ENV }) => {
         {
           oneOf: [
             {
-              test: /\.js?$/,
+              test: /\.js$/,
               include: nodeModulesDir,
               exclude: srcDir,
               loader: 'babel-loader',

@@ -27,12 +27,12 @@
     "lib": [
       "ESNext",
       "DOM"
+    ],
+    "types": [
+      "node",
+      "wicg-file-system-access",
+      "css-modules",
     ]
-  },
-  "ts-node": {
-    "esm": true,
-    "transpileOnly": true,
-    "experimentalSpecifierResolution": "node"
   },
   "include": [
     "src"
