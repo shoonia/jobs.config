@@ -172,6 +172,7 @@ const buildConfig = ({ NODE_ENV }) => {
                     experimental: {
                       plugins: [
                         ['swc-plugin-evaluate-polyfills', { browser: true }],
+                        ['swc-plugin-minify-catch-param', {}]
                       ]
                     },
                   },

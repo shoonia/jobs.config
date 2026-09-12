@@ -50,6 +50,7 @@
     "stylelint-config-standard": "^40.0.0",
     "swc-loader": "^0.2.7",
     "swc-plugin-evaluate-polyfills": "^0.1.0",
+    "swc-plugin-minify-catch-param": "^0.1.0",
     "terser-webpack-plugin": "^5.6.1",
     "typescript": "^6.0.3",
     "typescript-eslint": "^8.67.0",
