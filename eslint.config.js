@@ -18,24 +18,6 @@ export default defineConfig(
   js.configs.recommended,
   ts.configs.recommended,
   {
-    plugins: {
-      'eslint-plugin-react': {
-        rules: {
-          'react/jsx-key': 'error',
-          'react/prop-types': 'off',
-          'react/react-in-jsx-scope': 'off',
-          'react/jsx-uses-react': 'off',
-          'react/no-unknown-property': [
-            'error',
-            {
-              'ignore': [
-                'spellcheck',
-              ],
-            },
-          ],
-        },
-      },
-    },
     rules: {
       'comma-dangle': [
         'error',

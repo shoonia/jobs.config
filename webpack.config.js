@@ -76,14 +76,15 @@ const buildConfig = ({ NODE_ENV }) => {
       minimize: isProd,
       minimizer: [
         new TerserPlugin({
+          minify: TerserPlugin.swcMinify,
           extractComments: false,
           terserOptions: {
-            ecma: 2020,
+            ecma: 2024,
             module: true,
             toplevel: true,
             sourceMap: false,
             compress: {
-              ecma: 2020,
+              ecma: 2024,
               module: true,
               comparisons: false,
               inline: 2,
@@ -150,62 +151,31 @@ const buildConfig = ({ NODE_ENV }) => {
         {
           oneOf: [
             {
-              test: /\.js$/,
-              include: nodeModulesDir,
-              exclude: srcDir,
-              loader: 'babel-loader',
-              options: {
-                cacheDirectory: isDev,
-                cacheCompression: false,
-                comments: isDev,
-                compact: isProd,
-                minified: isProd,
-                plugins: [
-                  resolveApp('plugins/babel.js'),
-                  'babel-plugin-transform-minify-catch-param',
-                  [
-                    'babel-plugin-transform-remove-polyfill',
-                    {
-                      globalObjects: ['window', 'document'],
-                      globalFunctions: ['requestAnimationFrame'],
+              test: /\.(js|jsx|ts|tsx)$/,
+              use: {
+                loader: 'swc-loader',
+                options: {
+                  sync: true,
+                  minify: isProd,
+                  jsc: {
+                    target: 'es2024',
+                    parser: {
+                      syntax: 'typescript',
+                      tsx: true,
                     },
-                  ],
-                  [
-                    '@babel/plugin-transform-react-jsx',
-                    {
-                      runtime: 'automatic',
-                      importSource: 'preact',
+                    transform: {
+                      react: {
+                        runtime: 'automatic',
+                        importSource: 'preact',
+                      },
                     },
-                  ],
-                ],
-              },
-            },
-            {
-              test: /\.tsx?$/,
-              include: srcDir,
-              loader: 'babel-loader',
-              options: {
-                cacheDirectory: isDev,
-                cacheCompression: false,
-                compact: isProd,
-                minified: isProd,
-                presets: [
-                  [
-                    '@babel/preset-typescript',
-                    {
-                      optimizeConstEnums: true,
+                    experimental: {
+                      plugins: [
+                        ['swc-plugin-evaluate-polyfills', { browser: true }],
+                      ]
                     },
-                  ],
-                ],
-                plugins: [
-                  [
-                    '@babel/plugin-transform-react-jsx',
-                    {
-                      runtime: 'automatic',
-                      importSource: 'preact',
-                    },
-                  ],
-                ],
+                  },
+                },
               },
             },
             {

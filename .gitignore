@@ -1,6 +1,7 @@
 node_modules/
 .cache/
 dist/
+.swc/
 
 .DS_Store
 yarn.lock
