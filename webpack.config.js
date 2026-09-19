@@ -169,7 +169,7 @@ const buildConfig = ({ NODE_ENV }) => {
                         importSource: 'preact',
                       },
                     },
-                    experimental: {
+                    experimental: isDev ? {} : {
                       plugins: [
                         ['swc-plugin-evaluate-polyfills', { browser: true }],
                         ['swc-plugin-minify-catch-param', {}]
