@@ -6,10 +6,10 @@ import type { TValidator } from '../util/validator';
 type TUseValidator = (
   validator: TValidator,
   transformer: (val: string) => string,
-) => RefObject<HTMLInputElement>;
+) => RefObject<HTMLInputElement | null>;
 
 export const useValidator: TUseValidator = (validator, transformer) => {
-  const ref = useRef<HTMLInputElement>(null);
+  const ref = useRef<HTMLInputElement | null>(null);
 
   useEffect(() => {
     const node = ref.current;
