@@ -93,7 +93,6 @@ const buildConfig = ({ NODE_ENV }) => {
               toplevel: true,
               pure_getters: true,
               unsafe: true,
-              unsafe_arrows: true,
               unsafe_symbols: true,
             },
           },
