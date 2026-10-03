@@ -132,10 +132,11 @@ const buildConfig = ({ NODE_ENV }) => {
       ],
       extensions: [
         '.js',
+        '.jsx',
         '.ts',
         '.tsx',
         '.cjs',
-        '.mjs'
+        '.mjs',
       ],
       alias: {
         react: 'preact/compat',
