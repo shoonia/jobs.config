@@ -134,6 +134,8 @@ const buildConfig = ({ NODE_ENV }) => {
         '.js',
         '.ts',
         '.tsx',
+        '.cjs',
+        '.mjs'
       ],
       alias: {
         react: 'preact/compat',
@@ -151,7 +153,7 @@ const buildConfig = ({ NODE_ENV }) => {
         {
           oneOf: [
             {
-              test: /\.(js|jsx|ts|tsx)$/,
+              test: /\.(js|jsx|ts|tsx|cjs|mjs)$/,
               use: {
                 loader: 'swc-loader',
                 options: {
